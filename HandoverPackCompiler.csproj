@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="DataFormats.cs" />
     <Compile Include="PackCompiler.cs">
       <SubType>Form</SubType>
