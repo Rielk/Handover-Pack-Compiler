@@ -51,10 +51,12 @@ namespace Handover_Pack_Compiler
             this.CommSiteButton = new System.Windows.Forms.Button();
             this.Pack = new System.Windows.Forms.TabPage();
             this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.inverterDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AddInverterButton = new System.Windows.Forms.Button();
+            this.DeleteInverterButton = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.inverterDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Operation.SuspendLayout();
             this.Inverter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
@@ -98,7 +100,7 @@ namespace Handover_Pack_Compiler
             // 
             this.Files.Location = new System.Drawing.Point(4, 22);
             this.Files.Name = "Files";
-            this.Files.Size = new System.Drawing.Size(540, 423);
+            this.Files.Size = new System.Drawing.Size(850, 472);
             this.Files.TabIndex = 4;
             this.Files.Text = "Files";
             this.Files.UseVisualStyleBackColor = true;
@@ -108,13 +110,15 @@ namespace Handover_Pack_Compiler
             this.Module.Location = new System.Drawing.Point(4, 22);
             this.Module.Name = "Module";
             this.Module.Padding = new System.Windows.Forms.Padding(3);
-            this.Module.Size = new System.Drawing.Size(540, 423);
+            this.Module.Size = new System.Drawing.Size(850, 472);
             this.Module.TabIndex = 1;
             this.Module.Text = "Module";
             this.Module.UseVisualStyleBackColor = true;
             // 
             // Inverter
             // 
+            this.Inverter.Controls.Add(this.DeleteInverterButton);
+            this.Inverter.Controls.Add(this.AddInverterButton);
             this.Inverter.Controls.Add(this.InverterGridView);
             this.Inverter.Location = new System.Drawing.Point(4, 22);
             this.Inverter.Name = "Inverter";
@@ -125,9 +129,12 @@ namespace Handover_Pack_Compiler
             // 
             // InverterGridView
             // 
+            this.InverterGridView.AllowUserToAddRows = false;
+            this.InverterGridView.AllowUserToDeleteRows = false;
             this.InverterGridView.AllowUserToResizeColumns = false;
             this.InverterGridView.AllowUserToResizeRows = false;
-            this.InverterGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.InverterGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InverterGridView.AutoGenerateColumns = false;
             this.InverterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -138,8 +145,10 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.DataSource = this.inverterDataBindingSource;
             this.InverterGridView.Location = new System.Drawing.Point(6, 127);
             this.InverterGridView.Name = "InverterGridView";
+            this.InverterGridView.ReadOnly = true;
+            this.InverterGridView.RowHeadersVisible = false;
             this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.InverterGridView.Size = new System.Drawing.Size(528, 289);
+            this.InverterGridView.Size = new System.Drawing.Size(528, 263);
             this.InverterGridView.TabIndex = 2;
             // 
             // Settings
@@ -295,14 +304,31 @@ namespace Handover_Pack_Compiler
             // 
             this.Pack.Location = new System.Drawing.Point(4, 22);
             this.Pack.Name = "Pack";
-            this.Pack.Size = new System.Drawing.Size(540, 423);
+            this.Pack.Size = new System.Drawing.Size(850, 472);
             this.Pack.TabIndex = 5;
             this.Pack.Text = "Pack";
             this.Pack.UseVisualStyleBackColor = true;
             // 
-            // inverterDataBindingSource
+            // AddInverterButton
             // 
-            this.inverterDataBindingSource.DataSource = typeof(InverterData);
+            this.AddInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddInverterButton.Location = new System.Drawing.Point(8, 396);
+            this.AddInverterButton.Name = "AddInverterButton";
+            this.AddInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.AddInverterButton.TabIndex = 5;
+            this.AddInverterButton.Text = "Add Inverter";
+            this.AddInverterButton.UseVisualStyleBackColor = true;
+            this.AddInverterButton.Click += new System.EventHandler(this.AddInverterButton_Click);
+            // 
+            // DeleteInverterButton
+            // 
+            this.DeleteInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteInverterButton.Location = new System.Drawing.Point(417, 396);
+            this.DeleteInverterButton.Name = "DeleteInverterButton";
+            this.DeleteInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.DeleteInverterButton.TabIndex = 6;
+            this.DeleteInverterButton.Text = "Delete Inverter";
+            this.DeleteInverterButton.UseVisualStyleBackColor = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -311,6 +337,7 @@ namespace Handover_Pack_Compiler
             this.nameDataGridViewTextBoxColumn.Frozen = true;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 60;
             // 
             // datasheetDataGridViewTextBoxColumn
@@ -319,6 +346,7 @@ namespace Handover_Pack_Compiler
             this.datasheetDataGridViewTextBoxColumn.DataPropertyName = "Datasheet";
             this.datasheetDataGridViewTextBoxColumn.HeaderText = "Datasheet";
             this.datasheetDataGridViewTextBoxColumn.Name = "datasheetDataGridViewTextBoxColumn";
+            this.datasheetDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // solarEdgeDataGridViewCheckBoxColumn
             // 
@@ -326,7 +354,12 @@ namespace Handover_Pack_Compiler
             this.solarEdgeDataGridViewCheckBoxColumn.DataPropertyName = "SolarEdge";
             this.solarEdgeDataGridViewCheckBoxColumn.HeaderText = "SolarEdge";
             this.solarEdgeDataGridViewCheckBoxColumn.Name = "solarEdgeDataGridViewCheckBoxColumn";
+            this.solarEdgeDataGridViewCheckBoxColumn.ReadOnly = true;
             this.solarEdgeDataGridViewCheckBoxColumn.Width = 62;
+            // 
+            // inverterDataBindingSource
+            // 
+            this.inverterDataBindingSource.DataSource = typeof(InverterData);
             // 
             // PackCompiler
             // 
@@ -380,6 +413,8 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewTextBoxColumn datasheetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn solarEdgeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource inverterDataBindingSource;
+        private System.Windows.Forms.Button AddInverterButton;
+        private System.Windows.Forms.Button DeleteInverterButton;
     }
 }
 

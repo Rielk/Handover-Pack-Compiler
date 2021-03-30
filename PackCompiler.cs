@@ -177,5 +177,17 @@ namespace Handover_Pack_Compiler
                 textReader.Close();
             }
         }
+
+        private void AddInverterButton_Click(object sender, EventArgs e)
+        {
+            InverterData data = new InverterData
+            {
+                Name = "Test",
+                Datasheet = "This/is/a/path",
+                SolarEdge = true
+            };
+            InverterList.Add(data);
+            InverterSource.ResetBindings(false);
+        }
     }
 }

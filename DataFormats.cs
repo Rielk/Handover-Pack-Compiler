@@ -12,4 +12,3 @@ public class InverterData
 	public string Datasheet { get; set; }
 	public bool SolarEdge { get; set; }
 }
-

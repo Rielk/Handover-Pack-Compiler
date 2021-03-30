@@ -81,7 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inverter.cs" />
+    <Compile Include="DataFormats.cs" />
     <Compile Include="PackCompiler.cs">
       <SubType>Form</SubType>
     </Compile>
