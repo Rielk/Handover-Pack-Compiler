@@ -53,6 +53,7 @@ namespace Handover_Pack_Compiler
             this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AddInverterButton = new System.Windows.Forms.Button();
             this.DeleteInverterButton = new System.Windows.Forms.Button();
+            this.EditInverterButton = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -100,7 +101,7 @@ namespace Handover_Pack_Compiler
             // 
             this.Files.Location = new System.Drawing.Point(4, 22);
             this.Files.Name = "Files";
-            this.Files.Size = new System.Drawing.Size(850, 472);
+            this.Files.Size = new System.Drawing.Size(540, 423);
             this.Files.TabIndex = 4;
             this.Files.Text = "Files";
             this.Files.UseVisualStyleBackColor = true;
@@ -110,13 +111,14 @@ namespace Handover_Pack_Compiler
             this.Module.Location = new System.Drawing.Point(4, 22);
             this.Module.Name = "Module";
             this.Module.Padding = new System.Windows.Forms.Padding(3);
-            this.Module.Size = new System.Drawing.Size(850, 472);
+            this.Module.Size = new System.Drawing.Size(540, 423);
             this.Module.TabIndex = 1;
             this.Module.Text = "Module";
             this.Module.UseVisualStyleBackColor = true;
             // 
             // Inverter
             // 
+            this.Inverter.Controls.Add(this.EditInverterButton);
             this.Inverter.Controls.Add(this.DeleteInverterButton);
             this.Inverter.Controls.Add(this.AddInverterButton);
             this.Inverter.Controls.Add(this.InverterGridView);
@@ -148,6 +150,7 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.ReadOnly = true;
             this.InverterGridView.RowHeadersVisible = false;
             this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.InverterGridView.Size = new System.Drawing.Size(528, 263);
             this.InverterGridView.TabIndex = 2;
             // 
@@ -304,7 +307,7 @@ namespace Handover_Pack_Compiler
             // 
             this.Pack.Location = new System.Drawing.Point(4, 22);
             this.Pack.Name = "Pack";
-            this.Pack.Size = new System.Drawing.Size(850, 472);
+            this.Pack.Size = new System.Drawing.Size(540, 423);
             this.Pack.TabIndex = 5;
             this.Pack.Text = "Pack";
             this.Pack.UseVisualStyleBackColor = true;
@@ -329,6 +332,17 @@ namespace Handover_Pack_Compiler
             this.DeleteInverterButton.TabIndex = 6;
             this.DeleteInverterButton.Text = "Delete Inverter";
             this.DeleteInverterButton.UseVisualStyleBackColor = true;
+            this.DeleteInverterButton.Click += new System.EventHandler(this.DeleteInverterButton_Click);
+            // 
+            // EditInverterButton
+            // 
+            this.EditInverterButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.EditInverterButton.Location = new System.Drawing.Point(212, 396);
+            this.EditInverterButton.Name = "EditInverterButton";
+            this.EditInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.EditInverterButton.TabIndex = 7;
+            this.EditInverterButton.Text = "Edit Inverter";
+            this.EditInverterButton.UseVisualStyleBackColor = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -415,6 +429,7 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.BindingSource inverterDataBindingSource;
         private System.Windows.Forms.Button AddInverterButton;
         private System.Windows.Forms.Button DeleteInverterButton;
+        private System.Windows.Forms.Button EditInverterButton;
     }
 }
 

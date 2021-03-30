@@ -182,11 +182,22 @@ namespace Handover_Pack_Compiler
         {
             InverterData data = new InverterData
             {
-                Name = "Test",
+                Name = "Test" + (InverterList.Count+1).ToString(),
                 Datasheet = "This/is/a/path",
-                SolarEdge = true
+                SolarEdge = false
             };
             InverterList.Add(data);
+            InverterList.Sort();
+            InverterSource.ResetBindings(false);
+        }
+
+        private void DeleteInverterButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in InverterGridView.SelectedRows)
+            {
+                InverterList.Remove(new InverterData() { Name = row.Cells[0].Value.ToString() });
+            }
+            InverterList.Sort();
             InverterSource.ResetBindings(false);
         }
     }
