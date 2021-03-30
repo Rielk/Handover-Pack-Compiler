@@ -50,10 +50,10 @@ namespace Handover_Pack_Compiler
             this.CommSiteBox = new System.Windows.Forms.TextBox();
             this.CommSiteButton = new System.Windows.Forms.Button();
             this.Pack = new System.Windows.Forms.TabPage();
-            this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Operation.SuspendLayout();
             this.Inverter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -123,9 +123,12 @@ namespace Handover_Pack_Compiler
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.datasheetDataGridViewTextBoxColumn,
@@ -133,6 +136,7 @@ namespace Handover_Pack_Compiler
             this.dataGridView1.DataSource = this.inverterDataSourceBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(6, 127);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.Size = new System.Drawing.Size(528, 289);
             this.dataGridView1.TabIndex = 2;
             // 
@@ -294,27 +298,33 @@ namespace Handover_Pack_Compiler
             this.Pack.Text = "Pack";
             this.Pack.UseVisualStyleBackColor = true;
             // 
-            // inverterDataSourceBindingSource
-            // 
-            this.inverterDataSourceBindingSource.DataSource = typeof(InverterDataSource);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.Frozen = true;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 60;
             // 
             // datasheetDataGridViewTextBoxColumn
             // 
+            this.datasheetDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.datasheetDataGridViewTextBoxColumn.DataPropertyName = "Datasheet";
             this.datasheetDataGridViewTextBoxColumn.HeaderText = "Datasheet";
             this.datasheetDataGridViewTextBoxColumn.Name = "datasheetDataGridViewTextBoxColumn";
             // 
             // solarEdgeDataGridViewCheckBoxColumn
             // 
+            this.solarEdgeDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.solarEdgeDataGridViewCheckBoxColumn.DataPropertyName = "SolarEdge";
             this.solarEdgeDataGridViewCheckBoxColumn.HeaderText = "SolarEdge";
             this.solarEdgeDataGridViewCheckBoxColumn.Name = "solarEdgeDataGridViewCheckBoxColumn";
+            this.solarEdgeDataGridViewCheckBoxColumn.Width = 62;
+            // 
+            // inverterDataSourceBindingSource
+            // 
+            this.inverterDataSourceBindingSource.DataSource = typeof(InverterDataSource);
             // 
             // PackCompiler
             // 
@@ -362,10 +372,10 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.TextBox SEWarrantyBox;
         private System.Windows.Forms.Button SEWarrantButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource inverterDataSourceBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datasheetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn solarEdgeDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.BindingSource inverterDataSourceBindingSource;
     }
 }
 
