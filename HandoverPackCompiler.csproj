@@ -106,9 +106,6 @@
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\InverterData.datasource" />
-    <None Include="Properties\DataSources\InverterDataSource.datasource" />
-    <None Include="Properties\DataSources\PackCompiler.datasource" />
-    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

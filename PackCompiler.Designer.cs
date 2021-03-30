@@ -35,7 +35,7 @@ namespace Handover_Pack_Compiler
             this.Files = new System.Windows.Forms.TabPage();
             this.Module = new System.Windows.Forms.TabPage();
             this.Inverter = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.InverterGridView = new System.Windows.Forms.DataGridView();
             this.Settings = new System.Windows.Forms.TabPage();
             this.SEWarrantyGroup = new System.Windows.Forms.GroupBox();
             this.SEWarrantyBox = new System.Windows.Forms.TextBox();
@@ -50,19 +50,21 @@ namespace Handover_Pack_Compiler
             this.CommSiteBox = new System.Windows.Forms.TextBox();
             this.CommSiteButton = new System.Windows.Forms.Button();
             this.Pack = new System.Windows.Forms.TabPage();
+            this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.inverterDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Operation.SuspendLayout();
             this.Inverter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
             this.Settings.SuspendLayout();
             this.SEWarrantyGroup.SuspendLayout();
             this.MPWarrantyGroup.SuspendLayout();
             this.ProgDataGroup.SuspendLayout();
             this.CommSiteGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inverterDataSourceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inverterDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Operation
@@ -113,7 +115,7 @@ namespace Handover_Pack_Compiler
             // 
             // Inverter
             // 
-            this.Inverter.Controls.Add(this.dataGridView1);
+            this.Inverter.Controls.Add(this.InverterGridView);
             this.Inverter.Location = new System.Drawing.Point(4, 22);
             this.Inverter.Name = "Inverter";
             this.Inverter.Size = new System.Drawing.Size(540, 423);
@@ -121,24 +123,24 @@ namespace Handover_Pack_Compiler
             this.Inverter.Text = "Inverter";
             this.Inverter.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // InverterGridView
             // 
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.InverterGridView.AllowUserToResizeColumns = false;
+            this.InverterGridView.AllowUserToResizeRows = false;
+            this.InverterGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.InverterGridView.AutoGenerateColumns = false;
+            this.InverterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InverterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.datasheetDataGridViewTextBoxColumn,
             this.solarEdgeDataGridViewCheckBoxColumn});
-            this.dataGridView1.DataSource = this.inverterDataSourceBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 127);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView1.Size = new System.Drawing.Size(528, 289);
-            this.dataGridView1.TabIndex = 2;
+            this.InverterGridView.DataSource = this.inverterDataBindingSource;
+            this.InverterGridView.Location = new System.Drawing.Point(6, 127);
+            this.InverterGridView.Name = "InverterGridView";
+            this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.InverterGridView.Size = new System.Drawing.Size(528, 289);
+            this.InverterGridView.TabIndex = 2;
             // 
             // Settings
             // 
@@ -298,6 +300,10 @@ namespace Handover_Pack_Compiler
             this.Pack.Text = "Pack";
             this.Pack.UseVisualStyleBackColor = true;
             // 
+            // inverterDataBindingSource
+            // 
+            this.inverterDataBindingSource.DataSource = typeof(InverterData);
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -322,10 +328,6 @@ namespace Handover_Pack_Compiler
             this.solarEdgeDataGridViewCheckBoxColumn.Name = "solarEdgeDataGridViewCheckBoxColumn";
             this.solarEdgeDataGridViewCheckBoxColumn.Width = 62;
             // 
-            // inverterDataSourceBindingSource
-            // 
-            this.inverterDataSourceBindingSource.DataSource = typeof(InverterDataSource);
-            // 
             // PackCompiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,7 +338,7 @@ namespace Handover_Pack_Compiler
             this.Text = "Mypower Handover Pack Compiler";
             this.Operation.ResumeLayout(false);
             this.Inverter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
             this.Settings.ResumeLayout(false);
             this.SEWarrantyGroup.ResumeLayout(false);
             this.SEWarrantyGroup.PerformLayout();
@@ -347,6 +349,7 @@ namespace Handover_Pack_Compiler
             this.CommSiteGroup.ResumeLayout(false);
             this.CommSiteGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inverterDataSourceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inverterDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,11 +374,12 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.GroupBox SEWarrantyGroup;
         private System.Windows.Forms.TextBox SEWarrantyBox;
         private System.Windows.Forms.Button SEWarrantButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView InverterGridView;
         private System.Windows.Forms.BindingSource inverterDataSourceBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datasheetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn solarEdgeDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.BindingSource inverterDataBindingSource;
     }
 }
 

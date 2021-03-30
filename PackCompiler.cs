@@ -20,6 +20,8 @@ namespace Handover_Pack_Compiler
         private string CommSitePath = "";
         private string MPWarrantyPath = "";
         private string SEWarrantyPath = "";
+        private List<InverterData> InverterList = new List<InverterData>();
+        private BindingSource InverterSource = new BindingSource();
 
         public PackCompiler()
         {
@@ -30,6 +32,9 @@ namespace Handover_Pack_Compiler
             }
             ProgDataBox.Text = Properties.Settings.Default.ProgramDataPath;
             FindFilePaths();
+
+            InverterSource.DataSource = InverterList;
+            InverterGridView.DataSource = InverterSource;
         }
         private void CommSiteButton_Click(object sender, EventArgs e)
         {
