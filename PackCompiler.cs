@@ -187,9 +187,9 @@ namespace Handover_Pack_Compiler
             IVForm.ShowDialog();
             InverterData data = new InverterData
             {
-                Name = "Test" + (InverterList.Count+1).ToString(),
-                Datasheet = "This/is/a/path",
-                SolarEdge = false
+                Name = IVForm.NameVal,
+                Datasheet = IVForm.DatasheetVal,
+                SolarEdge = IVForm.SolarEdgeVal
             };
             InverterList.Add(data);
             InverterList.Sort();
