@@ -35,6 +35,9 @@ namespace Handover_Pack_Compiler
             this.Files = new System.Windows.Forms.TabPage();
             this.Module = new System.Windows.Forms.TabPage();
             this.Inverter = new System.Windows.Forms.TabPage();
+            this.EditInverterButton = new System.Windows.Forms.Button();
+            this.DeleteInverterButton = new System.Windows.Forms.Button();
+            this.AddInverterButton = new System.Windows.Forms.Button();
             this.InverterGridView = new System.Windows.Forms.DataGridView();
             this.Settings = new System.Windows.Forms.TabPage();
             this.SEWarrantyGroup = new System.Windows.Forms.GroupBox();
@@ -51,9 +54,6 @@ namespace Handover_Pack_Compiler
             this.CommSiteButton = new System.Windows.Forms.Button();
             this.Pack = new System.Windows.Forms.TabPage();
             this.inverterDataSourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.AddInverterButton = new System.Windows.Forms.Button();
-            this.DeleteInverterButton = new System.Windows.Forms.Button();
-            this.EditInverterButton = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -128,6 +128,39 @@ namespace Handover_Pack_Compiler
             this.Inverter.TabIndex = 2;
             this.Inverter.Text = "Inverter";
             this.Inverter.UseVisualStyleBackColor = true;
+            // 
+            // EditInverterButton
+            // 
+            this.EditInverterButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.EditInverterButton.Location = new System.Drawing.Point(212, 396);
+            this.EditInverterButton.Name = "EditInverterButton";
+            this.EditInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.EditInverterButton.TabIndex = 7;
+            this.EditInverterButton.Text = "Edit Inverter";
+            this.EditInverterButton.UseVisualStyleBackColor = true;
+            this.EditInverterButton.Click += new System.EventHandler(this.EditInverterButton_Click);
+            // 
+            // DeleteInverterButton
+            // 
+            this.DeleteInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteInverterButton.Location = new System.Drawing.Point(417, 396);
+            this.DeleteInverterButton.Name = "DeleteInverterButton";
+            this.DeleteInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.DeleteInverterButton.TabIndex = 6;
+            this.DeleteInverterButton.Text = "Delete Inverter";
+            this.DeleteInverterButton.UseVisualStyleBackColor = true;
+            this.DeleteInverterButton.Click += new System.EventHandler(this.DeleteInverterButton_Click);
+            // 
+            // AddInverterButton
+            // 
+            this.AddInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddInverterButton.Location = new System.Drawing.Point(8, 396);
+            this.AddInverterButton.Name = "AddInverterButton";
+            this.AddInverterButton.Size = new System.Drawing.Size(114, 20);
+            this.AddInverterButton.TabIndex = 5;
+            this.AddInverterButton.Text = "Add Inverter";
+            this.AddInverterButton.UseVisualStyleBackColor = true;
+            this.AddInverterButton.Click += new System.EventHandler(this.AddInverterButton_Click);
             // 
             // InverterGridView
             // 
@@ -311,38 +344,6 @@ namespace Handover_Pack_Compiler
             this.Pack.TabIndex = 5;
             this.Pack.Text = "Pack";
             this.Pack.UseVisualStyleBackColor = true;
-            // 
-            // AddInverterButton
-            // 
-            this.AddInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddInverterButton.Location = new System.Drawing.Point(8, 396);
-            this.AddInverterButton.Name = "AddInverterButton";
-            this.AddInverterButton.Size = new System.Drawing.Size(114, 20);
-            this.AddInverterButton.TabIndex = 5;
-            this.AddInverterButton.Text = "Add Inverter";
-            this.AddInverterButton.UseVisualStyleBackColor = true;
-            this.AddInverterButton.Click += new System.EventHandler(this.AddInverterButton_Click);
-            // 
-            // DeleteInverterButton
-            // 
-            this.DeleteInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteInverterButton.Location = new System.Drawing.Point(417, 396);
-            this.DeleteInverterButton.Name = "DeleteInverterButton";
-            this.DeleteInverterButton.Size = new System.Drawing.Size(114, 20);
-            this.DeleteInverterButton.TabIndex = 6;
-            this.DeleteInverterButton.Text = "Delete Inverter";
-            this.DeleteInverterButton.UseVisualStyleBackColor = true;
-            this.DeleteInverterButton.Click += new System.EventHandler(this.DeleteInverterButton_Click);
-            // 
-            // EditInverterButton
-            // 
-            this.EditInverterButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditInverterButton.Location = new System.Drawing.Point(212, 396);
-            this.EditInverterButton.Name = "EditInverterButton";
-            this.EditInverterButton.Size = new System.Drawing.Size(114, 20);
-            this.EditInverterButton.TabIndex = 7;
-            this.EditInverterButton.Text = "Edit Inverter";
-            this.EditInverterButton.UseVisualStyleBackColor = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 

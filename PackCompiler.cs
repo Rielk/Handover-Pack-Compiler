@@ -20,8 +20,8 @@ namespace Handover_Pack_Compiler
         private string CommSitePath = "";
         private string MPWarrantyPath = "";
         private string SEWarrantyPath = "";
-        private List<InverterData> InverterList = new List<InverterData>();
-        private BindingSource InverterSource = new BindingSource();
+        private readonly List<InverterData> InverterList = new List<InverterData>();
+        private readonly BindingSource InverterSource = new BindingSource();
 
         public PackCompiler()
         {
@@ -180,6 +180,8 @@ namespace Handover_Pack_Compiler
 
         private void AddInverterButton_Click(object sender, EventArgs e)
         {
+            InverterValuesForm IVForm = new InverterValuesForm();
+            IVForm.ShowDialog();
             InverterData data = new InverterData
             {
                 Name = "Test" + (InverterList.Count+1).ToString(),
@@ -195,10 +197,26 @@ namespace Handover_Pack_Compiler
         {
             foreach (DataGridViewRow row in InverterGridView.SelectedRows)
             {
-                InverterList.Remove(new InverterData() { Name = row.Cells[0].Value.ToString() });
+                InverterList.Remove((InverterData)row.DataBoundItem);
             }
             InverterList.Sort();
             InverterSource.ResetBindings(false);
+        }
+
+        private void EditInverterButton_Click(object sender, EventArgs e)
+        {
+            InverterData IData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem; 
+            InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
+            if (IVForm.ShowDialog() == DialogResult.OK)
+            {
+                InverterList.Remove(IData);
+                IData.Name = IVForm.NameVal;
+                IData.Datasheet = IVForm.DatasheetVal;
+                IData.SolarEdge = IVForm.SolarEdgeVal;
+                InverterList.Add(IData);
+                InverterList.Sort();
+                InverterSource.ResetBindings(false);
+            }
         }
     }
 }
