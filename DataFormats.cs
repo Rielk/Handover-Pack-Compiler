@@ -9,7 +9,7 @@ using ExtensionMethods;
 
 public class Data : IEquatable<InverterData>, IComparable<InverterData>, IComparable
 {
-    public string Name { get; set; } = null;
+    public string Name { get; set; }
     public override string ToString()
     {
         return Name.ToString();
@@ -48,6 +48,6 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
 
 public class  InverterData : Data
 {
-    public string Datasheet { get; set; } = null;
-    public bool SolarEdge { get; set; } = false;
+    public string Datasheet { get; set; }
+    public bool SolarEdge { get; set; }
 }

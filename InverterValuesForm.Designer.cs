@@ -65,6 +65,7 @@ namespace Handover_Pack_Compiler
             this.DatasheetBox.ReadOnly = true;
             this.DatasheetBox.Size = new System.Drawing.Size(420, 20);
             this.DatasheetBox.TabIndex = 0;
+            this.DatasheetBox.TabStop = false;
             // 
             // DatasheetButton
             // 
@@ -73,6 +74,7 @@ namespace Handover_Pack_Compiler
             this.DatasheetButton.Name = "DatasheetButton";
             this.DatasheetButton.Size = new System.Drawing.Size(26, 20);
             this.DatasheetButton.TabIndex = 4;
+            this.DatasheetButton.TabStop = false;
             this.DatasheetButton.Text = "...";
             this.DatasheetButton.UseVisualStyleBackColor = true;
             this.DatasheetButton.Click += new System.EventHandler(this.DatasheetButton_Click);

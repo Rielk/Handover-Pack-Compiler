@@ -18,7 +18,6 @@ namespace Handover_Pack_Compiler
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
         private readonly List<InverterData> InverterList = new List<InverterData>();
-        private readonly BindingSource InverterSource = new BindingSource();
 
         public PackCompiler()
         {
@@ -29,8 +28,8 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            InverterSource.DataSource = InverterList;
-            InverterGridView.DataSource = InverterSource;
+            //InverterList.Add(null);
+            InverterDataSource.DataSource = InverterList;
         }
         private void CommSiteButton_Click(object sender, EventArgs e)
         {
@@ -191,9 +190,18 @@ namespace Handover_Pack_Compiler
                 Datasheet = IVForm.DatasheetVal,
                 SolarEdge = IVForm.SolarEdgeVal
             };
-            InverterList.Add(data);
+            if (InverterList.Contains(data))
+            {
+                //Ask if user wants to replace existing?
+                InverterList.Remove(data);
+                InverterList.Add(data);
+            }
+            else
+            {
+                InverterList.Add(data);
+            }
             InverterList.Sort();
-            InverterSource.ResetBindings(false);
+            InverterDataSource.ResetBindings(false);
         }
 
         private void DeleteInverterButton_Click(object sender, EventArgs e)
@@ -203,7 +211,7 @@ namespace Handover_Pack_Compiler
                 InverterList.Remove((InverterData)row.DataBoundItem);
             }
             InverterList.Sort();
-            InverterSource.ResetBindings(false);
+            InverterDataSource.ResetBindings(false);
         }
 
         private void EditInverterButton_Click(object sender, EventArgs e)
@@ -218,7 +226,7 @@ namespace Handover_Pack_Compiler
                 IData.SolarEdge = IVForm.SolarEdgeVal;
                 InverterList.Add(IData);
                 InverterList.Sort();
-                InverterSource.ResetBindings(false);
+                InverterDataSource.ResetBindings(false);
             }
         }
     }
