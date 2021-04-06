@@ -9,10 +9,11 @@ using ExtensionMethods;
 
 public class Data : IEquatable<InverterData>, IComparable<InverterData>, IComparable
 {
-    public string Name { get; set; }
+    //public string _name { get; set; }
+    public string Name { get; set; } = null;
     public override string ToString()
     {
-        return Name.ToString();
+        return Name?.ToString() ?? "Please Select...";
     }
     public override bool Equals(object obj)
     {
@@ -23,16 +24,13 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
     public bool Equals(InverterData other)
     {
         if (other == null) return false;
-        return (this.Name.Equals(other.Name));
+        if (Name == null & other.Name == null) return true;
+        else if (Name == null | other.Name == null) return false;
+        return this.Name.Equals(other.Name);
     }
     public override int GetHashCode()
     {
-        int ret = 0;
-        foreach (char c in Name)
-        {
-            ret += c;
-        }
-        return ret;
+        return Name?.GetHashCode() ?? 0;
     }
     public int CompareTo(object obj)
     {
@@ -42,12 +40,18 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
     }
     public int CompareTo(InverterData CompareData)
     {
+        if (Name == null)
+        {
+            if (CompareData.Name == null) { return 0; }
+            return -1;
+        }
+        else if (CompareData.Name == null) { return 1; }
         return Name.NumericCompare(CompareData.Name);
     }
 }
 
 public class  InverterData : Data
 {
-    public string Datasheet { get; set; }
-    public bool SolarEdge { get; set; }
+    public string Datasheet { get; set; } = null;
+    public bool SolarEdge { get; set; } = false;
 }

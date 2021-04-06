@@ -28,7 +28,7 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            //InverterList.Add(null);
+            InverterList.Add(new InverterData());
             InverterDataSource.DataSource = InverterList;
         }
         private void CommSiteButton_Click(object sender, EventArgs e)

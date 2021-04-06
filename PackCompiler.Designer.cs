@@ -134,6 +134,7 @@ namespace Handover_Pack_Compiler
             // 
             // InverterDropBox
             // 
+            this.InverterDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDataSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
             this.InverterDropBox.DataSource = this.InverterDataSource;
             this.InverterDropBox.DisplayMember = "Name";
             this.InverterDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;

@@ -28,12 +28,12 @@ namespace ExtensionMethods
                 int numx = 0;
                 for (int temp_pos = pos; temp_pos < x.Length && char.IsDigit(x[temp_pos]); temp_pos++)
                 {
-                    numx *= 10; numx += (int)Char.GetNumericValue(x[temp_pos]);
+                    numx *= 10; numx += (int)char.GetNumericValue(x[temp_pos]);
                 }
                 int numy = 0;
                 for (int temp_pos = pos; temp_pos < y.Length && char.IsDigit(y[temp_pos]); temp_pos++)
                 {
-                    numy *= 10; numy += (int)Char.GetNumericValue(y[temp_pos]);
+                    numy *= 10; numy += (int)char.GetNumericValue(y[temp_pos]);
                 }
                 //If the numbers are the same, move the pos to end of number, then continue down string.
                 if (numx == numy)
