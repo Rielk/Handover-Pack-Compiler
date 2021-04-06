@@ -233,6 +233,8 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.InverterGridView.Size = new System.Drawing.Size(528, 263);
             this.InverterGridView.TabIndex = 2;
+            this.InverterGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.InverterGridView_DataBindingComplete);
+            this.InverterGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.InverterGridView_RowValidated);
             // 
             // nameDataGridViewTextBoxColumn
             // 

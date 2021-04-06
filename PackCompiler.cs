@@ -200,8 +200,7 @@ namespace Handover_Pack_Compiler
             {
                 InverterList.Add(data);
             }
-            InverterList.Sort();
-            InverterDataSource.ResetBindings(false);
+            SortInverters();
         }
 
         private void DeleteInverterButton_Click(object sender, EventArgs e)
@@ -210,8 +209,7 @@ namespace Handover_Pack_Compiler
             {
                 InverterList.Remove((InverterData)row.DataBoundItem);
             }
-            InverterList.Sort();
-            InverterDataSource.ResetBindings(false);
+            SortInverters();
         }
 
         private void EditInverterButton_Click(object sender, EventArgs e)
@@ -225,8 +223,55 @@ namespace Handover_Pack_Compiler
                 IData.Datasheet = IVForm.DatasheetVal;
                 IData.SolarEdge = IVForm.SolarEdgeVal;
                 InverterList.Add(IData);
-                InverterList.Sort();
-                InverterDataSource.ResetBindings(false);
+                SortInverters(IData.Name);
+            }
+        }
+
+        private void SortInverters()
+        {
+            InverterData SelectedData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem;
+            InverterList.Sort();
+            InverterDataSource.ResetBindings(false);
+            foreach (DataGridViewRow row in InverterGridView.Rows)
+            {
+                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
+                else { row.Selected = false; }
+            }
+        }
+
+        private void SortInverters(string selection)
+        {
+            InverterData SelectedData = new InverterData() { Name = selection };
+            InverterList.Sort();
+            InverterDataSource.ResetBindings(false);
+            foreach (DataGridViewRow row in InverterGridView.Rows)
+            {
+                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
+                else { row.Selected = false; }
+            }
+        }
+
+        //Hides the null row when a new row is added
+        private void InverterGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (InverterGridView.Rows.Count > 0)
+            {
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+                currencyManager1.SuspendBinding();
+                InverterGridView.Rows[0].Visible = false;
+                currencyManager1.ResumeBinding();
+            }
+        }
+
+        //Hides the null row when a row is selected.
+        private void InverterGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (InverterGridView.Rows[0].Visible)
+            {
+                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+                currencyManager1.SuspendBinding();
+                InverterGridView.Rows[0].Visible = false;
+                currencyManager1.ResumeBinding();
             }
         }
     }
