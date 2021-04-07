@@ -18,6 +18,7 @@ namespace Handover_Pack_Compiler
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
         private readonly List<InverterData> InverterList = new List<InverterData>();
+        private readonly List<ModuleData> ModuleList = new List<ModuleData>();
 
         public PackCompiler()
         {
@@ -30,7 +31,11 @@ namespace Handover_Pack_Compiler
 
             InverterList.Add(new InverterData());
             InverterDataSource.DataSource = InverterList;
+
+            ModuleList.Add(new ModuleData());
+            ModuleDataSource.DataSource = ModuleList;
         }
+        //Setting Tab Start
         private void CommSiteButton_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.CommSitePath == "")
@@ -110,76 +115,8 @@ namespace Handover_Pack_Compiler
             MPWarrantyBox.Text = Properties.Settings.Default.MPWarrantyPath;
             SEWarrantyBox.Text = Properties.Settings.Default.SEWarrantyPath;
         }
-
-        //XML Example
-        //private void SaveFilePaths()
-        //{
-        //    string filepaths = Path.Combine(Properties.Settings.Default.ProgramDataPath, "FilePaths.xml");
-        //    XmlTextWriter textWriter = new XmlTextWriter(filepaths, null)
-        //    {
-        //        Formatting = Formatting.Indented
-        //    };
-        //    //Start XML
-        //    textWriter.WriteStartDocument();
-        //    textWriter.WriteStartElement("root");
-
-        //    //Communication Site Path
-        //    textWriter.WriteComment("The path of the company data, contains the 'Technical Area' and 'Enquiries & Orders Area' folders.");
-        //    if (CommSitePath != "")
-        //    {
-        //        textWriter.WriteElementString("CommSite", CommSitePath);
-        //    }
-
-        //    //Mypower Warranty Path
-        //    textWriter.WriteComment("The path of the Mypower Warranty");
-        //    if (MPWarrantyPath != "")
-        //    {
-        //        textWriter.WriteElementString("MPWarranty", MPWarrantyPath);
-        //    }
-
-        //    //Solar Edge Warranty Path
-        //    textWriter.WriteComment("The path of the Solar Edge Warranty");
-        //    if (SEWarrantyPath != "")
-        //    {
-        //        textWriter.WriteElementString("SEWarranty", SEWarrantyPath);
-        //    }
-
-        //    //Finish XML
-        //    textWriter.WriteEndElement();
-        //    textWriter.WriteEndDocument();
-        //    textWriter.Close();
-        //}
-
-        //private void FindFilePaths()
-        //{
-        //    string filepaths = Path.Combine(Properties.Settings.Default.ProgramDataPath, "FilePaths.xml");
-        //    if (File.Exists(filepaths))
-        //    {
-        //        XmlTextReader textReader = new XmlTextReader(filepaths);
-        //        while (textReader.Read())
-        //        {
-        //            if (textReader.LocalName == "CommSite" & textReader.NodeType == XmlNodeType.Element)
-        //            {
-        //                textReader.Read();
-        //                CommSitePath = textReader.Value;
-        //                CommSiteBox.Text = CommSitePath;
-        //            }
-        //            else if (textReader.LocalName == "MPWarranty" & textReader.NodeType == XmlNodeType.Element)
-        //            {
-        //                textReader.Read();
-        //                MPWarrantyPath = textReader.Value;
-        //                MPWarrantyBox.Text = MPWarrantyPath;
-        //            }
-        //            else if (textReader.LocalName == "SEWarranty" & textReader.NodeType == XmlNodeType.Element)
-        //            {
-        //                textReader.Read();
-        //                SEWarrantyPath = textReader.Value;
-        //                SEWarrantyBox.Text = SEWarrantyPath;
-        //            }
-        //        }
-        //        textReader.Close();
-        //    }
-        //}
+        //Setting Tab End
+        //Inverter Tab Start
         private void AddInverterButton_Click(object sender, EventArgs e)
         {
             InverterValuesForm IVForm = new InverterValuesForm();
@@ -258,23 +195,72 @@ namespace Handover_Pack_Compiler
         {
             if (InverterGridView.Rows.Count > 0)
             {
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[InverterGridView.DataSource];
-                currencyManager1.SuspendBinding();
+                CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+                CM.SuspendBinding();
                 InverterGridView.Rows[0].Visible = false;
-                currencyManager1.ResumeBinding();
+                CM.ResumeBinding();
             }
         }
 
         //Hides the null row when a row is selected.
         private void InverterGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
+            CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+            CM.SuspendBinding();
             if (InverterGridView.Rows[0].Visible)
             {
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[InverterGridView.DataSource];
-                currencyManager1.SuspendBinding();
                 InverterGridView.Rows[0].Visible = false;
-                currencyManager1.ResumeBinding();
             }
+            CM.ResumeBinding();
+        }
+        //Inverter Tab End
+        //Module Tab Start
+        private void AddModuleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteModuleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditModuleButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SortModules()
+        {
+
+        }
+
+        private void SortModules(string selection)
+        {
+
+        }
+
+        private void ModuleGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (ModuleGridView.Rows.Count > 0)
+            {
+                CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
+                CM.SuspendBinding();
+                ModuleGridView.Rows[0].Visible = false;
+                CM.ResumeBinding();
+            }
+        }
+
+        private void ModuleGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+            CM.SuspendBinding();
+            if (ModuleGridView.Rows[0].Visible)
+            {
+                
+                ModuleGridView.Rows[0].Visible = false;
+            }
+            CM.ResumeBinding();
         }
     }
 }

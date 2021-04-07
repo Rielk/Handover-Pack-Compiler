@@ -50,8 +50,14 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
     }
 }
 
-public class  InverterData : Data
+public class InverterData : Data
 {
     public string Datasheet { get; set; } = null;
     public bool SolarEdge { get; set; } = false;
+}
+
+public class ModuleData : Data
+{
+    public string Datasheet { get; set; } = null;
+    public string Warranty { get; set; } = null;
 }
