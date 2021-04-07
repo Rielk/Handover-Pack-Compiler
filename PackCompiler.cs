@@ -193,7 +193,6 @@ namespace Handover_Pack_Compiler
             InverterDropBox.SelectedItem = SelectedData;
         }
 
-        //Hides the null row when a new row is added
         private void InverterGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             if (InverterGridView.Rows.Count > 0)
@@ -205,7 +204,6 @@ namespace Handover_Pack_Compiler
             }
         }
 
-        //Hides the null row when a row is selected.
         private void InverterGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
             CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
@@ -220,27 +218,78 @@ namespace Handover_Pack_Compiler
         //Module Tab Start
         private void AddModuleButton_Click(object sender, EventArgs e)
         {
-
+            ModuleValuesForm MVForm = new ModuleValuesForm();
+            MVForm.ShowDialog();
+            ModuleData MData = new ModuleData
+            {
+                Name = MVForm.NameVal,
+                Datasheet = MVForm.DatasheetVal,
+                Warranty = MVForm.WarrantyVal
+            };
+            if (ModuleList.Contains(MData))
+            {
+                DialogResult Confirm = MessageBox.Show("A Module named \"" + MData +
+                    "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
+                if (Confirm == DialogResult.Yes)
+                {
+                    ModuleList.Remove(MData);
+                    ModuleList.Add(MData);
+                }
+            }
+            else
+            {
+                ModuleList.Add(MData);
+            }
+            SortModules(MData.Name);
         }
 
         private void DeleteModuleButton_Click(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in ModuleGridView.SelectedRows)
+            {
+                if (((ModuleData)row.DataBoundItem).Name != null)
+                {
+                    ModuleList.Remove((ModuleData)row.DataBoundItem);
+                }
+            }
+            SortModules();
         }
 
         private void EditModuleButton_Click(object sender, EventArgs e)
         {
-
+            ModuleData MData = (ModuleData)ModuleGridView.SelectedRows[0].DataBoundItem;
+            if (MData.Name != null)
+            {
+                ModuleValuesForm MVForm = new ModuleValuesForm(MData.Name, MData.Datasheet, MData.Warranty);
+                if (MVForm.ShowDialog() == DialogResult.OK)
+                {
+                    ModuleList.Remove(MData);
+                    MData.Name = MVForm.NameVal;
+                    MData.Datasheet = MVForm.DatasheetVal;
+                    MData.Warranty = MVForm.WarrantyVal;
+                    ModuleList.Add(MData);
+                    SortModules(MData.Name);
+                }
+            }
         }
 
         private void SortModules()
         {
-
+            ModuleList.Sort();
+            ModuleDataSource.ResetBindings(false);
         }
 
         private void SortModules(string selection)
         {
-
+            ModuleData SelectedData = new ModuleData() { Name = selection };
+            ModuleList.Sort();
+            ModuleDataSource.ResetBindings(false);
+            foreach (DataGridViewRow row in ModuleGridView.Rows)
+            {
+                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
+                else { row.Selected = false; }
+            }
+            ModuleDropBox.SelectedItem = SelectedData;
         }
 
         private void ModuleGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -256,7 +305,7 @@ namespace Handover_Pack_Compiler
 
         private void ModuleGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+            CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
             CM.SuspendBinding();
             if (ModuleGridView.Rows[0].Visible)
             {
@@ -265,5 +314,6 @@ namespace Handover_Pack_Compiler
             }
             CM.ResumeBinding();
         }
+        //Module Tab End
     }
 }

@@ -146,7 +146,7 @@ namespace Handover_Pack_Compiler
             this.ModuleDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ModuleDropBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ModuleDropBox.FormattingEnabled = true;
-            this.ModuleDropBox.Location = new System.Drawing.Point(8, 13);
+            this.ModuleDropBox.Location = new System.Drawing.Point(8, 19);
             this.ModuleDropBox.Name = "ModuleDropBox";
             this.ModuleDropBox.Size = new System.Drawing.Size(522, 21);
             this.ModuleDropBox.TabIndex = 13;
@@ -163,7 +163,7 @@ namespace Handover_Pack_Compiler
             // EditModuleButton
             // 
             this.EditModuleButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditModuleButton.Location = new System.Drawing.Point(212, 390);
+            this.EditModuleButton.Location = new System.Drawing.Point(212, 396);
             this.EditModuleButton.Name = "EditModuleButton";
             this.EditModuleButton.Size = new System.Drawing.Size(114, 20);
             this.EditModuleButton.TabIndex = 12;
@@ -174,7 +174,7 @@ namespace Handover_Pack_Compiler
             // DeleteModuleButton
             // 
             this.DeleteModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteModuleButton.Location = new System.Drawing.Point(417, 390);
+            this.DeleteModuleButton.Location = new System.Drawing.Point(417, 396);
             this.DeleteModuleButton.Name = "DeleteModuleButton";
             this.DeleteModuleButton.Size = new System.Drawing.Size(114, 20);
             this.DeleteModuleButton.TabIndex = 11;
@@ -185,7 +185,7 @@ namespace Handover_Pack_Compiler
             // AddModuleButton
             // 
             this.AddModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddModuleButton.Location = new System.Drawing.Point(8, 390);
+            this.AddModuleButton.Location = new System.Drawing.Point(8, 396);
             this.AddModuleButton.Name = "AddModuleButton";
             this.AddModuleButton.Size = new System.Drawing.Size(114, 20);
             this.AddModuleButton.TabIndex = 10;
@@ -227,7 +227,7 @@ namespace Handover_Pack_Compiler
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.ModuleGridView.EnableHeadersVisualStyles = false;
-            this.ModuleGridView.Location = new System.Drawing.Point(6, 121);
+            this.ModuleGridView.Location = new System.Drawing.Point(6, 127);
             this.ModuleGridView.MultiSelect = false;
             this.ModuleGridView.Name = "ModuleGridView";
             this.ModuleGridView.ReadOnly = true;

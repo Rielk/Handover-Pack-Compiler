@@ -89,6 +89,12 @@
     <Compile Include="InverterValuesForm.Designer.cs">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModuleValuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuleValuesForm.Designer.cs">
+      <DependentUpon>ModuleValuesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PackCompiler.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="InverterValuesForm.resx">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuleValuesForm.resx">
+      <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackCompiler.resx">
       <DependentUpon>PackCompiler.cs</DependentUpon>

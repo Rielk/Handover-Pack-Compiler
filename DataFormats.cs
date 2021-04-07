@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExtensionMethods;
 
-public class Data : IEquatable<InverterData>, IComparable<InverterData>, IComparable
+public class Data : IEquatable<Data>, IComparable<Data>, IComparable
 {
     //public string _name { get; set; }
     public string Name { get; set; } = null;
@@ -18,10 +18,10 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
     public override bool Equals(object obj)
     {
         if (obj == null) return false;
-        if (!(obj is InverterData objAsPart)) return false;
+        if (!(obj is Data objAsPart)) return false;
         else return Equals(objAsPart);
     }
-    public bool Equals(InverterData other)
+    public bool Equals(Data other)
     {
         if (other == null) return false;
         if (Name == null & other.Name == null) return true;
@@ -35,10 +35,10 @@ public class Data : IEquatable<InverterData>, IComparable<InverterData>, ICompar
     public int CompareTo(object obj)
     {
         if (obj == null) return 1;
-        if (!(obj is InverterData objAsPart)) return 1;
+        if (!(obj is Data objAsPart)) return 1;
         else return CompareTo(objAsPart);
     }
-    public int CompareTo(InverterData CompareData)
+    public int CompareTo(Data CompareData)
     {
         if (Name == null)
         {
