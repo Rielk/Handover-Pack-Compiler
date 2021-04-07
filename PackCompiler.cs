@@ -121,30 +121,33 @@ namespace Handover_Pack_Compiler
         {
             InverterValuesForm IVForm = new InverterValuesForm();
             IVForm.ShowDialog();
-            InverterData data = new InverterData
+            InverterData IData = new InverterData
             {
                 Name = IVForm.NameVal,
                 Datasheet = IVForm.DatasheetVal,
                 SolarEdge = IVForm.SolarEdgeVal
             };
-            if (InverterList.Contains(data))
+            if (InverterList.Contains(IData))
             {
                 //Ask if user wants to replace existing?
-                InverterList.Remove(data);
-                InverterList.Add(data);
+                InverterList.Remove(IData);
+                InverterList.Add(IData);
             }
             else
             {
-                InverterList.Add(data);
+                InverterList.Add(IData);
             }
-            SortInverters();
+            SortInverters(IData.Name);
         }
 
         private void DeleteInverterButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in InverterGridView.SelectedRows)
             {
-                InverterList.Remove((InverterData)row.DataBoundItem);
+                if (((InverterData)row.DataBoundItem).Name != null)
+                {
+                    InverterList.Remove((InverterData)row.DataBoundItem);
+                }
             }
             SortInverters();
         }
@@ -152,29 +155,25 @@ namespace Handover_Pack_Compiler
         private void EditInverterButton_Click(object sender, EventArgs e)
         {
             InverterData IData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem;
-            InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
-            if (IVForm.ShowDialog() == DialogResult.OK)
+            if (IData.Name != null)
             {
-                InverterList.Remove(IData);
-                IData.Name = IVForm.NameVal;
-                IData.Datasheet = IVForm.DatasheetVal;
-                IData.SolarEdge = IVForm.SolarEdgeVal;
-                InverterList.Add(IData);
-                SortInverters(IData.Name);
+                InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
+                if (IVForm.ShowDialog() == DialogResult.OK)
+                {
+                    InverterList.Remove(IData);
+                    IData.Name = IVForm.NameVal;
+                    IData.Datasheet = IVForm.DatasheetVal;
+                    IData.SolarEdge = IVForm.SolarEdgeVal;
+                    InverterList.Add(IData);
+                    SortInverters(IData.Name);
+                }
             }
         }
 
         private void SortInverters()
         {
-            InverterData SelectedData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem;
             InverterList.Sort();
             InverterDataSource.ResetBindings(false);
-            foreach (DataGridViewRow row in InverterGridView.Rows)
-            {
-                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
-                else { row.Selected = false; }
-            }
-            InverterDropBox.SelectedItem = SelectedData;
         }
 
         private void SortInverters(string selection)
