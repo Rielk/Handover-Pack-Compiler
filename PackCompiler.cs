@@ -129,9 +129,13 @@ namespace Handover_Pack_Compiler
             };
             if (InverterList.Contains(IData))
             {
-                //Ask if user wants to replace existing?
-                InverterList.Remove(IData);
-                InverterList.Add(IData);
+                DialogResult Confirm = MessageBox.Show("An Inverter named \"" + IData +
+                    "\"already exists. Do you want to replace it with the new one.", "Confirm Replace", MessageBoxButtons.YesNo);
+                if (Confirm == DialogResult.Yes)
+                {
+                    InverterList.Remove(IData);
+                    InverterList.Add(IData);
+                }
             }
             else
             {
