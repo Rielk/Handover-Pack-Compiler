@@ -130,7 +130,7 @@ namespace Handover_Pack_Compiler
             if (InverterList.Contains(IData))
             {
                 DialogResult Confirm = MessageBox.Show("An Inverter named \"" + IData +
-                    "\"already exists. Do you want to replace it with the new one.", "Confirm Replace", MessageBoxButtons.YesNo);
+                    "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
                 if (Confirm == DialogResult.Yes)
                 {
                     InverterList.Remove(IData);
