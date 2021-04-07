@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,17 @@ namespace Handover_Pack_Compiler
         public InverterValuesForm()
         {
             InitializeComponent();
+            NameBox.Text = NameVal = "";
+            DatasheetBox.Text = DatasheetVal = "";
+            SolarEdgeBox.Checked = SolarEdgeVal = false;
         }
 
         public InverterValuesForm(string name, string path, bool SolarEdge)
         {
             InitializeComponent();
-            NameBox.Text = name;
-            DatasheetBox.Text = path;
-            SolarEdgeBox.Checked = SolarEdge;
+            NameBox.Text = NameVal = name;
+            DatasheetBox.Text = DatasheetVal = path;
+            SolarEdgeBox.Checked = SolarEdgeVal = SolarEdge;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -48,7 +52,8 @@ namespace Handover_Pack_Compiler
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.CommSitePath;
+                string path = Path.Combine(Properties.Settings.Default.CommSitePath, "Technical Area", "SOLAR PV", "Inverters");
+                file_dialog.InitialDirectory = path;
             }
             else
             {

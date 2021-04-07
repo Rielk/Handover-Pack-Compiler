@@ -214,7 +214,7 @@ namespace Handover_Pack_Compiler
 
         private void EditInverterButton_Click(object sender, EventArgs e)
         {
-            InverterData IData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem; 
+            InverterData IData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem;
             InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
             if (IVForm.ShowDialog() == DialogResult.OK)
             {
@@ -237,6 +237,7 @@ namespace Handover_Pack_Compiler
                 if (row.DataBoundItem == SelectedData) { row.Selected = true; }
                 else { row.Selected = false; }
             }
+            InverterDropBox.SelectedItem = SelectedData;
         }
 
         private void SortInverters(string selection)
@@ -249,6 +250,7 @@ namespace Handover_Pack_Compiler
                 if (row.DataBoundItem == SelectedData) { row.Selected = true; }
                 else { row.Selected = false; }
             }
+            InverterDropBox.SelectedItem = SelectedData;
         }
 
         //Hides the null row when a new row is added
