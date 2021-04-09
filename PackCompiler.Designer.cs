@@ -36,10 +36,10 @@ namespace Handover_Pack_Compiler
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Operation = new System.Windows.Forms.TabControl();
-            this.Compile = new System.Windows.Forms.TabPage();
-            this.Files = new System.Windows.Forms.TabPage();
-            this.Module = new System.Windows.Forms.TabPage();
+            this.OperationTabs = new System.Windows.Forms.TabControl();
+            this.CompileTab = new System.Windows.Forms.TabPage();
+            this.FilesTab = new System.Windows.Forms.TabPage();
+            this.ModuleTab = new System.Windows.Forms.TabPage();
             this.ModuleDropBox = new System.Windows.Forms.ComboBox();
             this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.ModuleDataSource = new System.Windows.Forms.BindingSource(this.components);
@@ -50,7 +50,7 @@ namespace Handover_Pack_Compiler
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Warranty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Inverter = new System.Windows.Forms.TabPage();
+            this.InverterTab = new System.Windows.Forms.TabPage();
             this.InverterDropBox = new System.Windows.Forms.ComboBox();
             this.EditInverterButton = new System.Windows.Forms.Button();
             this.DeleteInverterButton = new System.Windows.Forms.Button();
@@ -59,7 +59,7 @@ namespace Handover_Pack_Compiler
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Settings = new System.Windows.Forms.TabPage();
+            this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SEWarrantyGroup = new System.Windows.Forms.GroupBox();
             this.SEWarrantyBox = new System.Windows.Forms.TextBox();
             this.SEWarrantButton = new System.Windows.Forms.Button();
@@ -72,71 +72,71 @@ namespace Handover_Pack_Compiler
             this.CommSiteGroup = new System.Windows.Forms.GroupBox();
             this.CommSiteBox = new System.Windows.Forms.TextBox();
             this.CommSiteButton = new System.Windows.Forms.Button();
-            this.Pack = new System.Windows.Forms.TabPage();
-            this.Operation.SuspendLayout();
-            this.Module.SuspendLayout();
+            this.PackTab = new System.Windows.Forms.TabPage();
+            this.OperationTabs.SuspendLayout();
+            this.ModuleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).BeginInit();
-            this.Inverter.SuspendLayout();
+            this.InverterTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
-            this.Settings.SuspendLayout();
+            this.SettingsTab.SuspendLayout();
             this.SEWarrantyGroup.SuspendLayout();
             this.MPWarrantyGroup.SuspendLayout();
             this.ProgDataGroup.SuspendLayout();
             this.CommSiteGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Operation
+            // OperationTabs
             // 
-            this.Operation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.OperationTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Operation.Controls.Add(this.Compile);
-            this.Operation.Controls.Add(this.Files);
-            this.Operation.Controls.Add(this.Module);
-            this.Operation.Controls.Add(this.Inverter);
-            this.Operation.Controls.Add(this.Settings);
-            this.Operation.Controls.Add(this.Pack);
-            this.Operation.Location = new System.Drawing.Point(0, 0);
-            this.Operation.Name = "Operation";
-            this.Operation.SelectedIndex = 0;
-            this.Operation.Size = new System.Drawing.Size(548, 449);
-            this.Operation.TabIndex = 0;
+            this.OperationTabs.Controls.Add(this.CompileTab);
+            this.OperationTabs.Controls.Add(this.FilesTab);
+            this.OperationTabs.Controls.Add(this.ModuleTab);
+            this.OperationTabs.Controls.Add(this.InverterTab);
+            this.OperationTabs.Controls.Add(this.SettingsTab);
+            this.OperationTabs.Controls.Add(this.PackTab);
+            this.OperationTabs.Location = new System.Drawing.Point(0, 0);
+            this.OperationTabs.Name = "OperationTabs";
+            this.OperationTabs.SelectedIndex = 0;
+            this.OperationTabs.Size = new System.Drawing.Size(548, 449);
+            this.OperationTabs.TabIndex = 0;
             // 
-            // Compile
+            // CompileTab
             // 
-            this.Compile.Location = new System.Drawing.Point(4, 22);
-            this.Compile.Name = "Compile";
-            this.Compile.Padding = new System.Windows.Forms.Padding(3);
-            this.Compile.Size = new System.Drawing.Size(540, 423);
-            this.Compile.TabIndex = 0;
-            this.Compile.Text = "Compile";
-            this.Compile.UseVisualStyleBackColor = true;
+            this.CompileTab.Location = new System.Drawing.Point(4, 22);
+            this.CompileTab.Name = "CompileTab";
+            this.CompileTab.Padding = new System.Windows.Forms.Padding(3);
+            this.CompileTab.Size = new System.Drawing.Size(540, 423);
+            this.CompileTab.TabIndex = 0;
+            this.CompileTab.Text = "Compile";
+            this.CompileTab.UseVisualStyleBackColor = true;
             // 
-            // Files
+            // FilesTab
             // 
-            this.Files.Location = new System.Drawing.Point(4, 22);
-            this.Files.Name = "Files";
-            this.Files.Size = new System.Drawing.Size(540, 423);
-            this.Files.TabIndex = 4;
-            this.Files.Text = "Files";
-            this.Files.UseVisualStyleBackColor = true;
+            this.FilesTab.Location = new System.Drawing.Point(4, 22);
+            this.FilesTab.Name = "FilesTab";
+            this.FilesTab.Size = new System.Drawing.Size(540, 423);
+            this.FilesTab.TabIndex = 4;
+            this.FilesTab.Text = "Files";
+            this.FilesTab.UseVisualStyleBackColor = true;
             // 
-            // Module
+            // ModuleTab
             // 
-            this.Module.Controls.Add(this.ModuleDropBox);
-            this.Module.Controls.Add(this.EditModuleButton);
-            this.Module.Controls.Add(this.DeleteModuleButton);
-            this.Module.Controls.Add(this.AddModuleButton);
-            this.Module.Controls.Add(this.ModuleGridView);
-            this.Module.Location = new System.Drawing.Point(4, 22);
-            this.Module.Name = "Module";
-            this.Module.Padding = new System.Windows.Forms.Padding(3);
-            this.Module.Size = new System.Drawing.Size(540, 423);
-            this.Module.TabIndex = 1;
-            this.Module.Text = "Module";
-            this.Module.UseVisualStyleBackColor = true;
+            this.ModuleTab.Controls.Add(this.ModuleDropBox);
+            this.ModuleTab.Controls.Add(this.EditModuleButton);
+            this.ModuleTab.Controls.Add(this.DeleteModuleButton);
+            this.ModuleTab.Controls.Add(this.AddModuleButton);
+            this.ModuleTab.Controls.Add(this.ModuleGridView);
+            this.ModuleTab.Location = new System.Drawing.Point(4, 22);
+            this.ModuleTab.Name = "ModuleTab";
+            this.ModuleTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ModuleTab.Size = new System.Drawing.Size(540, 423);
+            this.ModuleTab.TabIndex = 1;
+            this.ModuleTab.Text = "Module";
+            this.ModuleTab.UseVisualStyleBackColor = true;
             // 
             // ModuleDropBox
             // 
@@ -273,19 +273,19 @@ namespace Handover_Pack_Compiler
             this.Warranty.Name = "Warranty";
             this.Warranty.ReadOnly = true;
             // 
-            // Inverter
+            // InverterTab
             // 
-            this.Inverter.Controls.Add(this.InverterDropBox);
-            this.Inverter.Controls.Add(this.EditInverterButton);
-            this.Inverter.Controls.Add(this.DeleteInverterButton);
-            this.Inverter.Controls.Add(this.AddInverterButton);
-            this.Inverter.Controls.Add(this.InverterGridView);
-            this.Inverter.Location = new System.Drawing.Point(4, 22);
-            this.Inverter.Name = "Inverter";
-            this.Inverter.Size = new System.Drawing.Size(540, 423);
-            this.Inverter.TabIndex = 2;
-            this.Inverter.Text = "Inverter";
-            this.Inverter.UseVisualStyleBackColor = true;
+            this.InverterTab.Controls.Add(this.InverterDropBox);
+            this.InverterTab.Controls.Add(this.EditInverterButton);
+            this.InverterTab.Controls.Add(this.DeleteInverterButton);
+            this.InverterTab.Controls.Add(this.AddInverterButton);
+            this.InverterTab.Controls.Add(this.InverterGridView);
+            this.InverterTab.Location = new System.Drawing.Point(4, 22);
+            this.InverterTab.Name = "InverterTab";
+            this.InverterTab.Size = new System.Drawing.Size(540, 423);
+            this.InverterTab.TabIndex = 2;
+            this.InverterTab.Text = "Inverter";
+            this.InverterTab.UseVisualStyleBackColor = true;
             // 
             // InverterDropBox
             // 
@@ -415,18 +415,18 @@ namespace Handover_Pack_Compiler
             this.solarEdgeDataGridViewCheckBoxColumn.ReadOnly = true;
             this.solarEdgeDataGridViewCheckBoxColumn.Width = 62;
             // 
-            // Settings
+            // SettingsTab
             // 
-            this.Settings.Controls.Add(this.SEWarrantyGroup);
-            this.Settings.Controls.Add(this.MPWarrantyGroup);
-            this.Settings.Controls.Add(this.ProgDataGroup);
-            this.Settings.Controls.Add(this.CommSiteGroup);
-            this.Settings.Location = new System.Drawing.Point(4, 22);
-            this.Settings.Name = "Settings";
-            this.Settings.Size = new System.Drawing.Size(540, 423);
-            this.Settings.TabIndex = 3;
-            this.Settings.Text = "Settings";
-            this.Settings.UseVisualStyleBackColor = true;
+            this.SettingsTab.Controls.Add(this.SEWarrantyGroup);
+            this.SettingsTab.Controls.Add(this.MPWarrantyGroup);
+            this.SettingsTab.Controls.Add(this.ProgDataGroup);
+            this.SettingsTab.Controls.Add(this.CommSiteGroup);
+            this.SettingsTab.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTab.Name = "SettingsTab";
+            this.SettingsTab.Size = new System.Drawing.Size(540, 423);
+            this.SettingsTab.TabIndex = 3;
+            this.SettingsTab.Text = "Settings";
+            this.SettingsTab.UseVisualStyleBackColor = true;
             // 
             // SEWarrantyGroup
             // 
@@ -564,31 +564,31 @@ namespace Handover_Pack_Compiler
             this.CommSiteButton.UseVisualStyleBackColor = true;
             this.CommSiteButton.Click += new System.EventHandler(this.CommSiteButton_Click);
             // 
-            // Pack
+            // PackTab
             // 
-            this.Pack.Location = new System.Drawing.Point(4, 22);
-            this.Pack.Name = "Pack";
-            this.Pack.Size = new System.Drawing.Size(540, 423);
-            this.Pack.TabIndex = 5;
-            this.Pack.Text = "Pack";
-            this.Pack.UseVisualStyleBackColor = true;
+            this.PackTab.Location = new System.Drawing.Point(4, 22);
+            this.PackTab.Name = "PackTab";
+            this.PackTab.Size = new System.Drawing.Size(540, 423);
+            this.PackTab.TabIndex = 5;
+            this.PackTab.Text = "Pack";
+            this.PackTab.UseVisualStyleBackColor = true;
             // 
             // PackCompiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 450);
-            this.Controls.Add(this.Operation);
+            this.Controls.Add(this.OperationTabs);
             this.Name = "PackCompiler";
             this.Text = "Mypower Handover Pack Compiler";
-            this.Operation.ResumeLayout(false);
-            this.Module.ResumeLayout(false);
+            this.OperationTabs.ResumeLayout(false);
+            this.ModuleTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).EndInit();
-            this.Inverter.ResumeLayout(false);
+            this.InverterTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
-            this.Settings.ResumeLayout(false);
+            this.SettingsTab.ResumeLayout(false);
             this.SEWarrantyGroup.ResumeLayout(false);
             this.SEWarrantyGroup.PerformLayout();
             this.MPWarrantyGroup.ResumeLayout(false);
@@ -602,13 +602,13 @@ namespace Handover_Pack_Compiler
         }
 
         #endregion
-        private System.Windows.Forms.TabPage Compile;
-        private System.Windows.Forms.TabPage Module;
-        private System.Windows.Forms.TabPage Files;
-        private System.Windows.Forms.TabPage Inverter;
-        private System.Windows.Forms.TabPage Settings;
-        private System.Windows.Forms.TabPage Pack;
-        private System.Windows.Forms.TabControl Operation;
+        private System.Windows.Forms.TabPage CompileTab;
+        private System.Windows.Forms.TabPage ModuleTab;
+        private System.Windows.Forms.TabPage FilesTab;
+        private System.Windows.Forms.TabPage InverterTab;
+        private System.Windows.Forms.TabPage SettingsTab;
+        private System.Windows.Forms.TabPage PackTab;
+        private System.Windows.Forms.TabControl OperationTabs;
         private System.Windows.Forms.TextBox ProgDataBox;
         private System.Windows.Forms.Button ProgDataButton;
         private System.Windows.Forms.TextBox CommSiteBox;

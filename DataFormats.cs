@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExtensionMethods;
 
-public class Data : IEquatable<Data>, IComparable<Data>, IComparable
+public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable
 {
     //public string _name { get; set; }
     public string Name { get; set; } = null;
@@ -48,16 +48,25 @@ public class Data : IEquatable<Data>, IComparable<Data>, IComparable
         else if (CompareData.Name == null) { return 1; }
         return Name.NumericCompare(CompareData.Name);
     }
+    public abstract void WriteXML();
 }
 
 public class InverterData : Data
 {
     public string Datasheet { get; set; } = null;
     public bool SolarEdge { get; set; } = false;
+    public override void WriteXML()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class ModuleData : Data
 {
     public string Datasheet { get; set; } = null;
     public string Warranty { get; set; } = null;
+    public override void WriteXML()
+    {
+        throw new NotImplementedException();
+    }
 }
