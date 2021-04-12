@@ -17,8 +17,8 @@ namespace Handover_Pack_Compiler
 
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
-        private readonly List<InverterData> InverterList = new List<InverterData>();
-        private readonly List<ModuleData> ModuleList = new List<ModuleData>();
+        private readonly List<InverterData> InverterList;
+        private readonly List<ModuleData> ModuleList;
 
         public PackCompiler()
         {
@@ -29,11 +29,13 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            InverterList.Add(new InverterData());
+            InverterList = Utilities.IReadFromFile("Inverters.xml");
             InverterDataSource.DataSource = InverterList;
+            SortInverters();
 
-            ModuleList.Add(new ModuleData());
+            ModuleList = Utilities.MReadFromFile("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
+            SortModules();
         }
         //Setting Tab Start
         private void CommSiteButton_Click(object sender, EventArgs e)
@@ -120,28 +122,31 @@ namespace Handover_Pack_Compiler
         private void AddInverterButton_Click(object sender, EventArgs e)
         {
             InverterValuesForm IVForm = new InverterValuesForm();
-            IVForm.ShowDialog();
-            InverterData IData = new InverterData
+            if (IVForm.ShowDialog() == DialogResult.OK)
             {
-                Name = IVForm.NameVal,
-                Datasheet = IVForm.DatasheetVal,
-                SolarEdge = IVForm.SolarEdgeVal
-            };
-            if (InverterList.Contains(IData))
-            {
-                DialogResult Confirm = MessageBox.Show("An Inverter named \"" + IData +
-                    "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
-                if (Confirm == DialogResult.Yes)
+                InverterData IData = new InverterData
                 {
-                    InverterList.Remove(IData);
+                    Name = IVForm.NameVal,
+                    Datasheet = IVForm.DatasheetVal,
+                    SolarEdge = IVForm.SolarEdgeVal
+                };
+                if (InverterList.Contains(IData))
+                {
+                    DialogResult Confirm = MessageBox.Show("An Inverter named \"" + IData +
+                        "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        InverterList.Remove(IData);
+                        InverterList.Add(IData);
+                    }
+                }
+                else
+                {
                     InverterList.Add(IData);
                 }
+                SortInverters(IData.Name);
+                Utilities.WriteToFile(InverterList, "Inverters.xml");
             }
-            else
-            {
-                InverterList.Add(IData);
-            }
-            SortInverters(IData.Name);
         }
 
         private void DeleteInverterButton_Click(object sender, EventArgs e)
@@ -154,6 +159,7 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortInverters();
+            Utilities.WriteToFile(InverterList, "Inverters.xml");
         }
 
         private void EditInverterButton_Click(object sender, EventArgs e)
@@ -170,6 +176,7 @@ namespace Handover_Pack_Compiler
                     IData.SolarEdge = IVForm.SolarEdgeVal;
                     InverterList.Add(IData);
                     SortInverters(IData.Name);
+                    Utilities.WriteToFile(InverterList, "Inverters.xml");
                 }
             }
         }
@@ -219,28 +226,31 @@ namespace Handover_Pack_Compiler
         private void AddModuleButton_Click(object sender, EventArgs e)
         {
             ModuleValuesForm MVForm = new ModuleValuesForm();
-            MVForm.ShowDialog();
-            ModuleData MData = new ModuleData
+            if (MVForm.ShowDialog() == DialogResult.OK)
             {
-                Name = MVForm.NameVal,
-                Datasheet = MVForm.DatasheetVal,
-                Warranty = MVForm.WarrantyVal
-            };
-            if (ModuleList.Contains(MData))
-            {
-                DialogResult Confirm = MessageBox.Show("A Module named \"" + MData +
-                    "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
-                if (Confirm == DialogResult.Yes)
+                ModuleData MData = new ModuleData
                 {
-                    ModuleList.Remove(MData);
+                    Name = MVForm.NameVal,
+                    Datasheet = MVForm.DatasheetVal,
+                    Warranty = MVForm.WarrantyVal
+                };
+                if (ModuleList.Contains(MData))
+                {
+                    DialogResult Confirm = MessageBox.Show("A Module named \"" + MData +
+                        "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        ModuleList.Remove(MData);
+                        ModuleList.Add(MData);
+                    }
+                }
+                else
+                {
                     ModuleList.Add(MData);
                 }
+                SortModules(MData.Name);
+                Utilities.WriteToFile(ModuleList, "Modules.xml");
             }
-            else
-            {
-                ModuleList.Add(MData);
-            }
-            SortModules(MData.Name);
         }
 
         private void DeleteModuleButton_Click(object sender, EventArgs e)
@@ -253,6 +263,7 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortModules();
+            Utilities.WriteToFile(ModuleList, "Modules.xml");
         }
 
         private void EditModuleButton_Click(object sender, EventArgs e)
@@ -269,6 +280,7 @@ namespace Handover_Pack_Compiler
                     MData.Warranty = MVForm.WarrantyVal;
                     ModuleList.Add(MData);
                     SortModules(MData.Name);
+                    Utilities.WriteToFile(ModuleList, "Modules.xml");
                 }
             }
         }
