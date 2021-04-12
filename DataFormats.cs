@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using ExtensionMethods;
 
 public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable
@@ -48,14 +49,19 @@ public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable
         else if (CompareData.Name == null) { return 1; }
         return Name.NumericCompare(CompareData.Name);
     }
-    public abstract void WriteXML();
+    public abstract void WriteXml(XmlTextWriter XmlWriter);
+    public abstract void ReadXml(XmlTextReader XmlReader);
 }
 
 public class InverterData : Data
 {
     public string Datasheet { get; set; } = null;
     public bool SolarEdge { get; set; } = false;
-    public override void WriteXML()
+    public override void WriteXml(XmlTextWriter XmlWriter)
+    {
+        throw new NotImplementedException();
+    }
+    public override void ReadXml(XmlTextReader XmlReader)
     {
         throw new NotImplementedException();
     }
@@ -65,7 +71,11 @@ public class ModuleData : Data
 {
     public string Datasheet { get; set; } = null;
     public string Warranty { get; set; } = null;
-    public override void WriteXML()
+    public override void WriteXml(XmlTextWriter XmlWriter)
+    {
+        throw new NotImplementedException();
+    }
+    public override void ReadXml(XmlTextReader XmlReader)
     {
         throw new NotImplementedException();
     }
