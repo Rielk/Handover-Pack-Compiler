@@ -26,9 +26,9 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        private Func<string> InitialPathFunction;
-        private string Filter = "All files (*.*)|*.*";
-        private OpenFileDialog file_dialog = new OpenFileDialog();
+        public Func<string> InitialPathFunction;
+        public string Filter = "All files (*.*)|*.*";
+        private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         public FilePathButton()
         {
             InitializeComponent();

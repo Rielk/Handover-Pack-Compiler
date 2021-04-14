@@ -84,6 +84,12 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="DataFormats.cs" />
+    <Compile Include="FolderPathButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FolderPathButton.Designer.cs">
+      <DependentUpon>FolderPathButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="InverterValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,16 +108,19 @@
     <Compile Include="PackCompiler.Designer.cs">
       <DependentUpon>PackCompiler.cs</DependentUpon>
     </Compile>
-    <Compile Include="PathButton.cs">
+    <Compile Include="FilePathButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PathButton.Designer.cs">
-      <DependentUpon>PathButton.cs</DependentUpon>
+    <Compile Include="FilePathButton.Designer.cs">
+      <DependentUpon>FilePathButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="FolderPathButton.resx">
+      <DependentUpon>FolderPathButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InverterValuesForm.resx">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,8 +130,8 @@
     <EmbeddedResource Include="PackCompiler.resx">
       <DependentUpon>PackCompiler.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PathButton.resx">
-      <DependentUpon>PathButton.cs</DependentUpon>
+    <EmbeddedResource Include="FilePathButton.resx">
+      <DependentUpon>FilePathButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
