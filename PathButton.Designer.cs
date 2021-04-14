@@ -49,7 +49,8 @@ namespace Handover_Pack_Compiler
             // 
             // TextBox
             // 
-            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox.Location = new System.Drawing.Point(5, 19);
             this.TextBox.Name = "TextBox";
@@ -68,12 +69,14 @@ namespace Handover_Pack_Compiler
             this.Button.UseVisualStyleBackColor = true;
             this.Button.Click += new System.EventHandler(this.Button_Click);
             // 
-            // PathButton
+            // FilePathButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ControlGroup);
-            this.Name = "PathButton";
+            this.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.MinimumSize = new System.Drawing.Size(0, 46);
+            this.Name = "FilePathButton";
             this.Size = new System.Drawing.Size(534, 46);
             this.ControlGroup.ResumeLayout(false);
             this.ControlGroup.PerformLayout();
