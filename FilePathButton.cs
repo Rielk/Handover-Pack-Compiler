@@ -26,17 +26,16 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        public Func<string> InitialPathFunction;
+        public Func<string> InitialPathFunction = DefaultPathFunction;
         public string Filter = "All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         public FilePathButton()
         {
             InitializeComponent();
-            InitialPathFunction = DefaultPathFunction;
             Text = "";
             Value = "";
         }
-        private string DefaultPathFunction()
+        private static string DefaultPathFunction()
         {
             return Properties.Settings.Default.CommSitePath;
         }

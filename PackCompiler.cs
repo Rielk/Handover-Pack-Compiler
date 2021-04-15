@@ -14,9 +14,6 @@ namespace Handover_Pack_Compiler
 {
     public partial class PackCompiler : Form
     {
-
-        private readonly OpenFileDialog file_dialog = new OpenFileDialog();
-        private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
         private readonly List<InverterData> InverterList;
         private readonly List<ModuleData> ModuleList;
 
@@ -36,78 +33,56 @@ namespace Handover_Pack_Compiler
             ModuleList = Utilities.MReadFromFile("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
+
+            MPWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+            SEWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+
+            ProgDataButton.InitialPathFunction = ProgDataDefaultPath;
+            CommSiteButton.InitialPathFunction = CommSiteDefaultPath;
+            MPWarrantyButton.InitialPathFunction = MPWarrantyDefaultPath;
+            SEWarrantyButton.InitialPathFunction = SEWarrantDefaultPath;
         }
         //Setting Tab Start
-        private void CommSiteButton_Click(object sender, EventArgs e)
+        private static string ProgDataDefaultPath()
+        {
+            return Properties.Settings.Default.ProgramDataPath;
+        }
+        private static string CommSiteDefaultPath()
         {
             if (Properties.Settings.Default.CommSitePath == "")
             {
                 Properties.Settings.Default.CommSitePath = Properties.Settings.Default.ProgramDataPath;
             }
-            folder_dialog.SelectedPath = Properties.Settings.Default.CommSitePath;
-            if (folder_dialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.CommSitePath = folder_dialog.SelectedPath;
-                Properties.Settings.Default.Save();
-                //CommSiteBox.Text = Properties.Settings.Default.CommSitePath;
-            }
+            return Properties.Settings.Default.CommSitePath;
         }
-        private void MPWarrantyButton_Click(object sender, EventArgs e)
+        private static string MPWarrantyDefaultPath()
         {
-            file_dialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-            file_dialog.FilterIndex = 0;
             if (Properties.Settings.Default.MPWarrantyPath != "")
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.MPWarrantyPath;
+                return Properties.Settings.Default.MPWarrantyPath;
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.CommSitePath;
+                return Properties.Settings.Default.CommSitePath;
             }
             else
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.ProgramDataPath;
-            }
-
-            if (file_dialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.MPWarrantyPath = file_dialog.FileName;
-                Properties.Settings.Default.Save();
-                //MPWarrantyBox.Text = Properties.Settings.Default.MPWarrantyPath;
+                return Properties.Settings.Default.ProgramDataPath;
             }
         }
-        private void SEWarrantButton_Click(object sender, EventArgs e)
+        private static string SEWarrantDefaultPath()
         {
-            file_dialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-            file_dialog.FilterIndex = 0;
             if (Properties.Settings.Default.SEWarrantyPath != "")
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.SEWarrantyPath;
+                return Properties.Settings.Default.SEWarrantyPath;
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.CommSitePath;
+                return Properties.Settings.Default.CommSitePath;
             }
             else
             {
-                file_dialog.InitialDirectory = Properties.Settings.Default.ProgramDataPath;
-            }
-
-            if (file_dialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.SEWarrantyPath = file_dialog.FileName;
-                Properties.Settings.Default.Save();
-                //SEWarrantyBox.Text = Properties.Settings.Default.SEWarrantyPath;
-            }
-        }
-        private void ProgDataButton_Click(object sender, EventArgs e)
-        {
-            folder_dialog.SelectedPath = Properties.Settings.Default.ProgramDataPath;
-            if (folder_dialog.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.ProgramDataPath = folder_dialog.SelectedPath;
-                Properties.Settings.Default.Save();
-                //ProgDataBox.Text = Properties.Settings.Default.ProgramDataPath;
+                return Properties.Settings.Default.ProgramDataPath;
             }
         }
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)

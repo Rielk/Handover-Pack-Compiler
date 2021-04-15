@@ -26,16 +26,15 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        public Func<string> InitialPathFunction;
+        public Func<string> InitialPathFunction = DefaultPathFunction;
         private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
         public FolderPathButton()
         {
             InitializeComponent();
-            InitialPathFunction = DefaultPathFunction;
             Text = "";
             Value = "";
         }
-        private string DefaultPathFunction()
+        private static string DefaultPathFunction()
         {
             return Properties.Settings.Default.CommSitePath;
         }
