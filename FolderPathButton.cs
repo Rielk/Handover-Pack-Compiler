@@ -39,12 +39,19 @@ namespace Handover_Pack_Compiler
         {
             return Properties.Settings.Default.CommSitePath;
         }
+
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when Value updates")]
+        public event EventHandler ValueUpdate;
         private void Button_Click(object sender, EventArgs e)
         {
             folder_dialog.SelectedPath = InitialPathFunction();
             if (folder_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = folder_dialog.SelectedPath;
+                ValueUpdate?.Invoke(this, e);
+
             }
         }
     }

@@ -40,6 +40,11 @@ namespace Handover_Pack_Compiler
         {
             return Properties.Settings.Default.CommSitePath;
         }
+
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when Value updates")]
+        public event EventHandler ValueUpdate;
         private void Button_Click(object sender, EventArgs e)
         {
             file_dialog.Filter = Filter;
@@ -48,6 +53,7 @@ namespace Handover_Pack_Compiler
             if (file_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = file_dialog.FileName;
+                ValueUpdate?.Invoke(this, e);
             }
         }
     }
