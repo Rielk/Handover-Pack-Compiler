@@ -30,12 +30,12 @@ namespace Handover_Pack_Compiler
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.OperationTabs = new System.Windows.Forms.TabControl();
             this.CompileTab = new System.Windows.Forms.TabPage();
             this.FilesTab = new System.Windows.Forms.TabPage();
@@ -60,18 +60,10 @@ namespace Handover_Pack_Compiler
             this.datasheetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.solarEdgeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.SEWarrantyGroup = new System.Windows.Forms.GroupBox();
-            this.SEWarrantyBox = new System.Windows.Forms.TextBox();
-            this.SEWarrantButton = new System.Windows.Forms.Button();
-            this.MPWarrantyGroup = new System.Windows.Forms.GroupBox();
-            this.MPWarrantyBox = new System.Windows.Forms.TextBox();
-            this.MPWarrantyButton = new System.Windows.Forms.Button();
-            this.ProgDataGroup = new System.Windows.Forms.GroupBox();
-            this.ProgDataBox = new System.Windows.Forms.TextBox();
-            this.ProgDataButton = new System.Windows.Forms.Button();
-            this.CommSiteGroup = new System.Windows.Forms.GroupBox();
-            this.CommSiteBox = new System.Windows.Forms.TextBox();
-            this.CommSiteButton = new System.Windows.Forms.Button();
+            this.SEWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
+            this.MPWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
+            this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
+            this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
             this.PackTab = new System.Windows.Forms.TabPage();
             this.OperationTabs.SuspendLayout();
             this.ModuleTab.SuspendLayout();
@@ -81,10 +73,6 @@ namespace Handover_Pack_Compiler
             this.InverterTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
-            this.SEWarrantyGroup.SuspendLayout();
-            this.MPWarrantyGroup.SuspendLayout();
-            this.ProgDataGroup.SuspendLayout();
-            this.CommSiteGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // OperationTabs
@@ -204,41 +192,41 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModuleGridView.AutoGenerateColumns = false;
             this.ModuleGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ModuleGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ModuleGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.ModuleGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ModuleGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.Warranty});
             this.ModuleGridView.DataSource = this.ModuleDataSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.ModuleGridView.EnableHeadersVisualStyles = false;
             this.ModuleGridView.Location = new System.Drawing.Point(6, 127);
             this.ModuleGridView.MultiSelect = false;
             this.ModuleGridView.Name = "ModuleGridView";
             this.ModuleGridView.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ModuleGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ModuleGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.ModuleGridView.RowHeadersVisible = false;
             this.ModuleGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.ModuleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -345,41 +333,41 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InverterGridView.AutoGenerateColumns = false;
             this.InverterGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.InverterGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.InverterGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.InverterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.InverterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.datasheetDataGridViewTextBoxColumn,
             this.solarEdgeDataGridViewCheckBoxColumn});
             this.InverterGridView.DataSource = this.InverterDataSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.InverterGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.InverterGridView.DefaultCellStyle = dataGridViewCellStyle11;
             this.InverterGridView.EnableHeadersVisualStyles = false;
             this.InverterGridView.Location = new System.Drawing.Point(6, 127);
             this.InverterGridView.MultiSelect = false;
             this.InverterGridView.Name = "InverterGridView";
             this.InverterGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.InverterGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.InverterGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.InverterGridView.RowHeadersVisible = false;
             this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -417,10 +405,10 @@ namespace Handover_Pack_Compiler
             // 
             // SettingsTab
             // 
-            this.SettingsTab.Controls.Add(this.SEWarrantyGroup);
-            this.SettingsTab.Controls.Add(this.MPWarrantyGroup);
-            this.SettingsTab.Controls.Add(this.ProgDataGroup);
-            this.SettingsTab.Controls.Add(this.CommSiteGroup);
+            this.SettingsTab.Controls.Add(this.SEWarrantyButton);
+            this.SettingsTab.Controls.Add(this.MPWarrantyButton);
+            this.SettingsTab.Controls.Add(this.CommSiteButton);
+            this.SettingsTab.Controls.Add(this.ProgDataButton);
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Name = "SettingsTab";
             this.SettingsTab.Size = new System.Drawing.Size(540, 423);
@@ -428,141 +416,61 @@ namespace Handover_Pack_Compiler
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
             // 
-            // SEWarrantyGroup
+            // SEWarrantyButton
             // 
-            this.SEWarrantyGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SEWarrantyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SEWarrantyGroup.Controls.Add(this.SEWarrantyBox);
-            this.SEWarrantyGroup.Controls.Add(this.SEWarrantButton);
-            this.SEWarrantyGroup.Location = new System.Drawing.Point(3, 159);
-            this.SEWarrantyGroup.Name = "SEWarrantyGroup";
-            this.SEWarrantyGroup.Size = new System.Drawing.Size(534, 46);
-            this.SEWarrantyGroup.TabIndex = 15;
-            this.SEWarrantyGroup.TabStop = false;
-            this.SEWarrantyGroup.Text = "SolarEdge Warranty Path";
-            // 
-            // SEWarrantyBox
-            // 
-            this.SEWarrantyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SEWarrantyBox.Location = new System.Drawing.Point(6, 19);
-            this.SEWarrantyBox.Name = "SEWarrantyBox";
-            this.SEWarrantyBox.ReadOnly = true;
-            this.SEWarrantyBox.Size = new System.Drawing.Size(490, 20);
-            this.SEWarrantyBox.TabIndex = 7;
-            // 
-            // SEWarrantButton
-            // 
-            this.SEWarrantButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SEWarrantButton.Location = new System.Drawing.Point(502, 19);
-            this.SEWarrantButton.Name = "SEWarrantButton";
-            this.SEWarrantButton.Size = new System.Drawing.Size(26, 20);
-            this.SEWarrantButton.TabIndex = 6;
-            this.SEWarrantButton.Text = "...";
-            this.SEWarrantButton.UseVisualStyleBackColor = true;
-            this.SEWarrantButton.Click += new System.EventHandler(this.SEWarrantButton_Click);
-            // 
-            // MPWarrantyGroup
-            // 
-            this.MPWarrantyGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MPWarrantyGroup.Controls.Add(this.MPWarrantyBox);
-            this.MPWarrantyGroup.Controls.Add(this.MPWarrantyButton);
-            this.MPWarrantyGroup.Location = new System.Drawing.Point(3, 107);
-            this.MPWarrantyGroup.Name = "MPWarrantyGroup";
-            this.MPWarrantyGroup.Size = new System.Drawing.Size(534, 46);
-            this.MPWarrantyGroup.TabIndex = 14;
-            this.MPWarrantyGroup.TabStop = false;
-            this.MPWarrantyGroup.Text = "Mypower Warranty Path";
-            // 
-            // MPWarrantyBox
-            // 
-            this.MPWarrantyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MPWarrantyBox.Location = new System.Drawing.Point(6, 19);
-            this.MPWarrantyBox.Name = "MPWarrantyBox";
-            this.MPWarrantyBox.ReadOnly = true;
-            this.MPWarrantyBox.Size = new System.Drawing.Size(490, 20);
-            this.MPWarrantyBox.TabIndex = 7;
+            this.SEWarrantyButton.Location = new System.Drawing.Point(3, 159);
+            this.SEWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.SEWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
+            this.SEWarrantyButton.Name = "SEWarrantyButton";
+            this.SEWarrantyButton.Size = new System.Drawing.Size(534, 46);
+            this.SEWarrantyButton.TabIndex = 3;
+            this.SEWarrantyButton.Text = "SolarEdge Warranty Path";
+            this.SEWarrantyButton.Value = "";
+            this.SEWarrantyButton.ValueUpdate += new System.EventHandler(this.SEWarrantyButton_ValueUpdate);
             // 
             // MPWarrantyButton
             // 
-            this.MPWarrantyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MPWarrantyButton.Location = new System.Drawing.Point(502, 19);
+            this.MPWarrantyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MPWarrantyButton.Location = new System.Drawing.Point(3, 107);
+            this.MPWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.MPWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.MPWarrantyButton.Name = "MPWarrantyButton";
-            this.MPWarrantyButton.Size = new System.Drawing.Size(26, 20);
-            this.MPWarrantyButton.TabIndex = 6;
-            this.MPWarrantyButton.Text = "...";
-            this.MPWarrantyButton.UseVisualStyleBackColor = true;
-            this.MPWarrantyButton.Click += new System.EventHandler(this.MPWarrantyButton_Click);
-            // 
-            // ProgDataGroup
-            // 
-            this.ProgDataGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgDataGroup.Controls.Add(this.ProgDataBox);
-            this.ProgDataGroup.Controls.Add(this.ProgDataButton);
-            this.ProgDataGroup.Location = new System.Drawing.Point(3, 3);
-            this.ProgDataGroup.Name = "ProgDataGroup";
-            this.ProgDataGroup.Size = new System.Drawing.Size(534, 46);
-            this.ProgDataGroup.TabIndex = 13;
-            this.ProgDataGroup.TabStop = false;
-            this.ProgDataGroup.Text = "Program Data Path";
-            // 
-            // ProgDataBox
-            // 
-            this.ProgDataBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgDataBox.Location = new System.Drawing.Point(5, 19);
-            this.ProgDataBox.Name = "ProgDataBox";
-            this.ProgDataBox.ReadOnly = true;
-            this.ProgDataBox.Size = new System.Drawing.Size(491, 20);
-            this.ProgDataBox.TabIndex = 0;
-            // 
-            // ProgDataButton
-            // 
-            this.ProgDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgDataButton.Location = new System.Drawing.Point(502, 19);
-            this.ProgDataButton.Name = "ProgDataButton";
-            this.ProgDataButton.Size = new System.Drawing.Size(26, 20);
-            this.ProgDataButton.TabIndex = 4;
-            this.ProgDataButton.Text = "...";
-            this.ProgDataButton.UseVisualStyleBackColor = true;
-            this.ProgDataButton.Click += new System.EventHandler(this.ProgDataButton_Click);
-            // 
-            // CommSiteGroup
-            // 
-            this.CommSiteGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CommSiteGroup.Controls.Add(this.CommSiteBox);
-            this.CommSiteGroup.Controls.Add(this.CommSiteButton);
-            this.CommSiteGroup.Location = new System.Drawing.Point(3, 55);
-            this.CommSiteGroup.Name = "CommSiteGroup";
-            this.CommSiteGroup.Size = new System.Drawing.Size(534, 46);
-            this.CommSiteGroup.TabIndex = 12;
-            this.CommSiteGroup.TabStop = false;
-            this.CommSiteGroup.Text = "Communication Site Path";
-            // 
-            // CommSiteBox
-            // 
-            this.CommSiteBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CommSiteBox.Location = new System.Drawing.Point(6, 19);
-            this.CommSiteBox.Name = "CommSiteBox";
-            this.CommSiteBox.ReadOnly = true;
-            this.CommSiteBox.Size = new System.Drawing.Size(490, 20);
-            this.CommSiteBox.TabIndex = 7;
+            this.MPWarrantyButton.Size = new System.Drawing.Size(534, 46);
+            this.MPWarrantyButton.TabIndex = 2;
+            this.MPWarrantyButton.Text = "Mypower Warranty Path";
+            this.MPWarrantyButton.Value = "";
+            this.MPWarrantyButton.ValueUpdate += new System.EventHandler(this.MPWarrantyButton_ValueUpdate);
             // 
             // CommSiteButton
             // 
-            this.CommSiteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CommSiteButton.Location = new System.Drawing.Point(502, 19);
+            this.CommSiteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CommSiteButton.Location = new System.Drawing.Point(3, 55);
+            this.CommSiteButton.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.CommSiteButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.CommSiteButton.Name = "CommSiteButton";
-            this.CommSiteButton.Size = new System.Drawing.Size(26, 20);
-            this.CommSiteButton.TabIndex = 6;
-            this.CommSiteButton.Text = "...";
-            this.CommSiteButton.UseVisualStyleBackColor = true;
-            this.CommSiteButton.Click += new System.EventHandler(this.CommSiteButton_Click);
+            this.CommSiteButton.Size = new System.Drawing.Size(534, 46);
+            this.CommSiteButton.TabIndex = 1;
+            this.CommSiteButton.Text = "Communication Site Path";
+            this.CommSiteButton.Value = "";
+            this.CommSiteButton.ValueUpdate += new System.EventHandler(this.CommSiteButton_ValueUpdate);
+            // 
+            // ProgDataButton
+            // 
+            this.ProgDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProgDataButton.Location = new System.Drawing.Point(3, 3);
+            this.ProgDataButton.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.ProgDataButton.MinimumSize = new System.Drawing.Size(0, 46);
+            this.ProgDataButton.Name = "ProgDataButton";
+            this.ProgDataButton.Size = new System.Drawing.Size(534, 46);
+            this.ProgDataButton.TabIndex = 0;
+            this.ProgDataButton.Text = "Program Data Path";
+            this.ProgDataButton.Value = "";
+            this.ProgDataButton.ValueUpdate += new System.EventHandler(this.ProgDataButton_ValueUpdate);
             // 
             // PackTab
             // 
@@ -589,14 +497,6 @@ namespace Handover_Pack_Compiler
             this.InverterTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
-            this.SEWarrantyGroup.ResumeLayout(false);
-            this.SEWarrantyGroup.PerformLayout();
-            this.MPWarrantyGroup.ResumeLayout(false);
-            this.MPWarrantyGroup.PerformLayout();
-            this.ProgDataGroup.ResumeLayout(false);
-            this.ProgDataGroup.PerformLayout();
-            this.CommSiteGroup.ResumeLayout(false);
-            this.CommSiteGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -609,18 +509,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.TabPage SettingsTab;
         private System.Windows.Forms.TabPage PackTab;
         private System.Windows.Forms.TabControl OperationTabs;
-        private System.Windows.Forms.TextBox ProgDataBox;
-        private System.Windows.Forms.Button ProgDataButton;
-        private System.Windows.Forms.TextBox CommSiteBox;
-        private System.Windows.Forms.Button CommSiteButton;
-        private System.Windows.Forms.GroupBox CommSiteGroup;
-        private System.Windows.Forms.GroupBox ProgDataGroup;
-        private System.Windows.Forms.GroupBox MPWarrantyGroup;
-        private System.Windows.Forms.TextBox MPWarrantyBox;
-        private System.Windows.Forms.Button MPWarrantyButton;
-        private System.Windows.Forms.GroupBox SEWarrantyGroup;
-        private System.Windows.Forms.TextBox SEWarrantyBox;
-        private System.Windows.Forms.Button SEWarrantButton;
         private System.Windows.Forms.DataGridView InverterGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn datasheetDataGridViewTextBoxColumn;
@@ -639,6 +527,10 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Warranty;
+        private FilePathButton SEWarrantyButton;
+        private FilePathButton MPWarrantyButton;
+        private FolderPathButton CommSiteButton;
+        private FolderPathButton ProgDataButton;
     }
 }
 

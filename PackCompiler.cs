@@ -49,7 +49,7 @@ namespace Handover_Pack_Compiler
             {
                 Properties.Settings.Default.CommSitePath = folder_dialog.SelectedPath;
                 Properties.Settings.Default.Save();
-                CommSiteBox.Text = Properties.Settings.Default.CommSitePath;
+                //CommSiteBox.Text = Properties.Settings.Default.CommSitePath;
             }
         }
         private void MPWarrantyButton_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Handover_Pack_Compiler
             {
                 Properties.Settings.Default.MPWarrantyPath = file_dialog.FileName;
                 Properties.Settings.Default.Save();
-                MPWarrantyBox.Text = Properties.Settings.Default.MPWarrantyPath;
+                //MPWarrantyBox.Text = Properties.Settings.Default.MPWarrantyPath;
             }
         }
         private void SEWarrantButton_Click(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace Handover_Pack_Compiler
             {
                 Properties.Settings.Default.SEWarrantyPath = file_dialog.FileName;
                 Properties.Settings.Default.Save();
-                SEWarrantyBox.Text = Properties.Settings.Default.SEWarrantyPath;
+                //SEWarrantyBox.Text = Properties.Settings.Default.SEWarrantyPath;
             }
         }
         private void ProgDataButton_Click(object sender, EventArgs e)
@@ -107,15 +107,38 @@ namespace Handover_Pack_Compiler
             {
                 Properties.Settings.Default.ProgramDataPath = folder_dialog.SelectedPath;
                 Properties.Settings.Default.Save();
-                ProgDataBox.Text = Properties.Settings.Default.ProgramDataPath;
+                //ProgDataBox.Text = Properties.Settings.Default.ProgramDataPath;
             }
+        }
+        private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ProgramDataPath = ProgDataButton.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CommSiteButton_ValueUpdate(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MPWarrantyPath = CommSiteButton.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void MPWarrantyButton_ValueUpdate(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MPWarrantyPath = MPWarrantyButton.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void SEWarrantyButton_ValueUpdate(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SEWarrantyPath = SEWarrantyButton.Value;
+            Properties.Settings.Default.Save();
         }
         private void LoadFilePaths()
         {
-            ProgDataBox.Text = Properties.Settings.Default.ProgramDataPath;
-            CommSiteBox.Text = Properties.Settings.Default.CommSitePath;
-            MPWarrantyBox.Text = Properties.Settings.Default.MPWarrantyPath;
-            SEWarrantyBox.Text = Properties.Settings.Default.SEWarrantyPath;
+            ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
+            CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
+            MPWarrantyButton.Value = Properties.Settings.Default.MPWarrantyPath;
+            SEWarrantyButton.Value = Properties.Settings.Default.SEWarrantyPath;
         }
         //Setting Tab End
         //Inverter Tab Start
