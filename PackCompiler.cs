@@ -68,6 +68,22 @@ namespace Handover_Pack_Compiler
         }
         private void LoadFilePaths()
         {
+            if (!Directory.Exists(Properties.Settings.Default.ProgramDataPath))
+            {
+                Properties.Settings.Default.ProgramDataPath = "";
+            }
+            if (!Directory.Exists(Properties.Settings.Default.CommSitePath))
+            {
+                Properties.Settings.Default.CommSitePath = "";
+            }
+            if (!File.Exists(Properties.Settings.Default.MPWarrantyPath))
+            {
+                Properties.Settings.Default.MPWarrantyPath = "";
+            }
+            if (!File.Exists(Properties.Settings.Default.SEWarrantyPath))
+            {
+                Properties.Settings.Default.SEWarrantyPath = "";
+            }
             ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
             CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
             MPWarrantyButton.Value = Properties.Settings.Default.MPWarrantyPath;
