@@ -39,7 +39,6 @@ namespace Handover_Pack_Compiler
         {
             return Properties.Settings.Default.CommSitePath;
         }
-
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when Value updates")]

@@ -59,7 +59,7 @@ namespace Handover_Pack_Compiler
         {
             if (Properties.Settings.Default.MPWarrantyPath != "")
             {
-                return Properties.Settings.Default.MPWarrantyPath;
+                return Path.GetDirectoryName(Properties.Settings.Default.MPWarrantyPath);
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
@@ -74,7 +74,7 @@ namespace Handover_Pack_Compiler
         {
             if (Properties.Settings.Default.SEWarrantyPath != "")
             {
-                return Properties.Settings.Default.SEWarrantyPath;
+                return Path.GetDirectoryName(Properties.Settings.Default.SEWarrantyPath);
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
