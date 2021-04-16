@@ -37,54 +37,12 @@ namespace Handover_Pack_Compiler
             MPWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
             SEWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
 
-            ProgDataButton.InitialPathFunction = ProgDataDefaultPath;
-            CommSiteButton.InitialPathFunction = CommSiteDefaultPath;
-            MPWarrantyButton.InitialPathFunction = MPWarrantyDefaultPath;
-            SEWarrantyButton.InitialPathFunction = SEWarrantDefaultPath;
+            ProgDataButton.InitialPathFunction = DefaultPath.ProgData;
+            CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
+            MPWarrantyButton.InitialPathFunction = DefaultPath.MPWarranty;
+            SEWarrantyButton.InitialPathFunction = DefaultPath.SEWarrant;
         }
         //Setting Tab Start
-        private static string ProgDataDefaultPath()
-        {
-            return Properties.Settings.Default.ProgramDataPath;
-        }
-        private static string CommSiteDefaultPath()
-        {
-            if (Properties.Settings.Default.CommSitePath == "")
-            {
-                Properties.Settings.Default.CommSitePath = Properties.Settings.Default.ProgramDataPath;
-            }
-            return Properties.Settings.Default.CommSitePath;
-        }
-        private static string MPWarrantyDefaultPath()
-        {
-            if (Properties.Settings.Default.MPWarrantyPath != "")
-            {
-                return Path.GetDirectoryName(Properties.Settings.Default.MPWarrantyPath);
-            }
-            else if (Properties.Settings.Default.CommSitePath != "")
-            {
-                return Properties.Settings.Default.CommSitePath;
-            }
-            else
-            {
-                return Properties.Settings.Default.ProgramDataPath;
-            }
-        }
-        private static string SEWarrantDefaultPath()
-        {
-            if (Properties.Settings.Default.SEWarrantyPath != "")
-            {
-                return Path.GetDirectoryName(Properties.Settings.Default.SEWarrantyPath);
-            }
-            else if (Properties.Settings.Default.CommSitePath != "")
-            {
-                return Properties.Settings.Default.CommSitePath;
-            }
-            else
-            {
-                return Properties.Settings.Default.ProgramDataPath;
-            }
-        }
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
         {
             Properties.Settings.Default.ProgramDataPath = ProgDataButton.Value;

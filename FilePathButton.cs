@@ -26,7 +26,7 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        public Func<string> InitialPathFunction = DefaultPathFunction;
+        public Func<string> InitialPathFunction = DefaultPath.Default;
         public string Filter = "All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         public FilePathButton()
@@ -34,10 +34,6 @@ namespace Handover_Pack_Compiler
             InitializeComponent();
             Text = "";
             Value = "";
-        }
-        private static string DefaultPathFunction()
-        {
-            return Properties.Settings.Default.CommSitePath;
         }
         [Browsable(true)]
         [Category("Action")]

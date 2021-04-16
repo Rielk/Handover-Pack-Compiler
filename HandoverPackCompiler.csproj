@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultPath.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="DataFormats.cs" />
     <Compile Include="FolderPathButton.cs">
