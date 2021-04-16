@@ -16,7 +16,7 @@ namespace Handover_Pack_Compiler
     {
         private readonly List<InverterData> InverterList;
         private readonly List<ModuleData> ModuleList;
-
+        private readonly List<PackStructure> PackStructureList;
         public PackCompiler()
         {
             InitializeComponent();
@@ -41,6 +41,16 @@ namespace Handover_Pack_Compiler
             CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
             MPWarrantyButton.InitialPathFunction = DefaultPath.MPWarranty;
             SEWarrantyButton.InitialPathFunction = DefaultPath.SEWarrant;
+
+            PackStructureList = new List<PackStructure>();
+            PackStructure DefaultPS = new PackStructure
+            {
+                Name = "Default",
+                Description = "Default pack, nothing interesting."
+            };
+            PackStructureList.Add(DefaultPS);
+            PackStructureTableSource.DataSource = PackStructureList;
+            PackStructureDropSource.DataSource = PackStructureList;
         }
         //Setting Tab Start
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
@@ -299,5 +309,11 @@ namespace Handover_Pack_Compiler
             CM.ResumeBinding();
         }
         //Module Tab End
+        //Pack Tab Start
+        private void PackStructureDropBox_Enter(object sender, EventArgs e)
+        {
+            PackStructureDropSource.ResetBindings(false);
+        }
+
     }
 }
