@@ -16,6 +16,11 @@ namespace Handover_Pack_Compiler
         {
 
         }
+        public PackStructure(PackStructure other)
+        {
+            throw new NotImplementedException();
+        }
+
         public class Folder
         {
             public List<File> Files = new List<File>();
@@ -47,10 +52,6 @@ namespace Handover_Pack_Compiler
             }
             else return Equals(objAsPS);
         }
-        public bool Equals(string other)
-        {
-            return Name.Equals(other);
-        }
         public bool Equals(PackStructure other)
         {
             return Name.Equals(other.Name);
@@ -69,19 +70,15 @@ namespace Handover_Pack_Compiler
             }
             else return CompareTo(objAsPS);
         }
-        public int CompareTo(string other)
+        public int CompareTo(PackStructure other)
         {
             if (Name == "Default")
             {
-                if (other == "Default") { return 0; }
+                if (other.Name == "Default") { return 0; }
                 return -1;
             }
-            else if (other == "Default") { return 1; }
-            return Name.NumericCompare(other);
-        }
-        public int CompareTo(PackStructure other)
-        {
-            return Name.CompareTo(other.Name);
+            else if (other.Name == "Default") { return 1; }
+            return Name.NumericCompare(other.Name);
         }
     }
 }

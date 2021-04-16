@@ -76,6 +76,7 @@ namespace Handover_Pack_Compiler
             Properties.Settings.Default.SEWarrantyPath = SEWarrantyButton.Value;
             Properties.Settings.Default.Save();
         }
+
         private void LoadFilePaths()
         {
             if (!Directory.Exists(Properties.Settings.Default.ProgramDataPath))
@@ -312,29 +313,55 @@ namespace Handover_Pack_Compiler
         {
             PackStructureDropSource.ResetBindings(false);
         }
+
         private void SortPackStructures()
         {
             PackStructureList.Sort();
             PackStructureDropSource.ResetBindings(false);
             PackStructureTableSource.ResetBindings(false);
         }
+
         private void SortPackStructures(string selection)
         {
+            PackStructure SelectedData = new PackStructure() { Name = selection };
             SortPackStructures();
+            foreach (DataGridViewRow row in PackStructureGridView.Rows)
+            {
+                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
+                else { row.Selected = false; }
+            }
+            ModuleDropBox.SelectedItem = SelectedData;
         }
+
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
-
+            PackStructureList.Add(new PackStructure());
+            SortPackStructures();
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in PackStructureGridView.SelectedRows)
+            {
+                if (((PackStructure)row.DataBoundItem).Name != "Default")
+                {
+                    PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
+                    PackStructureList.Add(newPS);
+                    SortPackStructures(newPS.Name);
+                }
+            }
         }
 
         private void DeletePackStructureButton_Click(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in PackStructureGridView.SelectedRows)
+            {
+                if (((PackStructure)row.DataBoundItem).Name != "Default")
+                {
+                    PackStructureList.Remove((PackStructure)row.DataBoundItem);
+                    SortPackStructures("Default");
+                }
+            }
         }
     }
 }
