@@ -18,17 +18,33 @@ namespace Handover_Pack_Compiler
         }
         public PackStructure(PackStructure other)
         {
-            throw new NotImplementedException();
+            Name = other.Name + "- Copy";
+            Description = other.Description;
+            Folders = new List<Folder>();
+            foreach (Folder folder in other.Folders)
+            {
+                Folders.Add(new Folder(folder));
+            }
         }
 
         public class Folder
         {
-            public List<File> Files = new List<File>();
             public string Name { get; set; } = "";
+            public List<File> Files = new List<File>();
             public Folder()
             {
 
             }
+            public Folder(Folder other)
+            {
+                Name = other.Name;
+                Files = new List<File>();
+                foreach (File file in other.Files)
+                {
+                    Files.Add(new File(file));
+                }
+            }
+
             public class File
             {
                 public string Name { get; set; } = "";
@@ -38,6 +54,13 @@ namespace Handover_Pack_Compiler
                 public File()
                 {
 
+                }
+                public File(File other)
+                {
+                    Name = other.Name;
+                    Description = other.Description;
+                    Optional = other.Optional;
+                    Condition = other.Condition;
                 }
             }
         }

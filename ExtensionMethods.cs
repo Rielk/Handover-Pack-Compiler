@@ -47,8 +47,11 @@ namespace ExtensionMethods
                     return numx.CompareTo(numy);
                 }
             }
-            //If the end of one or both strings is reached, the shorter one is place first.
-            return x.Length - y.Length;
+            //If the end of one or both strings is reached, the shorter one is place first, unless it is completely empty.
+            if (x.Length == 0 & y.Length == 0) return 0;
+            else if (x.Length == 0) return 1;
+            else if (y.Length == 0) return -1;
+            else return x.Length - y.Length;
         }
     }
 }
