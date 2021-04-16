@@ -315,5 +315,19 @@ namespace Handover_Pack_Compiler
             PackStructureDropSource.ResetBindings(false);
         }
 
+        private void AddPackStructureButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeletePackStructureButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

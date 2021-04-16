@@ -20,15 +20,14 @@ public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable
     public override bool Equals(object obj)
     {
         if (obj == null) return false;
-        if (!(obj is Data objAsPart)) return false;
-        else return Equals(objAsPart);
+        if (!(obj is Data objAsData)) return false;
+        else return Equals(objAsData);
     }
     public bool Equals(Data other)
     {
-        if (other == null) return false;
         if (Name == null & other.Name == null) return true;
         else if (Name == null | other.Name == null) return false;
-        return this.Name.Equals(other.Name);
+        return Name.Equals(other.Name);
     }
     public override int GetHashCode()
     {
@@ -40,15 +39,15 @@ public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable
         if (!(obj is Data objAsPart)) return 1;
         else return CompareTo(objAsPart);
     }
-    public int CompareTo(Data CompareData)
+    public int CompareTo(Data other)
     {
         if (Name == null)
         {
-            if (CompareData.Name == null) { return 0; }
+            if (other.Name == null) { return 0; }
             return -1;
         }
-        else if (CompareData.Name == null) { return 1; }
-        return Name.NumericCompare(CompareData.Name);
+        else if (other.Name == null) { return 1; }
+        return Name.NumericCompare(other.Name);
     }
 }
 
