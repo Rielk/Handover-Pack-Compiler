@@ -172,8 +172,7 @@ namespace Handover_Pack_Compiler
         private void SortInverters(string selection)
         {
             InverterData SelectedData = new InverterData() { Name = selection };
-            InverterList.Sort();
-            InverterDataSource.ResetBindings(false);
+            SortInverters();
             foreach (DataGridViewRow row in InverterGridView.Rows)
             {
                 if (row.DataBoundItem == SelectedData) { row.Selected = true; }
@@ -276,8 +275,7 @@ namespace Handover_Pack_Compiler
         private void SortModules(string selection)
         {
             ModuleData SelectedData = new ModuleData() { Name = selection };
-            ModuleList.Sort();
-            ModuleDataSource.ResetBindings(false);
+            SortModules();
             foreach (DataGridViewRow row in ModuleGridView.Rows)
             {
                 if (row.DataBoundItem == SelectedData) { row.Selected = true; }
@@ -314,7 +312,16 @@ namespace Handover_Pack_Compiler
         {
             PackStructureDropSource.ResetBindings(false);
         }
-
+        private void SortPackStructures()
+        {
+            PackStructureList.Sort();
+            PackStructureDropSource.ResetBindings(false);
+            PackStructureTableSource.ResetBindings(false);
+        }
+        private void SortPackStructures(string selection)
+        {
+            SortPackStructures();
+        }
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
 

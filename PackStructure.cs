@@ -9,8 +9,8 @@ namespace Handover_Pack_Compiler
 {
     class PackStructure : IEquatable<PackStructure>, IComparable<PackStructure>, IComparable
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
         public List<Folder> Folders = new List<Folder>();
         public PackStructure()
         {
@@ -19,16 +19,16 @@ namespace Handover_Pack_Compiler
         public class Folder
         {
             public List<File> Files = new List<File>();
-            public string Name { get; set; }
+            public string Name { get; set; } = "";
             public Folder()
             {
 
             }
             public class File
             {
-                public string Name { get; set; }
-                public string Description { get; set; }
-                public bool Optional { get; set; }
+                public string Name { get; set; } = "";
+                public string Description { get; set; } = "";
+                public bool Optional { get; set; } = false;
                 public Func<bool> Condition { get; set; }
                 public File()
                 {
@@ -49,8 +49,6 @@ namespace Handover_Pack_Compiler
         }
         public bool Equals(string other)
         {
-            if (Name == null & other == null) return true;
-            else if (Name == null | other == null) return false;
             return Name.Equals(other);
         }
         public bool Equals(PackStructure other)
@@ -73,12 +71,12 @@ namespace Handover_Pack_Compiler
         }
         public int CompareTo(string other)
         {
-            if (Name == null)
+            if (Name == "Default")
             {
-                if (other == null) { return 0; }
+                if (other == "Default") { return 0; }
                 return -1;
             }
-            else if (other == null) { return 1; }
+            else if (other == "Default") { return 1; }
             return Name.NumericCompare(other);
         }
         public int CompareTo(PackStructure other)
