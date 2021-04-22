@@ -563,6 +563,7 @@ namespace Handover_Pack_Compiler
             this.PackStructureDropBox.Name = "PackStructureDropBox";
             this.PackStructureDropBox.Size = new System.Drawing.Size(532, 21);
             this.PackStructureDropBox.TabIndex = 1;
+            this.PackStructureDropBox.ValueMember = "Name";
             this.PackStructureDropBox.Enter += new System.EventHandler(this.PackStructureDropBox_Enter);
             // 
             // PackStructureDropSource

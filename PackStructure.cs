@@ -68,11 +68,7 @@ namespace Handover_Pack_Compiler
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            if (!(obj is PackStructure objAsPS))
-            {
-                if (!(obj is string objAsS)) { return false; }
-                else return Equals(objAsS);
-            }
+            if (!(obj is PackStructure objAsPS)) { return false; }
             else return Equals(objAsPS);
         }
         public bool Equals(PackStructure other)
@@ -86,11 +82,7 @@ namespace Handover_Pack_Compiler
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;
-            if (!(obj is PackStructure objAsPS))
-            {
-                if (!(obj is string objAsS)) { return 1; }
-                else return CompareTo(objAsS);
-            }
+            if (!(obj is PackStructure objAsPS)) { return 1; }
             else return CompareTo(objAsPS);
         }
         public int CompareTo(PackStructure other)

@@ -321,34 +321,35 @@ namespace Handover_Pack_Compiler
             PackStructureTableSource.ResetBindings(false);
         }
 
-        private void SortPackStructures(string selection)
+        private void SortPackStructures(string grid_selection)
         {
-            PackStructure SelectedData = new PackStructure() { Name = selection };
+            SortPackStructures(grid_selection, ((PackStructure)PackStructureDropBox.SelectedItem).Name);
+        }
+
+        private void SortPackStructures(string grid_selection, string drop_selection)
+        {
+            PackStructure SelectedStructure = new PackStructure() { Name = grid_selection };
             SortPackStructures();
             foreach (DataGridViewRow row in PackStructureGridView.Rows)
             {
-                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
+                if (row.DataBoundItem.Equals(SelectedStructure)) { row.Selected = true; }
                 else { row.Selected = false; }
             }
-            ModuleDropBox.SelectedItem = SelectedData;
         }
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
             PackStructureList.Add(new PackStructure());
-            SortPackStructures();
+            SortPackStructures("");
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in PackStructureGridView.SelectedRows)
             {
-                if (((PackStructure)row.DataBoundItem).Name != "Default")
-                {
-                    PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
-                    PackStructureList.Add(newPS);
-                    SortPackStructures(newPS.Name);
-                }
+                PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
+                PackStructureList.Add(newPS);
+                SortPackStructures(newPS.Name);
             }
         }
 
