@@ -138,7 +138,12 @@ namespace Handover_Pack_Compiler
             {
                 if (((InverterData)row.DataBoundItem).Name != null)
                 {
-                    InverterList.Remove((InverterData)row.DataBoundItem);
+                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Inverter: " +
+                        ((InverterData)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        InverterList.Remove((InverterData)row.DataBoundItem);
+                    }
                 }
             }
             SortInverters();
@@ -241,7 +246,12 @@ namespace Handover_Pack_Compiler
             {
                 if (((ModuleData)row.DataBoundItem).Name != null)
                 {
-                    ModuleList.Remove((ModuleData)row.DataBoundItem);
+                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Module: " +
+                        ((ModuleData)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        ModuleList.Remove((ModuleData)row.DataBoundItem);
+                    }
                 }
             }
             SortModules();
@@ -359,8 +369,13 @@ namespace Handover_Pack_Compiler
             {
                 if (((PackStructure)row.DataBoundItem).Name != "Default")
                 {
-                    PackStructureList.Remove((PackStructure)row.DataBoundItem);
-                    SortPackStructures("Default");
+                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Structure: " +
+                        ((PackStructure)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        PackStructureList.Remove((PackStructure)row.DataBoundItem);
+                        SortPackStructures("Default");
+                    }
                 }
             }
         }
