@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
-using ExtensionMethods;
 
 [XmlInclude(typeof(InverterData)), XmlInclude(typeof(ModuleData))]
 public abstract class Data : IEquatable<Data>, IComparable<Data>, IComparable

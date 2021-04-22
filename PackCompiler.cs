@@ -312,7 +312,7 @@ namespace Handover_Pack_Compiler
             CM.SuspendBinding();
             if (ModuleGridView.Rows[0].Visible)
             {
-                
+
                 ModuleGridView.Rows[0].Visible = false;
             }
             CM.ResumeBinding();
