@@ -338,19 +338,24 @@ namespace Handover_Pack_Compiler
 
         private void SortPackStructures(string grid_selection, string drop_selection)
         {
-            PackStructure SelectedStructure = new PackStructure() { Name = grid_selection };
+            PackStructure GridSelectedStructure = new PackStructure() { Name = grid_selection };
             SortPackStructures();
             foreach (DataGridViewRow row in PackStructureGridView.Rows)
             {
-                if (row.DataBoundItem.Equals(SelectedStructure)) { row.Selected = true; }
+                if (row.DataBoundItem.Equals(GridSelectedStructure)) { row.Selected = true; }
                 else { row.Selected = false; }
             }
+            PackStructure DropSelectedStructure = new PackStructure() { Name = drop_selection };
+            PackStructureDropBox.SelectedItem = DropSelectedStructure;
         }
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
+            //Need to not add duplicate blank name
+            //Need to add a check on name edit that stops duplicate names
+            //Need to add an event on name edit to update the dropbox names
             PackStructureList.Add(new PackStructure());
-            SortPackStructures("");
+            SortPackStructures("", "");
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
@@ -359,7 +364,7 @@ namespace Handover_Pack_Compiler
             {
                 PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
                 PackStructureList.Add(newPS);
-                SortPackStructures(newPS.Name);
+                SortPackStructures(newPS.Name, newPS.Name);
             }
         }
 
@@ -373,8 +378,18 @@ namespace Handover_Pack_Compiler
                         ((PackStructure)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
                     if (Confirm == DialogResult.Yes)
                     {
+                        bool delete_selected;
+                        if ((PackStructure)row.DataBoundItem == PackStructureDropBox.SelectedItem)
+                        {
+                            delete_selected = true;
+                        }
+                        else
+                        {
+                            delete_selected = false;
+                        }
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
-                        SortPackStructures("Default");
+                        if (delete_selected) { SortPackStructures("Default", "Default"); }
+                        else { SortPackStructures("Default"); }
                     }
                 }
             }
