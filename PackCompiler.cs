@@ -45,13 +45,25 @@ namespace Handover_Pack_Compiler
             PackStructureList = new List<PackStructure>();
             PackStructure DefaultPS = new PackStructure
             {
-                Name = "Default",
+                Name = null,
                 Description = "Default pack, nothing interesting."
             };
             PackStructureList.Add(DefaultPS);
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
         }
+        //General Utilites Start
+        private void CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : Data
+        {
+            if (list.Contains(ToAdd))
+            {
+                if (AutoRename)
+                {
+                    
+                }
+            }
+        }
+        //General Utilities End
         //Setting Tab Start
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
         {

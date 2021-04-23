@@ -103,6 +103,7 @@
     <Compile Include="ModuleValuesForm.Designer.cs">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NameCompare.cs" />
     <Compile Include="PackCompiler.cs">
       <SubType>Form</SubType>
     </Compile>
