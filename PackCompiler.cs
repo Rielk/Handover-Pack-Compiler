@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -53,14 +54,39 @@ namespace Handover_Pack_Compiler
             PackStructureDropSource.DataSource = PackStructureList;
         }
         //General Utilites Start
-        private void CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : Data
+        private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
         {
-            if (list.Contains(ToAdd))
+            bool exists = false;
+            foreach (T item in list)
             {
-                if (AutoRename)
+                if (item.ToString() == ToAdd.ToString()) { exists = true; }
+            }
+            return exists;
+        }
+        private bool CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
+        {
+            if (AutoRename)
+            {
+                while (CheckExisting<T>(list, ToAdd))
                 {
-                    
+                    string CountString = Regex.Match(ToAdd.Name, @"(\d+)").Value;
+                    if (CountString != "")
+                    {
+                        int CountInt = int.Parse(CountString);
+                        CountInt++;
+                        ToAdd.Name = Regex.Replace(ToAdd.Name, @"(\d+)", CountInt.ToString());
+                    }
+                    else
+                    {
+                        ToAdd.Name += "(1)";
+                    }
                 }
+                list.Add(ToAdd);
+                return true;
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
         //General Utilities End
@@ -367,8 +393,8 @@ namespace Handover_Pack_Compiler
             //Need to add a check on name edit that stops duplicate names
             //Need to add an event on name edit to update the dropbox names
             //Need to prevent renaming of default
-            PackStructureList.Add(new PackStructure() { Name = "New Structure" });
-            SortPackStructures("", "");
+            CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
+            SortPackStructures("New Structure", "New Structure");
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
