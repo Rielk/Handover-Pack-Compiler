@@ -151,7 +151,7 @@ namespace Handover_Pack_Compiler
                 if (((InverterData)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Inverter: " +
-                        ((InverterData)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                        ((InverterData)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
                     if (Confirm == DialogResult.Yes)
                     {
                         InverterList.Remove((InverterData)row.DataBoundItem);
@@ -259,7 +259,7 @@ namespace Handover_Pack_Compiler
                 if (((ModuleData)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Module: " +
-                        ((ModuleData)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                        ((ModuleData)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
                     if (Confirm == DialogResult.Yes)
                     {
                         ModuleList.Remove((ModuleData)row.DataBoundItem);
@@ -366,7 +366,8 @@ namespace Handover_Pack_Compiler
             //Need to not add duplicate blank name
             //Need to add a check on name edit that stops duplicate names
             //Need to add an event on name edit to update the dropbox names
-            PackStructureList.Add(new PackStructure());
+            //Need to prevent renaming of default
+            PackStructureList.Add(new PackStructure() { Name = "New Structure" });
             SortPackStructures("", "");
         }
 
@@ -384,10 +385,10 @@ namespace Handover_Pack_Compiler
         {
             foreach (DataGridViewRow row in PackStructureGridView.SelectedRows)
             {
-                if (((PackStructure)row.DataBoundItem).Name != "Default")
+                if (((PackStructure)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Structure: " +
-                        ((PackStructure)row.DataBoundItem).Name, "Confirm Delete", MessageBoxButtons.YesNo);
+                        ((PackStructure)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
                     if (Confirm == DialogResult.Yes)
                     {
                         bool delete_selected;
@@ -400,8 +401,8 @@ namespace Handover_Pack_Compiler
                             delete_selected = false;
                         }
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
-                        if (delete_selected) { SortPackStructures("Default", "Default"); }
-                        else { SortPackStructures("Default"); }
+                        if (delete_selected) { SortPackStructures(null, null); }
+                        else { SortPackStructures(null); }
                     }
                 }
             }

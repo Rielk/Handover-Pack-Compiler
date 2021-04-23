@@ -21,7 +21,7 @@ namespace Handover_Pack_Compiler
         }
         public PackStructure(PackStructure other)
         {
-            Name = other.Name + "- Copy";
+            Name = other.ToString() + "- Copy";
             Description = other.Description;
             Folders = new List<Folder>();
             foreach (Folder folder in other.Folders)
