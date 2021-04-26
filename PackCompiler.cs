@@ -52,6 +52,7 @@ namespace Handover_Pack_Compiler
             PackStructureList.Add(DefaultPS);
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
+            SortPackStructures();
         }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
@@ -69,16 +70,16 @@ namespace Handover_Pack_Compiler
             {
                 while (CheckExisting<T>(list, ToAdd))
                 {
-                    string CountString = Regex.Match(ToAdd.Name, @"(\d+)").Value;
+                    string CountString = Regex.Match(ToAdd.ToString(), @"(\d+)").Value;
                     if (CountString != "")
                     {
                         int CountInt = int.Parse(CountString);
                         CountInt++;
-                        ToAdd.Name = Regex.Replace(ToAdd.Name, @"(\d+)", CountInt.ToString());
+                        ToAdd.Name = Regex.Replace(ToAdd.ToString(), @"(\d+)", CountInt.ToString());
                     }
                     else
                     {
-                        ToAdd.Name += "(1)";
+                        ToAdd.Name = ToAdd.ToString() + "(1)";
                     }
                 }
                 return ToAdd.ToString();
@@ -359,17 +360,12 @@ namespace Handover_Pack_Compiler
         }
         //Module Tab End
         //Pack Tab Start
-        private void PackStructureDropBox_Enter(object sender, EventArgs e)
-        {
-            PackStructureDropSource.ResetBindings(false);
-        }
 
         private void SortPackStructures()
         {
             PackStructureList.Sort();
             PackStructureDropSource.ResetBindings(false);
             PackStructureTableSource.ResetBindings(false);
-            PackStructureGridView.Rows[0].ReadOnly = true;
         }
 
         private void SortPackStructures(string grid_selection)
@@ -437,21 +433,31 @@ namespace Handover_Pack_Compiler
             }
         }
 
+        private bool EditTrigger = false;
+        private string temp_edit;
+        private void PackStructureGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            EditTrigger = true;
+            temp_edit = (string)PackStructureGridView.CurrentCell.Value;
+        }
+
         private void PackStructureGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 0 & e.FormattedValue != null)
+            if (EditTrigger)
             {
-                PackStructure NewPack = new PackStructure { Name = (string)e.FormattedValue };
-                string returnedString = CheckExistingName<PackStructure>(PackStructureList, NewPack, true);
-                if (returnedString == null)
+                if (e.ColumnIndex == 0 & (string)e.FormattedValue != temp_edit)
                 {
-                    e.Cancel = true;
+                    PackStructure NewPack = new PackStructure { Name = (string)e.FormattedValue };
+                    string returnedString = CheckExistingName<PackStructure>(PackStructureList, NewPack, true);
+                    PackStructureGridView.EditingControl.Text = returnedString;
                 }
-                else
-                {
-                    PackStructureGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = returnedString;
-                }
+                EditTrigger = false;
             }
+        }
+
+        private void PackStructureGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            PackStructureDropSource.ResetBindings(false);
         }
     }
 }

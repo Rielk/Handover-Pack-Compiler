@@ -566,7 +566,6 @@ namespace Handover_Pack_Compiler
             this.PackStructureDropBox.Size = new System.Drawing.Size(532, 21);
             this.PackStructureDropBox.TabIndex = 1;
             this.PackStructureDropBox.ValueMember = "Name";
-            this.PackStructureDropBox.Enter += new System.EventHandler(this.PackStructureDropBox_Enter);
             // 
             // PackStructureDropSource
             // 
@@ -620,7 +619,9 @@ namespace Handover_Pack_Compiler
             this.PackStructureGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PackStructureGridView.Size = new System.Drawing.Size(532, 103);
             this.PackStructureGridView.TabIndex = 2;
+            this.PackStructureGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.PackStructureGridView_CellBeginEdit);
             this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
+            this.PackStructureGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.PackStructureGridView_CellValueChanged);
             // 
             // PackStructureGridViewNameTextBoxColumn
             // 
