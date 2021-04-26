@@ -63,7 +63,7 @@ namespace Handover_Pack_Compiler
             }
             return exists;
         }
-        private bool CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
+        private string CheckExistingName<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
         {
             if (AutoRename)
             {
@@ -81,8 +81,7 @@ namespace Handover_Pack_Compiler
                         ToAdd.Name += "(1)";
                     }
                 }
-                list.Add(ToAdd);
-                return true;
+                return ToAdd.ToString();
             }
             else
             {
@@ -93,12 +92,25 @@ namespace Handover_Pack_Compiler
                     if (Confirm == DialogResult.Yes)
                     {
                         list.Remove(ToAdd);
-                        list.Add(ToAdd);
-                        return true;
+                        return ToAdd.ToString();
                     }
-                    else { return false; }
+                    else { return null; }
                 }
-                else { list.Add(ToAdd); return true; }
+                else { return ToAdd.ToString(); }
+            }
+        }
+        private bool CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
+        {
+            string returnedString = CheckExistingName<T>(list, ToAdd, AutoRename);
+            if(returnedString != null)
+            {
+                ToAdd.Name = returnedString;
+                list.Add(ToAdd);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         //General Utilities End
@@ -392,8 +404,9 @@ namespace Handover_Pack_Compiler
             foreach (DataGridViewRow row in PackStructureGridView.SelectedRows)
             {
                 PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
-                PackStructureList.Add(newPS);
+                CheckExistingAdd<PackStructure>(PackStructureList, newPS, true);
                 SortPackStructures(newPS.Name, newPS.Name);
+                //Need to save packs to file
             }
         }
 
@@ -420,6 +433,23 @@ namespace Handover_Pack_Compiler
                         if (delete_selected) { SortPackStructures(null, null); }
                         else { SortPackStructures(null); }
                     }
+                }
+            }
+        }
+
+        private void PackStructureGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0 & e.FormattedValue != null)
+            {
+                PackStructure NewPack = new PackStructure { Name = (string)e.FormattedValue };
+                string returnedString = CheckExistingName<PackStructure>(PackStructureList, NewPack, true);
+                if (returnedString == null)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    PackStructureGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = returnedString;
                 }
             }
         }

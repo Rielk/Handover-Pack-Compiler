@@ -620,6 +620,7 @@ namespace Handover_Pack_Compiler
             this.PackStructureGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PackStructureGridView.Size = new System.Drawing.Size(532, 103);
             this.PackStructureGridView.TabIndex = 2;
+            this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
             // 
             // PackStructureGridViewNameTextBoxColumn
             // 
