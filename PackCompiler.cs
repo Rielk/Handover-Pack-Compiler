@@ -357,6 +357,7 @@ namespace Handover_Pack_Compiler
             PackStructureList.Sort();
             PackStructureDropSource.ResetBindings(false);
             PackStructureTableSource.ResetBindings(false);
+            PackStructureGridView.Rows[0].ReadOnly = true;
         }
 
         private void SortPackStructures(string grid_selection)
@@ -381,9 +382,9 @@ namespace Handover_Pack_Compiler
         {
             //Need to add a check on name edit that stops duplicate names
             //Need to add an event on name edit to update the dropbox names
-            //Need to prevent renaming of default
             CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
             SortPackStructures("New Structure", "New Structure");
+            //Need to save packs to file
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
