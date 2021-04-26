@@ -86,7 +86,19 @@ namespace Handover_Pack_Compiler
             }
             else
             {
-                throw new NotImplementedException();
+                if (CheckExisting<T>(list, ToAdd))
+                {
+                    DialogResult Confirm = MessageBox.Show("\"" + ToAdd.ToString() +
+                            "\"already exists. Do you want to replace it?", "Confirm Replace", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        list.Remove(ToAdd);
+                        list.Add(ToAdd);
+                        return true;
+                    }
+                    else { return false; }
+                }
+                else { list.Add(ToAdd); return true; }
             }
         }
         //General Utilities End
@@ -151,22 +163,11 @@ namespace Handover_Pack_Compiler
                     Datasheet = IVForm.DatasheetVal,
                     SolarEdge = IVForm.SolarEdgeVal
                 };
-                if (InverterList.Contains(IData))
+                if (CheckExistingAdd<InverterData>(InverterList, IData, false))
                 {
-                    DialogResult Confirm = MessageBox.Show("An Inverter named \"" + IData +
-                        "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
-                    if (Confirm == DialogResult.Yes)
-                    {
-                        InverterList.Remove(IData);
-                        InverterList.Add(IData);
-                    }
+                    SortInverters(IData.Name);
+                    Utilities.WriteToFile(InverterList, "Inverters.xml");
                 }
-                else
-                {
-                    InverterList.Add(IData);
-                }
-                SortInverters(IData.Name);
-                Utilities.WriteToFile(InverterList, "Inverters.xml");
             }
         }
 
@@ -259,22 +260,11 @@ namespace Handover_Pack_Compiler
                     Datasheet = MVForm.DatasheetVal,
                     Warranty = MVForm.WarrantyVal
                 };
-                if (ModuleList.Contains(MData))
+                if (CheckExistingAdd<ModuleData>(ModuleList, MData, false))
                 {
-                    DialogResult Confirm = MessageBox.Show("A Module named \"" + MData +
-                        "\"already exists. Do you want to replace it with the new one?", "Confirm Replace", MessageBoxButtons.YesNo);
-                    if (Confirm == DialogResult.Yes)
-                    {
-                        ModuleList.Remove(MData);
-                        ModuleList.Add(MData);
-                    }
+                    SortModules(MData.Name);
+                    Utilities.WriteToFile(ModuleList, "Modules.xml");
                 }
-                else
-                {
-                    ModuleList.Add(MData);
-                }
-                SortModules(MData.Name);
-                Utilities.WriteToFile(ModuleList, "Modules.xml");
             }
         }
 
@@ -389,7 +379,6 @@ namespace Handover_Pack_Compiler
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
-            //Need to not add duplicate blank name
             //Need to add a check on name edit that stops duplicate names
             //Need to add an event on name edit to update the dropbox names
             //Need to prevent renaming of default
