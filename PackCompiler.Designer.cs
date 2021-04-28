@@ -45,8 +45,8 @@ namespace Handover_Pack_Compiler
             this.FilesTab = new System.Windows.Forms.TabPage();
             this.ModuleTab = new System.Windows.Forms.TabPage();
             this.ModuleDropBox = new System.Windows.Forms.ComboBox();
-            this.InverterDropSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ModuleDropSource = new System.Windows.Forms.BindingSource(this.components);
+            this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ModuleDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.EditModuleButton = new System.Windows.Forms.Button();
             this.DeleteModuleButton = new System.Windows.Forms.Button();
             this.AddModuleButton = new System.Windows.Forms.Button();
@@ -54,7 +54,6 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModuleGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModuleGridViewWarrantyTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleTableSource = new System.Windows.Forms.BindingSource(this.components);
             this.InverterTab = new System.Windows.Forms.TabPage();
             this.InverterDropBox = new System.Windows.Forms.ComboBox();
             this.EditInverterButton = new System.Windows.Forms.Button();
@@ -64,7 +63,6 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewSolarEdgeCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.InverterTableSource = new System.Windows.Forms.BindingSource(this.components);
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.SEWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
             this.MPWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
@@ -84,13 +82,11 @@ namespace Handover_Pack_Compiler
             this.PackStructureTreeView = new System.Windows.Forms.TreeView();
             this.OperationTabs.SuspendLayout();
             this.ModuleTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDropSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleDropSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleTableSource)).BeginInit();
             this.InverterTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InverterTableSource)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.PackTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PackTabSplit)).BeginInit();
@@ -155,8 +151,8 @@ namespace Handover_Pack_Compiler
             // 
             // ModuleDropBox
             // 
-            this.ModuleDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDropSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
-            this.ModuleDropBox.DataSource = this.ModuleDropSource;
+            this.ModuleDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDataSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
+            this.ModuleDropBox.DataSource = this.ModuleDataSource;
             this.ModuleDropBox.DisplayMember = "Name";
             this.ModuleDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ModuleDropBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -167,13 +163,13 @@ namespace Handover_Pack_Compiler
             this.ModuleDropBox.TabIndex = 13;
             this.ModuleDropBox.ValueMember = "Name";
             // 
-            // InverterDropSource
+            // InverterDataSource
             // 
-            this.InverterDropSource.DataSource = typeof(InverterData);
+            this.InverterDataSource.DataSource = typeof(InverterData);
             // 
-            // ModuleDropSource
+            // ModuleDataSource
             // 
-            this.ModuleDropSource.DataSource = typeof(ModuleData);
+            this.ModuleDataSource.DataSource = typeof(ModuleData);
             // 
             // EditModuleButton
             // 
@@ -232,7 +228,7 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewNameTextBoxColumn,
             this.ModuleGridViewDatasheetTextBoxColumn,
             this.ModuleGridViewWarrantyTextBoxColumn});
-            this.ModuleGridView.DataSource = this.ModuleTableSource;
+            this.ModuleGridView.DataSource = this.ModuleDataSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,6 +255,8 @@ namespace Handover_Pack_Compiler
             this.ModuleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ModuleGridView.Size = new System.Drawing.Size(528, 263);
             this.ModuleGridView.TabIndex = 9;
+            this.ModuleGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ModuleGridView_DataBindingComplete);
+            this.ModuleGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.ModuleGridView_RowValidated);
             // 
             // ModuleGridViewNameTextBoxColumn
             // 
@@ -286,10 +284,6 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewWarrantyTextBoxColumn.Name = "ModuleGridViewWarrantyTextBoxColumn";
             this.ModuleGridViewWarrantyTextBoxColumn.ReadOnly = true;
             // 
-            // ModuleTableSource
-            // 
-            this.ModuleTableSource.DataSource = typeof(ModuleData);
-            // 
             // InverterTab
             // 
             this.InverterTab.Controls.Add(this.InverterDropBox);
@@ -306,8 +300,8 @@ namespace Handover_Pack_Compiler
             // 
             // InverterDropBox
             // 
-            this.InverterDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDropSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
-            this.InverterDropBox.DataSource = this.InverterDropSource;
+            this.InverterDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDataSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
+            this.InverterDropBox.DataSource = this.InverterDataSource;
             this.InverterDropBox.DisplayMember = "Name";
             this.InverterDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.InverterDropBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -375,7 +369,7 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewNameTextBoxColumn,
             this.InverterGridViewDatasheetTextBoxColumn,
             this.InverterGridViewSolarEdgeCheckBoxColumn});
-            this.InverterGridView.DataSource = this.InverterTableSource;
+            this.InverterGridView.DataSource = this.InverterDataSource;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -402,6 +396,8 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.InverterGridView.Size = new System.Drawing.Size(528, 263);
             this.InverterGridView.TabIndex = 2;
+            this.InverterGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.InverterGridView_DataBindingComplete);
+            this.InverterGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.InverterGridView_RowValidated);
             // 
             // InverterGridViewNameTextBoxColumn
             // 
@@ -429,10 +425,6 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewSolarEdgeCheckBoxColumn.Name = "InverterGridViewSolarEdgeCheckBoxColumn";
             this.InverterGridViewSolarEdgeCheckBoxColumn.ReadOnly = true;
             this.InverterGridViewSolarEdgeCheckBoxColumn.Width = 62;
-            // 
-            // InverterTableSource
-            // 
-            this.InverterTableSource.DataSource = typeof(InverterData);
             // 
             // SettingsTab
             // 
@@ -684,13 +676,11 @@ namespace Handover_Pack_Compiler
             this.Text = "Mypower Handover Pack Compiler";
             this.OperationTabs.ResumeLayout(false);
             this.ModuleTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDropSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleDropSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleTableSource)).EndInit();
             this.InverterTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InverterTableSource)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.PackTab.ResumeLayout(false);
             this.PackTabSplit.Panel1.ResumeLayout(false);
@@ -713,7 +703,7 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.TabPage PackTab;
         private System.Windows.Forms.TabControl OperationTabs;
         private System.Windows.Forms.DataGridView InverterGridView;
-        private System.Windows.Forms.BindingSource InverterDropSource;
+        private System.Windows.Forms.BindingSource InverterDataSource;
         private System.Windows.Forms.Button AddInverterButton;
         private System.Windows.Forms.Button DeleteInverterButton;
         private System.Windows.Forms.Button EditInverterButton;
@@ -723,7 +713,7 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.Button DeleteModuleButton;
         private System.Windows.Forms.Button AddModuleButton;
         private System.Windows.Forms.DataGridView ModuleGridView;
-        private System.Windows.Forms.BindingSource ModuleDropSource;
+        private System.Windows.Forms.BindingSource ModuleDataSource;
         private FilePathButton SEWarrantyButton;
         private FilePathButton MPWarrantyButton;
         private FolderPathButton CommSiteButton;
@@ -745,8 +735,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewCheckBoxColumn InverterGridViewSolarEdgeCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewNameTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewDescriptionTextBoxColumn;
-        private System.Windows.Forms.BindingSource InverterTableSource;
-        private System.Windows.Forms.BindingSource ModuleTableSource;
     }
 }
 

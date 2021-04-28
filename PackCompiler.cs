@@ -28,15 +28,11 @@ namespace Handover_Pack_Compiler
             LoadFilePaths();
 
             InverterList = Utilities.IReadFromFile("Inverters.xml");
-            InverterDropSource.DataSource = InverterList;
-            InverterTableSource.DataSource = InverterList;
-            InverterTableSource.Filter = "NameIsNotNull";
+            InverterDataSource.DataSource = InverterList;
             SortInverters();
 
             ModuleList = Utilities.MReadFromFile("Modules.xml");
-            ModuleDropSource.DataSource = ModuleList;
-            ModuleTableSource.DataSource = ModuleList;
-            ModuleTableSource.Filter = "NameIsNotNull";
+            ModuleDataSource.DataSource = ModuleList;
             SortModules();
 
             MPWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
@@ -54,9 +50,10 @@ namespace Handover_Pack_Compiler
                 Description = "Default pack, nothing interesting."
             };
             PackStructureList.Add(DefaultPS);
-            PackStructureDropSource.DataSource = PackStructureList;
             PackStructureTableSource.DataSource = PackStructureList;
+            PackStructureDropSource.DataSource = PackStructureList;
             SortPackStructures();
+            PackStructureGridView.Rows[0].Cells[0].ReadOnly = true;
         }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
@@ -228,8 +225,7 @@ namespace Handover_Pack_Compiler
         private void SortInverters()
         {
             InverterList.Sort();
-            InverterDropSource.ResetBindings(false);
-            InverterTableSource.ResetBindings(false);
+            InverterDataSource.ResetBindings(false);
         }
 
         private void SortInverters(string selection)
@@ -244,6 +240,27 @@ namespace Handover_Pack_Compiler
             InverterDropBox.SelectedItem = SelectedData;
         }
 
+        private void InverterGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (InverterGridView.Rows.Count > 0)
+            {
+                CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+                CM.SuspendBinding();
+                InverterGridView.Rows[0].Visible = false;
+                CM.ResumeBinding();
+            }
+        }
+
+        private void InverterGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
+            CM.SuspendBinding();
+            if (InverterGridView.Rows[0].Visible)
+            {
+                InverterGridView.Rows[0].Visible = false;
+            }
+            CM.ResumeBinding();
+        }
         //Inverter Tab End
         //Module Tab Start
         private void AddModuleButton_Click(object sender, EventArgs e)
@@ -305,8 +322,7 @@ namespace Handover_Pack_Compiler
         private void SortModules()
         {
             ModuleList.Sort();
-            ModuleDropSource.ResetBindings(false);
-            ModuleTableSource.ResetBindings(false);
+            ModuleDataSource.ResetBindings(false);
         }
 
         private void SortModules(string selection)
@@ -321,6 +337,28 @@ namespace Handover_Pack_Compiler
             ModuleDropBox.SelectedItem = SelectedData;
         }
 
+        private void ModuleGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (ModuleGridView.Rows.Count > 0)
+            {
+                CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
+                CM.SuspendBinding();
+                ModuleGridView.Rows[0].Visible = false;
+                CM.ResumeBinding();
+            }
+        }
+
+        private void ModuleGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
+            CM.SuspendBinding();
+            if (ModuleGridView.Rows[0].Visible)
+            {
+
+                ModuleGridView.Rows[0].Visible = false;
+            }
+            CM.ResumeBinding();
+        }
         //Module Tab End
         //Pack Tab Start
 
