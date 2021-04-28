@@ -11,6 +11,7 @@ namespace Handover_Pack_Compiler
     {
         public string Name { get; set; } = null;
         public bool NameIsNull { get { return Name is null; } }
+        public bool NameIsNotNull { get { return !(Name is null); } }
         public abstract override string ToString();
         public override bool Equals(object obj)
         {
