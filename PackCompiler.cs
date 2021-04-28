@@ -53,6 +53,7 @@ namespace Handover_Pack_Compiler
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
             SortPackStructures();
+            PackStructureGridView.Rows[0].Cells[0].ReadOnly = true;
         }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
