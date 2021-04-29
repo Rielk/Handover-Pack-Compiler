@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExtensionMethods;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Handover_Pack_Compiler
 {

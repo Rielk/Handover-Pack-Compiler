@@ -11,55 +11,33 @@ namespace Handover_Pack_Compiler
 {
     static class Utilities
     {
-        public static void WriteToFile(List<ModuleData> ModuleList, string FileName)
-        {
-            IEnumerable<Data> DataList = ModuleList;
-            WriteToFile(DataList.Where(d => d.Name != null).ToList(), FileName);
-        }
-        public static void WriteToFile(List<InverterData> InverterList, string FileName)
-        {
-            IEnumerable<Data> DataList = InverterList;
-            WriteToFile(DataList.Where(d => d.Name != null).ToList(), FileName);
-        }
-        public static void WriteToFile(List<Data> DataList, string FileName)
+        public static void WriteToFile<T>(List<T> CompareList, string FileName) where T : NameCompare, new()
         {
             string filepath = Path.Combine(Properties.Settings.Default.ProgramDataPath, FileName);
-            XmlSerializer XMLserializer = new XmlSerializer(typeof(List<Data>));
+            IEnumerable<T> CompareEnumerable = CompareList;
+            XmlSerializer XMLserializer = new XmlSerializer(typeof(List<T>));
             using (TextWriter filestream = new StreamWriter(filepath))
             {
-                XMLserializer.Serialize(filestream, DataList);
+                XMLserializer.Serialize(filestream, CompareEnumerable.Where(d => d.Name != null).ToList());
             }
         }
-        public static List<InverterData> IReadFromFile(string FileName)
+        public static List<T> ReadFromFile<T>(string FileName) where T : NameCompare, new()
         {
-            List<Data> DataList = ReadFromFile(FileName);
-            List<InverterData> InverterList = DataList.ConvertAll(x => (InverterData)x);
-            InverterList.Add(new InverterData());
-            return InverterList;
-        }
-        public static List<ModuleData> MReadFromFile(string FileName)
-        {
-            List<Data> DataList = ReadFromFile(FileName);
-            List<ModuleData> ModuleList = DataList.ConvertAll(x => (ModuleData)x);
-            ModuleList.Add(new ModuleData());
-            return ModuleList;
-        }
-        public static List<Data> ReadFromFile(string FileName)
-        {
-            List<Data> DataList;
+            List<T> ReturnList;
             string filepath = Path.Combine(Properties.Settings.Default.ProgramDataPath, FileName);
             if (File.Exists(filepath))
             {
-                XmlSerializer XMLserializer = new XmlSerializer(typeof(List<Data>));
+                XmlSerializer XMLserializer = new XmlSerializer(typeof(List<T>));
                 TextReader filestream = new StreamReader(filepath);
-                DataList = (List<Data>)XMLserializer.Deserialize(filestream);
+                ReturnList = (List<T>)XMLserializer.Deserialize(filestream);
                 filestream.Close();
             }
             else
             {
-                DataList = new List<Data>();
+                ReturnList = new List<T>();
             }
-            return DataList;
+            ReturnList.Add(new T());
+            return ReturnList;
         }
     }
 }

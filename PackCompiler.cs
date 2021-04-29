@@ -27,11 +27,11 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            InverterList = Utilities.IReadFromFile("Inverters.xml");
+            InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml");
             InverterDataSource.DataSource = InverterList;
             SortInverters();
 
-            ModuleList = Utilities.MReadFromFile("Modules.xml");
+            ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
 
@@ -389,8 +389,6 @@ namespace Handover_Pack_Compiler
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
-            //Need to add a check on name edit that stops duplicate names
-            //Need to add an event on name edit to update the dropbox names
             CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
             SortPackStructures("New Structure", "New Structure");
             //Need to save packs to file

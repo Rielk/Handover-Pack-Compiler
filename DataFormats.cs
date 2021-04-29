@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-[XmlInclude(typeof(InverterData)), XmlInclude(typeof(ModuleData))]
 public abstract class Data : NameCompare
 {
     public override string ToString()
