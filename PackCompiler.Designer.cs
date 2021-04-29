@@ -621,8 +621,8 @@ namespace Handover_Pack_Compiler
             this.PackStructureGridView.Size = new System.Drawing.Size(532, 103);
             this.PackStructureGridView.TabIndex = 2;
             this.PackStructureGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.PackStructureGridView_CellBeginEdit);
+            this.PackStructureGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PackStructureGridView_CellEndEdit);
             this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
-            this.PackStructureGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.PackStructureGridView_CellValueChanged);
             // 
             // PackStructureGridViewNameTextBoxColumn
             // 

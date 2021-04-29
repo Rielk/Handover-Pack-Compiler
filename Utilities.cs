@@ -11,17 +11,24 @@ namespace Handover_Pack_Compiler
 {
     static class Utilities
     {
-        public static void WriteToFile<T>(List<T> CompareList, string FileName) where T : NameCompare, new()
+        public static void WriteToFile<T>(List<T> CompareList, string FileName, bool RemoveNull) where T : NameCompare, new()
         {
             string filepath = Path.Combine(Properties.Settings.Default.ProgramDataPath, FileName);
-            IEnumerable<T> CompareEnumerable = CompareList;
             XmlSerializer XMLserializer = new XmlSerializer(typeof(List<T>));
             using (TextWriter filestream = new StreamWriter(filepath))
             {
-                XMLserializer.Serialize(filestream, CompareEnumerable.Where(d => d.Name != null).ToList());
+                if (RemoveNull)
+                {
+                    IEnumerable<T> CompareEnumerable = CompareList;
+                    XMLserializer.Serialize(filestream, CompareEnumerable.Where(d => d.Name != null).ToList());
+                }
+                else
+                {
+                    XMLserializer.Serialize(filestream, CompareList);
+                }
             }
         }
-        public static List<T> ReadFromFile<T>(string FileName) where T : NameCompare, new()
+        public static List<T> ReadFromFile<T>(string FileName, bool AddNull) where T : NameCompare, new()
         {
             List<T> ReturnList;
             string filepath = Path.Combine(Properties.Settings.Default.ProgramDataPath, FileName);
@@ -36,7 +43,10 @@ namespace Handover_Pack_Compiler
             {
                 ReturnList = new List<T>();
             }
-            ReturnList.Add(new T());
+            if (AddNull)
+            {
+                ReturnList.Add(new T());
+            }
             return ReturnList;
         }
     }

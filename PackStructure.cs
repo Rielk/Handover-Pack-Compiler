@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Handover_Pack_Compiler
 {
-    class PackStructure : NameCompare
+    public class PackStructure : NameCompare
     {
         public override string ToString()
         {
@@ -53,7 +53,7 @@ namespace Handover_Pack_Compiler
                 public string Name { get; set; } = "";
                 public string Description { get; set; } = "";
                 public bool Optional { get; set; } = false;
-                public Func<bool> Condition { get; set; }
+                public string Condition { get; set; }
                 public File()
                 {
 

@@ -27,11 +27,11 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml");
+            InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml", true);
             InverterDataSource.DataSource = InverterList;
             SortInverters();
 
-            ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml");
+            ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml", true);
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
 
@@ -43,13 +43,11 @@ namespace Handover_Pack_Compiler
             MPWarrantyButton.InitialPathFunction = DefaultPath.MPWarranty;
             SEWarrantyButton.InitialPathFunction = DefaultPath.SEWarrant;
 
-            PackStructureList = new List<PackStructure>();
-            PackStructure DefaultPS = new PackStructure
+            PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml", false);
+            if (PackStructureList.Count == 0)
             {
-                Name = null,
-                Description = "Default pack, nothing interesting."
-            };
-            PackStructureList.Add(DefaultPS);
+                PackStructureList.Add(new PackStructure() { Description = "Default Pack"});
+            }
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
             SortPackStructures();
@@ -180,7 +178,7 @@ namespace Handover_Pack_Compiler
                 if (CheckExistingAdd<InverterData>(InverterList, IData, false))
                 {
                     SortInverters(IData.Name);
-                    Utilities.WriteToFile(InverterList, "Inverters.xml");
+                    Utilities.WriteToFile(InverterList, "Inverters.xml", true);
                 }
             }
         }
@@ -200,7 +198,7 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortInverters();
-            Utilities.WriteToFile(InverterList, "Inverters.xml");
+            Utilities.WriteToFile(InverterList, "Inverters.xml", true);
         }
 
         private void EditInverterButton_Click(object sender, EventArgs e)
@@ -217,7 +215,7 @@ namespace Handover_Pack_Compiler
                     IData.SolarEdge = IVForm.SolarEdgeVal;
                     InverterList.Add(IData);
                     SortInverters(IData.Name);
-                    Utilities.WriteToFile(InverterList, "Inverters.xml");
+                    Utilities.WriteToFile(InverterList, "Inverters.xml", true);
                 }
             }
         }
@@ -277,7 +275,7 @@ namespace Handover_Pack_Compiler
                 if (CheckExistingAdd<ModuleData>(ModuleList, MData, false))
                 {
                     SortModules(MData.Name);
-                    Utilities.WriteToFile(ModuleList, "Modules.xml");
+                    Utilities.WriteToFile(ModuleList, "Modules.xml", true);
                 }
             }
         }
@@ -297,7 +295,7 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortModules();
-            Utilities.WriteToFile(ModuleList, "Modules.xml");
+            Utilities.WriteToFile(ModuleList, "Modules.xml", true);
         }
 
         private void EditModuleButton_Click(object sender, EventArgs e)
@@ -314,7 +312,7 @@ namespace Handover_Pack_Compiler
                     MData.Warranty = MVForm.WarrantyVal;
                     ModuleList.Add(MData);
                     SortModules(MData.Name);
-                    Utilities.WriteToFile(ModuleList, "Modules.xml");
+                    Utilities.WriteToFile(ModuleList, "Modules.xml", true);
                 }
             }
         }
@@ -391,7 +389,7 @@ namespace Handover_Pack_Compiler
         {
             CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
             SortPackStructures("New Structure", "New Structure");
-            //Need to save packs to file
+            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
@@ -401,8 +399,8 @@ namespace Handover_Pack_Compiler
                 PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
                 CheckExistingAdd<PackStructure>(PackStructureList, newPS, true);
                 SortPackStructures(newPS.Name, newPS.Name);
-                //Need to save packs to file
             }
+            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private void DeletePackStructureButton_Click(object sender, EventArgs e)
@@ -430,6 +428,7 @@ namespace Handover_Pack_Compiler
                     }
                 }
             }
+            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private bool EditTrigger = false;
@@ -454,9 +453,9 @@ namespace Handover_Pack_Compiler
             }
         }
 
-        private void PackStructureGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void PackStructureGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            PackStructureDropSource.ResetBindings(false);
+            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
     }
 }
