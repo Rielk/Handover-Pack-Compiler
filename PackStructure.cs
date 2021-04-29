@@ -29,6 +29,14 @@ namespace Handover_Pack_Compiler
                 Folders.Add(new Folder(folder));
             }
         }
+        public void AddFolder(string FolderName)
+        {
+            AddFolder(new Folder() { Name = FolderName });
+        }
+        public void AddFolder(Folder NewFolder)
+        {
+            Folders.Add(NewFolder);
+        }
 
         public class Folder
         {

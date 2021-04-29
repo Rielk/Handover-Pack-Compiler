@@ -46,7 +46,9 @@ namespace Handover_Pack_Compiler
             PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml", false);
             if (PackStructureList.Count == 0)
             {
-                PackStructureList.Add(new PackStructure() { Description = "Default Pack"});
+                PackStructure DefaultStructure = new PackStructure() { Description = "Default Pack" };
+                DefaultStructure.AddFolder("1.0 Test");
+                PackStructureList.Add(DefaultStructure);
             }
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
