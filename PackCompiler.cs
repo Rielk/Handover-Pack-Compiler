@@ -76,8 +76,7 @@ namespace Handover_Pack_Compiler
                 DefaultStructure.AddFile("7.1  MCS Certificate.pdf", "7.0  MCS Certificate");
                 PackStructureList.Add(DefaultStructure);
             }
-            PackStructureTableSource.DataSource = PackStructureList;
-            PackStructureDropSource.DataSource = PackStructureList;
+            PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
             PackTree.FillPack(PackStructureList[0]);
         }
@@ -391,32 +390,26 @@ namespace Handover_Pack_Compiler
         private void SortPackStructures()
         {
             PackStructureList.Sort();
-            PackStructureDropSource.ResetBindings(false);
-            PackStructureTableSource.ResetBindings(false);
+            PackStructureSource.ResetBindings(false);
         }
 
-        private void SortPackStructures(string grid_selection)
+        private void SortPackStructures(string selection)
         {
-            SortPackStructures(grid_selection, ((PackStructure)PackStructureDropBox.SelectedItem).Name);
-        }
-
-        private void SortPackStructures(string grid_selection, string drop_selection)
-        {
-            PackStructure GridSelectedStructure = new PackStructure() { Name = grid_selection };
+            PackStructure GridSelectedStructure = new PackStructure() { Name = selection };
             SortPackStructures();
             foreach (DataGridViewRow row in PackStructureGridView.Rows)
             {
                 if (row.DataBoundItem.Equals(GridSelectedStructure)) { row.Selected = true; }
                 else { row.Selected = false; }
             }
-            PackStructure DropSelectedStructure = new PackStructure() { Name = drop_selection };
+            PackStructure DropSelectedStructure = new PackStructure() { Name = selection };
             PackStructureDropBox.SelectedItem = DropSelectedStructure;
         }
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
             CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
-            SortPackStructures("New Structure", "New Structure");
+            SortPackStructures("New Structure");
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
@@ -426,7 +419,7 @@ namespace Handover_Pack_Compiler
             {
                 PackStructure newPS = new PackStructure((PackStructure)row.DataBoundItem);
                 CheckExistingAdd<PackStructure>(PackStructureList, newPS, true);
-                SortPackStructures(newPS.Name, newPS.Name);
+                SortPackStructures(newPS.Name);
             }
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
@@ -451,7 +444,7 @@ namespace Handover_Pack_Compiler
                             delete_selected = false;
                         }
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
-                        if (delete_selected) { SortPackStructures(null, null); }
+                        if (delete_selected) { SortPackStructures(null); }
                         else { SortPackStructures(null); }
                     }
                 }
