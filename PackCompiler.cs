@@ -78,7 +78,6 @@ namespace Handover_Pack_Compiler
             }
             PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
-            PackTree.FillPack(PackStructureList[0]);
         }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
