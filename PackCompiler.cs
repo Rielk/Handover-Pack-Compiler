@@ -47,13 +47,39 @@ namespace Handover_Pack_Compiler
             if (PackStructureList.Count == 0)
             {
                 PackStructure DefaultStructure = new PackStructure() { Description = "Default Pack" };
-                DefaultStructure.AddFolder("1.0 Test");
+                DefaultStructure.AddFolder("1.0  Important Technical Information");
+                DefaultStructure.AddFile("1.1  Health & Safety Guidelines.pdf", "1.0  Important Technical Information");
+                DefaultStructure.AddFolder("2.0  General Information");
+                DefaultStructure.AddFile("2.1  System Summary & General Information.pdf", "2.0  General Information");
+                DefaultStructure.AddFolder("3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.1  Mypower Installation Warranty.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.2  Module Warranty.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.3  Module Datasheet.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.4  Inverter datasheet.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.4a  Inverter Extended Warranty.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.5  SolarEdge product warranty.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFile("3.6  SolarEdge Optimiser datasheet.pdf", "3.0  Guarantees & Datasheets");
+                DefaultStructure.AddFolder("4.0  Electrical");
+                DefaultStructure.AddFile("4.1  Installation schematic.pdf", "4.0  Electrical");
+                DefaultStructure.AddFile("4.2  Commissioning test report (AC Cert).pdf", "4.0  Electrical");
+                DefaultStructure.AddFile("4.3  Commissioning test report (DC Cert).pdf", "4.0  Electrical");
+                DefaultStructure.AddFile("4.4  DNO commissioning form (G99 Form A3-1).pdf", "4.0  Electrical");
+                DefaultStructure.AddFile("4.5  Inverter & wiring sign off.pdf", "4.0  Electrical");
+                DefaultStructure.AddFile("4.6  DNO commissioning notification.pdf", "4.0  Electrical");
+                DefaultStructure.AddFolder("5.0  Predicted Output");
+                DefaultStructure.AddFile("5.1  Summary Report.pdf", "5.0  Predicted Output");
+                DefaultStructure.AddFile("5.2  Predicted Output Comparison Tool.xlsx", "5.0  Predicted Output");
+                DefaultStructure.AddFolder("6.0  Building Regulations - Work Notification");
+                DefaultStructure.AddFile("6.1  NAPIT Work notification details.pdf", "6.0  Building Regulations - Work Notification");
+                DefaultStructure.AddFile("6.2  Structural survey certificate.pdf", "6.0  Building Regulations - Work Notification");
+                DefaultStructure.AddFolder("7.0  MCS Certificate");
+                DefaultStructure.AddFile("7.1  MCS Certificate.pdf", "7.0  MCS Certificate");
                 PackStructureList.Add(DefaultStructure);
             }
             PackStructureTableSource.DataSource = PackStructureList;
             PackStructureDropSource.DataSource = PackStructureList;
             SortPackStructures();
-            PackStructureGridView.Rows[0].Cells[0].ReadOnly = true;
+            PackTree.FillPack(PackStructureList[0]);
         }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare

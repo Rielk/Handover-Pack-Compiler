@@ -37,42 +37,61 @@ namespace Handover_Pack_Compiler
         {
             Folders.Add(NewFolder);
         }
+        public void AddFile(string FileName, string folder)
+        {
+            AddFile(new Folder.File() { Name = FileName }, folder);
+        }
+        public void AddFile(Folder.File FileName, string folder)
+        {
+            Folder AddToFolder = Folders.Find(x => x.Name == folder);
+            if (AddToFolder != null)
+            {
+                AddToFolder.AddFile(FileName);
+            }
+        }
+    }
+    public class Folder
+    {
+        public string Name { get; set; } = "";
+        public List<File> Files = new List<File>();
+        public Folder()
+        {
 
-        public class Folder
+        }
+        public Folder(Folder other)
+        {
+            Name = other.Name;
+            Files = new List<File>();
+            foreach (File file in other.Files)
+            {
+                Files.Add(new File(file));
+            }
+        }
+        public void AddFile(string FileName)
+        {
+            AddFile(new File() { Name = FileName });
+        }
+        public void AddFile(File NewFile)
+        {
+            Files.Add(NewFile);
+        }
+
+        public class File
         {
             public string Name { get; set; } = "";
-            public List<File> Files = new List<File>();
-            public Folder()
+            public string Description { get; set; } = "";
+            public bool Optional { get; set; } = false;
+            public string Condition { get; set; }
+            public File()
             {
 
             }
-            public Folder(Folder other)
+            public File(File other)
             {
                 Name = other.Name;
-                Files = new List<File>();
-                foreach (File file in other.Files)
-                {
-                    Files.Add(new File(file));
-                }
-            }
-
-            public class File
-            {
-                public string Name { get; set; } = "";
-                public string Description { get; set; } = "";
-                public bool Optional { get; set; } = false;
-                public string Condition { get; set; }
-                public File()
-                {
-
-                }
-                public File(File other)
-                {
-                    Name = other.Name;
-                    Description = other.Description;
-                    Optional = other.Optional;
-                    Condition = other.Condition;
-                }
+                Description = other.Description;
+                Optional = other.Optional;
+                Condition = other.Condition;
             }
         }
     }
