@@ -255,13 +255,8 @@ namespace Handover_Pack_Compiler
 
         private void SortInverters(string selection)
         {
-            InverterData SelectedData = new InverterData() { Name = selection };
             SortInverters();
-            foreach (DataGridViewRow row in InverterGridView.Rows)
-            {
-                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
-                else { row.Selected = false; }
-            }
+            InverterData SelectedData = new InverterData() { Name = selection };
             InverterDropBox.SelectedItem = SelectedData;
         }
 
@@ -352,13 +347,8 @@ namespace Handover_Pack_Compiler
 
         private void SortModules(string selection)
         {
-            ModuleData SelectedData = new ModuleData() { Name = selection };
             SortModules();
-            foreach (DataGridViewRow row in ModuleGridView.Rows)
-            {
-                if (row.DataBoundItem == SelectedData) { row.Selected = true; }
-                else { row.Selected = false; }
-            }
+            ModuleData SelectedData = new ModuleData() { Name = selection };
             ModuleDropBox.SelectedItem = SelectedData;
         }
 
@@ -395,21 +385,16 @@ namespace Handover_Pack_Compiler
 
         private void SortPackStructures(string selection)
         {
-            PackStructure GridSelectedStructure = new PackStructure() { Name = selection };
             SortPackStructures();
-            foreach (DataGridViewRow row in PackStructureGridView.Rows)
-            {
-                if (row.DataBoundItem.Equals(GridSelectedStructure)) { row.Selected = true; }
-                else { row.Selected = false; }
-            }
-            PackStructure DropSelectedStructure = new PackStructure() { Name = selection };
-            PackStructureDropBox.SelectedItem = DropSelectedStructure;
+            PackStructure SelectedStructure = new PackStructure() { Name = selection };
+            PackStructureDropBox.SelectedItem = SelectedStructure;
         }
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
-            CheckExistingAdd<PackStructure>(PackStructureList, new PackStructure() { Name = "New Structure" }, true);
-            SortPackStructures("New Structure");
+            PackStructure NewPack = new PackStructure() { Name = "New Structure" };
+            CheckExistingAdd<PackStructure>(PackStructureList, NewPack, true);
+            SortPackStructures(NewPack.Name);
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
@@ -477,6 +462,11 @@ namespace Handover_Pack_Compiler
         private void PackStructureGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
+        }
+
+        private void PackStructure_SelectionChanged(object sender, EventArgs e)
+        {
+            PackTree.FillPack((PackStructure)PackStructureDropBox.SelectedItem);
         }
     }
 }
