@@ -79,6 +79,13 @@ namespace Handover_Pack_Compiler
             PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
         }
+
+        private void PackCompiler_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Utilities.WriteToFile(InverterList, "Inverters.xml", true);
+            Utilities.WriteToFile(ModuleList, "Modules.xml", true);
+            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
+        }
         //General Utilites Start
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
         {
@@ -89,6 +96,7 @@ namespace Handover_Pack_Compiler
             }
             return exists;
         }
+
         private string CheckExistingName<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
         {
             if (AutoRename)
@@ -125,6 +133,7 @@ namespace Handover_Pack_Compiler
                 else { return ToAdd.ToString(); }
             }
         }
+
         private bool CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
         {
             string returnedString = CheckExistingName<T>(list, ToAdd, AutoRename);
@@ -204,7 +213,6 @@ namespace Handover_Pack_Compiler
                 if (CheckExistingAdd<InverterData>(InverterList, IData, false))
                 {
                     SortInverters(IData.Name);
-                    Utilities.WriteToFile(InverterList, "Inverters.xml", true);
                 }
             }
         }
@@ -224,7 +232,6 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortInverters();
-            Utilities.WriteToFile(InverterList, "Inverters.xml", true);
         }
 
         private void EditInverterButton_Click(object sender, EventArgs e)
@@ -241,7 +248,6 @@ namespace Handover_Pack_Compiler
                     IData.SolarEdge = IVForm.SolarEdgeVal;
                     InverterList.Add(IData);
                     SortInverters(IData.Name);
-                    Utilities.WriteToFile(InverterList, "Inverters.xml", true);
                 }
             }
         }
@@ -296,7 +302,6 @@ namespace Handover_Pack_Compiler
                 if (CheckExistingAdd<ModuleData>(ModuleList, MData, false))
                 {
                     SortModules(MData.Name);
-                    Utilities.WriteToFile(ModuleList, "Modules.xml", true);
                 }
             }
         }
@@ -316,7 +321,6 @@ namespace Handover_Pack_Compiler
                 }
             }
             SortModules();
-            Utilities.WriteToFile(ModuleList, "Modules.xml", true);
         }
 
         private void EditModuleButton_Click(object sender, EventArgs e)
@@ -333,7 +337,6 @@ namespace Handover_Pack_Compiler
                     MData.Warranty = MVForm.WarrantyVal;
                     ModuleList.Add(MData);
                     SortModules(MData.Name);
-                    Utilities.WriteToFile(ModuleList, "Modules.xml", true);
                 }
             }
         }
@@ -375,7 +378,6 @@ namespace Handover_Pack_Compiler
         }
         //Module Tab End
         //Pack Tab Start
-
         private void SortPackStructures()
         {
             PackStructureList.Sort();
@@ -394,7 +396,6 @@ namespace Handover_Pack_Compiler
             PackStructure NewPack = new PackStructure() { Name = "New Structure" };
             CheckExistingAdd<PackStructure>(PackStructureList, NewPack, true);
             SortPackStructures(NewPack.Name);
-            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private void DuplicatePackStructureButton_Click(object sender, EventArgs e)
@@ -405,7 +406,6 @@ namespace Handover_Pack_Compiler
                 CheckExistingAdd<PackStructure>(PackStructureList, newPS, true);
                 SortPackStructures(newPS.Name);
             }
-            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private void DeletePackStructureButton_Click(object sender, EventArgs e)
@@ -433,7 +433,6 @@ namespace Handover_Pack_Compiler
                     }
                 }
             }
-            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
 
         private bool EditTrigger = false;
@@ -458,14 +457,10 @@ namespace Handover_Pack_Compiler
             }
         }
 
-        private void PackStructureGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
-        }
-
         private void PackStructure_SelectionChanged(object sender, EventArgs e)
         {
             PackTree.FillPack((PackStructure)PackStructureDropBox.SelectedItem);
         }
+        //Pack Tab End
     }
 }
