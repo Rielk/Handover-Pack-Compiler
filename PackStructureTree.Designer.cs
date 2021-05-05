@@ -34,11 +34,15 @@ namespace Handover_Pack_Compiler
             // 
             // TreeView
             // 
+            this.TreeView.AllowDrop = true;
             this.TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeView.Location = new System.Drawing.Point(0, 0);
             this.TreeView.Name = "TreeView";
             this.TreeView.Size = new System.Drawing.Size(318, 300);
             this.TreeView.TabIndex = 0;
+            this.TreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.TreeView_ItemDrag);
+            this.TreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.TreeView_DragDrop);
+            this.TreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeView_DragEnter);
             // 
             // PackStructureTree
             // 

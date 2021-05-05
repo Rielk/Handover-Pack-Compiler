@@ -30,15 +30,40 @@ namespace Handover_Pack_Compiler
             TreeNode RootNode = TreeView.Nodes[0];
             foreach (Folder folder in CurrentPack.Folders)
             {
-                RootNode.Nodes.Add(folder.Name);
-                foreach(Folder.File file in folder.Files)
+                TreeNode FolderNode = new TreeNode(folder.Name){ Tag = folder };
+                RootNode.Nodes.Add(FolderNode);
+                foreach (Folder.File file in folder.Files)
                 {
-                    RootNode.Nodes[RootNode.Nodes.Count-1].Nodes.Add(file.Name);
+                    TreeNode FileNode = new TreeNode(file.Name) { Tag = file };
+                    RootNode.Nodes[RootNode.Nodes.Count-1].Nodes.Add(FileNode);
                 }
             }
             TreeView.ExpandAll();
             RootNode.EnsureVisible();
             TreeView.EndUpdate();
+        }
+
+        private void TreeView_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.Move);
+        }
+
+        private void TreeView_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void TreeView_DragDrop(object sender, DragEventArgs e)
+        {
+            Point targetPoint = TreeView.PointToClient(new Point(e.X, e.Y));
+            TreeNode targetNode = TreeView.GetNodeAt(targetPoint);
+            TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+            if (!draggedNode.Equals(targetNode) && targetNode != null)
+            {
+                draggedNode.Remove();
+                int newIndex = targetNode.Parent.Nodes.IndexOf(targetNode) + 1;
+                targetNode.Parent.Nodes.Insert(newIndex, draggedNode);
+            }
         }
     }
 }
