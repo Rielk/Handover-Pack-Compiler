@@ -36,11 +36,14 @@ namespace Handover_Pack_Compiler
             // 
             this.TreeView.AllowDrop = true;
             this.TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeView.LabelEdit = true;
             this.TreeView.Location = new System.Drawing.Point(0, 0);
             this.TreeView.Name = "TreeView";
             this.TreeView.Size = new System.Drawing.Size(318, 300);
             this.TreeView.TabIndex = 0;
+            this.TreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_AfterLabelEdit);
             this.TreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.TreeView_ItemDrag);
+            this.TreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView_NodeMouseClick);
             this.TreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.TreeView_DragDrop);
             this.TreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeView_DragEnter);
             this.TreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.TreeView_DragOver);
