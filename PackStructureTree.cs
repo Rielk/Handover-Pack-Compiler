@@ -89,27 +89,32 @@ namespace Handover_Pack_Compiler
             Point TargetPoint = TreeView.PointToClient(new Point(e.X, e.Y));
             TreeNode TargetNode = TreeView.GetNodeAt(TargetPoint);
             if (!DraggedNode.Equals(TargetNode) && TargetNode != null)
-            {
-                if (DraggedNode.Tag is Folder.File)
+            {                
+                if (DraggedNode.Tag is Folder.File DraggedFile)
                 {
+                    CurrentPack.Folders[CurrentPack.Folders.IndexOf((Folder)DraggedNode.Parent.Tag)].Files.Remove(DraggedFile);
                     DraggedNode.Remove();
                     if (TargetNode.Tag is Folder.File)
                     {
                         int NewIndex = TargetNode.Parent.Nodes.IndexOf(TargetNode) + 1;
                         TargetNode.Parent.Nodes.Insert(NewIndex, DraggedNode);
+                        CurrentPack.Folders[CurrentPack.Folders.IndexOf((Folder)TargetNode.Parent.Tag)].Files.Insert(NewIndex, DraggedFile);
                     }
-                    else if (TargetNode.Tag is Folder)
+                    else if (TargetNode.Tag is Folder TargetFolder)
                     {
                         TargetNode.Nodes.Insert(0, DraggedNode);
+                        CurrentPack.Folders[CurrentPack.Folders.IndexOf(TargetFolder)].Files.Insert(0, DraggedFile);
                     }
                     else
                     {
                         TargetNode.Nodes[0].Nodes.Insert(0, DraggedNode);
+                        CurrentPack.Folders[0].Files.Insert(0, DraggedFile);
                     }
                     TreeView.SelectedNode = DraggedNode;
                 }
-                else if (DraggedNode.Tag is Folder)
+                else if (DraggedNode.Tag is Folder DraggedFolder)
                 {
+                    CurrentPack.Folders.Remove(DraggedFolder);
                     DraggedNode.Remove();
                     if (TargetNode.Tag is Folder.File)
                     {
@@ -119,10 +124,12 @@ namespace Handover_Pack_Compiler
                     {
                         int NewIndex = TargetNode.Parent.Nodes.IndexOf(TargetNode) + 1;
                         TargetNode.Parent.Nodes.Insert(NewIndex, DraggedNode);
+                        CurrentPack.Folders.Insert(NewIndex, DraggedFolder);
                     }
                     else
                     {
                         TargetNode.Nodes.Insert(0, DraggedNode);
+                        CurrentPack.Folders.Insert(0, DraggedFolder);
                     }
                     TreeView.SelectedNode = DraggedNode;
                 }
