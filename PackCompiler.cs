@@ -418,18 +418,8 @@ namespace Handover_Pack_Compiler
                         ((PackStructure)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
                     if (Confirm == DialogResult.Yes)
                     {
-                        bool delete_selected;
-                        if ((PackStructure)row.DataBoundItem == PackStructureDropBox.SelectedItem)
-                        {
-                            delete_selected = true;
-                        }
-                        else
-                        {
-                            delete_selected = false;
-                        }
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
-                        if (delete_selected) { SortPackStructures(null); }
-                        else { SortPackStructures(null); }
+                        SortPackStructures(null);
                     }
                 }
             }
