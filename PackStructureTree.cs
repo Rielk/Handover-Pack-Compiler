@@ -13,10 +13,12 @@ namespace Handover_Pack_Compiler
     public partial class PackStructureTree : UserControl
     {
         public PackStructure CurrentPack { get; set; } = null;
-        public readonly ContextMenu RightClickMenu = new ContextMenu();
+        private readonly ContextMenu RightClickMenu = new ContextMenu();
+        private readonly ContextMenu SmallRightClickMenu = new ContextMenu();
         public PackStructureTree()
         {
             InitializeComponent();
+
             MenuItem RenameMenuItem = new MenuItem("Rename");
             RenameMenuItem.Click += RenameMenuItem_Click;
             RightClickMenu.MenuItems.Add(RenameMenuItem);
@@ -29,6 +31,10 @@ namespace Handover_Pack_Compiler
             MenuItem DeleteMenuItem = new MenuItem("Delete");
             DeleteMenuItem.Click += DeleteMenuItem_Click;
             RightClickMenu.MenuItems.Add(DeleteMenuItem);
+
+            MenuItem AddFolderSmallMenuItem = new MenuItem("Add Folder");
+            AddFolderSmallMenuItem.Click += AddFolderMenuItem_Click;
+            SmallRightClickMenu.MenuItems.Add(AddFolderSmallMenuItem);
         }
 
         public void FillPack(PackStructure NewStructure)
@@ -160,39 +166,96 @@ namespace Handover_Pack_Compiler
                     RightClickMenu.Tag = e.Node;
                     RightClickMenu.Show(TreeView, e.Location);
                 }
+                else
+                {
+                    SmallRightClickMenu.Tag = e.Node;
+                    SmallRightClickMenu.Show(TreeView, e.Location);
+                }
             }
             TreeView.SelectedNode = e.Node;
         }
 
         private void RenameMenuItem_Click(object sender, EventArgs e)
         {
+            if (((TreeNode)RightClickMenu.Tag).Tag is Folder)
+            {
+                ((TreeNode)RightClickMenu.Tag).Expand();
+            }
             ((TreeNode)RightClickMenu.Tag).BeginEdit();
+
         }
+
+        private void TreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag != null)
+            {
+                if (e.Node.Tag is Folder)
+                {
+                    e.Node.Expand();
+                }
+                e.Node.BeginEdit();
+            }
+        }
+
         private void TreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (e.Node.Tag is Folder folder)
+            if (e.Label != null)
             {
-                folder.Name = e.Label;
-            }
-            else if (e.Node.Tag is Folder.File file)
-            {
-                file.Name = e.Label;
+                if (e.Node.Tag is Folder folder)
+                {
+                    folder.Name = e.Label;
+                }
+                else if (e.Node.Tag is Folder.File file)
+                {
+                    file.Name = e.Label;
+                }
             }
         }
 
         private void AddFileMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            TreeNode Node = (TreeNode)RightClickMenu.Tag;
+            if (Node.Tag is Folder folder)
+            {
+                Folder.File NewFile = CurrentPack.AddFile("New File", folder.Name);
+                TreeNode FileNode = new TreeNode("New File") { Tag = NewFile };
+                Node.Nodes.Add(FileNode);
+                TreeView.SelectedNode = FileNode;
+            }
+            else if (Node.Tag is Folder.File)
+            {
+                Folder.File NewFile = CurrentPack.AddFile("New File", ((Folder)Node.Parent.Tag).Name);
+                TreeNode NewNode = new TreeNode("New File") { Tag = NewFile };
+                Node.Parent.Nodes.Add(NewNode);
+                TreeView.SelectedNode = NewNode;
+                NewNode.EnsureVisible();
+            }
         }
 
         private void AddFolderMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Folder NewFolder = CurrentPack.AddFolder("New Folder");
+            TreeNode NewNode = new TreeNode("New Folder") { Tag = NewFolder };
+            TreeView.Nodes[0].Nodes.Add(NewNode);
+            TreeView.SelectedNode = NewNode;
+            NewNode.EnsureVisible();
         }
 
         private void DeleteMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            TreeNode Node = (TreeNode)RightClickMenu.Tag;
+            if (Node.Tag is Folder folder)
+            {
+                CurrentPack.Folders.Remove(folder);
+                TreeView.SelectedNode = Node.Parent;
+                Node.Remove();
+            }
+            else if (Node.Tag is Folder.File file)
+            {
+                ((Folder)Node.Parent.Tag).Files.Remove(file);
+                TreeView.SelectedNode = Node.Parent;
+                Node.Remove();
+            }
         }
     }
 }
