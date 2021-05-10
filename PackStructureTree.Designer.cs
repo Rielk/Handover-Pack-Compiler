@@ -31,13 +31,13 @@ namespace Handover_Pack_Compiler
         {
             this.TreeView = new System.Windows.Forms.TreeView();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.FolderLabel = new System.Windows.Forms.Label();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.FolderTextBox = new System.Windows.Forms.TextBox();
+            this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
-            this.FolderTextBox = new System.Windows.Forms.TextBox();
-            this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.FolderLabel = new System.Windows.Forms.Label();
-            this.SearchLabel = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +63,8 @@ namespace Handover_Pack_Compiler
             // 
             // GroupBox
             // 
+            this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox.Controls.Add(this.SearchLabel);
             this.GroupBox.Controls.Add(this.FolderLabel);
             this.GroupBox.Controls.Add(this.SearchTextBox);
@@ -77,20 +79,37 @@ namespace Handover_Pack_Compiler
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Properties";
             // 
-            // DescriptionTextBox
+            // SearchLabel
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 45);
-            this.DescriptionTextBox.Multiline = true;
-            this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(182, 49);
-            this.DescriptionTextBox.TabIndex = 1;
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(6, 152);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(76, 13);
+            this.SearchLabel.TabIndex = 6;
+            this.SearchLabel.Text = "Search Terms:";
             // 
-            // NameTextBox
+            // FolderLabel
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(6, 19);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(182, 20);
-            this.NameTextBox.TabIndex = 0;
+            this.FolderLabel.AutoSize = true;
+            this.FolderLabel.Location = new System.Drawing.Point(6, 126);
+            this.FolderLabel.Name = "FolderLabel";
+            this.FolderLabel.Size = new System.Drawing.Size(73, 13);
+            this.FolderLabel.TabIndex = 5;
+            this.FolderLabel.Text = "Find in Folder:";
+            // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Location = new System.Drawing.Point(6, 168);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(182, 20);
+            this.SearchTextBox.TabIndex = 4;
+            // 
+            // FolderTextBox
+            // 
+            this.FolderTextBox.Location = new System.Drawing.Point(85, 123);
+            this.FolderTextBox.Name = "FolderTextBox";
+            this.FolderTextBox.Size = new System.Drawing.Size(103, 20);
+            this.FolderTextBox.TabIndex = 3;
             // 
             // RequiredCheckBox
             // 
@@ -102,37 +121,22 @@ namespace Handover_Pack_Compiler
             this.RequiredCheckBox.Text = "Always Required";
             this.RequiredCheckBox.UseVisualStyleBackColor = true;
             // 
-            // FolderTextBox
+            // DescriptionTextBox
             // 
-            this.FolderTextBox.Location = new System.Drawing.Point(85, 123);
-            this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(103, 20);
-            this.FolderTextBox.TabIndex = 3;
+            this.DescriptionTextBox.Location = new System.Drawing.Point(6, 45);
+            this.DescriptionTextBox.Multiline = true;
+            this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.Size = new System.Drawing.Size(182, 49);
+            this.DescriptionTextBox.TabIndex = 1;
+            this.DescriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
-            // SearchTextBox
+            // NameTextBox
             // 
-            this.SearchTextBox.Location = new System.Drawing.Point(6, 168);
-            this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(182, 20);
-            this.SearchTextBox.TabIndex = 4;
-            // 
-            // FolderLabel
-            // 
-            this.FolderLabel.AutoSize = true;
-            this.FolderLabel.Location = new System.Drawing.Point(6, 126);
-            this.FolderLabel.Name = "FolderLabel";
-            this.FolderLabel.Size = new System.Drawing.Size(73, 13);
-            this.FolderLabel.TabIndex = 5;
-            this.FolderLabel.Text = "Find in Folder:";
-            // 
-            // SearchLabel
-            // 
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(6, 152);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(76, 13);
-            this.SearchLabel.TabIndex = 6;
-            this.SearchLabel.Text = "Search Terms:";
+            this.NameTextBox.Location = new System.Drawing.Point(6, 19);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(182, 20);
+            this.NameTextBox.TabIndex = 0;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // PackStructureTree
             // 

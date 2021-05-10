@@ -15,6 +15,7 @@ namespace Handover_Pack_Compiler
         public PackStructure CurrentPack { get; set; } = null;
         private readonly ContextMenu RightClickMenu = new ContextMenu();
         private readonly ContextMenu SmallRightClickMenu = new ContextMenu();
+        private TreeNode EditingNode = null;
         public PackStructureTree()
         {
             InitializeComponent();
@@ -210,6 +211,8 @@ namespace Handover_Pack_Compiler
                 {
                     file.Name = e.Label;
                 }
+                TreeView.SelectedNode = null;
+                TreeView.SelectedNode = e.Node;
             }
         }
 
@@ -261,9 +264,12 @@ namespace Handover_Pack_Compiler
         //End Tree
 
         //Start Properties
+        bool IgnoreTextChange = false;
         private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode Node = TreeView.SelectedNode;
+            EditingNode = Node;
+            IgnoreTextChange = true;
             if (Node.Tag is Folder folder)
             {
                 NameTextBox.Text = folder.Name;
@@ -293,13 +299,51 @@ namespace Handover_Pack_Compiler
             {
                 NameTextBox.Text = CurrentPack.ToString();
                 NameTextBox.ReadOnly = true;
-                CurrentPack.Description = "Test";
                 DescriptionTextBox.Text = CurrentPack.Description;
                 RequiredCheckBox.Visible = false;
                 FolderTextBox.Visible = false;
                 FolderLabel.Visible = false;
                 SearchTextBox.Visible = false;
                 SearchLabel.Visible = false;
+            }
+            IgnoreTextChange = false;
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder folder)
+                {
+                    folder.Name = NameTextBox.Text;
+                    EditingNode.Text = NameTextBox.Text;
+                }
+                else if (EditingNode.Tag is Folder.File file)
+                {
+                    file.Name = NameTextBox.Text;
+                    EditingNode.Text = NameTextBox.Text;
+                }
+                Refresh();
+            }
+        }
+
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder folder)
+                {
+                    folder.Description = DescriptionTextBox.Text;
+                }
+                else if (EditingNode.Tag is Folder.File file)
+                {
+                    file.Description = DescriptionTextBox.Text;
+                }
+                else
+                {
+                    CurrentPack.Description = DescriptionTextBox.Text;
+                    Parent.Parent.Refresh();
+                }
             }
         }
         //End Properties
