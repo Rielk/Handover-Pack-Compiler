@@ -57,6 +57,7 @@ namespace Handover_Pack_Compiler
     public class Folder
     {
         public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
         public List<File> Files = new List<File>();
         public Folder()
         {
@@ -84,8 +85,9 @@ namespace Handover_Pack_Compiler
         {
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
-            public bool Optional { get; set; } = false;
-            public string Condition { get; set; }
+            public int? DefaultFolder { get; set; } = null;
+            public string SearchTerm { get; set; } = null;
+            public bool AlwaysRequired { get; set; } = true;
             public File()
             {
 
@@ -94,8 +96,9 @@ namespace Handover_Pack_Compiler
             {
                 Name = other.Name;
                 Description = other.Description;
-                Optional = other.Optional;
-                Condition = other.Condition;
+                DefaultFolder = other.DefaultFolder;
+                SearchTerm = other.SearchTerm;
+                AlwaysRequired = other.AlwaysRequired;
             }
         }
     }

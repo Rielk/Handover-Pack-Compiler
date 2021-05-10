@@ -75,10 +75,10 @@ namespace Handover_Pack_Compiler
             this.PackStructureDropBox = new System.Windows.Forms.ComboBox();
             this.PackStructureSource = new System.Windows.Forms.BindingSource(this.components);
             this.PackStructureGridView = new System.Windows.Forms.DataGridView();
-            this.PackStructureGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackStructureGridViewDescriptionTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddPackStructureButton = new System.Windows.Forms.Button();
             this.PackTree = new Handover_Pack_Compiler.PackStructureTree();
+            this.PackStructureGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PackStructureGridViewDescriptionTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OperationTabs.SuspendLayout();
             this.ModuleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
@@ -623,23 +623,6 @@ namespace Handover_Pack_Compiler
             this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
             this.PackStructureGridView.SelectionChanged += new System.EventHandler(this.PackStructure_SelectionChanged);
             // 
-            // PackStructureGridViewNameTextBoxColumn
-            // 
-            this.PackStructureGridViewNameTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.PackStructureGridViewNameTextBoxColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle8.NullValue = "Default";
-            this.PackStructureGridViewNameTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.PackStructureGridViewNameTextBoxColumn.HeaderText = "Name";
-            this.PackStructureGridViewNameTextBoxColumn.Name = "PackStructureGridViewNameTextBoxColumn";
-            this.PackStructureGridViewNameTextBoxColumn.Width = 60;
-            // 
-            // PackStructureGridViewDescriptionTextBoxColumn
-            // 
-            this.PackStructureGridViewDescriptionTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackStructureGridViewDescriptionTextBoxColumn.DataPropertyName = "Description";
-            this.PackStructureGridViewDescriptionTextBoxColumn.HeaderText = "Description";
-            this.PackStructureGridViewDescriptionTextBoxColumn.Name = "PackStructureGridViewDescriptionTextBoxColumn";
-            // 
             // AddPackStructureButton
             // 
             this.AddPackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -656,8 +639,26 @@ namespace Handover_Pack_Compiler
             this.PackTree.CurrentPack = null;
             this.PackTree.Location = new System.Drawing.Point(3, 3);
             this.PackTree.Name = "PackTree";
-            this.PackTree.Size = new System.Drawing.Size(323, 248);
+            this.PackTree.Size = new System.Drawing.Size(532, 248);
             this.PackTree.TabIndex = 0;
+            // 
+            // PackStructureGridViewNameTextBoxColumn
+            // 
+            this.PackStructureGridViewNameTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PackStructureGridViewNameTextBoxColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle8.NullValue = "Default";
+            this.PackStructureGridViewNameTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.PackStructureGridViewNameTextBoxColumn.HeaderText = "Name";
+            this.PackStructureGridViewNameTextBoxColumn.Name = "PackStructureGridViewNameTextBoxColumn";
+            this.PackStructureGridViewNameTextBoxColumn.Width = 60;
+            // 
+            // PackStructureGridViewDescriptionTextBoxColumn
+            // 
+            this.PackStructureGridViewDescriptionTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PackStructureGridViewDescriptionTextBoxColumn.DataPropertyName = "Description";
+            this.PackStructureGridViewDescriptionTextBoxColumn.HeaderText = "Description";
+            this.PackStructureGridViewDescriptionTextBoxColumn.Name = "PackStructureGridViewDescriptionTextBoxColumn";
+            this.PackStructureGridViewDescriptionTextBoxColumn.ReadOnly = true;
             // 
             // PackCompiler
             // 
@@ -724,9 +725,9 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewTextBoxColumn InverterGridViewNameTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn InverterGridViewDatasheetTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn InverterGridViewSolarEdgeCheckBoxColumn;
+        private PackStructureTree PackTree;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewNameTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewDescriptionTextBoxColumn;
-        private PackStructureTree PackTree;
     }
 }
 

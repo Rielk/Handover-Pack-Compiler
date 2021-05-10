@@ -149,6 +149,7 @@ namespace Handover_Pack_Compiler
             }
         }
         //General Utilities End
+
         //Setting Tab Start
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
         {
@@ -198,6 +199,7 @@ namespace Handover_Pack_Compiler
             SEWarrantyButton.Value = Properties.Settings.Default.SEWarrantyPath;
         }
         //Setting Tab End
+
         //Inverter Tab Start
         private void AddInverterButton_Click(object sender, EventArgs e)
         {
@@ -287,6 +289,7 @@ namespace Handover_Pack_Compiler
             CM.ResumeBinding();
         }
         //Inverter Tab End
+
         //Module Tab Start
         private void AddModuleButton_Click(object sender, EventArgs e)
         {
@@ -377,6 +380,7 @@ namespace Handover_Pack_Compiler
             CM.ResumeBinding();
         }
         //Module Tab End
+
         //Pack Tab Start
         private void SortPackStructures()
         {

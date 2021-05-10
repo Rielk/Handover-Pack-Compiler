@@ -37,6 +37,7 @@ namespace Handover_Pack_Compiler
             SmallRightClickMenu.MenuItems.Add(AddFolderSmallMenuItem);
         }
 
+        //Start Tree
         public void FillPack(PackStructure NewStructure)
         {
             CurrentPack = NewStructure;
@@ -257,5 +258,50 @@ namespace Handover_Pack_Compiler
                 Node.Remove();
             }
         }
+        //End Tree
+
+        //Start Properties
+        private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            TreeNode Node = TreeView.SelectedNode;
+            if (Node.Tag is Folder folder)
+            {
+                NameTextBox.Text = folder.Name;
+                NameTextBox.ReadOnly = false;
+                DescriptionTextBox.Text = folder.Description;
+                RequiredCheckBox.Visible = false;
+                FolderTextBox.Visible = false;
+                FolderLabel.Visible = false;
+                SearchTextBox.Visible = false;
+                SearchLabel.Visible = false;
+            }
+            else if (Node.Tag is Folder.File file)
+            {
+                NameTextBox.Text = file.Name;
+                NameTextBox.ReadOnly = false;
+                DescriptionTextBox.Text = file.Description;
+                RequiredCheckBox.Visible = true;
+                RequiredCheckBox.Checked = file.AlwaysRequired;
+                FolderTextBox.Visible = true;
+                FolderTextBox.Text = file.DefaultFolder.ToString();
+                FolderLabel.Visible = true;
+                SearchTextBox.Visible = true;
+                SearchTextBox.Text = file.SearchTerm;
+                SearchLabel.Visible = true;
+            }
+            else
+            {
+                NameTextBox.Text = CurrentPack.ToString();
+                NameTextBox.ReadOnly = true;
+                CurrentPack.Description = "Test";
+                DescriptionTextBox.Text = CurrentPack.Description;
+                RequiredCheckBox.Visible = false;
+                FolderTextBox.Visible = false;
+                FolderLabel.Visible = false;
+                SearchTextBox.Visible = false;
+                SearchLabel.Visible = false;
+            }
+        }
+        //End Properties
     }
 }
