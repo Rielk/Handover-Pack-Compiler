@@ -38,15 +38,18 @@ namespace Handover_Pack_Compiler
             this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
+            this.SplitContainer.Panel1.SuspendLayout();
+            this.SplitContainer.Panel2.SuspendLayout();
+            this.SplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // TreeView
             // 
             this.TreeView.AllowDrop = true;
-            this.TreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeView.LabelEdit = true;
             this.TreeView.Location = new System.Drawing.Point(0, 0);
             this.TreeView.Name = "TreeView";
@@ -63,8 +66,6 @@ namespace Handover_Pack_Compiler
             // 
             // GroupBox
             // 
-            this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox.Controls.Add(this.SearchLabel);
             this.GroupBox.Controls.Add(this.FolderLabel);
             this.GroupBox.Controls.Add(this.SearchTextBox);
@@ -72,9 +73,10 @@ namespace Handover_Pack_Compiler
             this.GroupBox.Controls.Add(this.RequiredCheckBox);
             this.GroupBox.Controls.Add(this.DescriptionTextBox);
             this.GroupBox.Controls.Add(this.NameTextBox);
-            this.GroupBox.Location = new System.Drawing.Point(306, 0);
+            this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(194, 300);
+            this.GroupBox.Size = new System.Drawing.Size(196, 300);
             this.GroupBox.TabIndex = 1;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Properties";
@@ -99,16 +101,20 @@ namespace Handover_Pack_Compiler
             // 
             // SearchTextBox
             // 
+            this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTextBox.Location = new System.Drawing.Point(6, 168);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(182, 20);
+            this.SearchTextBox.Size = new System.Drawing.Size(184, 20);
             this.SearchTextBox.TabIndex = 4;
             // 
             // FolderTextBox
             // 
+            this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderTextBox.Location = new System.Drawing.Point(85, 123);
             this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(103, 20);
+            this.FolderTextBox.Size = new System.Drawing.Size(105, 20);
             this.FolderTextBox.TabIndex = 3;
             // 
             // RequiredCheckBox
@@ -123,31 +129,58 @@ namespace Handover_Pack_Compiler
             // 
             // DescriptionTextBox
             // 
+            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DescriptionTextBox.Location = new System.Drawing.Point(6, 45);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(182, 49);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(184, 49);
             this.DescriptionTextBox.TabIndex = 1;
             this.DescriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // NameTextBox
             // 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(6, 19);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(182, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(184, 20);
             this.NameTextBox.TabIndex = 0;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            // 
+            // SplitContainer
+            // 
+            this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.SplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.SplitContainer.Name = "SplitContainer";
+            // 
+            // SplitContainer.Panel1
+            // 
+            this.SplitContainer.Panel1.Controls.Add(this.TreeView);
+            this.SplitContainer.Panel1MinSize = 250;
+            // 
+            // SplitContainer.Panel2
+            // 
+            this.SplitContainer.Panel2.Controls.Add(this.GroupBox);
+            this.SplitContainer.Panel2MinSize = 125;
+            this.SplitContainer.Size = new System.Drawing.Size(500, 300);
+            this.SplitContainer.SplitterDistance = 300;
+            this.SplitContainer.TabIndex = 2;
             // 
             // PackStructureTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.GroupBox);
-            this.Controls.Add(this.TreeView);
+            this.Controls.Add(this.SplitContainer);
             this.Name = "PackStructureTree";
             this.Size = new System.Drawing.Size(500, 300);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
+            this.SplitContainer.Panel1.ResumeLayout(false);
+            this.SplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
+            this.SplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -163,5 +196,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.CheckBox RequiredCheckBox;
         private System.Windows.Forms.Label FolderLabel;
         private System.Windows.Forms.Label SearchLabel;
+        private System.Windows.Forms.SplitContainer SplitContainer;
     }
 }
