@@ -281,6 +281,7 @@ namespace Handover_Pack_Compiler
                 FolderLabel.Visible = false;
                 SearchTextBox.Visible = false;
                 SearchLabel.Visible = false;
+                FileGroupBox.Visible = false;
             }
             else if (Node.Tag is Folder.File file)
             {
@@ -295,6 +296,7 @@ namespace Handover_Pack_Compiler
                 SearchTextBox.Visible = true;
                 SearchTextBox.Text = file.SearchTerm;
                 SearchLabel.Visible = true;
+                FileGroupBox.Visible = true;
             }
             else
             {
@@ -306,6 +308,7 @@ namespace Handover_Pack_Compiler
                 FolderLabel.Visible = false;
                 SearchTextBox.Visible = false;
                 SearchLabel.Visible = false;
+                FileGroupBox.Visible = false;
             }
             IgnoreTextChange = false;
         }
