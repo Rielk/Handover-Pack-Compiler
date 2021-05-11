@@ -107,6 +107,7 @@ namespace Handover_Pack_Compiler
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(184, 20);
             this.SearchTextBox.TabIndex = 4;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // FolderTextBox
             // 
@@ -116,6 +117,8 @@ namespace Handover_Pack_Compiler
             this.FolderTextBox.Name = "FolderTextBox";
             this.FolderTextBox.Size = new System.Drawing.Size(105, 20);
             this.FolderTextBox.TabIndex = 3;
+            this.FolderTextBox.TextChanged += new System.EventHandler(this.FolderTextBox_TextChanged);
+            this.FolderTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FolderTextBox_KeyPress);
             // 
             // RequiredCheckBox
             // 
@@ -126,6 +129,7 @@ namespace Handover_Pack_Compiler
             this.RequiredCheckBox.TabIndex = 2;
             this.RequiredCheckBox.Text = "Always Required";
             this.RequiredCheckBox.UseVisualStyleBackColor = true;
+            this.RequiredCheckBox.CheckedChanged += new System.EventHandler(this.RequiredCheckBox_CheckedChanged);
             // 
             // DescriptionTextBox
             // 

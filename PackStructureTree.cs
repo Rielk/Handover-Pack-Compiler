@@ -64,6 +64,7 @@ namespace Handover_Pack_Compiler
             TreeView.ExpandAll();
             RootNode.EnsureVisible();
             TreeView.EndUpdate();
+            TreeView.SelectedNode = RootNode;
         }
 
         private void TreeView_ItemDrag(object sender, ItemDragEventArgs e)
@@ -343,6 +344,47 @@ namespace Handover_Pack_Compiler
                 {
                     CurrentPack.Description = DescriptionTextBox.Text;
                     Parent.Parent.Refresh();
+                }
+            }
+        }
+
+        private void RequiredCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.AlwaysRequired = RequiredCheckBox.Checked;
+                }
+            }
+        }
+
+        private void FolderTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.DefaultFolder = int.TryParse(FolderTextBox.Text, out int x) ? (int?)x : null;
+                }
+            }
+        }
+
+        private void FolderTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.SearchTerm = SearchTextBox.Text;
                 }
             }
         }

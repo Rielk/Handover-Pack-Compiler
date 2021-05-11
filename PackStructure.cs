@@ -66,6 +66,7 @@ namespace Handover_Pack_Compiler
         public Folder(Folder other)
         {
             Name = other.Name;
+            Description = other.Description;
             Files = new List<File>();
             foreach (File file in other.Files)
             {
