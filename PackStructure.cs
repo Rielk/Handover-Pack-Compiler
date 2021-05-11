@@ -89,6 +89,7 @@ namespace Handover_Pack_Compiler
             public int? DefaultFolder { get; set; } = null;
             public string SearchTerm { get; set; } = null;
             public bool AlwaysRequired { get; set; } = true;
+            public string FileType { get; set; } = "Gen";
             public File()
             {
 

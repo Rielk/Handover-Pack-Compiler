@@ -201,8 +201,10 @@ namespace Handover_Pack_Compiler
             this.SummaryCheckBox.Name = "SummaryCheckBox";
             this.SummaryCheckBox.Size = new System.Drawing.Size(88, 17);
             this.SummaryCheckBox.TabIndex = 0;
+            this.SummaryCheckBox.Tag = "Sum";
             this.SummaryCheckBox.Text = "Summary File";
             this.SummaryCheckBox.UseVisualStyleBackColor = true;
+            this.SummaryCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
             // GenericCheckBox
             // 
@@ -211,8 +213,10 @@ namespace Handover_Pack_Compiler
             this.GenericCheckBox.Name = "GenericCheckBox";
             this.GenericCheckBox.Size = new System.Drawing.Size(82, 17);
             this.GenericCheckBox.TabIndex = 1;
+            this.GenericCheckBox.Tag = "Gen";
             this.GenericCheckBox.Text = "Generic File";
             this.GenericCheckBox.UseVisualStyleBackColor = true;
+            this.GenericCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
             // ModuleCheckBox
             // 
@@ -222,8 +226,10 @@ namespace Handover_Pack_Compiler
             this.ModuleCheckBox.Name = "ModuleCheckBox";
             this.ModuleCheckBox.Size = new System.Drawing.Size(107, 17);
             this.ModuleCheckBox.TabIndex = 2;
+            this.ModuleCheckBox.Tag = "Mod";
             this.ModuleCheckBox.Text = "Module Warranty";
             this.ModuleCheckBox.UseVisualStyleBackColor = true;
+            this.ModuleCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
             // InverterCheckBox
             // 
@@ -233,8 +239,10 @@ namespace Handover_Pack_Compiler
             this.InverterCheckBox.Name = "InverterCheckBox";
             this.InverterCheckBox.Size = new System.Drawing.Size(108, 17);
             this.InverterCheckBox.TabIndex = 3;
+            this.InverterCheckBox.Tag = "Inv";
             this.InverterCheckBox.Text = "Inverter Warranty";
             this.InverterCheckBox.UseVisualStyleBackColor = true;
+            this.InverterCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
             // PackStructureTree
             // 

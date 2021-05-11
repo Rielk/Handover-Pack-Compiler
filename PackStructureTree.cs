@@ -297,6 +297,26 @@ namespace Handover_Pack_Compiler
                 SearchTextBox.Text = file.SearchTerm;
                 SearchLabel.Visible = true;
                 FileGroupBox.Visible = true;
+                GenericCheckBox.Checked = false;
+                SummaryCheckBox.Checked = false;
+                ModuleCheckBox.Checked = false;
+                InverterCheckBox.Checked = false;
+                if (file.FileType == "Gen")
+                {
+                    GenericCheckBox.Checked = true;
+                }
+                else if (file.FileType == "Sum")
+                {
+                    SummaryCheckBox.Checked = true;
+                }
+                else if (file.FileType == "Mod")
+                {
+                    ModuleCheckBox.Checked = true;
+                }
+                else if (file.FileType == "Inv")
+                {
+                    InverterCheckBox.Checked = true;
+                }
             }
             else
             {
@@ -389,6 +409,25 @@ namespace Handover_Pack_Compiler
                 {
                     file.SearchTerm = SearchTextBox.Text;
                 }
+            }
+        }
+
+        bool IgnoreFileCheckChange = false;
+        private void FileCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange & !IgnoreFileCheckChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.FileType = (string)((CheckBox)sender).Tag;
+                }
+                IgnoreFileCheckChange = true;
+                GenericCheckBox.Checked = false;
+                SummaryCheckBox.Checked = false;
+                ModuleCheckBox.Checked = false;
+                InverterCheckBox.Checked = false;
+                ((CheckBox)sender).Checked = true;
+                IgnoreFileCheckChange = false;
             }
         }
         //End Properties
