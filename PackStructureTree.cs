@@ -299,8 +299,8 @@ namespace Handover_Pack_Compiler
                 FileGroupBox.Visible = true;
                 GenericCheckBox.Checked = false;
                 SummaryCheckBox.Checked = false;
-                ModuleCheckBox.Checked = false;
-                InverterCheckBox.Checked = false;
+                ModuleWarrantyCheckBox.Checked = false;
+                InverterDataCheckBox.Checked = false;
                 if (file.FileType == "Gen")
                 {
                     GenericCheckBox.Checked = true;
@@ -311,11 +311,11 @@ namespace Handover_Pack_Compiler
                 }
                 else if (file.FileType == "Mod")
                 {
-                    ModuleCheckBox.Checked = true;
+                    ModuleWarrantyCheckBox.Checked = true;
                 }
                 else if (file.FileType == "Inv")
                 {
-                    InverterCheckBox.Checked = true;
+                    InverterDataCheckBox.Checked = true;
                 }
             }
             else
@@ -423,9 +423,13 @@ namespace Handover_Pack_Compiler
                 }
                 IgnoreFileCheckChange = true;
                 GenericCheckBox.Checked = false;
+                ConstantCheckBox.Checked = false;
                 SummaryCheckBox.Checked = false;
-                ModuleCheckBox.Checked = false;
-                InverterCheckBox.Checked = false;
+                SEWarrantyCheckBox.Checked = false;
+                ModuleWarrantyCheckBox.Checked = false;
+                ModuleDataCheckBox.Checked = false;
+                InverterDataCheckBox.Checked = false;
+                OptimiserDataCheckBox.Checked = false;
                 ((CheckBox)sender).Checked = true;
                 IgnoreFileCheckChange = false;
             }

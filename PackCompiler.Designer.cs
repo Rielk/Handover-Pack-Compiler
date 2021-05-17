@@ -110,7 +110,7 @@ namespace Handover_Pack_Compiler
             this.OperationTabs.Location = new System.Drawing.Point(0, 0);
             this.OperationTabs.Name = "OperationTabs";
             this.OperationTabs.SelectedIndex = 0;
-            this.OperationTabs.Size = new System.Drawing.Size(685, 460);
+            this.OperationTabs.Size = new System.Drawing.Size(685, 535);
             this.OperationTabs.TabIndex = 0;
             // 
             // CompileTab
@@ -118,7 +118,7 @@ namespace Handover_Pack_Compiler
             this.CompileTab.Location = new System.Drawing.Point(4, 22);
             this.CompileTab.Name = "CompileTab";
             this.CompileTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CompileTab.Size = new System.Drawing.Size(677, 434);
+            this.CompileTab.Size = new System.Drawing.Size(677, 511);
             this.CompileTab.TabIndex = 0;
             this.CompileTab.Text = "Compile";
             this.CompileTab.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@ namespace Handover_Pack_Compiler
             // 
             this.FilesTab.Location = new System.Drawing.Point(4, 22);
             this.FilesTab.Name = "FilesTab";
-            this.FilesTab.Size = new System.Drawing.Size(677, 434);
+            this.FilesTab.Size = new System.Drawing.Size(677, 511);
             this.FilesTab.TabIndex = 4;
             this.FilesTab.Text = "Files";
             this.FilesTab.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@ namespace Handover_Pack_Compiler
             this.ModuleTab.Location = new System.Drawing.Point(4, 22);
             this.ModuleTab.Name = "ModuleTab";
             this.ModuleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ModuleTab.Size = new System.Drawing.Size(677, 434);
+            this.ModuleTab.Size = new System.Drawing.Size(677, 511);
             this.ModuleTab.TabIndex = 1;
             this.ModuleTab.Text = "Module";
             this.ModuleTab.UseVisualStyleBackColor = true;
@@ -291,7 +291,7 @@ namespace Handover_Pack_Compiler
             this.InverterTab.Controls.Add(this.InverterGridView);
             this.InverterTab.Location = new System.Drawing.Point(4, 22);
             this.InverterTab.Name = "InverterTab";
-            this.InverterTab.Size = new System.Drawing.Size(677, 434);
+            this.InverterTab.Size = new System.Drawing.Size(677, 511);
             this.InverterTab.TabIndex = 2;
             this.InverterTab.Text = "Inverter";
             this.InverterTab.UseVisualStyleBackColor = true;
@@ -432,7 +432,7 @@ namespace Handover_Pack_Compiler
             this.SettingsTab.Controls.Add(this.ProgDataButton);
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
             this.SettingsTab.Name = "SettingsTab";
-            this.SettingsTab.Size = new System.Drawing.Size(677, 434);
+            this.SettingsTab.Size = new System.Drawing.Size(677, 511);
             this.SettingsTab.TabIndex = 3;
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
@@ -498,7 +498,7 @@ namespace Handover_Pack_Compiler
             this.PackTab.Controls.Add(this.PackTabSplit);
             this.PackTab.Location = new System.Drawing.Point(4, 22);
             this.PackTab.Name = "PackTab";
-            this.PackTab.Size = new System.Drawing.Size(677, 434);
+            this.PackTab.Size = new System.Drawing.Size(677, 509);
             this.PackTab.TabIndex = 5;
             this.PackTab.Text = "Pack";
             this.PackTab.UseVisualStyleBackColor = true;
@@ -524,16 +524,16 @@ namespace Handover_Pack_Compiler
             // PackTabSplit.Panel2
             // 
             this.PackTabSplit.Panel2.Controls.Add(this.PackTree);
-            this.PackTabSplit.Panel2MinSize = 275;
-            this.PackTabSplit.Size = new System.Drawing.Size(677, 434);
-            this.PackTabSplit.SplitterDistance = 153;
+            this.PackTabSplit.Panel2MinSize = 315;
+            this.PackTabSplit.Size = new System.Drawing.Size(677, 509);
+            this.PackTabSplit.SplitterDistance = 185;
             this.PackTabSplit.TabIndex = 11;
             this.PackTabSplit.TabStop = false;
             // 
             // DeletePackStructureButton
             // 
             this.DeletePackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeletePackStructureButton.Location = new System.Drawing.Point(558, 128);
+            this.DeletePackStructureButton.Location = new System.Drawing.Point(558, 160);
             this.DeletePackStructureButton.Name = "DeletePackStructureButton";
             this.DeletePackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.DeletePackStructureButton.TabIndex = 9;
@@ -544,7 +544,7 @@ namespace Handover_Pack_Compiler
             // DuplicatePackStructureButton
             // 
             this.DuplicatePackStructureButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DuplicatePackStructureButton.Location = new System.Drawing.Point(280, 128);
+            this.DuplicatePackStructureButton.Location = new System.Drawing.Point(280, 160);
             this.DuplicatePackStructureButton.Name = "DuplicatePackStructureButton";
             this.DuplicatePackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.DuplicatePackStructureButton.TabIndex = 10;
@@ -619,7 +619,7 @@ namespace Handover_Pack_Compiler
             this.PackStructureGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.PackStructureGridView.RowHeadersVisible = false;
             this.PackStructureGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PackStructureGridView.Size = new System.Drawing.Size(669, 93);
+            this.PackStructureGridView.Size = new System.Drawing.Size(669, 125);
             this.PackStructureGridView.TabIndex = 2;
             this.PackStructureGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.PackStructureGridView_CellBeginEdit);
             this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
@@ -646,7 +646,7 @@ namespace Handover_Pack_Compiler
             // AddPackStructureButton
             // 
             this.AddPackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddPackStructureButton.Location = new System.Drawing.Point(3, 128);
+            this.AddPackStructureButton.Location = new System.Drawing.Point(3, 160);
             this.AddPackStructureButton.Name = "AddPackStructureButton";
             this.AddPackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.AddPackStructureButton.TabIndex = 8;
@@ -661,15 +661,16 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackTree.CurrentPack = null;
             this.PackTree.Location = new System.Drawing.Point(3, 3);
+            this.PackTree.MinimumSize = new System.Drawing.Size(500, 315);
             this.PackTree.Name = "PackTree";
-            this.PackTree.Size = new System.Drawing.Size(669, 269);
+            this.PackTree.Size = new System.Drawing.Size(669, 315);
             this.PackTree.TabIndex = 0;
             // 
             // PackCompiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 461);
+            this.ClientSize = new System.Drawing.Size(684, 536);
             this.Controls.Add(this.OperationTabs);
             this.Name = "PackCompiler";
             this.Text = "Mypower Handover Pack Compiler";
