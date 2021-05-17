@@ -287,6 +287,7 @@ namespace Handover_Pack_Compiler
                 NameTextBox.ReadOnly = false;
                 DescriptionTextBox.Text = folder.Description;
                 RequiredCheckBox.Visible = false;
+                MultipleCheckBox.Visible = false;
                 FolderTextBox.Visible = false;
                 FolderLabel.Visible = false;
                 SearchTextBox.Visible = false;
@@ -300,6 +301,8 @@ namespace Handover_Pack_Compiler
                 DescriptionTextBox.Text = file.Description;
                 RequiredCheckBox.Visible = true;
                 RequiredCheckBox.Checked = file.AlwaysRequired;
+                MultipleCheckBox.Visible = true;
+                MultipleCheckBox.Checked = file.AllowMultiple;
                 FolderTextBox.Visible = true;
                 FolderTextBox.Text = file.DefaultFolder.ToString();
                 FolderLabel.Visible = true;
@@ -318,6 +321,7 @@ namespace Handover_Pack_Compiler
                 NameTextBox.ReadOnly = true;
                 DescriptionTextBox.Text = CurrentPack.Description;
                 RequiredCheckBox.Visible = false;
+                MultipleCheckBox.Visible = false;
                 FolderTextBox.Visible = false;
                 FolderLabel.Visible = false;
                 SearchTextBox.Visible = false;
@@ -376,6 +380,17 @@ namespace Handover_Pack_Compiler
             }
         }
 
+        private void MultipleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.AllowMultiple = MultipleCheckBox.Checked;
+                }
+            }
+        }
+
         private void FolderTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!IgnoreTextChange)
@@ -422,17 +437,6 @@ namespace Handover_Pack_Compiler
                 }
                 ((CheckBox)sender).Checked = true;
                 IgnoreFileCheckChange = false;
-            }
-        }
-
-        private void MultipleCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!IgnoreTextChange)
-            {
-                if (EditingNode.Tag is Folder.File file)
-                {
-                    file.AllowMultiple = MultipleCheckBox.Checked;
-                }
             }
         }
         //End Properties
