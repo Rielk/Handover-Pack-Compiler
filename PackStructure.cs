@@ -90,6 +90,7 @@ namespace Handover_Pack_Compiler
             public string SearchTerm { get; set; } = null;
             public bool AlwaysRequired { get; set; } = true;
             public string FileType { get; set; } = "Gen";
+            public bool AllowMultiple { get; set; } = false;
             public File()
             {
 

@@ -16,6 +16,7 @@ namespace Handover_Pack_Compiler
         private readonly ContextMenu RightClickMenu = new ContextMenu();
         private readonly ContextMenu SmallRightClickMenu = new ContextMenu();
         private TreeNode EditingNode = null;
+        private readonly List<CheckBox> CheckBoxList = new List<CheckBox>();
         public PackStructureTree()
         {
             InitializeComponent();
@@ -36,6 +37,15 @@ namespace Handover_Pack_Compiler
             MenuItem AddFolderSmallMenuItem = new MenuItem("Add Folder");
             AddFolderSmallMenuItem.Click += AddFolderMenuItem_Click;
             SmallRightClickMenu.MenuItems.Add(AddFolderSmallMenuItem);
+
+            CheckBoxList.Add(GenericCheckBox);
+            CheckBoxList.Add(ConstantCheckBox);
+            CheckBoxList.Add(SummaryCheckBox);
+            CheckBoxList.Add(SEWarrantyCheckBox);
+            CheckBoxList.Add(ModuleWarrantyCheckBox);
+            CheckBoxList.Add(ModuleDataCheckBox);
+            CheckBoxList.Add(InverterDataCheckBox);
+            CheckBoxList.Add(OptimiserDataCheckBox);
         }
 
         //Start Tree
@@ -297,25 +307,9 @@ namespace Handover_Pack_Compiler
                 SearchTextBox.Text = file.SearchTerm;
                 SearchLabel.Visible = true;
                 FileGroupBox.Visible = true;
-                GenericCheckBox.Checked = false;
-                SummaryCheckBox.Checked = false;
-                ModuleWarrantyCheckBox.Checked = false;
-                InverterDataCheckBox.Checked = false;
-                if (file.FileType == "Gen")
+                foreach (CheckBox cb in CheckBoxList)
                 {
-                    GenericCheckBox.Checked = true;
-                }
-                else if (file.FileType == "Sum")
-                {
-                    SummaryCheckBox.Checked = true;
-                }
-                else if (file.FileType == "Mod")
-                {
-                    ModuleWarrantyCheckBox.Checked = true;
-                }
-                else if (file.FileType == "Inv")
-                {
-                    InverterDataCheckBox.Checked = true;
+                    cb.Checked = (string)cb.Tag == file.FileType;
                 }
             }
             else
@@ -422,16 +416,23 @@ namespace Handover_Pack_Compiler
                     file.FileType = (string)((CheckBox)sender).Tag;
                 }
                 IgnoreFileCheckChange = true;
-                GenericCheckBox.Checked = false;
-                ConstantCheckBox.Checked = false;
-                SummaryCheckBox.Checked = false;
-                SEWarrantyCheckBox.Checked = false;
-                ModuleWarrantyCheckBox.Checked = false;
-                ModuleDataCheckBox.Checked = false;
-                InverterDataCheckBox.Checked = false;
-                OptimiserDataCheckBox.Checked = false;
+                foreach (CheckBox cb in CheckBoxList)
+                {
+                    cb.Checked = false;
+                }
                 ((CheckBox)sender).Checked = true;
                 IgnoreFileCheckChange = false;
+            }
+        }
+
+        private void MultipleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IgnoreTextChange)
+            {
+                if (EditingNode.Tag is Folder.File file)
+                {
+                    file.AllowMultiple = MultipleCheckBox.Checked;
+                }
             }
         }
         //End Properties

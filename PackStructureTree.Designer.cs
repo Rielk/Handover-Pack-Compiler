@@ -48,6 +48,7 @@ namespace Handover_Pack_Compiler
             this.ConstantCheckBox = new System.Windows.Forms.CheckBox();
             this.ModuleDataCheckBox = new System.Windows.Forms.CheckBox();
             this.SEWarrantyCheckBox = new System.Windows.Forms.CheckBox();
+            this.MultipleCheckBox = new System.Windows.Forms.CheckBox();
             this.GroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
@@ -76,6 +77,7 @@ namespace Handover_Pack_Compiler
             // 
             // GroupBox
             // 
+            this.GroupBox.Controls.Add(this.MultipleCheckBox);
             this.GroupBox.Controls.Add(this.FileGroupBox);
             this.GroupBox.Controls.Add(this.SearchLabel);
             this.GroupBox.Controls.Add(this.FolderLabel);
@@ -303,6 +305,17 @@ namespace Handover_Pack_Compiler
             this.SEWarrantyCheckBox.UseVisualStyleBackColor = true;
             this.SEWarrantyCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
+            // MultipleCheckBox
+            // 
+            this.MultipleCheckBox.AutoSize = true;
+            this.MultipleCheckBox.Location = new System.Drawing.Point(115, 100);
+            this.MultipleCheckBox.Name = "MultipleCheckBox";
+            this.MultipleCheckBox.Size = new System.Drawing.Size(90, 17);
+            this.MultipleCheckBox.TabIndex = 8;
+            this.MultipleCheckBox.Text = "Allow Multiple";
+            this.MultipleCheckBox.UseVisualStyleBackColor = true;
+            this.MultipleCheckBox.CheckedChanged += new System.EventHandler(this.MultipleCheckBox_CheckedChanged);
+            // 
             // PackStructureTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,5 +357,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.CheckBox ConstantCheckBox;
         private System.Windows.Forms.CheckBox SEWarrantyCheckBox;
         private System.Windows.Forms.CheckBox ModuleDataCheckBox;
+        private System.Windows.Forms.CheckBox MultipleCheckBox;
     }
 }
