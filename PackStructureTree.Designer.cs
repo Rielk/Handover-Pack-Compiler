@@ -110,7 +110,7 @@ namespace Handover_Pack_Compiler
             this.AddPropertiesGenGroupBox.Size = new System.Drawing.Size(209, 82);
             this.AddPropertiesGenGroupBox.TabIndex = 9;
             this.AddPropertiesGenGroupBox.TabStop = false;
-            this.AddPropertiesGenGroupBox.Text = "Additional Properties";
+            this.AddPropertiesGenGroupBox.Text = "Properties - Generic File Location";
             // 
             // SearchLabel
             // 
@@ -342,7 +342,7 @@ namespace Handover_Pack_Compiler
             this.AddPropertiesConPathButton.Name = "AddPropertiesConPathButton";
             this.AddPropertiesConPathButton.Size = new System.Drawing.Size(209, 46);
             this.AddPropertiesConPathButton.TabIndex = 0;
-            this.AddPropertiesConPathButton.Text = "Additional Properties";
+            this.AddPropertiesConPathButton.Text = "Properties - Constant File Path";
             this.AddPropertiesConPathButton.Value = "";
             this.AddPropertiesConPathButton.ValueUpdate += new System.EventHandler(this.AddPropertiesConPathButton_ValueUpdate);
             // 
