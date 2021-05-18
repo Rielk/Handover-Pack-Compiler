@@ -31,7 +31,12 @@ namespace Handover_Pack_Compiler
         {
             this.TreeView = new System.Windows.Forms.TreeView();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.MultipleCheckBox = new System.Windows.Forms.CheckBox();
             this.FileGroupBox = new System.Windows.Forms.GroupBox();
+            this.SEWarrantyCheckBox = new System.Windows.Forms.CheckBox();
+            this.ModuleDataCheckBox = new System.Windows.Forms.CheckBox();
+            this.OptimiserDataCheckBox = new System.Windows.Forms.CheckBox();
+            this.ConstantCheckBox = new System.Windows.Forms.CheckBox();
             this.InverterDataCheckBox = new System.Windows.Forms.CheckBox();
             this.ModuleWarrantyCheckBox = new System.Windows.Forms.CheckBox();
             this.GenericCheckBox = new System.Windows.Forms.CheckBox();
@@ -44,17 +49,14 @@ namespace Handover_Pack_Compiler
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.OptimiserDataCheckBox = new System.Windows.Forms.CheckBox();
-            this.ConstantCheckBox = new System.Windows.Forms.CheckBox();
-            this.ModuleDataCheckBox = new System.Windows.Forms.CheckBox();
-            this.SEWarrantyCheckBox = new System.Windows.Forms.CheckBox();
-            this.MultipleCheckBox = new System.Windows.Forms.CheckBox();
+            this.AddPropertiesGroupBox = new System.Windows.Forms.GroupBox();
             this.GroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
+            this.AddPropertiesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TreeView
@@ -64,7 +66,7 @@ namespace Handover_Pack_Compiler
             this.TreeView.LabelEdit = true;
             this.TreeView.Location = new System.Drawing.Point(0, 0);
             this.TreeView.Name = "TreeView";
-            this.TreeView.Size = new System.Drawing.Size(275, 315);
+            this.TreeView.Size = new System.Drawing.Size(275, 333);
             this.TreeView.TabIndex = 0;
             this.TreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TreeView_AfterLabelEdit);
             this.TreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.TreeView_ItemDrag);
@@ -77,22 +79,32 @@ namespace Handover_Pack_Compiler
             // 
             // GroupBox
             // 
+            this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox.Controls.Add(this.AddPropertiesGroupBox);
             this.GroupBox.Controls.Add(this.MultipleCheckBox);
             this.GroupBox.Controls.Add(this.FileGroupBox);
-            this.GroupBox.Controls.Add(this.SearchLabel);
-            this.GroupBox.Controls.Add(this.FolderLabel);
-            this.GroupBox.Controls.Add(this.SearchTextBox);
-            this.GroupBox.Controls.Add(this.FolderTextBox);
             this.GroupBox.Controls.Add(this.RequiredCheckBox);
             this.GroupBox.Controls.Add(this.DescriptionTextBox);
             this.GroupBox.Controls.Add(this.NameTextBox);
-            this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(221, 315);
+            this.GroupBox.Size = new System.Drawing.Size(221, 329);
             this.GroupBox.TabIndex = 1;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Properties";
+            // 
+            // MultipleCheckBox
+            // 
+            this.MultipleCheckBox.AutoSize = true;
+            this.MultipleCheckBox.Location = new System.Drawing.Point(115, 100);
+            this.MultipleCheckBox.Name = "MultipleCheckBox";
+            this.MultipleCheckBox.Size = new System.Drawing.Size(90, 17);
+            this.MultipleCheckBox.TabIndex = 8;
+            this.MultipleCheckBox.Text = "Allow Multiple";
+            this.MultipleCheckBox.UseVisualStyleBackColor = true;
+            this.MultipleCheckBox.CheckedChanged += new System.EventHandler(this.MultipleCheckBox_CheckedChanged);
             // 
             // FileGroupBox
             // 
@@ -112,6 +124,57 @@ namespace Handover_Pack_Compiler
             this.FileGroupBox.TabIndex = 7;
             this.FileGroupBox.TabStop = false;
             this.FileGroupBox.Text = "File Type";
+            // 
+            // SEWarrantyCheckBox
+            // 
+            this.SEWarrantyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SEWarrantyCheckBox.AutoSize = true;
+            this.SEWarrantyCheckBox.Location = new System.Drawing.Point(6, 88);
+            this.SEWarrantyCheckBox.Name = "SEWarrantyCheckBox";
+            this.SEWarrantyCheckBox.Size = new System.Drawing.Size(86, 17);
+            this.SEWarrantyCheckBox.TabIndex = 7;
+            this.SEWarrantyCheckBox.Tag = "SEW";
+            this.SEWarrantyCheckBox.Text = "SE Warranty";
+            this.SEWarrantyCheckBox.UseVisualStyleBackColor = true;
+            this.SEWarrantyCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
+            // 
+            // ModuleDataCheckBox
+            // 
+            this.ModuleDataCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ModuleDataCheckBox.AutoSize = true;
+            this.ModuleDataCheckBox.Location = new System.Drawing.Point(96, 42);
+            this.ModuleDataCheckBox.Name = "ModuleDataCheckBox";
+            this.ModuleDataCheckBox.Size = new System.Drawing.Size(87, 17);
+            this.ModuleDataCheckBox.TabIndex = 6;
+            this.ModuleDataCheckBox.Tag = "MoD";
+            this.ModuleDataCheckBox.Text = "Module Data";
+            this.ModuleDataCheckBox.UseVisualStyleBackColor = true;
+            this.ModuleDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
+            // 
+            // OptimiserDataCheckBox
+            // 
+            this.OptimiserDataCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OptimiserDataCheckBox.AutoSize = true;
+            this.OptimiserDataCheckBox.Location = new System.Drawing.Point(96, 88);
+            this.OptimiserDataCheckBox.Name = "OptimiserDataCheckBox";
+            this.OptimiserDataCheckBox.Size = new System.Drawing.Size(95, 17);
+            this.OptimiserDataCheckBox.TabIndex = 5;
+            this.OptimiserDataCheckBox.Tag = "Opt";
+            this.OptimiserDataCheckBox.Text = "Optimiser Data";
+            this.OptimiserDataCheckBox.UseVisualStyleBackColor = true;
+            this.OptimiserDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
+            // 
+            // ConstantCheckBox
+            // 
+            this.ConstantCheckBox.AutoSize = true;
+            this.ConstantCheckBox.Location = new System.Drawing.Point(6, 42);
+            this.ConstantCheckBox.Name = "ConstantCheckBox";
+            this.ConstantCheckBox.Size = new System.Drawing.Size(87, 17);
+            this.ConstantCheckBox.TabIndex = 4;
+            this.ConstantCheckBox.Tag = "Con";
+            this.ConstantCheckBox.Text = "Constant File";
+            this.ConstantCheckBox.UseVisualStyleBackColor = true;
+            this.ConstantCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
             // InverterDataCheckBox
             // 
@@ -166,7 +229,7 @@ namespace Handover_Pack_Compiler
             // SearchLabel
             // 
             this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(6, 270);
+            this.SearchLabel.Location = new System.Drawing.Point(3, 39);
             this.SearchLabel.Name = "SearchLabel";
             this.SearchLabel.Size = new System.Drawing.Size(76, 13);
             this.SearchLabel.TabIndex = 6;
@@ -175,7 +238,7 @@ namespace Handover_Pack_Compiler
             // FolderLabel
             // 
             this.FolderLabel.AutoSize = true;
-            this.FolderLabel.Location = new System.Drawing.Point(6, 244);
+            this.FolderLabel.Location = new System.Drawing.Point(3, 19);
             this.FolderLabel.Name = "FolderLabel";
             this.FolderLabel.Size = new System.Drawing.Size(73, 13);
             this.FolderLabel.TabIndex = 5;
@@ -185,9 +248,9 @@ namespace Handover_Pack_Compiler
             // 
             this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTextBox.Location = new System.Drawing.Point(6, 286);
+            this.SearchTextBox.Location = new System.Drawing.Point(6, 55);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(209, 20);
+            this.SearchTextBox.Size = new System.Drawing.Size(197, 20);
             this.SearchTextBox.TabIndex = 4;
             this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
@@ -195,9 +258,9 @@ namespace Handover_Pack_Compiler
             // 
             this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.FolderTextBox.Location = new System.Drawing.Point(85, 241);
+            this.FolderTextBox.Location = new System.Drawing.Point(76, 16);
             this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(130, 20);
+            this.FolderTextBox.Size = new System.Drawing.Size(127, 20);
             this.FolderTextBox.TabIndex = 3;
             this.FolderTextBox.TextChanged += new System.EventHandler(this.FolderTextBox_TextChanged);
             this.FolderTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FolderTextBox_KeyPress);
@@ -250,80 +313,33 @@ namespace Handover_Pack_Compiler
             // 
             this.SplitContainer.Panel2.Controls.Add(this.GroupBox);
             this.SplitContainer.Panel2MinSize = 220;
-            this.SplitContainer.Size = new System.Drawing.Size(500, 315);
+            this.SplitContainer.Size = new System.Drawing.Size(500, 333);
             this.SplitContainer.SplitterDistance = 275;
             this.SplitContainer.TabIndex = 2;
             // 
-            // OptimiserDataCheckBox
+            // AddPropertiesGroupBox
             // 
-            this.OptimiserDataCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.OptimiserDataCheckBox.AutoSize = true;
-            this.OptimiserDataCheckBox.Location = new System.Drawing.Point(96, 88);
-            this.OptimiserDataCheckBox.Name = "OptimiserDataCheckBox";
-            this.OptimiserDataCheckBox.Size = new System.Drawing.Size(95, 17);
-            this.OptimiserDataCheckBox.TabIndex = 5;
-            this.OptimiserDataCheckBox.Tag = "Opt";
-            this.OptimiserDataCheckBox.Text = "Optimiser Data";
-            this.OptimiserDataCheckBox.UseVisualStyleBackColor = true;
-            this.OptimiserDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
-            // 
-            // ConstantCheckBox
-            // 
-            this.ConstantCheckBox.AutoSize = true;
-            this.ConstantCheckBox.Location = new System.Drawing.Point(6, 42);
-            this.ConstantCheckBox.Name = "ConstantCheckBox";
-            this.ConstantCheckBox.Size = new System.Drawing.Size(87, 17);
-            this.ConstantCheckBox.TabIndex = 4;
-            this.ConstantCheckBox.Tag = "Con";
-            this.ConstantCheckBox.Text = "Constant File";
-            this.ConstantCheckBox.UseVisualStyleBackColor = true;
-            this.ConstantCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
-            // 
-            // ModuleDataCheckBox
-            // 
-            this.ModuleDataCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ModuleDataCheckBox.AutoSize = true;
-            this.ModuleDataCheckBox.Location = new System.Drawing.Point(96, 42);
-            this.ModuleDataCheckBox.Name = "ModuleDataCheckBox";
-            this.ModuleDataCheckBox.Size = new System.Drawing.Size(87, 17);
-            this.ModuleDataCheckBox.TabIndex = 6;
-            this.ModuleDataCheckBox.Tag = "MoD";
-            this.ModuleDataCheckBox.Text = "Module Data";
-            this.ModuleDataCheckBox.UseVisualStyleBackColor = true;
-            this.ModuleDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
-            // 
-            // SEWarrantyCheckBox
-            // 
-            this.SEWarrantyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SEWarrantyCheckBox.AutoSize = true;
-            this.SEWarrantyCheckBox.Location = new System.Drawing.Point(6, 88);
-            this.SEWarrantyCheckBox.Name = "SEWarrantyCheckBox";
-            this.SEWarrantyCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.SEWarrantyCheckBox.TabIndex = 7;
-            this.SEWarrantyCheckBox.Tag = "SEW";
-            this.SEWarrantyCheckBox.Text = "SE Warranty";
-            this.SEWarrantyCheckBox.UseVisualStyleBackColor = true;
-            this.SEWarrantyCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
-            // 
-            // MultipleCheckBox
-            // 
-            this.MultipleCheckBox.AutoSize = true;
-            this.MultipleCheckBox.Location = new System.Drawing.Point(115, 100);
-            this.MultipleCheckBox.Name = "MultipleCheckBox";
-            this.MultipleCheckBox.Size = new System.Drawing.Size(90, 17);
-            this.MultipleCheckBox.TabIndex = 8;
-            this.MultipleCheckBox.Text = "Allow Multiple";
-            this.MultipleCheckBox.UseVisualStyleBackColor = true;
-            this.MultipleCheckBox.CheckedChanged += new System.EventHandler(this.MultipleCheckBox_CheckedChanged);
+            this.AddPropertiesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddPropertiesGroupBox.Controls.Add(this.SearchLabel);
+            this.AddPropertiesGroupBox.Controls.Add(this.FolderLabel);
+            this.AddPropertiesGroupBox.Controls.Add(this.FolderTextBox);
+            this.AddPropertiesGroupBox.Controls.Add(this.SearchTextBox);
+            this.AddPropertiesGroupBox.Location = new System.Drawing.Point(6, 241);
+            this.AddPropertiesGroupBox.Name = "AddPropertiesGroupBox";
+            this.AddPropertiesGroupBox.Size = new System.Drawing.Size(209, 82);
+            this.AddPropertiesGroupBox.TabIndex = 9;
+            this.AddPropertiesGroupBox.TabStop = false;
+            this.AddPropertiesGroupBox.Text = "Additional Properties";
             // 
             // PackStructureTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SplitContainer);
-            this.MinimumSize = new System.Drawing.Size(500, 315);
+            this.MinimumSize = new System.Drawing.Size(500, 333);
             this.Name = "PackStructureTree";
-            this.Size = new System.Drawing.Size(500, 315);
+            this.Size = new System.Drawing.Size(500, 333);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
             this.FileGroupBox.ResumeLayout(false);
@@ -332,6 +348,8 @@ namespace Handover_Pack_Compiler
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
+            this.AddPropertiesGroupBox.ResumeLayout(false);
+            this.AddPropertiesGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -358,5 +376,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.CheckBox SEWarrantyCheckBox;
         private System.Windows.Forms.CheckBox ModuleDataCheckBox;
         private System.Windows.Forms.CheckBox MultipleCheckBox;
+        private System.Windows.Forms.GroupBox AddPropertiesGroupBox;
     }
 }
