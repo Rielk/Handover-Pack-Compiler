@@ -49,14 +49,14 @@ namespace Handover_Pack_Compiler
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.AddPropertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddPropertiesGenGroupBox = new System.Windows.Forms.GroupBox();
             this.GroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
-            this.AddPropertiesGroupBox.SuspendLayout();
+            this.AddPropertiesGenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TreeView
@@ -82,7 +82,7 @@ namespace Handover_Pack_Compiler
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox.Controls.Add(this.AddPropertiesGroupBox);
+            this.GroupBox.Controls.Add(this.AddPropertiesGenGroupBox);
             this.GroupBox.Controls.Add(this.MultipleCheckBox);
             this.GroupBox.Controls.Add(this.FileGroupBox);
             this.GroupBox.Controls.Add(this.RequiredCheckBox);
@@ -317,20 +317,20 @@ namespace Handover_Pack_Compiler
             this.SplitContainer.SplitterDistance = 275;
             this.SplitContainer.TabIndex = 2;
             // 
-            // AddPropertiesGroupBox
+            // AddPropertiesGenGroupBox
             // 
-            this.AddPropertiesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.AddPropertiesGenGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddPropertiesGroupBox.Controls.Add(this.SearchLabel);
-            this.AddPropertiesGroupBox.Controls.Add(this.FolderLabel);
-            this.AddPropertiesGroupBox.Controls.Add(this.FolderTextBox);
-            this.AddPropertiesGroupBox.Controls.Add(this.SearchTextBox);
-            this.AddPropertiesGroupBox.Location = new System.Drawing.Point(6, 241);
-            this.AddPropertiesGroupBox.Name = "AddPropertiesGroupBox";
-            this.AddPropertiesGroupBox.Size = new System.Drawing.Size(209, 82);
-            this.AddPropertiesGroupBox.TabIndex = 9;
-            this.AddPropertiesGroupBox.TabStop = false;
-            this.AddPropertiesGroupBox.Text = "Additional Properties";
+            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchLabel);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderLabel);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderTextBox);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchTextBox);
+            this.AddPropertiesGenGroupBox.Location = new System.Drawing.Point(6, 241);
+            this.AddPropertiesGenGroupBox.Name = "AddPropertiesGenGroupBox";
+            this.AddPropertiesGenGroupBox.Size = new System.Drawing.Size(209, 82);
+            this.AddPropertiesGenGroupBox.TabIndex = 9;
+            this.AddPropertiesGenGroupBox.TabStop = false;
+            this.AddPropertiesGenGroupBox.Text = "Additional Properties";
             // 
             // PackStructureTree
             // 
@@ -348,8 +348,8 @@ namespace Handover_Pack_Compiler
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
-            this.AddPropertiesGroupBox.ResumeLayout(false);
-            this.AddPropertiesGroupBox.PerformLayout();
+            this.AddPropertiesGenGroupBox.ResumeLayout(false);
+            this.AddPropertiesGenGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -376,6 +376,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.CheckBox SEWarrantyCheckBox;
         private System.Windows.Forms.CheckBox ModuleDataCheckBox;
         private System.Windows.Forms.CheckBox MultipleCheckBox;
-        private System.Windows.Forms.GroupBox AddPropertiesGroupBox;
+        private System.Windows.Forms.GroupBox AddPropertiesGenGroupBox;
     }
 }

@@ -288,11 +288,8 @@ namespace Handover_Pack_Compiler
                 DescriptionTextBox.Text = folder.Description;
                 RequiredCheckBox.Visible = false;
                 MultipleCheckBox.Visible = false;
-                FolderTextBox.Visible = false;
-                FolderLabel.Visible = false;
-                SearchTextBox.Visible = false;
-                SearchLabel.Visible = false;
                 FileGroupBox.Visible = false;
+                AddPropertiesGenGroupBox.Visible = false;
             }
             else if (Node.Tag is Folder.File file)
             {
@@ -303,13 +300,10 @@ namespace Handover_Pack_Compiler
                 RequiredCheckBox.Checked = file.AlwaysRequired;
                 MultipleCheckBox.Visible = true;
                 MultipleCheckBox.Checked = file.AllowMultiple;
-                FolderTextBox.Visible = true;
                 FolderTextBox.Text = file.DefaultFolder.ToString();
-                FolderLabel.Visible = true;
-                SearchTextBox.Visible = true;
                 SearchTextBox.Text = file.SearchTerm;
-                SearchLabel.Visible = true;
                 FileGroupBox.Visible = true;
+                AddProperties_Visability(file);
                 foreach (CheckBox cb in CheckBoxList)
                 {
                     cb.Checked = (string)cb.Tag == file.FileType;
@@ -322,11 +316,8 @@ namespace Handover_Pack_Compiler
                 DescriptionTextBox.Text = CurrentPack.Description;
                 RequiredCheckBox.Visible = false;
                 MultipleCheckBox.Visible = false;
-                FolderTextBox.Visible = false;
-                FolderLabel.Visible = false;
-                SearchTextBox.Visible = false;
-                SearchLabel.Visible = false;
                 FileGroupBox.Visible = false;
+                AddPropertiesGenGroupBox.Visible = false;
             }
             IgnoreTextChange = false;
         }
@@ -437,6 +428,17 @@ namespace Handover_Pack_Compiler
                 }
                 ((CheckBox)sender).Checked = true;
                 IgnoreFileCheckChange = false;
+            }
+        }
+        private void AddProperties_Visability(Folder.File file)
+        {
+            if (file.FileType == "Gen")
+            {
+                AddPropertiesGenGroupBox.Visible = true;
+            }
+            else
+            {
+                AddPropertiesGenGroupBox.Visible = false;
             }
         }
         //End Properties
