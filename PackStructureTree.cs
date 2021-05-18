@@ -290,6 +290,7 @@ namespace Handover_Pack_Compiler
                 MultipleCheckBox.Visible = false;
                 FileGroupBox.Visible = false;
                 AddPropertiesGenGroupBox.Visible = false;
+                AddPropertiesConGroupBox.Visible = false;
             }
             else if (Node.Tag is Folder.File file)
             {
@@ -318,6 +319,7 @@ namespace Handover_Pack_Compiler
                 MultipleCheckBox.Visible = false;
                 FileGroupBox.Visible = false;
                 AddPropertiesGenGroupBox.Visible = false;
+                AddPropertiesConGroupBox.Visible = false;
             }
             IgnoreTextChange = false;
         }
@@ -436,10 +438,17 @@ namespace Handover_Pack_Compiler
             if (file.FileType == "Gen")
             {
                 AddPropertiesGenGroupBox.Visible = true;
+                AddPropertiesConGroupBox.Visible = false;
+            }
+            else if (file.FileType == "Con")
+            {
+                AddPropertiesGenGroupBox.Visible = false;
+                AddPropertiesConGroupBox.Visible = true;
             }
             else
             {
                 AddPropertiesGenGroupBox.Visible = false;
+                AddPropertiesConGroupBox.Visible = false;
             }
         }
         //End Properties

@@ -50,6 +50,7 @@ namespace Handover_Pack_Compiler
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.AddPropertiesGenGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddPropertiesConGroupBox = new System.Windows.Forms.GroupBox();
             this.GroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
@@ -82,6 +83,7 @@ namespace Handover_Pack_Compiler
             this.GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox.Controls.Add(this.AddPropertiesConGroupBox);
             this.GroupBox.Controls.Add(this.AddPropertiesGenGroupBox);
             this.GroupBox.Controls.Add(this.MultipleCheckBox);
             this.GroupBox.Controls.Add(this.FileGroupBox);
@@ -332,6 +334,15 @@ namespace Handover_Pack_Compiler
             this.AddPropertiesGenGroupBox.TabStop = false;
             this.AddPropertiesGenGroupBox.Text = "Additional Properties";
             // 
+            // AddPropertiesConGroupBox
+            // 
+            this.AddPropertiesConGroupBox.Location = new System.Drawing.Point(6, 241);
+            this.AddPropertiesConGroupBox.Name = "AddPropertiesConGroupBox";
+            this.AddPropertiesConGroupBox.Size = new System.Drawing.Size(209, 60);
+            this.AddPropertiesConGroupBox.TabIndex = 10;
+            this.AddPropertiesConGroupBox.TabStop = false;
+            this.AddPropertiesConGroupBox.Text = "Additional Properties";
+            // 
             // PackStructureTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,5 +388,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.CheckBox ModuleDataCheckBox;
         private System.Windows.Forms.CheckBox MultipleCheckBox;
         private System.Windows.Forms.GroupBox AddPropertiesGenGroupBox;
+        private System.Windows.Forms.GroupBox AddPropertiesConGroupBox;
     }
 }
