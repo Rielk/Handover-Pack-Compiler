@@ -420,6 +420,7 @@ namespace Handover_Pack_Compiler
                 if (EditingNode.Tag is Folder.File file)
                 {
                     file.FileType = (string)((CheckBox)sender).Tag;
+                    AddProperties_Visability(file);
                 }
                 IgnoreFileCheckChange = true;
                 foreach (CheckBox cb in CheckBoxList)
