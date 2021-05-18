@@ -9,50 +9,94 @@ namespace Handover_Pack_Compiler
 {
     static class DefaultPath
     {
-        public static string Default()
+        private static string LoopToExisting(string value)
         {
-            return Properties.Settings.Default.CommSitePath;
-        }
-        public static string ProgData()
-        {
-            return Properties.Settings.Default.ProgramDataPath;
-        }
-        public static string CommSite()
-        {
-            if (Properties.Settings.Default.CommSitePath == "")
+            string ret = value;
+            while (!Directory.Exists(ret))
             {
-                Properties.Settings.Default.CommSitePath = Properties.Settings.Default.ProgramDataPath;
+                ret = Directory.GetParent(ret).FullName;
             }
-            return Properties.Settings.Default.CommSitePath;
+            return ret;
         }
-        public static string MPWarranty()
+        public static string Default(string value)
         {
-            if (Properties.Settings.Default.MPWarrantyPath != "")
-            {
-                return Path.GetDirectoryName(Properties.Settings.Default.MPWarrantyPath);
-            }
-            else if (Properties.Settings.Default.CommSitePath != "")
+            if (string.IsNullOrWhiteSpace(value))
             {
                 return Properties.Settings.Default.CommSitePath;
             }
             else
             {
-                return Properties.Settings.Default.ProgramDataPath;
+                return LoopToExisting(value);
             }
         }
-        public static string SEWarrant()
+        public static string ProgData(string value)
         {
-            if (Properties.Settings.Default.SEWarrantyPath != "")
+            if (string.IsNullOrWhiteSpace(value))
             {
-                return Path.GetDirectoryName(Properties.Settings.Default.SEWarrantyPath);
+                return Properties.Settings.Default.ProgramDataPath;
             }
-            else if (Properties.Settings.Default.CommSitePath != "")
+            else
             {
+                return LoopToExisting(value);
+            }
+        }
+        public static string CommSite(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                if (Properties.Settings.Default.CommSitePath == "")
+                {
+                    Properties.Settings.Default.CommSitePath = Properties.Settings.Default.ProgramDataPath;
+                }
                 return Properties.Settings.Default.CommSitePath;
             }
             else
             {
-                return Properties.Settings.Default.ProgramDataPath;
+                return LoopToExisting(value);
+            }
+        }
+        public static string MPWarranty(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                if (Properties.Settings.Default.MPWarrantyPath != "")
+                {
+                    return Path.GetDirectoryName(Properties.Settings.Default.MPWarrantyPath);
+                }
+                else if (Properties.Settings.Default.CommSitePath != "")
+                {
+                    return Properties.Settings.Default.CommSitePath;
+                }
+                else
+                {
+                    return Properties.Settings.Default.ProgramDataPath;
+                }
+            }
+            else
+            {
+                return LoopToExisting(value);
+            }
+        }
+        public static string SEWarrant(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                if (Properties.Settings.Default.SEWarrantyPath != "")
+                {
+                    return Path.GetDirectoryName(Properties.Settings.Default.SEWarrantyPath);
+                }
+                else if (Properties.Settings.Default.CommSitePath != "")
+                {
+                    return Properties.Settings.Default.CommSitePath;
+                }
+                else
+                {
+                    return Properties.Settings.Default.ProgramDataPath;
+                }
+            }
+            else
+            {
+                return LoopToExisting(value);
             }
         }
     }

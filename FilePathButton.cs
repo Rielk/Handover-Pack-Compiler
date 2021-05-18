@@ -26,7 +26,7 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        public Func<string> InitialPathFunction = DefaultPath.Default;
+        public Func<string, string> InitialPathFunction = DefaultPath.Default;
         public string Filter = "All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         public FilePathButton()
@@ -43,7 +43,7 @@ namespace Handover_Pack_Compiler
         {
             file_dialog.Filter = Filter;
             file_dialog.FilterIndex = 0;
-            file_dialog.InitialDirectory = InitialPathFunction();
+            file_dialog.InitialDirectory = InitialPathFunction(Value);
             if (file_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = file_dialog.FileName;

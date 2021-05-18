@@ -26,7 +26,7 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
-        public Func<string> InitialPathFunction = DefaultPath.Default;
+        public Func<string, string> InitialPathFunction = DefaultPath.Default;
         private readonly FolderBrowserDialog folder_dialog = new FolderBrowserDialog();
         public FolderPathButton()
         {
@@ -40,7 +40,7 @@ namespace Handover_Pack_Compiler
         public event EventHandler ValueUpdate;
         private void Button_Click(object sender, EventArgs e)
         {
-            folder_dialog.SelectedPath = InitialPathFunction();
+            folder_dialog.SelectedPath = InitialPathFunction(Value);
             if (folder_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = folder_dialog.SelectedPath;
