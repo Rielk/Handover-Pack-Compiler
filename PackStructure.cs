@@ -91,6 +91,7 @@ namespace Handover_Pack_Compiler
             public bool AlwaysRequired { get; set; } = true;
             public string FileType { get; set; } = "Gen";
             public bool AllowMultiple { get; set; } = false;
+            public string ConstantFile { get; set; } = "";
             public File()
             {
 
@@ -102,6 +103,9 @@ namespace Handover_Pack_Compiler
                 DefaultFolder = other.DefaultFolder;
                 SearchTerm = other.SearchTerm;
                 AlwaysRequired = other.AlwaysRequired;
+                FileType = other.FileType;
+                AllowMultiple = other.AllowMultiple;
+                ConstantFile = other.ConstantFile;
             }
         }
     }
