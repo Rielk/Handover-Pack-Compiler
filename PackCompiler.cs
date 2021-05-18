@@ -35,13 +35,8 @@ namespace Handover_Pack_Compiler
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
 
-            MPWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-            SEWarrantyButton.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-
             ProgDataButton.InitialPathFunction = DefaultPath.ProgData;
             CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
-            MPWarrantyButton.InitialPathFunction = DefaultPath.MPWarranty;
-            SEWarrantyButton.InitialPathFunction = DefaultPath.SEWarrant;
 
             PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml", false);
             if (PackStructureList.Count == 0)
@@ -159,19 +154,7 @@ namespace Handover_Pack_Compiler
 
         private void CommSiteButton_ValueUpdate(object sender, EventArgs e)
         {
-            Properties.Settings.Default.MPWarrantyPath = CommSiteButton.Value;
-            Properties.Settings.Default.Save();
-        }
-
-        private void MPWarrantyButton_ValueUpdate(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.MPWarrantyPath = MPWarrantyButton.Value;
-            Properties.Settings.Default.Save();
-        }
-
-        private void SEWarrantyButton_ValueUpdate(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.SEWarrantyPath = SEWarrantyButton.Value;
+            Properties.Settings.Default.CommSitePath = CommSiteButton.Value;
             Properties.Settings.Default.Save();
         }
 
@@ -185,18 +168,8 @@ namespace Handover_Pack_Compiler
             {
                 Properties.Settings.Default.CommSitePath = "";
             }
-            if (!File.Exists(Properties.Settings.Default.MPWarrantyPath))
-            {
-                Properties.Settings.Default.MPWarrantyPath = "";
-            }
-            if (!File.Exists(Properties.Settings.Default.SEWarrantyPath))
-            {
-                Properties.Settings.Default.SEWarrantyPath = "";
-            }
             ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
             CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
-            MPWarrantyButton.Value = Properties.Settings.Default.MPWarrantyPath;
-            SEWarrantyButton.Value = Properties.Settings.Default.SEWarrantyPath;
         }
         //Setting Tab End
 

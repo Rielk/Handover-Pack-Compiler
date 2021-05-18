@@ -64,8 +64,6 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewSolarEdgeCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.SEWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
-            this.MPWarrantyButton = new Handover_Pack_Compiler.FilePathButton();
             this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
             this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
             this.PackTab = new System.Windows.Forms.TabPage();
@@ -426,8 +424,6 @@ namespace Handover_Pack_Compiler
             // 
             // SettingsTab
             // 
-            this.SettingsTab.Controls.Add(this.SEWarrantyButton);
-            this.SettingsTab.Controls.Add(this.MPWarrantyButton);
             this.SettingsTab.Controls.Add(this.CommSiteButton);
             this.SettingsTab.Controls.Add(this.ProgDataButton);
             this.SettingsTab.Location = new System.Drawing.Point(4, 22);
@@ -436,34 +432,6 @@ namespace Handover_Pack_Compiler
             this.SettingsTab.TabIndex = 3;
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
-            // 
-            // SEWarrantyButton
-            // 
-            this.SEWarrantyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SEWarrantyButton.Location = new System.Drawing.Point(3, 159);
-            this.SEWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
-            this.SEWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
-            this.SEWarrantyButton.Name = "SEWarrantyButton";
-            this.SEWarrantyButton.Size = new System.Drawing.Size(671, 46);
-            this.SEWarrantyButton.TabIndex = 3;
-            this.SEWarrantyButton.Text = "SolarEdge Warranty Path";
-            this.SEWarrantyButton.Value = "";
-            this.SEWarrantyButton.ValueUpdate += new System.EventHandler(this.SEWarrantyButton_ValueUpdate);
-            // 
-            // MPWarrantyButton
-            // 
-            this.MPWarrantyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MPWarrantyButton.Location = new System.Drawing.Point(3, 107);
-            this.MPWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
-            this.MPWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
-            this.MPWarrantyButton.Name = "MPWarrantyButton";
-            this.MPWarrantyButton.Size = new System.Drawing.Size(671, 46);
-            this.MPWarrantyButton.TabIndex = 2;
-            this.MPWarrantyButton.Text = "Mypower Warranty Path";
-            this.MPWarrantyButton.Value = "";
-            this.MPWarrantyButton.ValueUpdate += new System.EventHandler(this.MPWarrantyButton_ValueUpdate);
             // 
             // CommSiteButton
             // 
@@ -714,8 +682,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.Button AddModuleButton;
         private System.Windows.Forms.DataGridView ModuleGridView;
         private System.Windows.Forms.BindingSource ModuleDataSource;
-        private FilePathButton SEWarrantyButton;
-        private FilePathButton MPWarrantyButton;
         private FolderPathButton CommSiteButton;
         private FolderPathButton ProgDataButton;
         private System.Windows.Forms.ComboBox PackStructureDropBox;

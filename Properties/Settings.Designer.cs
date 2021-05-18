@@ -46,29 +46,5 @@ namespace Handover_Pack_Compiler.Properties {
                 this["CommSitePath"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string MPWarrantyPath {
-            get {
-                return ((string)(this["MPWarrantyPath"]));
-            }
-            set {
-                this["MPWarrantyPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SEWarrantyPath {
-            get {
-                return ((string)(this["SEWarrantyPath"]));
-            }
-            set {
-                this["SEWarrantyPath"] = value;
-            }
-        }
     }
 }

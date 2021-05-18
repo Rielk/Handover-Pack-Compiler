@@ -55,49 +55,5 @@ namespace Handover_Pack_Compiler
                 return LoopToExisting(value);
             }
         }
-        public static string MPWarranty(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                if (Properties.Settings.Default.MPWarrantyPath != "")
-                {
-                    return Path.GetDirectoryName(Properties.Settings.Default.MPWarrantyPath);
-                }
-                else if (Properties.Settings.Default.CommSitePath != "")
-                {
-                    return Properties.Settings.Default.CommSitePath;
-                }
-                else
-                {
-                    return Properties.Settings.Default.ProgramDataPath;
-                }
-            }
-            else
-            {
-                return LoopToExisting(value);
-            }
-        }
-        public static string SEWarrant(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                if (Properties.Settings.Default.SEWarrantyPath != "")
-                {
-                    return Path.GetDirectoryName(Properties.Settings.Default.SEWarrantyPath);
-                }
-                else if (Properties.Settings.Default.CommSitePath != "")
-                {
-                    return Properties.Settings.Default.CommSitePath;
-                }
-                else
-                {
-                    return Properties.Settings.Default.ProgramDataPath;
-                }
-            }
-            else
-            {
-                return LoopToExisting(value);
-            }
-        }
     }
 }
