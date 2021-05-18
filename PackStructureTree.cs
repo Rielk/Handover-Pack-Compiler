@@ -441,7 +441,7 @@ namespace Handover_Pack_Compiler
                 AddPropertiesGenGroupBox.Visible = true;
                 AddPropertiesConPathButton.Visible = false;
             }
-            else if (file.FileType == "Con")
+            else if (file.FileType == "Con" | file.FileType == "SEW")
             {
                 AddPropertiesGenGroupBox.Visible = false;
                 AddPropertiesConPathButton.Visible = true;

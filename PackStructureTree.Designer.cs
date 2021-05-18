@@ -336,6 +336,8 @@ namespace Handover_Pack_Compiler
             // 
             // AddPropertiesConPathButton
             // 
+            this.AddPropertiesConPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AddPropertiesConPathButton.Location = new System.Drawing.Point(6, 241);
             this.AddPropertiesConPathButton.MaximumSize = new System.Drawing.Size(5000, 46);
             this.AddPropertiesConPathButton.MinimumSize = new System.Drawing.Size(0, 46);
