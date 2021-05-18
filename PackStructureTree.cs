@@ -304,6 +304,7 @@ namespace Handover_Pack_Compiler
                 FileGroupBox.Visible = true;
                 FolderTextBox.Text = file.DefaultFolder.ToString();
                 SearchTextBox.Text = file.SearchTerm;
+                AddPropertiesConPathButton.Value = file.ConstantFile;
                 AddProperties_Visability(file);
                 foreach (CheckBox cb in CheckBoxList)
                 {
@@ -449,6 +450,14 @@ namespace Handover_Pack_Compiler
             {
                 AddPropertiesGenGroupBox.Visible = false;
                 AddPropertiesConPathButton.Visible = false;
+            }
+        }
+
+        private void AddPropertiesConPathButton_ValueUpdate(object sender, EventArgs e)
+        {
+            if (EditingNode.Tag is Folder.File file)
+            {
+                file.ConstantFile = AddPropertiesConPathButton.Value;
             }
         }
         //End Properties

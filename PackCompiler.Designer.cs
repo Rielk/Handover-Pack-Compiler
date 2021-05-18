@@ -445,7 +445,7 @@ namespace Handover_Pack_Compiler
             this.SEWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
             this.SEWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.SEWarrantyButton.Name = "SEWarrantyButton";
-            this.SEWarrantyButton.Size = new System.Drawing.Size(534, 46);
+            this.SEWarrantyButton.Size = new System.Drawing.Size(671, 46);
             this.SEWarrantyButton.TabIndex = 3;
             this.SEWarrantyButton.Text = "SolarEdge Warranty Path";
             this.SEWarrantyButton.Value = "";
@@ -459,7 +459,7 @@ namespace Handover_Pack_Compiler
             this.MPWarrantyButton.MaximumSize = new System.Drawing.Size(5000, 46);
             this.MPWarrantyButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.MPWarrantyButton.Name = "MPWarrantyButton";
-            this.MPWarrantyButton.Size = new System.Drawing.Size(534, 46);
+            this.MPWarrantyButton.Size = new System.Drawing.Size(671, 46);
             this.MPWarrantyButton.TabIndex = 2;
             this.MPWarrantyButton.Text = "Mypower Warranty Path";
             this.MPWarrantyButton.Value = "";
@@ -473,7 +473,7 @@ namespace Handover_Pack_Compiler
             this.CommSiteButton.MaximumSize = new System.Drawing.Size(5000, 46);
             this.CommSiteButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.CommSiteButton.Name = "CommSiteButton";
-            this.CommSiteButton.Size = new System.Drawing.Size(534, 46);
+            this.CommSiteButton.Size = new System.Drawing.Size(671, 46);
             this.CommSiteButton.TabIndex = 1;
             this.CommSiteButton.Text = "Communication Site Path";
             this.CommSiteButton.Value = "";
@@ -487,7 +487,7 @@ namespace Handover_Pack_Compiler
             this.ProgDataButton.MaximumSize = new System.Drawing.Size(5000, 46);
             this.ProgDataButton.MinimumSize = new System.Drawing.Size(0, 46);
             this.ProgDataButton.Name = "ProgDataButton";
-            this.ProgDataButton.Size = new System.Drawing.Size(534, 46);
+            this.ProgDataButton.Size = new System.Drawing.Size(671, 46);
             this.ProgDataButton.TabIndex = 0;
             this.ProgDataButton.Text = "Program Data Path";
             this.ProgDataButton.Value = "";

@@ -31,6 +31,11 @@ namespace Handover_Pack_Compiler
         {
             this.TreeView = new System.Windows.Forms.TreeView();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.AddPropertiesGenGroupBox = new System.Windows.Forms.GroupBox();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.FolderLabel = new System.Windows.Forms.Label();
+            this.FolderTextBox = new System.Windows.Forms.TextBox();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.MultipleCheckBox = new System.Windows.Forms.CheckBox();
             this.FileGroupBox = new System.Windows.Forms.GroupBox();
             this.SEWarrantyCheckBox = new System.Windows.Forms.CheckBox();
@@ -41,23 +46,18 @@ namespace Handover_Pack_Compiler
             this.ModuleWarrantyCheckBox = new System.Windows.Forms.CheckBox();
             this.GenericCheckBox = new System.Windows.Forms.CheckBox();
             this.SummaryCheckBox = new System.Windows.Forms.CheckBox();
-            this.SearchLabel = new System.Windows.Forms.Label();
-            this.FolderLabel = new System.Windows.Forms.Label();
-            this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.FolderTextBox = new System.Windows.Forms.TextBox();
             this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.AddPropertiesGenGroupBox = new System.Windows.Forms.GroupBox();
             this.AddPropertiesConPathButton = new Handover_Pack_Compiler.FilePathButton();
             this.GroupBox.SuspendLayout();
+            this.AddPropertiesGenGroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
-            this.AddPropertiesGenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TreeView
@@ -96,6 +96,60 @@ namespace Handover_Pack_Compiler
             this.GroupBox.TabIndex = 1;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Properties";
+            // 
+            // AddPropertiesGenGroupBox
+            // 
+            this.AddPropertiesGenGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchLabel);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderLabel);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderTextBox);
+            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchTextBox);
+            this.AddPropertiesGenGroupBox.Location = new System.Drawing.Point(6, 241);
+            this.AddPropertiesGenGroupBox.Name = "AddPropertiesGenGroupBox";
+            this.AddPropertiesGenGroupBox.Size = new System.Drawing.Size(209, 82);
+            this.AddPropertiesGenGroupBox.TabIndex = 9;
+            this.AddPropertiesGenGroupBox.TabStop = false;
+            this.AddPropertiesGenGroupBox.Text = "Additional Properties";
+            // 
+            // SearchLabel
+            // 
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.Location = new System.Drawing.Point(3, 39);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(76, 13);
+            this.SearchLabel.TabIndex = 6;
+            this.SearchLabel.Text = "Search Terms:";
+            // 
+            // FolderLabel
+            // 
+            this.FolderLabel.AutoSize = true;
+            this.FolderLabel.Location = new System.Drawing.Point(3, 19);
+            this.FolderLabel.Name = "FolderLabel";
+            this.FolderLabel.Size = new System.Drawing.Size(73, 13);
+            this.FolderLabel.TabIndex = 5;
+            this.FolderLabel.Text = "Find in Folder:";
+            // 
+            // FolderTextBox
+            // 
+            this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FolderTextBox.Location = new System.Drawing.Point(76, 16);
+            this.FolderTextBox.Name = "FolderTextBox";
+            this.FolderTextBox.Size = new System.Drawing.Size(127, 20);
+            this.FolderTextBox.TabIndex = 3;
+            this.FolderTextBox.TextChanged += new System.EventHandler(this.FolderTextBox_TextChanged);
+            this.FolderTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FolderTextBox_KeyPress);
+            // 
+            // SearchTextBox
+            // 
+            this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchTextBox.Location = new System.Drawing.Point(6, 55);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(197, 20);
+            this.SearchTextBox.TabIndex = 4;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // MultipleCheckBox
             // 
@@ -228,45 +282,6 @@ namespace Handover_Pack_Compiler
             this.SummaryCheckBox.UseVisualStyleBackColor = true;
             this.SummaryCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
             // 
-            // SearchLabel
-            // 
-            this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(3, 39);
-            this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(76, 13);
-            this.SearchLabel.TabIndex = 6;
-            this.SearchLabel.Text = "Search Terms:";
-            // 
-            // FolderLabel
-            // 
-            this.FolderLabel.AutoSize = true;
-            this.FolderLabel.Location = new System.Drawing.Point(3, 19);
-            this.FolderLabel.Name = "FolderLabel";
-            this.FolderLabel.Size = new System.Drawing.Size(73, 13);
-            this.FolderLabel.TabIndex = 5;
-            this.FolderLabel.Text = "Find in Folder:";
-            // 
-            // SearchTextBox
-            // 
-            this.SearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTextBox.Location = new System.Drawing.Point(6, 55);
-            this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(197, 20);
-            this.SearchTextBox.TabIndex = 4;
-            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
-            // 
-            // FolderTextBox
-            // 
-            this.FolderTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FolderTextBox.Location = new System.Drawing.Point(76, 16);
-            this.FolderTextBox.Name = "FolderTextBox";
-            this.FolderTextBox.Size = new System.Drawing.Size(127, 20);
-            this.FolderTextBox.TabIndex = 3;
-            this.FolderTextBox.TextChanged += new System.EventHandler(this.FolderTextBox_TextChanged);
-            this.FolderTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FolderTextBox_KeyPress);
-            // 
             // RequiredCheckBox
             // 
             this.RequiredCheckBox.AutoSize = true;
@@ -319,21 +334,6 @@ namespace Handover_Pack_Compiler
             this.SplitContainer.SplitterDistance = 275;
             this.SplitContainer.TabIndex = 2;
             // 
-            // AddPropertiesGenGroupBox
-            // 
-            this.AddPropertiesGenGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchLabel);
-            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderLabel);
-            this.AddPropertiesGenGroupBox.Controls.Add(this.FolderTextBox);
-            this.AddPropertiesGenGroupBox.Controls.Add(this.SearchTextBox);
-            this.AddPropertiesGenGroupBox.Location = new System.Drawing.Point(6, 241);
-            this.AddPropertiesGenGroupBox.Name = "AddPropertiesGenGroupBox";
-            this.AddPropertiesGenGroupBox.Size = new System.Drawing.Size(209, 82);
-            this.AddPropertiesGenGroupBox.TabIndex = 9;
-            this.AddPropertiesGenGroupBox.TabStop = false;
-            this.AddPropertiesGenGroupBox.Text = "Additional Properties";
-            // 
             // AddPropertiesConPathButton
             // 
             this.AddPropertiesConPathButton.Location = new System.Drawing.Point(6, 241);
@@ -344,6 +344,7 @@ namespace Handover_Pack_Compiler
             this.AddPropertiesConPathButton.TabIndex = 0;
             this.AddPropertiesConPathButton.Text = "Additional Properties";
             this.AddPropertiesConPathButton.Value = "";
+            this.AddPropertiesConPathButton.ValueUpdate += new System.EventHandler(this.AddPropertiesConPathButton_ValueUpdate);
             // 
             // PackStructureTree
             // 
@@ -355,14 +356,14 @@ namespace Handover_Pack_Compiler
             this.Size = new System.Drawing.Size(500, 333);
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
+            this.AddPropertiesGenGroupBox.ResumeLayout(false);
+            this.AddPropertiesGenGroupBox.PerformLayout();
             this.FileGroupBox.ResumeLayout(false);
             this.FileGroupBox.PerformLayout();
             this.SplitContainer.Panel1.ResumeLayout(false);
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
-            this.AddPropertiesGenGroupBox.ResumeLayout(false);
-            this.AddPropertiesGenGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
