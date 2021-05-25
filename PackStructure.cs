@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Handover_Pack_Compiler
 {
@@ -84,6 +85,7 @@ namespace Handover_Pack_Compiler
 
         public class File
         {
+            public CommSitePath CFPath = new CommSitePath("");
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
             public int? DefaultFolder { get; set; } = null;
@@ -91,7 +93,12 @@ namespace Handover_Pack_Compiler
             public bool AlwaysRequired { get; set; } = true;
             public string FileType { get; set; } = "Gen";
             public bool AllowMultiple { get; set; } = false;
-            public string ConstantFile { get; set; } = "";
+            [XmlIgnore]
+            public string ConstantFile
+            {
+                get { return CFPath.FullPath; }
+                set { CFPath.FullPath = value; }
+            }
             public File()
             {
 
