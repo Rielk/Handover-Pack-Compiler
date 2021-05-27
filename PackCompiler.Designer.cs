@@ -30,23 +30,21 @@ namespace Handover_Pack_Compiler
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.OperationTabs = new System.Windows.Forms.TabControl();
-            this.PackTab = new System.Windows.Forms.TabPage();
+            this.StructureTab = new System.Windows.Forms.TabPage();
             this.PackTabSplit = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
             this.DeletePackStructureButton = new System.Windows.Forms.Button();
             this.DuplicatePackStructureButton = new System.Windows.Forms.Button();
-            this.PackStructureDropBox = new System.Windows.Forms.ComboBox();
             this.PackStructureSource = new System.Windows.Forms.BindingSource(this.components);
             this.PackStructureGridView = new System.Windows.Forms.DataGridView();
             this.PackStructureGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,8 +76,10 @@ namespace Handover_Pack_Compiler
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
             this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
+            this.PacksTab = new System.Windows.Forms.TabPage();
+            this.PackStructureDropBox = new System.Windows.Forms.ComboBox();
             this.OperationTabs.SuspendLayout();
-            this.PackTab.SuspendLayout();
+            this.StructureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PackTabSplit)).BeginInit();
             this.PackTabSplit.Panel1.SuspendLayout();
             this.PackTabSplit.Panel2.SuspendLayout();
@@ -100,7 +100,8 @@ namespace Handover_Pack_Compiler
             this.OperationTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OperationTabs.Controls.Add(this.PackTab);
+            this.OperationTabs.Controls.Add(this.StructureTab);
+            this.OperationTabs.Controls.Add(this.PacksTab);
             this.OperationTabs.Controls.Add(this.FilesTab);
             this.OperationTabs.Controls.Add(this.CompileTab);
             this.OperationTabs.Controls.Add(this.ModuleTab);
@@ -112,15 +113,15 @@ namespace Handover_Pack_Compiler
             this.OperationTabs.Size = new System.Drawing.Size(685, 535);
             this.OperationTabs.TabIndex = 0;
             // 
-            // PackTab
+            // StructureTab
             // 
-            this.PackTab.Controls.Add(this.PackTabSplit);
-            this.PackTab.Location = new System.Drawing.Point(4, 22);
-            this.PackTab.Name = "PackTab";
-            this.PackTab.Size = new System.Drawing.Size(677, 509);
-            this.PackTab.TabIndex = 5;
-            this.PackTab.Text = "Pack";
-            this.PackTab.UseVisualStyleBackColor = true;
+            this.StructureTab.Controls.Add(this.PackTabSplit);
+            this.StructureTab.Location = new System.Drawing.Point(4, 22);
+            this.StructureTab.Name = "StructureTab";
+            this.StructureTab.Size = new System.Drawing.Size(677, 509);
+            this.StructureTab.TabIndex = 5;
+            this.StructureTab.Text = "Structure";
+            this.StructureTab.UseVisualStyleBackColor = true;
             // 
             // PackTabSplit
             // 
@@ -133,36 +134,26 @@ namespace Handover_Pack_Compiler
             // 
             // PackTabSplit.Panel1
             // 
-            this.PackTabSplit.Panel1.Controls.Add(this.button1);
             this.PackTabSplit.Panel1.Controls.Add(this.DeletePackStructureButton);
             this.PackTabSplit.Panel1.Controls.Add(this.DuplicatePackStructureButton);
-            this.PackTabSplit.Panel1.Controls.Add(this.PackStructureDropBox);
             this.PackTabSplit.Panel1.Controls.Add(this.PackStructureGridView);
             this.PackTabSplit.Panel1.Controls.Add(this.AddPackStructureButton);
-            this.PackTabSplit.Panel1MinSize = 125;
+            this.PackTabSplit.Panel1MinSize = 100;
             // 
             // PackTabSplit.Panel2
             // 
+            this.PackTabSplit.Panel2.Controls.Add(this.PackStructureDropBox);
             this.PackTabSplit.Panel2.Controls.Add(this.PackTree);
-            this.PackTabSplit.Panel2MinSize = 333;
+            this.PackTabSplit.Panel2MinSize = 355;
             this.PackTabSplit.Size = new System.Drawing.Size(677, 509);
-            this.PackTabSplit.SplitterDistance = 169;
+            this.PackTabSplit.SplitterDistance = 134;
             this.PackTabSplit.TabIndex = 11;
             this.PackTabSplit.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(587, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 21);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Load Structure";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // DeletePackStructureButton
             // 
-            this.DeletePackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeletePackStructureButton.Location = new System.Drawing.Point(558, 144);
+            this.DeletePackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DeletePackStructureButton.Location = new System.Drawing.Point(242, 109);
             this.DeletePackStructureButton.Name = "DeletePackStructureButton";
             this.DeletePackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.DeletePackStructureButton.TabIndex = 9;
@@ -172,30 +163,14 @@ namespace Handover_Pack_Compiler
             // 
             // DuplicatePackStructureButton
             // 
-            this.DuplicatePackStructureButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DuplicatePackStructureButton.Location = new System.Drawing.Point(280, 144);
+            this.DuplicatePackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DuplicatePackStructureButton.Location = new System.Drawing.Point(122, 109);
             this.DuplicatePackStructureButton.Name = "DuplicatePackStructureButton";
             this.DuplicatePackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.DuplicatePackStructureButton.TabIndex = 10;
             this.DuplicatePackStructureButton.Text = "Duplicate Structure";
             this.DuplicatePackStructureButton.UseVisualStyleBackColor = true;
             this.DuplicatePackStructureButton.Click += new System.EventHandler(this.DuplicatePackStructureButton_Click);
-            // 
-            // PackStructureDropBox
-            // 
-            this.PackStructureDropBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PackStructureDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.PackStructureSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Default"));
-            this.PackStructureDropBox.DataSource = this.PackStructureSource;
-            this.PackStructureDropBox.DisplayMember = "Name";
-            this.PackStructureDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PackStructureDropBox.FormattingEnabled = true;
-            this.PackStructureDropBox.Location = new System.Drawing.Point(3, 3);
-            this.PackStructureDropBox.Name = "PackStructureDropBox";
-            this.PackStructureDropBox.Size = new System.Drawing.Size(578, 21);
-            this.PackStructureDropBox.TabIndex = 1;
-            this.PackStructureDropBox.ValueMember = "Name";
-            this.PackStructureDropBox.SelectionChangeCommitted += new System.EventHandler(this.PackStructure_SelectionChanged);
             // 
             // PackStructureSource
             // 
@@ -212,43 +187,43 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackStructureGridView.AutoGenerateColumns = false;
             this.PackStructureGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PackStructureGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PackStructureGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.PackStructureGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PackStructureGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PackStructureGridViewNameTextBoxColumn,
             this.PackStructureGridViewDescriptionTextBoxColumn});
             this.PackStructureGridView.DataBindings.Add(new System.Windows.Forms.Binding("ReadOnly", this.PackStructureSource, "NameIsNull", true));
             this.PackStructureGridView.DataSource = this.PackStructureSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PackStructureGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.PackStructureGridView.DefaultCellStyle = dataGridViewCellStyle23;
             this.PackStructureGridView.EnableHeadersVisualStyles = false;
-            this.PackStructureGridView.Location = new System.Drawing.Point(3, 30);
+            this.PackStructureGridView.Location = new System.Drawing.Point(3, 3);
             this.PackStructureGridView.MultiSelect = false;
             this.PackStructureGridView.Name = "PackStructureGridView";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PackStructureGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PackStructureGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.PackStructureGridView.RowHeadersVisible = false;
             this.PackStructureGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PackStructureGridView.Size = new System.Drawing.Size(669, 109);
+            this.PackStructureGridView.Size = new System.Drawing.Size(669, 100);
             this.PackStructureGridView.TabIndex = 2;
             this.PackStructureGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.PackStructureGridView_CellBeginEdit);
             this.PackStructureGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.PackStructureGridView_CellValidating);
@@ -258,8 +233,8 @@ namespace Handover_Pack_Compiler
             // 
             this.PackStructureGridViewNameTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.PackStructureGridViewNameTextBoxColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle2.NullValue = "Default";
-            this.PackStructureGridViewNameTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.NullValue = "Default";
+            this.PackStructureGridViewNameTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             this.PackStructureGridViewNameTextBoxColumn.HeaderText = "Name";
             this.PackStructureGridViewNameTextBoxColumn.Name = "PackStructureGridViewNameTextBoxColumn";
             this.PackStructureGridViewNameTextBoxColumn.Width = 60;
@@ -275,7 +250,7 @@ namespace Handover_Pack_Compiler
             // AddPackStructureButton
             // 
             this.AddPackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddPackStructureButton.Location = new System.Drawing.Point(3, 144);
+            this.AddPackStructureButton.Location = new System.Drawing.Point(2, 109);
             this.AddPackStructureButton.Name = "AddPackStructureButton";
             this.AddPackStructureButton.Size = new System.Drawing.Size(114, 20);
             this.AddPackStructureButton.TabIndex = 8;
@@ -289,10 +264,10 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PackTree.CurrentPack = null;
-            this.PackTree.Location = new System.Drawing.Point(3, 3);
+            this.PackTree.Location = new System.Drawing.Point(3, 30);
             this.PackTree.MinimumSize = new System.Drawing.Size(500, 333);
             this.PackTree.Name = "PackTree";
-            this.PackTree.Size = new System.Drawing.Size(669, 335);
+            this.PackTree.Size = new System.Drawing.Size(669, 333);
             this.PackTree.TabIndex = 0;
             // 
             // FilesTab
@@ -395,41 +370,41 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModuleGridView.AutoGenerateColumns = false;
             this.ModuleGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ModuleGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ModuleGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.ModuleGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ModuleGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ModuleGridViewNameTextBoxColumn,
             this.ModuleGridViewDatasheetTextBoxColumn,
             this.ModuleGridViewWarrantyTextBoxColumn});
             this.ModuleGridView.DataSource = this.ModuleDataSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle26;
             this.ModuleGridView.EnableHeadersVisualStyles = false;
             this.ModuleGridView.Location = new System.Drawing.Point(6, 127);
             this.ModuleGridView.MultiSelect = false;
             this.ModuleGridView.Name = "ModuleGridView";
             this.ModuleGridView.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ModuleGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ModuleGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.ModuleGridView.RowHeadersVisible = false;
             this.ModuleGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.ModuleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -536,41 +511,41 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InverterGridView.AutoGenerateColumns = false;
             this.InverterGridView.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.InverterGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.InverterGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.InverterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.InverterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.InverterGridViewNameTextBoxColumn,
             this.InverterGridViewDatasheetTextBoxColumn,
             this.InverterGridViewSolarEdgeCheckBoxColumn});
             this.InverterGridView.DataSource = this.InverterDataSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.InverterGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.InverterGridView.DefaultCellStyle = dataGridViewCellStyle29;
             this.InverterGridView.EnableHeadersVisualStyles = false;
             this.InverterGridView.Location = new System.Drawing.Point(6, 127);
             this.InverterGridView.MultiSelect = false;
             this.InverterGridView.Name = "InverterGridView";
             this.InverterGridView.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.InverterGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.InverterGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.InverterGridView.RowHeadersVisible = false;
             this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -645,6 +620,32 @@ namespace Handover_Pack_Compiler
             this.ProgDataButton.Value = "";
             this.ProgDataButton.ValueUpdate += new System.EventHandler(this.ProgDataButton_ValueUpdate);
             // 
+            // PacksTab
+            // 
+            this.PacksTab.Location = new System.Drawing.Point(4, 22);
+            this.PacksTab.Name = "PacksTab";
+            this.PacksTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PacksTab.Size = new System.Drawing.Size(677, 509);
+            this.PacksTab.TabIndex = 6;
+            this.PacksTab.Text = "Packs";
+            this.PacksTab.UseVisualStyleBackColor = true;
+            // 
+            // PackStructureDropBox
+            // 
+            this.PackStructureDropBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PackStructureDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.PackStructureSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Default"));
+            this.PackStructureDropBox.DataSource = this.PackStructureSource;
+            this.PackStructureDropBox.DisplayMember = "Name";
+            this.PackStructureDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PackStructureDropBox.FormattingEnabled = true;
+            this.PackStructureDropBox.Location = new System.Drawing.Point(3, 3);
+            this.PackStructureDropBox.Name = "PackStructureDropBox";
+            this.PackStructureDropBox.Size = new System.Drawing.Size(669, 21);
+            this.PackStructureDropBox.TabIndex = 1;
+            this.PackStructureDropBox.ValueMember = "Name";
+            this.PackStructureDropBox.SelectionChangeCommitted += new System.EventHandler(this.PackStructure_SelectionChanged);
+            // 
             // PackCompiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,7 +656,7 @@ namespace Handover_Pack_Compiler
             this.Text = "Mypower Handover Pack Compiler";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackCompiler_FormClosing);
             this.OperationTabs.ResumeLayout(false);
-            this.PackTab.ResumeLayout(false);
+            this.StructureTab.ResumeLayout(false);
             this.PackTabSplit.Panel1.ResumeLayout(false);
             this.PackTabSplit.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PackTabSplit)).EndInit();
@@ -679,7 +680,7 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.TabPage FilesTab;
         private System.Windows.Forms.TabPage InverterTab;
         private System.Windows.Forms.TabPage SettingsTab;
-        private System.Windows.Forms.TabPage PackTab;
+        private System.Windows.Forms.TabPage StructureTab;
         private System.Windows.Forms.TabControl OperationTabs;
         private System.Windows.Forms.DataGridView InverterGridView;
         private System.Windows.Forms.BindingSource InverterDataSource;
@@ -695,7 +696,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.BindingSource ModuleDataSource;
         private FolderPathButton CommSiteButton;
         private FolderPathButton ProgDataButton;
-        private System.Windows.Forms.ComboBox PackStructureDropBox;
         private System.Windows.Forms.DataGridView PackStructureGridView;
         private System.Windows.Forms.BindingSource PackStructureSource;
         private System.Windows.Forms.Button DuplicatePackStructureButton;
@@ -711,7 +711,8 @@ namespace Handover_Pack_Compiler
         private PackStructureTree PackTree;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewNameTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewDescriptionTextBoxColumn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage PacksTab;
+        private System.Windows.Forms.ComboBox PackStructureDropBox;
     }
 }
 
