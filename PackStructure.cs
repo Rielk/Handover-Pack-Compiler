@@ -16,6 +16,9 @@ namespace Handover_Pack_Compiler
         }
         public string Description { get; set; } = "";
         public List<Folder> Folders = new List<Folder>();
+        public List<InverterData> Inverters = null;
+        public List<ModuleData> Modules = null;
+        public List<OptimiserData> Optimisers = null;
         public PackStructure()
         {
 
@@ -59,7 +62,7 @@ namespace Handover_Pack_Compiler
     {
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
-        public List<File> Files = new List<File>();
+        public List<File> Files { get; } = new List<File>();
         public Folder()
         {
 
@@ -86,6 +89,7 @@ namespace Handover_Pack_Compiler
         public class File
         {
             public CommSitePath CFPath = new CommSitePath("");
+            public CommSitePath GenPath = new CommSitePath();
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
             public int? DefaultFolder { get; set; } = null;
@@ -98,6 +102,12 @@ namespace Handover_Pack_Compiler
             {
                 get { return CFPath.FullPath; }
                 set { CFPath.FullPath = value; }
+            }
+            [XmlIgnore]
+            public string GenericFile
+            {
+                get { return GenPath.FullPath; }
+                set { GenPath.FullPath = value; }
             }
             public File()
             {
@@ -113,6 +123,7 @@ namespace Handover_Pack_Compiler
                 FileType = other.FileType;
                 AllowMultiple = other.AllowMultiple;
                 ConstantFile = other.ConstantFile;
+                GenericFile = other.GenericFile;
             }
         }
     }

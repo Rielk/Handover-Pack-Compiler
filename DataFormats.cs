@@ -47,3 +47,14 @@ public class ModuleData : Data
         set { WPath.FullPath = value; }
     }
 }
+
+public class OptimiserData : Data
+{
+    public CommSitePath DPath = new CommSitePath(null);
+    [XmlIgnore]
+    public string Datasheet
+    {
+        get { return DPath.FullPath; }
+        set { DPath.FullPath = value; }
+    }
+}
