@@ -85,6 +85,7 @@
     <Compile Include="DefaultPath.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="DataFormats.cs" />
+    <Compile Include="FileTypeTag.cs" />
     <Compile Include="FolderPathButton.cs">
       <SubType>UserControl</SubType>
     </Compile>

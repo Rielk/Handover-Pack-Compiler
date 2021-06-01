@@ -38,6 +38,15 @@ namespace Handover_Pack_Compiler
             AddFolderSmallMenuItem.Click += AddFolderMenuItem_Click;
             SmallRightClickMenu.MenuItems.Add(AddFolderSmallMenuItem);
 
+            GenericCheckBox.Tag = FileTypeTag.Generic;
+            ConstantCheckBox.Tag = FileTypeTag.Constant;
+            SummaryCheckBox.Tag = FileTypeTag.Summary;
+            SEWarrantyCheckBox.Tag = FileTypeTag.SolarEdgeWarranty;
+            ModuleWarrantyCheckBox.Tag = FileTypeTag.ModuleWarranty;
+            ModuleDataCheckBox.Tag = FileTypeTag.ModuleData;
+            InverterDataCheckBox.Tag = FileTypeTag.InverterData;
+            OptimiserDataCheckBox.Tag = FileTypeTag.OptimiserData;
+
             CheckBoxList.Add(GenericCheckBox);
             CheckBoxList.Add(ConstantCheckBox);
             CheckBoxList.Add(SummaryCheckBox);
@@ -436,12 +445,12 @@ namespace Handover_Pack_Compiler
         }
         private void AddProperties_Visability(Folder.File file)
         {
-            if (file.FileType == "Gen")
+            if (file.FileType == FileTypeTag.Generic)
             {
                 AddPropertiesGenGroupBox.Visible = true;
                 AddPropertiesConPathButton.Visible = false;
             }
-            else if (file.FileType == "Con" | file.FileType == "SEW")
+            else if (file.FileType == FileTypeTag.Constant | file.FileType == FileTypeTag.SolarEdgeWarranty)
             {
                 AddPropertiesGenGroupBox.Visible = false;
                 AddPropertiesConPathButton.Visible = true;

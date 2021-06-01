@@ -31,6 +31,7 @@ namespace Handover_Pack_Compiler
         {
             this.TreeView = new System.Windows.Forms.TreeView();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.AddPropertiesConPathButton = new Handover_Pack_Compiler.FilePathButton();
             this.AddPropertiesGenGroupBox = new System.Windows.Forms.GroupBox();
             this.SearchLabel = new System.Windows.Forms.Label();
             this.FolderLabel = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@ namespace Handover_Pack_Compiler
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.AddPropertiesConPathButton = new Handover_Pack_Compiler.FilePathButton();
             this.GroupBox.SuspendLayout();
             this.AddPropertiesGenGroupBox.SuspendLayout();
             this.FileGroupBox.SuspendLayout();
@@ -96,6 +96,20 @@ namespace Handover_Pack_Compiler
             this.GroupBox.TabIndex = 1;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "Properties";
+            // 
+            // AddPropertiesConPathButton
+            // 
+            this.AddPropertiesConPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddPropertiesConPathButton.Location = new System.Drawing.Point(6, 241);
+            this.AddPropertiesConPathButton.MaximumSize = new System.Drawing.Size(5000, 46);
+            this.AddPropertiesConPathButton.MinimumSize = new System.Drawing.Size(0, 46);
+            this.AddPropertiesConPathButton.Name = "AddPropertiesConPathButton";
+            this.AddPropertiesConPathButton.Size = new System.Drawing.Size(209, 46);
+            this.AddPropertiesConPathButton.TabIndex = 0;
+            this.AddPropertiesConPathButton.Text = "Properties - Constant File Path";
+            this.AddPropertiesConPathButton.Value = "";
+            this.AddPropertiesConPathButton.ValueUpdate += new System.EventHandler(this.AddPropertiesConPathButton_ValueUpdate);
             // 
             // AddPropertiesGenGroupBox
             // 
@@ -189,7 +203,7 @@ namespace Handover_Pack_Compiler
             this.SEWarrantyCheckBox.Name = "SEWarrantyCheckBox";
             this.SEWarrantyCheckBox.Size = new System.Drawing.Size(86, 17);
             this.SEWarrantyCheckBox.TabIndex = 7;
-            this.SEWarrantyCheckBox.Tag = "SEW";
+            this.SEWarrantyCheckBox.Tag = "";
             this.SEWarrantyCheckBox.Text = "SE Warranty";
             this.SEWarrantyCheckBox.UseVisualStyleBackColor = true;
             this.SEWarrantyCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -202,7 +216,7 @@ namespace Handover_Pack_Compiler
             this.ModuleDataCheckBox.Name = "ModuleDataCheckBox";
             this.ModuleDataCheckBox.Size = new System.Drawing.Size(87, 17);
             this.ModuleDataCheckBox.TabIndex = 6;
-            this.ModuleDataCheckBox.Tag = "MoD";
+            this.ModuleDataCheckBox.Tag = "";
             this.ModuleDataCheckBox.Text = "Module Data";
             this.ModuleDataCheckBox.UseVisualStyleBackColor = true;
             this.ModuleDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -215,7 +229,7 @@ namespace Handover_Pack_Compiler
             this.OptimiserDataCheckBox.Name = "OptimiserDataCheckBox";
             this.OptimiserDataCheckBox.Size = new System.Drawing.Size(95, 17);
             this.OptimiserDataCheckBox.TabIndex = 5;
-            this.OptimiserDataCheckBox.Tag = "Opt";
+            this.OptimiserDataCheckBox.Tag = "";
             this.OptimiserDataCheckBox.Text = "Optimiser Data";
             this.OptimiserDataCheckBox.UseVisualStyleBackColor = true;
             this.OptimiserDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -227,7 +241,7 @@ namespace Handover_Pack_Compiler
             this.ConstantCheckBox.Name = "ConstantCheckBox";
             this.ConstantCheckBox.Size = new System.Drawing.Size(87, 17);
             this.ConstantCheckBox.TabIndex = 4;
-            this.ConstantCheckBox.Tag = "Con";
+            this.ConstantCheckBox.Tag = "";
             this.ConstantCheckBox.Text = "Constant File";
             this.ConstantCheckBox.UseVisualStyleBackColor = true;
             this.ConstantCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -240,7 +254,7 @@ namespace Handover_Pack_Compiler
             this.InverterDataCheckBox.Name = "InverterDataCheckBox";
             this.InverterDataCheckBox.Size = new System.Drawing.Size(88, 17);
             this.InverterDataCheckBox.TabIndex = 3;
-            this.InverterDataCheckBox.Tag = "Inv";
+            this.InverterDataCheckBox.Tag = "";
             this.InverterDataCheckBox.Text = "Inverter Data";
             this.InverterDataCheckBox.UseVisualStyleBackColor = true;
             this.InverterDataCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -253,7 +267,7 @@ namespace Handover_Pack_Compiler
             this.ModuleWarrantyCheckBox.Name = "ModuleWarrantyCheckBox";
             this.ModuleWarrantyCheckBox.Size = new System.Drawing.Size(107, 17);
             this.ModuleWarrantyCheckBox.TabIndex = 2;
-            this.ModuleWarrantyCheckBox.Tag = "MoW";
+            this.ModuleWarrantyCheckBox.Tag = "";
             this.ModuleWarrantyCheckBox.Text = "Module Warranty";
             this.ModuleWarrantyCheckBox.UseVisualStyleBackColor = true;
             this.ModuleWarrantyCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -265,7 +279,7 @@ namespace Handover_Pack_Compiler
             this.GenericCheckBox.Name = "GenericCheckBox";
             this.GenericCheckBox.Size = new System.Drawing.Size(82, 17);
             this.GenericCheckBox.TabIndex = 1;
-            this.GenericCheckBox.Tag = "Gen";
+            this.GenericCheckBox.Tag = "";
             this.GenericCheckBox.Text = "Generic File";
             this.GenericCheckBox.UseVisualStyleBackColor = true;
             this.GenericCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -277,7 +291,7 @@ namespace Handover_Pack_Compiler
             this.SummaryCheckBox.Name = "SummaryCheckBox";
             this.SummaryCheckBox.Size = new System.Drawing.Size(88, 17);
             this.SummaryCheckBox.TabIndex = 0;
-            this.SummaryCheckBox.Tag = "Sum";
+            this.SummaryCheckBox.Tag = "";
             this.SummaryCheckBox.Text = "Summary File";
             this.SummaryCheckBox.UseVisualStyleBackColor = true;
             this.SummaryCheckBox.CheckedChanged += new System.EventHandler(this.FileCheckBox_CheckedChanged);
@@ -333,20 +347,6 @@ namespace Handover_Pack_Compiler
             this.SplitContainer.Size = new System.Drawing.Size(500, 333);
             this.SplitContainer.SplitterDistance = 275;
             this.SplitContainer.TabIndex = 2;
-            // 
-            // AddPropertiesConPathButton
-            // 
-            this.AddPropertiesConPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddPropertiesConPathButton.Location = new System.Drawing.Point(6, 241);
-            this.AddPropertiesConPathButton.MaximumSize = new System.Drawing.Size(5000, 46);
-            this.AddPropertiesConPathButton.MinimumSize = new System.Drawing.Size(0, 46);
-            this.AddPropertiesConPathButton.Name = "AddPropertiesConPathButton";
-            this.AddPropertiesConPathButton.Size = new System.Drawing.Size(209, 46);
-            this.AddPropertiesConPathButton.TabIndex = 0;
-            this.AddPropertiesConPathButton.Text = "Properties - Constant File Path";
-            this.AddPropertiesConPathButton.Value = "";
-            this.AddPropertiesConPathButton.ValueUpdate += new System.EventHandler(this.AddPropertiesConPathButton_ValueUpdate);
             // 
             // PackStructureTree
             // 
