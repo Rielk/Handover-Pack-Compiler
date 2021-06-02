@@ -28,6 +28,12 @@ public class InverterData : Data
         set { DPath.FullPath = value; }
     }
     public bool SolarEdge { get; set; } = false;
+    public InverterData(InverterData other)
+    {
+        DPath = new CommSitePath(null);
+        Datasheet = other.Datasheet;
+        SolarEdge = other.SolarEdge;
+    }
 }
 
 public class ModuleData : Data
@@ -46,6 +52,13 @@ public class ModuleData : Data
         get { return WPath.FullPath; }
         set { WPath.FullPath = value; }
     }
+    public ModuleData(ModuleData other)
+    {
+        DPath = new CommSitePath(null);
+        WPath = new CommSitePath(null);
+        Datasheet = other.Datasheet;
+        Warranty = other.Warranty;
+    }
 }
 
 public class OptimiserData : Data
@@ -56,5 +69,10 @@ public class OptimiserData : Data
     {
         get { return DPath.FullPath; }
         set { DPath.FullPath = value; }
+    }
+    public OptimiserData(OptimiserData other)
+    {
+        DPath = new CommSitePath(null);
+        Datasheet = other.Datasheet;
     }
 }

@@ -32,6 +32,21 @@ namespace Handover_Pack_Compiler
             {
                 Folders.Add(new Folder(folder));
             }
+            Inverters = new List<InverterData>();
+            foreach (InverterData inverter in other.Inverters)
+            {
+                Inverters.Add(new InverterData(inverter));
+            }
+            Modules = new List<ModuleData>();
+            foreach (ModuleData module in other.Modules)
+            {
+                Modules.Add(new ModuleData(module));
+            }
+            Optimisers = new List<OptimiserData>();
+            foreach (OptimiserData optimiser in other.Optimisers)
+            {
+                Optimisers.Add(new OptimiserData(optimiser));
+            }
         }
         public Folder AddFolder(string FolderName)
         {
@@ -49,12 +64,12 @@ namespace Handover_Pack_Compiler
             AddFile(NewFile, folder);
             return NewFile;
         }
-        public void AddFile(Folder.File FileName, string folder)
+        public void AddFile(Folder.File NewFile, string folder)
         {
             Folder AddToFolder = Folders.Find(x => x.Name == folder);
             if (AddToFolder != null)
             {
-                AddToFolder.AddFile(FileName);
+                AddToFolder.AddFile(NewFile);
             }
         }
     }
@@ -88,8 +103,7 @@ namespace Handover_Pack_Compiler
 
         public class File
         {
-            public CommSitePath CFPath = new CommSitePath("");
-            public CommSitePath GenPath = new CommSitePath();
+            public CommSitePath CSPath = new CommSitePath("");
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
             public int? DefaultFolder { get; set; } = null;
@@ -98,16 +112,10 @@ namespace Handover_Pack_Compiler
             public string FileType { get; set; } = FileTypeTag.Generic;
             public bool AllowMultiple { get; set; } = false;
             [XmlIgnore]
-            public string ConstantFile
+            public string Path
             {
-                get { return CFPath.FullPath; }
-                set { CFPath.FullPath = value; }
-            }
-            [XmlIgnore]
-            public string GenericFile
-            {
-                get { return GenPath.FullPath; }
-                set { GenPath.FullPath = value; }
+                get { return CSPath.FullPath; }
+                set { CSPath.FullPath = value; }
             }
             public File()
             {
@@ -122,8 +130,8 @@ namespace Handover_Pack_Compiler
                 AlwaysRequired = other.AlwaysRequired;
                 FileType = other.FileType;
                 AllowMultiple = other.AllowMultiple;
-                ConstantFile = other.ConstantFile;
-                GenericFile = other.GenericFile;
+                CSPath = new CommSitePath(null);
+                Path = other.Path;
             }
         }
     }
