@@ -65,7 +65,6 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewWarrantyTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModuleDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.InverterTab = new System.Windows.Forms.TabPage();
-            this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.EditInverterButton = new System.Windows.Forms.Button();
             this.DeleteInverterButton = new System.Windows.Forms.Button();
             this.AddInverterButton = new System.Windows.Forms.Button();
@@ -73,6 +72,7 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewSolarEdgeCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
             this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
@@ -88,8 +88,8 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
             this.InverterTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,7 +331,7 @@ namespace Handover_Pack_Compiler
             // EditModuleButton
             // 
             this.EditModuleButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditModuleButton.Location = new System.Drawing.Point(276, 362);
+            this.EditModuleButton.Location = new System.Drawing.Point(276, 482);
             this.EditModuleButton.Name = "EditModuleButton";
             this.EditModuleButton.Size = new System.Drawing.Size(114, 20);
             this.EditModuleButton.TabIndex = 12;
@@ -342,7 +342,7 @@ namespace Handover_Pack_Compiler
             // DeleteModuleButton
             // 
             this.DeleteModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteModuleButton.Location = new System.Drawing.Point(557, 362);
+            this.DeleteModuleButton.Location = new System.Drawing.Point(557, 482);
             this.DeleteModuleButton.Name = "DeleteModuleButton";
             this.DeleteModuleButton.Size = new System.Drawing.Size(114, 20);
             this.DeleteModuleButton.TabIndex = 11;
@@ -353,7 +353,7 @@ namespace Handover_Pack_Compiler
             // AddModuleButton
             // 
             this.AddModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddModuleButton.Location = new System.Drawing.Point(6, 362);
+            this.AddModuleButton.Location = new System.Drawing.Point(6, 482);
             this.AddModuleButton.Name = "AddModuleButton";
             this.AddModuleButton.Size = new System.Drawing.Size(114, 20);
             this.AddModuleButton.TabIndex = 10;
@@ -410,7 +410,7 @@ namespace Handover_Pack_Compiler
             this.ModuleGridView.RowHeadersVisible = false;
             this.ModuleGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.ModuleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ModuleGridView.Size = new System.Drawing.Size(665, 350);
+            this.ModuleGridView.Size = new System.Drawing.Size(665, 470);
             this.ModuleGridView.TabIndex = 9;
             // 
             // ModuleGridViewNameTextBoxColumn
@@ -456,14 +456,10 @@ namespace Handover_Pack_Compiler
             this.InverterTab.Text = "Inverter";
             this.InverterTab.UseVisualStyleBackColor = true;
             // 
-            // InverterDataSource
-            // 
-            this.InverterDataSource.DataSource = typeof(InverterData);
-            // 
             // EditInverterButton
             // 
             this.EditInverterButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditInverterButton.Location = new System.Drawing.Point(276, 362);
+            this.EditInverterButton.Location = new System.Drawing.Point(276, 482);
             this.EditInverterButton.Name = "EditInverterButton";
             this.EditInverterButton.Size = new System.Drawing.Size(114, 20);
             this.EditInverterButton.TabIndex = 7;
@@ -474,7 +470,7 @@ namespace Handover_Pack_Compiler
             // DeleteInverterButton
             // 
             this.DeleteInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteInverterButton.Location = new System.Drawing.Point(557, 362);
+            this.DeleteInverterButton.Location = new System.Drawing.Point(557, 482);
             this.DeleteInverterButton.Name = "DeleteInverterButton";
             this.DeleteInverterButton.Size = new System.Drawing.Size(114, 20);
             this.DeleteInverterButton.TabIndex = 6;
@@ -485,7 +481,7 @@ namespace Handover_Pack_Compiler
             // AddInverterButton
             // 
             this.AddInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddInverterButton.Location = new System.Drawing.Point(6, 362);
+            this.AddInverterButton.Location = new System.Drawing.Point(6, 482);
             this.AddInverterButton.Name = "AddInverterButton";
             this.AddInverterButton.Size = new System.Drawing.Size(114, 20);
             this.AddInverterButton.TabIndex = 5;
@@ -542,7 +538,7 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.RowHeadersVisible = false;
             this.InverterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.InverterGridView.Size = new System.Drawing.Size(665, 350);
+            this.InverterGridView.Size = new System.Drawing.Size(665, 470);
             this.InverterGridView.TabIndex = 2;
             // 
             // InverterGridViewNameTextBoxColumn
@@ -571,6 +567,10 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewSolarEdgeCheckBoxColumn.Name = "InverterGridViewSolarEdgeCheckBoxColumn";
             this.InverterGridViewSolarEdgeCheckBoxColumn.ReadOnly = true;
             this.InverterGridViewSolarEdgeCheckBoxColumn.Width = 62;
+            // 
+            // InverterDataSource
+            // 
+            this.InverterDataSource.DataSource = typeof(InverterData);
             // 
             // SettingsTab
             // 
@@ -632,8 +632,8 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
             this.InverterTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
