@@ -373,6 +373,16 @@ namespace Handover_Pack_Compiler
                         SortPackStructures(null);
                     }
                 }
+                else if (((PackStructure)row.DataBoundItem).Name == null)
+                {
+                    DialogResult Confirm = MessageBox.Show("Are you sure you want to restore the default pack?",
+                        "Confirm Delete", MessageBoxButtons.YesNo);
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        PackStructureList[PackStructureList.FindIndex(x => x.Name == null)] = PackStructure.Default();
+                        SortPackStructures(null);
+                    }
+                }
             }
         }
 
@@ -403,8 +413,15 @@ namespace Handover_Pack_Compiler
         private void PackStructure_SelectionChanged(object sender, EventArgs e)
         {
             PackTree.FillPack((PackStructure)PackStructureDropBox.SelectedItem);
+            if (PackTree.CurrentPack.Name == null)
+            {
+                DeletePackStructureButton.Text = "Restore Default";
+            }
+            else
+            {
+                DeletePackStructureButton.Text = "Delete Structure";
+            }
         }
-        #endregion
 
         private void PackStructureGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -414,5 +431,6 @@ namespace Handover_Pack_Compiler
                 SortTrigger = false;
             }
         }
+        #endregion
     }
 }
