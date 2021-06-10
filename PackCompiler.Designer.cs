@@ -101,9 +101,9 @@ namespace Handover_Pack_Compiler
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OperationTabs.Controls.Add(this.StructureTab);
-            this.OperationTabs.Controls.Add(this.PacksTab);
             this.OperationTabs.Controls.Add(this.FilesTab);
             this.OperationTabs.Controls.Add(this.CompileTab);
+            this.OperationTabs.Controls.Add(this.PacksTab);
             this.OperationTabs.Controls.Add(this.ModuleTab);
             this.OperationTabs.Controls.Add(this.InverterTab);
             this.OperationTabs.Controls.Add(this.SettingsTab);
