@@ -281,6 +281,26 @@ namespace Handover_Pack_Compiler
                 Node.Remove();
             }
         }
+
+        private void TreeView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                TreeNode Node = TreeView.SelectedNode;
+                if (Node.Tag is Folder folder)
+                {
+                    CurrentPack.Folders.Remove(folder);
+                    TreeView.SelectedNode = Node.Parent;
+                    Node.Remove();
+                }
+                else if (Node.Tag is Folder.File file)
+                {
+                    ((Folder)Node.Parent.Tag).Files.Remove(file);
+                    TreeView.SelectedNode = Node.Parent;
+                    Node.Remove();
+                }
+            }
+        }
         //End Tree
 
         //Start Properties

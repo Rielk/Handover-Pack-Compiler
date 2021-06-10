@@ -77,6 +77,7 @@ namespace Handover_Pack_Compiler
             this.TreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.TreeView_DragDrop);
             this.TreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeView_DragEnter);
             this.TreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.TreeView_DragOver);
+            this.TreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TreeView_KeyDown);
             // 
             // GroupBox
             // 

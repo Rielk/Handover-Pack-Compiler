@@ -41,35 +41,7 @@ namespace Handover_Pack_Compiler
             PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml", false);
             if (PackStructureList.Count == 0)
             {
-                PackStructure DefaultStructure = new PackStructure() { Description = "Default Pack" };
-                DefaultStructure.AddFolder("1.0  Important Technical Information");
-                DefaultStructure.AddFile("1.1  Health & Safety Guidelines", "1.0  Important Technical Information");
-                DefaultStructure.AddFolder("2.0  General Information");
-                DefaultStructure.AddFile("2.1  System Summary & General Information", "2.0  General Information");
-                DefaultStructure.AddFolder("3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.1  Mypower Installation Warranty", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.2  Module Warranty", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.3  Module Datasheet", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.4  Inverter datasheet", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.4a  Inverter Extended Warranty", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.5  SolarEdge product warranty", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFile("3.6  SolarEdge Optimiser datasheet", "3.0  Guarantees & Datasheets");
-                DefaultStructure.AddFolder("4.0  Electrical");
-                DefaultStructure.AddFile("4.1  Installation schematic", "4.0  Electrical");
-                DefaultStructure.AddFile("4.2  Commissioning test report (AC Cert)", "4.0  Electrical");
-                DefaultStructure.AddFile("4.3  Commissioning test report (DC Cert)", "4.0  Electrical");
-                DefaultStructure.AddFile("4.4  DNO commissioning form (G99 Form A3-1)", "4.0  Electrical");
-                DefaultStructure.AddFile("4.5  Inverter & wiring sign off", "4.0  Electrical");
-                DefaultStructure.AddFile("4.6  DNO commissioning notification", "4.0  Electrical");
-                DefaultStructure.AddFolder("5.0  Predicted Output");
-                DefaultStructure.AddFile("5.1  Summary Report", "5.0  Predicted Output");
-                DefaultStructure.AddFile("5.2  Predicted Output Comparison Tool", "5.0  Predicted Output");
-                DefaultStructure.AddFolder("6.0  Building Regulations - Work Notification");
-                DefaultStructure.AddFile("6.1  NAPIT Work notification details", "6.0  Building Regulations - Work Notification");
-                DefaultStructure.AddFile("6.2  Structural survey certificate", "6.0  Building Regulations - Work Notification");
-                DefaultStructure.AddFolder("7.0  MCS Certificate");
-                DefaultStructure.AddFile("7.1  MCS Certificate", "7.0  MCS Certificate");
-                PackStructureList.Add(DefaultStructure);
+                PackStructureList.Add(PackStructure.Default());
             }
             PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
@@ -81,7 +53,7 @@ namespace Handover_Pack_Compiler
             Utilities.WriteToFile(ModuleList, "Modules.xml", true);
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
-        //General Utilites Start
+        #region General Utilities
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
         {
             bool exists = false;
@@ -143,9 +115,9 @@ namespace Handover_Pack_Compiler
                 return false;
             }
         }
-        //General Utilities End
+        #endregion
 
-        //Setting Tab Start
+        #region Settings Tab
         private void ProgDataButton_ValueUpdate(object sender, EventArgs e)
         {
             Properties.Settings.Default.ProgramDataPath = ProgDataButton.Value;
@@ -171,9 +143,9 @@ namespace Handover_Pack_Compiler
             ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
             CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
         }
-        //Setting Tab End
+        #endregion
 
-        //Inverter Tab Start
+        #region Inverter Tab
         private void AddInverterButton_Click(object sender, EventArgs e)
         {
             InverterValuesForm IVForm = new InverterValuesForm();
@@ -261,9 +233,9 @@ namespace Handover_Pack_Compiler
             }
             CM.ResumeBinding();
         }
-        //Inverter Tab End
+        #endregion
 
-        //Module Tab Start
+        #region Module Tab
         private void AddModuleButton_Click(object sender, EventArgs e)
         {
             ModuleValuesForm MVForm = new ModuleValuesForm();
@@ -352,9 +324,9 @@ namespace Handover_Pack_Compiler
             }
             CM.ResumeBinding();
         }
-        //Module Tab End
+        #endregion
 
-        //Pack Tab Start
+        #region Structure Tab
         private void SortPackStructures()
         {
             PackStructureList.Sort();
@@ -370,7 +342,8 @@ namespace Handover_Pack_Compiler
 
         private void AddPackStructureButton_Click(object sender, EventArgs e)
         {
-            PackStructure NewPack = new PackStructure() { Name = "New Structure" };
+            PackStructure NewPack = PackStructure.Default();
+            NewPack.Name = "New Structure";
             CheckExistingAdd<PackStructure>(PackStructureList, NewPack, true);
             SortPackStructures(NewPack.Name);
         }
@@ -428,6 +401,6 @@ namespace Handover_Pack_Compiler
         {
             PackTree.FillPack((PackStructure)PackStructureDropBox.SelectedItem);
         }
-        //Pack Tab End
+        #endregion
     }
 }
