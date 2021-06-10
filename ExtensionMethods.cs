@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace ExtensionMethods
     {
         public static int NumericCompare(this string x, string y)
         {
+            CompareInfo c = CultureInfo.CurrentCulture.CompareInfo;
             for (int pos = 0; pos < x.Length && pos < y.Length; pos++)
             {
                 //If the values are the same, then conitnue down string.
@@ -20,7 +22,7 @@ namespace ExtensionMethods
                 //As long as both characters aren't digits, compare normally.
                 if (!(char.IsDigit(x[pos]) && char.IsDigit(y[pos])))
                 {
-                    return x[pos].CompareTo(y[pos]);
+                    return c.Compare(x, y, CompareOptions.IgnoreCase);
                 }
 
                 //If both characters are digits, then compare the next digits as one.

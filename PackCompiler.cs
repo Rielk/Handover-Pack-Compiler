@@ -47,13 +47,14 @@ namespace Handover_Pack_Compiler
             SortPackStructures();
         }
 
+        #region General Utilities
         private void PackCompiler_FormClosing(object sender, FormClosingEventArgs e)
         {
             Utilities.WriteToFile(InverterList, "Inverters.xml", true);
             Utilities.WriteToFile(ModuleList, "Modules.xml", true);
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
-        #region General Utilities
+        
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
         {
             bool exists = false;
@@ -377,6 +378,7 @@ namespace Handover_Pack_Compiler
 
         private bool EditTrigger = false;
         private string temp_edit;
+        private bool SortTrigger = false;
         private void PackStructureGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             EditTrigger = true;
@@ -392,6 +394,7 @@ namespace Handover_Pack_Compiler
                     PackStructure NewPack = new PackStructure { Name = (string)e.FormattedValue };
                     string returnedString = CheckExistingName<PackStructure>(PackStructureList, NewPack, true);
                     PackStructureGridView.EditingControl.Text = returnedString;
+                    SortTrigger = true;
                 }
                 EditTrigger = false;
             }
@@ -402,5 +405,14 @@ namespace Handover_Pack_Compiler
             PackTree.FillPack((PackStructure)PackStructureDropBox.SelectedItem);
         }
         #endregion
+
+        private void PackStructureGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (SortTrigger)
+            {
+                SortPackStructures(PackStructureGridView.SelectedRows[0].DataBoundItem.ToString());
+                SortTrigger = false;
+            }
+        }
     }
 }
