@@ -28,7 +28,7 @@ namespace Handover_Pack_Compiler
                 }
             }
         }
-        public static List<T> ReadFromFile<T>(string FileName, bool AddNull) where T : NameCompare, new()
+        public static List<T> ReadFromFile<T>(string FileName) where T : NameCompare, new()
         {
             List<T> ReturnList;
             string filepath = Path.Combine(Properties.Settings.Default.ProgramDataPath, FileName);
@@ -42,10 +42,6 @@ namespace Handover_Pack_Compiler
             else
             {
                 ReturnList = new List<T>();
-            }
-            if (AddNull)
-            {
-                ReturnList.Add(new T());
             }
             return ReturnList;
         }

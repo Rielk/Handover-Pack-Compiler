@@ -52,13 +52,10 @@ namespace Handover_Pack_Compiler
             this.AddPackStructureButton = new System.Windows.Forms.Button();
             this.PackStructureDropBox = new System.Windows.Forms.ComboBox();
             this.PackTree = new Handover_Pack_Compiler.PackStructureTree();
-            this.PacksTab = new System.Windows.Forms.TabPage();
             this.FilesTab = new System.Windows.Forms.TabPage();
             this.CompileTab = new System.Windows.Forms.TabPage();
+            this.PacksTab = new System.Windows.Forms.TabPage();
             this.ModuleTab = new System.Windows.Forms.TabPage();
-            this.ModuleDropBox = new System.Windows.Forms.ComboBox();
-            this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ModuleDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.EditModuleButton = new System.Windows.Forms.Button();
             this.DeleteModuleButton = new System.Windows.Forms.Button();
             this.AddModuleButton = new System.Windows.Forms.Button();
@@ -66,8 +63,9 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewNameTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModuleGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModuleGridViewWarrantyTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModuleDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.InverterTab = new System.Windows.Forms.TabPage();
-            this.InverterDropBox = new System.Windows.Forms.ComboBox();
+            this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.EditInverterButton = new System.Windows.Forms.Button();
             this.DeleteInverterButton = new System.Windows.Forms.Button();
             this.AddInverterButton = new System.Windows.Forms.Button();
@@ -87,10 +85,10 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureSource)).BeginInit();
             this.ModuleTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
             this.InverterTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
@@ -287,16 +285,6 @@ namespace Handover_Pack_Compiler
             this.PackTree.Size = new System.Drawing.Size(669, 333);
             this.PackTree.TabIndex = 0;
             // 
-            // PacksTab
-            // 
-            this.PacksTab.Location = new System.Drawing.Point(4, 22);
-            this.PacksTab.Name = "PacksTab";
-            this.PacksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.PacksTab.Size = new System.Drawing.Size(677, 509);
-            this.PacksTab.TabIndex = 6;
-            this.PacksTab.Text = "Packs";
-            this.PacksTab.UseVisualStyleBackColor = true;
-            // 
             // FilesTab
             // 
             this.FilesTab.Location = new System.Drawing.Point(4, 22);
@@ -316,9 +304,18 @@ namespace Handover_Pack_Compiler
             this.CompileTab.Text = "Compile";
             this.CompileTab.UseVisualStyleBackColor = true;
             // 
+            // PacksTab
+            // 
+            this.PacksTab.Location = new System.Drawing.Point(4, 22);
+            this.PacksTab.Name = "PacksTab";
+            this.PacksTab.Padding = new System.Windows.Forms.Padding(3);
+            this.PacksTab.Size = new System.Drawing.Size(677, 509);
+            this.PacksTab.TabIndex = 6;
+            this.PacksTab.Text = "Packs";
+            this.PacksTab.UseVisualStyleBackColor = true;
+            // 
             // ModuleTab
             // 
-            this.ModuleTab.Controls.Add(this.ModuleDropBox);
             this.ModuleTab.Controls.Add(this.EditModuleButton);
             this.ModuleTab.Controls.Add(this.DeleteModuleButton);
             this.ModuleTab.Controls.Add(this.AddModuleButton);
@@ -331,32 +328,10 @@ namespace Handover_Pack_Compiler
             this.ModuleTab.Text = "Module";
             this.ModuleTab.UseVisualStyleBackColor = true;
             // 
-            // ModuleDropBox
-            // 
-            this.ModuleDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDataSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
-            this.ModuleDropBox.DataSource = this.ModuleDataSource;
-            this.ModuleDropBox.DisplayMember = "Name";
-            this.ModuleDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ModuleDropBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ModuleDropBox.FormattingEnabled = true;
-            this.ModuleDropBox.Location = new System.Drawing.Point(3, 3);
-            this.ModuleDropBox.Name = "ModuleDropBox";
-            this.ModuleDropBox.Size = new System.Drawing.Size(668, 21);
-            this.ModuleDropBox.TabIndex = 13;
-            this.ModuleDropBox.ValueMember = "Name";
-            // 
-            // InverterDataSource
-            // 
-            this.InverterDataSource.DataSource = typeof(InverterData);
-            // 
-            // ModuleDataSource
-            // 
-            this.ModuleDataSource.DataSource = typeof(ModuleData);
-            // 
             // EditModuleButton
             // 
             this.EditModuleButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditModuleButton.Location = new System.Drawing.Point(276, 483);
+            this.EditModuleButton.Location = new System.Drawing.Point(276, 362);
             this.EditModuleButton.Name = "EditModuleButton";
             this.EditModuleButton.Size = new System.Drawing.Size(114, 20);
             this.EditModuleButton.TabIndex = 12;
@@ -367,7 +342,7 @@ namespace Handover_Pack_Compiler
             // DeleteModuleButton
             // 
             this.DeleteModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteModuleButton.Location = new System.Drawing.Point(557, 483);
+            this.DeleteModuleButton.Location = new System.Drawing.Point(557, 362);
             this.DeleteModuleButton.Name = "DeleteModuleButton";
             this.DeleteModuleButton.Size = new System.Drawing.Size(114, 20);
             this.DeleteModuleButton.TabIndex = 11;
@@ -378,7 +353,7 @@ namespace Handover_Pack_Compiler
             // AddModuleButton
             // 
             this.AddModuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddModuleButton.Location = new System.Drawing.Point(6, 483);
+            this.AddModuleButton.Location = new System.Drawing.Point(6, 362);
             this.AddModuleButton.Name = "AddModuleButton";
             this.AddModuleButton.Size = new System.Drawing.Size(114, 20);
             this.AddModuleButton.TabIndex = 10;
@@ -420,7 +395,7 @@ namespace Handover_Pack_Compiler
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ModuleGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.ModuleGridView.EnableHeadersVisualStyles = false;
-            this.ModuleGridView.Location = new System.Drawing.Point(6, 127);
+            this.ModuleGridView.Location = new System.Drawing.Point(6, 6);
             this.ModuleGridView.MultiSelect = false;
             this.ModuleGridView.Name = "ModuleGridView";
             this.ModuleGridView.ReadOnly = true;
@@ -437,8 +412,6 @@ namespace Handover_Pack_Compiler
             this.ModuleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ModuleGridView.Size = new System.Drawing.Size(665, 350);
             this.ModuleGridView.TabIndex = 9;
-            this.ModuleGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ModuleGridView_DataBindingComplete);
-            this.ModuleGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.ModuleGridView_RowValidated);
             // 
             // ModuleGridViewNameTextBoxColumn
             // 
@@ -466,9 +439,12 @@ namespace Handover_Pack_Compiler
             this.ModuleGridViewWarrantyTextBoxColumn.Name = "ModuleGridViewWarrantyTextBoxColumn";
             this.ModuleGridViewWarrantyTextBoxColumn.ReadOnly = true;
             // 
+            // ModuleDataSource
+            // 
+            this.ModuleDataSource.DataSource = typeof(ModuleData);
+            // 
             // InverterTab
             // 
-            this.InverterTab.Controls.Add(this.InverterDropBox);
             this.InverterTab.Controls.Add(this.EditInverterButton);
             this.InverterTab.Controls.Add(this.DeleteInverterButton);
             this.InverterTab.Controls.Add(this.AddInverterButton);
@@ -480,24 +456,14 @@ namespace Handover_Pack_Compiler
             this.InverterTab.Text = "Inverter";
             this.InverterTab.UseVisualStyleBackColor = true;
             // 
-            // InverterDropBox
+            // InverterDataSource
             // 
-            this.InverterDropBox.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.InverterDataSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Please Select..."));
-            this.InverterDropBox.DataSource = this.InverterDataSource;
-            this.InverterDropBox.DisplayMember = "Name";
-            this.InverterDropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.InverterDropBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.InverterDropBox.FormattingEnabled = true;
-            this.InverterDropBox.Location = new System.Drawing.Point(3, 3);
-            this.InverterDropBox.Name = "InverterDropBox";
-            this.InverterDropBox.Size = new System.Drawing.Size(668, 21);
-            this.InverterDropBox.TabIndex = 8;
-            this.InverterDropBox.ValueMember = "Name";
+            this.InverterDataSource.DataSource = typeof(InverterData);
             // 
             // EditInverterButton
             // 
             this.EditInverterButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditInverterButton.Location = new System.Drawing.Point(276, 483);
+            this.EditInverterButton.Location = new System.Drawing.Point(276, 362);
             this.EditInverterButton.Name = "EditInverterButton";
             this.EditInverterButton.Size = new System.Drawing.Size(114, 20);
             this.EditInverterButton.TabIndex = 7;
@@ -508,7 +474,7 @@ namespace Handover_Pack_Compiler
             // DeleteInverterButton
             // 
             this.DeleteInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteInverterButton.Location = new System.Drawing.Point(557, 483);
+            this.DeleteInverterButton.Location = new System.Drawing.Point(557, 362);
             this.DeleteInverterButton.Name = "DeleteInverterButton";
             this.DeleteInverterButton.Size = new System.Drawing.Size(114, 20);
             this.DeleteInverterButton.TabIndex = 6;
@@ -519,7 +485,7 @@ namespace Handover_Pack_Compiler
             // AddInverterButton
             // 
             this.AddInverterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddInverterButton.Location = new System.Drawing.Point(6, 483);
+            this.AddInverterButton.Location = new System.Drawing.Point(6, 362);
             this.AddInverterButton.Name = "AddInverterButton";
             this.AddInverterButton.Size = new System.Drawing.Size(114, 20);
             this.AddInverterButton.TabIndex = 5;
@@ -561,7 +527,7 @@ namespace Handover_Pack_Compiler
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.InverterGridView.DefaultCellStyle = dataGridViewCellStyle9;
             this.InverterGridView.EnableHeadersVisualStyles = false;
-            this.InverterGridView.Location = new System.Drawing.Point(6, 127);
+            this.InverterGridView.Location = new System.Drawing.Point(6, 6);
             this.InverterGridView.MultiSelect = false;
             this.InverterGridView.Name = "InverterGridView";
             this.InverterGridView.ReadOnly = true;
@@ -578,8 +544,6 @@ namespace Handover_Pack_Compiler
             this.InverterGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.InverterGridView.Size = new System.Drawing.Size(665, 350);
             this.InverterGridView.TabIndex = 2;
-            this.InverterGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.InverterGridView_DataBindingComplete);
-            this.InverterGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.InverterGridView_RowValidated);
             // 
             // InverterGridViewNameTextBoxColumn
             // 
@@ -665,10 +629,10 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureSource)).EndInit();
             this.ModuleTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
             this.InverterTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -688,8 +652,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.Button AddInverterButton;
         private System.Windows.Forms.Button DeleteInverterButton;
         private System.Windows.Forms.Button EditInverterButton;
-        private System.Windows.Forms.ComboBox InverterDropBox;
-        private System.Windows.Forms.ComboBox ModuleDropBox;
         private System.Windows.Forms.Button EditModuleButton;
         private System.Windows.Forms.Button DeleteModuleButton;
         private System.Windows.Forms.Button AddModuleButton;

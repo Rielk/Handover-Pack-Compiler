@@ -27,18 +27,18 @@ namespace Handover_Pack_Compiler
             }
             LoadFilePaths();
 
-            InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml", true);
+            InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml");
             InverterDataSource.DataSource = InverterList;
             SortInverters();
 
-            ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml", true);
+            ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
 
             ProgDataButton.InitialPathFunction = DefaultPath.ProgData;
             CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
 
-            PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml", false);
+            PackStructureList = Utilities.ReadFromFile<PackStructure>("Pack Structures.xml");
             if (PackStructureList.Count == 0)
             {
                 PackStructureList.Add(PackStructure.Default());
@@ -209,30 +209,13 @@ namespace Handover_Pack_Compiler
         private void SortInverters(string selection)
         {
             SortInverters();
-            InverterData SelectedData = new InverterData() { Name = selection };
-            InverterDropBox.SelectedItem = SelectedData;
-        }
-
-        private void InverterGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (InverterGridView.Rows.Count > 0)
+            foreach (DataGridViewRow row in InverterGridView.Rows)
             {
-                CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
-                CM.SuspendBinding();
-                InverterGridView.Rows[0].Visible = false;
-                CM.ResumeBinding();
+                if (((InverterData)row.DataBoundItem).Name == selection)
+                {
+                    row.Selected = true;
+                }
             }
-        }
-
-        private void InverterGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            CurrencyManager CM = (CurrencyManager)BindingContext[InverterGridView.DataSource];
-            CM.SuspendBinding();
-            if (InverterGridView.Rows[0].Visible)
-            {
-                InverterGridView.Rows[0].Visible = false;
-            }
-            CM.ResumeBinding();
         }
         #endregion
 
@@ -299,31 +282,13 @@ namespace Handover_Pack_Compiler
         private void SortModules(string selection)
         {
             SortModules();
-            ModuleData SelectedData = new ModuleData() { Name = selection };
-            ModuleDropBox.SelectedItem = SelectedData;
-        }
-
-        private void ModuleGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if (ModuleGridView.Rows.Count > 0)
+            foreach (DataGridViewRow row in ModuleGridView.Rows)
             {
-                CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
-                CM.SuspendBinding();
-                ModuleGridView.Rows[0].Visible = false;
-                CM.ResumeBinding();
+                if (((ModuleData)row.DataBoundItem).Name == selection)
+                {
+                    row.Selected = true;
+                }
             }
-        }
-
-        private void ModuleGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            CurrencyManager CM = (CurrencyManager)BindingContext[ModuleGridView.DataSource];
-            CM.SuspendBinding();
-            if (ModuleGridView.Rows[0].Visible)
-            {
-
-                ModuleGridView.Rows[0].Visible = false;
-            }
-            CM.ResumeBinding();
         }
         #endregion
 
