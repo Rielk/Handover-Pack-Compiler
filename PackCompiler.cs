@@ -89,8 +89,8 @@ namespace Handover_Pack_Compiler
             {
                 if (CheckExisting<T>(list, ToAdd))
                 {
-                    DialogResult Confirm = MessageBox.Show("\"" + ToAdd.ToString() +
-                            "\"already exists. Do you want to replace it?", "Confirm Replace", MessageBoxButtons.YesNo);
+                    DialogResult Confirm = CMessageBox.Show("Confirm Replace", "\"" + ToAdd.ToString() +
+                            "\"already exists. Do you want to replace it?", "Yes", "No");
                     if (Confirm == DialogResult.Yes)
                     {
                         list.Remove(ToAdd);
@@ -171,8 +171,8 @@ namespace Handover_Pack_Compiler
             {
                 if (((InverterData)row.DataBoundItem).Name != null)
                 {
-                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Inverter: " +
-                        ((InverterData)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Inverter: " +
+                        ((InverterData)row.DataBoundItem).ToString(), "Yes", "No");
                     if (Confirm == DialogResult.Yes)
                     {
                         InverterList.Remove((InverterData)row.DataBoundItem);
@@ -244,8 +244,8 @@ namespace Handover_Pack_Compiler
             {
                 if (((ModuleData)row.DataBoundItem).Name != null)
                 {
-                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Module: " +
-                        ((ModuleData)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Module: " +
+                        ((ModuleData)row.DataBoundItem).ToString(), "Yes", "No");
                     if (Confirm == DialogResult.Yes)
                     {
                         ModuleList.Remove((ModuleData)row.DataBoundItem);
@@ -330,8 +330,8 @@ namespace Handover_Pack_Compiler
             {
                 if (((PackStructure)row.DataBoundItem).Name != null)
                 {
-                    DialogResult Confirm = MessageBox.Show("Are you sure you want to delete the Structure: " +
-                        ((PackStructure)row.DataBoundItem).ToString(), "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Structure: " +
+                        ((PackStructure)row.DataBoundItem).ToString(), "Yes", "No");
                     if (Confirm == DialogResult.Yes)
                     {
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
@@ -340,8 +340,8 @@ namespace Handover_Pack_Compiler
                 }
                 else if (((PackStructure)row.DataBoundItem).Name == null)
                 {
-                    DialogResult Confirm = MessageBox.Show("Are you sure you want to restore the default pack?",
-                        "Confirm Delete", MessageBoxButtons.YesNo);
+                    DialogResult Confirm = CMessageBox.Show("Confirm Delete",
+                        "Are you sure you want to restore the default pack?", "Yes", "No");
                     if (Confirm == DialogResult.Yes)
                     {
                         PackStructureList[PackStructureList.FindIndex(x => x.Name == null)] = PackStructure.Default();
@@ -394,6 +394,15 @@ namespace Handover_Pack_Compiler
             {
                 SortPackStructures(PackStructureGridView.SelectedRows[0].DataBoundItem.ToString());
                 SortTrigger = false;
+            }
+        }
+
+        private void LoadPackStructureButton_Click(object sender, EventArgs e)
+        {
+            NewPackNumberRequest NumberDialog = new NewPackNumberRequest();
+            if (NumberDialog.ShowDialog() == DialogResult.OK)
+            {
+                int CustomerNumber = NumberDialog.Result;
             }
         }
         #endregion

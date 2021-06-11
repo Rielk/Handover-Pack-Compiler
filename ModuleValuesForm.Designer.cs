@@ -165,6 +165,7 @@ namespace Handover_Pack_Compiler
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelButton2;
             this.ClientSize = new System.Drawing.Size(487, 195);
+            this.ControlBox = false;
             this.Controls.Add(this.WarrantyGroup);
             this.Controls.Add(this.DatasheetGroup);
             this.Controls.Add(this.NameGroup);
@@ -174,8 +175,10 @@ namespace Handover_Pack_Compiler
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModuleValuesForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Module Properties";
+            this.TopMost = true;
             this.DatasheetGroup.ResumeLayout(false);
             this.DatasheetGroup.PerformLayout();
             this.NameGroup.ResumeLayout(false);

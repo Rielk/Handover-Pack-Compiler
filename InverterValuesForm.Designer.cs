@@ -148,6 +148,7 @@ namespace Handover_Pack_Compiler
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.CancelButton2;
             this.ClientSize = new System.Drawing.Size(487, 143);
+            this.ControlBox = false;
             this.Controls.Add(this.CancelButton2);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.SolarEdgeGroup);
@@ -157,8 +158,10 @@ namespace Handover_Pack_Compiler
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InverterValuesForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Inverter Properties";
+            this.TopMost = true;
             this.DatasheetGroup.ResumeLayout(false);
             this.DatasheetGroup.PerformLayout();
             this.NameGroup.ResumeLayout(false);

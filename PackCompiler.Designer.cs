@@ -43,6 +43,7 @@ namespace Handover_Pack_Compiler
             this.OperationTabs = new System.Windows.Forms.TabControl();
             this.StructureTab = new System.Windows.Forms.TabPage();
             this.PackTabSplit = new System.Windows.Forms.SplitContainer();
+            this.LoadPackStructureButton = new System.Windows.Forms.Button();
             this.DeletePackStructureButton = new System.Windows.Forms.Button();
             this.DuplicatePackStructureButton = new System.Windows.Forms.Button();
             this.PackStructureGridView = new System.Windows.Forms.DataGridView();
@@ -132,6 +133,7 @@ namespace Handover_Pack_Compiler
             // 
             // PackTabSplit.Panel1
             // 
+            this.PackTabSplit.Panel1.Controls.Add(this.LoadPackStructureButton);
             this.PackTabSplit.Panel1.Controls.Add(this.DeletePackStructureButton);
             this.PackTabSplit.Panel1.Controls.Add(this.DuplicatePackStructureButton);
             this.PackTabSplit.Panel1.Controls.Add(this.PackStructureGridView);
@@ -147,6 +149,17 @@ namespace Handover_Pack_Compiler
             this.PackTabSplit.SplitterDistance = 134;
             this.PackTabSplit.TabIndex = 11;
             this.PackTabSplit.TabStop = false;
+            // 
+            // LoadPackStructureButton
+            // 
+            this.LoadPackStructureButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadPackStructureButton.Location = new System.Drawing.Point(558, 109);
+            this.LoadPackStructureButton.Name = "LoadPackStructureButton";
+            this.LoadPackStructureButton.Size = new System.Drawing.Size(114, 20);
+            this.LoadPackStructureButton.TabIndex = 11;
+            this.LoadPackStructureButton.Text = "Load as New Pack";
+            this.LoadPackStructureButton.UseVisualStyleBackColor = true;
+            this.LoadPackStructureButton.Click += new System.EventHandler(this.LoadPackStructureButton_Click);
             // 
             // DeletePackStructureButton
             // 
@@ -676,6 +689,7 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewTextBoxColumn PackStructureGridViewDescriptionTextBoxColumn;
         private System.Windows.Forms.TabPage PacksTab;
         private System.Windows.Forms.ComboBox PackStructureDropBox;
+        private System.Windows.Forms.Button LoadPackStructureButton;
     }
 }
 
