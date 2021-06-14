@@ -12,19 +12,50 @@ namespace Handover_Pack_Compiler
 {
     public partial class NewPackNumberRequest : Form
     {
-        public int Result;
+        public string Result;
         public NewPackNumberRequest()
         {
             InitializeComponent();
-            Result = 0;
+            ActiveControl = NumberBox;
+            Result = "0000";
         }
 
         private void NumberBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (NumberBox.TextLength < 4)
             {
-                e.Handled = true;
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
+            else if (NumberBox.TextLength == 4)
+            {
+                if (char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void OkButt_Click(object sender, EventArgs e)
+        {
+            Result = NumberBox.Text;
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void CancelButt_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

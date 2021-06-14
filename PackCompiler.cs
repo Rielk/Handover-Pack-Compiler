@@ -402,7 +402,7 @@ namespace Handover_Pack_Compiler
             NewPackNumberRequest NumberDialog = new NewPackNumberRequest();
             if (NumberDialog.ShowDialog() == DialogResult.OK)
             {
-                int CustomerNumber = NumberDialog.Result;
+                string CustomerNumber = NumberDialog.Result;
             }
         }
         #endregion

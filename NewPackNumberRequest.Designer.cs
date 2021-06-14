@@ -49,6 +49,7 @@ namespace Handover_Pack_Compiler
             this.CancelButt.TabIndex = 3;
             this.CancelButt.Text = "Cancel";
             this.CancelButt.UseVisualStyleBackColor = true;
+            this.CancelButt.Click += new System.EventHandler(this.CancelButt_Click);
             // 
             // OkButt
             // 
@@ -59,6 +60,7 @@ namespace Handover_Pack_Compiler
             this.OkButt.TabIndex = 4;
             this.OkButt.Text = "Ok";
             this.OkButt.UseVisualStyleBackColor = true;
+            this.OkButt.Click += new System.EventHandler(this.OkButt_Click);
             // 
             // NumberBox
             // 
@@ -67,7 +69,7 @@ namespace Handover_Pack_Compiler
             this.NumberBox.Location = new System.Drawing.Point(12, 7);
             this.NumberBox.Name = "NumberBox";
             this.NumberBox.Size = new System.Drawing.Size(95, 20);
-            this.NumberBox.TabIndex = 5;
+            this.NumberBox.TabIndex = 1;
             this.NumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberBox_KeyPress);
             // 
             // ButtonPanel
