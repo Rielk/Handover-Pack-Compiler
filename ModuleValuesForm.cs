@@ -52,7 +52,7 @@ namespace Handover_Pack_Compiler
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                string path = Path.Combine(Properties.Settings.Default.CommSitePath, "Technical Area",
+                string path = Path.Combine(PackPaths.TechnicalArea,
                     "SOLAR PV", "PV Modules", "Hanwah Q Cells", "Datasheets");
                 file_dialog.InitialDirectory = path;
             }
@@ -78,7 +78,7 @@ namespace Handover_Pack_Compiler
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                string path = Path.Combine(Properties.Settings.Default.CommSitePath, "Technical Area",
+                string path = Path.Combine(PackPaths.TechnicalArea,
                     "SOLAR PV", "PV Modules", "Hanwah Q Cells", "Warranties");
                 file_dialog.InitialDirectory = path;
             }

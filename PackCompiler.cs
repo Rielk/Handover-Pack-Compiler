@@ -21,10 +21,7 @@ namespace Handover_Pack_Compiler
         public PackCompiler()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.ProgramDataPath == "")
-            {
-                Properties.Settings.Default.ProgramDataPath = Application.UserAppDataPath;
-            }
+            CheckFilePaths();
             LoadFilePaths();
 
             InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml");
@@ -131,18 +128,33 @@ namespace Handover_Pack_Compiler
             Properties.Settings.Default.Save();
         }
 
-        private void LoadFilePaths()
+        private void CheckFilePaths()
         {
             if (!Directory.Exists(Properties.Settings.Default.ProgramDataPath))
             {
                 Properties.Settings.Default.ProgramDataPath = "";
             }
+            if (Properties.Settings.Default.ProgramDataPath == "")
+            {
+                Properties.Settings.Default.ProgramDataPath = Application.UserAppDataPath;
+            }
             if (!Directory.Exists(Properties.Settings.Default.CommSitePath))
             {
                 Properties.Settings.Default.CommSitePath = "";
             }
+        }
+
+        private void LoadFilePaths()
+        {
             ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
             CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
+        }
+        private void OperationTabs_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (OperationTabs.SelectedTab.Text == "Settings")
+            {
+                LoadFilePaths();
+            }
         }
         #endregion
 
@@ -406,5 +418,6 @@ namespace Handover_Pack_Compiler
             }
         }
         #endregion
+
     }
 }

@@ -52,7 +52,7 @@ namespace Handover_Pack_Compiler
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {
-                string path = Path.Combine(Properties.Settings.Default.CommSitePath, "Technical Area", "SOLAR PV", "Inverters");
+                string path = Path.Combine(PackPaths.TechnicalArea, "SOLAR PV", "Inverters");
                 file_dialog.InitialDirectory = path;
             }
             else

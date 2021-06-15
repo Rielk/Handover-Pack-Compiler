@@ -111,6 +111,7 @@ namespace Handover_Pack_Compiler
             this.OperationTabs.SelectedIndex = 0;
             this.OperationTabs.Size = new System.Drawing.Size(685, 535);
             this.OperationTabs.TabIndex = 0;
+            this.OperationTabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.OperationTabs_Selecting);
             // 
             // StructureTab
             // 

@@ -111,6 +111,12 @@
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NameCompare.cs" />
+    <Compile Include="CommSiteRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommSiteRequest.Designer.cs">
+      <DependentUpon>CommSiteRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewPackNumberRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,7 @@
     <Compile Include="FilePathButton.Designer.cs">
       <DependentUpon>FilePathButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="PackPath.cs" />
     <Compile Include="PackStructure.cs" />
     <Compile Include="PackStructureTree.cs">
       <SubType>UserControl</SubType>
@@ -152,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModuleValuesForm.resx">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommSiteRequest.resx">
+      <DependentUpon>CommSiteRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewPackNumberRequest.resx">
       <DependentUpon>NewPackNumberRequest.cs</DependentUpon>

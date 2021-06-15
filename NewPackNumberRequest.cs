@@ -47,7 +47,7 @@ namespace Handover_Pack_Compiler
 
         private void OkButt_Click(object sender, EventArgs e)
         {
-            Result = NumberBox.Text;
+            Result = NumberBox.Text.Trim();
             DialogResult = DialogResult.OK;
             Close();
         }

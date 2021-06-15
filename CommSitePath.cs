@@ -30,7 +30,7 @@ namespace Handover_Pack_Compiler
         public string GetFullPath()
         {
             if (InCommSite)
-            { return (Extension == null) ? null : Path.Combine(Properties.Settings.Default.CommSitePath, Extension); }
+            { return (Extension == null) ? null : Path.Combine(PackPaths.CommunicationSite, Extension); }
             else
             { return Extension; }
         }
@@ -39,9 +39,10 @@ namespace Handover_Pack_Compiler
         {
             string parent = value;
             string ext = "";
+            string communicationSite = PackPaths.CommunicationSite;
             while (!string.IsNullOrEmpty(parent))
             {
-                if (parent == Properties.Settings.Default.CommSitePath)
+                if (parent == communicationSite)
                 {
                     Extension = ext;
                     InCommSite = true;
