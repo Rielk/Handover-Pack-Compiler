@@ -78,5 +78,9 @@ namespace Handover_Pack_Compiler
         }
         public string IDCustomerName { get { return new DirectoryInfo(CustomerFolder.FullPath).Name; } }
         public string CustomerName { get { string IDCN = IDCustomerName; return IDCN.Remove(0, IDCN.IndexOf(" ") + 1); } }
+        public string CustomerNumberFolderN(int Folder)
+        {
+            return Utilities.OpenFolderNumber(Folder, CustomerFolder.FullPath);
+        }
     }
 }
