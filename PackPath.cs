@@ -10,7 +10,8 @@ namespace Handover_Pack_Compiler
 {
     public class PackPaths
     {
-        string CustomerNumber = "0000";
+        public readonly string CustomerNumber = "0000";
+        public readonly CommSitePath CustomerFolder = new CommSitePath(null);
         public static string CommunicationSite
         {
             get
@@ -58,6 +59,24 @@ namespace Handover_Pack_Compiler
         public PackPaths(string cn)
         {
             CustomerNumber = cn;
+            List<string> results = Utilities.FileStarting(CustomerNumber, EnquiriesAndOrders);
+            if (results.Count > 1)
+            {
+                throw new NotImplementedException("Could be refering to many different customers.");
+            }
+            else if (results.Count == 0)
+            {
+                CustomerFolder.FullPath = null;
+            }
+            else
+            {
+                CustomerFolder.FullPath = results[0];
+            }
         }
+        public PackPaths(int cn) : this(cn.ToString("D4"))
+        {
+        }
+        public string IDCustomerName { get { return new DirectoryInfo(CustomerFolder.FullPath).Name; } }
+        public string CustomerName { get { string IDCN = IDCustomerName; return IDCN.Remove(0, IDCN.IndexOf(" ") + 1); } }
     }
 }

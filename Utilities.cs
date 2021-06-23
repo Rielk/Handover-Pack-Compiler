@@ -45,5 +45,28 @@ namespace Handover_Pack_Compiler
             }
             return ReturnList;
         }
+        public static List<string> FileStarting(string Start, string InPath)
+        {
+            DirectoryInfo SearchDirectory = new DirectoryInfo(InPath);
+            List<string> Files = (from f in SearchDirectory.GetFiles("*") where f.Name.StartsWith(Start) select f.FullName).ToList();
+            return Files;
+        }
+        public static string OpenFolderNumber(int Folder, string InPath)
+        {
+            string Search = Folder.ToString() + ". ";
+            List<string> results = FileStarting(Search, InPath);
+            if (results.Count > 1)
+            {
+                throw new NotImplementedException("Could be refering to many different folder.");
+            }
+            else if (results.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return results[0];
+            }
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace Handover_Pack_Compiler
         private readonly List<InverterData> InverterList;
         private readonly List<ModuleData> ModuleList;
         private readonly List<PackStructure> PackStructureList;
+        private PackPaths ActivePackPaths = null;
         public PackCompiler()
         {
             InitializeComponent();
@@ -415,6 +416,7 @@ namespace Handover_Pack_Compiler
             if (NumberDialog.ShowDialog() == DialogResult.OK)
             {
                 string CustomerNumber = NumberDialog.Result;
+                ActivePackPaths = new PackPaths(CustomerNumber);
             }
         }
         #endregion
