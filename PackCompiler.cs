@@ -19,6 +19,7 @@ namespace Handover_Pack_Compiler
         private readonly List<ModuleData> ModuleList;
         private readonly List<PackStructure> PackStructureList;
         private PackPaths ActivePackPaths = null;
+        private PackStructure ActivePackStructure = null;
         public PackCompiler()
         {
             InitializeComponent();
@@ -114,6 +115,18 @@ namespace Handover_Pack_Compiler
                 return false;
             }
         }
+
+        private void OperationTabs_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (OperationTabs.SelectedTab == SettingsTab)
+            {
+                LoadFilePaths();
+            }
+            else if (OperationTabs.SelectedTab == FilesTab)
+            {
+                LoadActivePack();
+            }
+        }
         #endregion
 
         #region Settings Tab
@@ -149,13 +162,6 @@ namespace Handover_Pack_Compiler
         {
             ProgDataButton.Value = Properties.Settings.Default.ProgramDataPath;
             CommSiteButton.Value = Properties.Settings.Default.CommSitePath;
-        }
-        private void OperationTabs_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            if (OperationTabs.SelectedTab.Text == "Settings")
-            {
-                LoadFilePaths();
-            }
         }
         #endregion
 
@@ -417,9 +423,29 @@ namespace Handover_Pack_Compiler
             {
                 string CustomerNumber = NumberDialog.Result;
                 ActivePackPaths = new PackPaths(CustomerNumber);
+                ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem);
+                OperationTabs.SelectedTab = FilesTab;
             }
         }
         #endregion
 
+        #region Files Tab
+        private void LoadActivePack()
+        {
+            List<Control> ControlToAdd = new List<Control>();
+            FilePathButton QuoteFileButton = new FilePathButton();
+            QuoteFileButton.Text = "Quote File";
+            QuoteFileButton.Dock = DockStyle.Top;
+            ControlToAdd.Add(QuoteFileButton);
+            FilePathButton QuoteFileButton2 = new FilePathButton();
+            QuoteFileButton2.Text = "Quote File2";
+            QuoteFileButton2.Dock = DockStyle.Top;
+            ControlToAdd.Add(QuoteFileButton2);
+            for (int i = ControlToAdd.Count-1; i >= 0; i-- )
+            {
+                FilesTab.Controls.Add(ControlToAdd[i]);
+            }
+        }
+        #endregion
     }
 }
