@@ -78,6 +78,7 @@ namespace Handover_Pack_Compiler
             this.MinimumSize = new System.Drawing.Size(0, 46);
             this.Name = "FilePathButton";
             this.Size = new System.Drawing.Size(534, 46);
+            this.Resize += new System.EventHandler(this.FilePathButton_Resize);
             this.ControlGroup.ResumeLayout(false);
             this.ControlGroup.PerformLayout();
             this.ResumeLayout(false);

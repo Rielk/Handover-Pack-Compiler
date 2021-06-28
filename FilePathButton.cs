@@ -26,6 +26,48 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
+        public string Description
+        {
+            get
+            {
+                if (DescLabel == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return DescLabel.Text;
+                }
+            }
+            set
+            {
+                if (value == null)
+                {
+                    if (DescLabel != null)
+                    {
+                        ControlGroup.Controls.Remove(DescLabel);
+                        DescLabel = null;
+                        this.MaximumSize = new Size(5000, 46);
+                        this.MinimumSize = new Size(0, 46);
+                    }
+                }
+                else
+                {
+                    DescLabel = new Label
+                    {
+                        Text = value,
+                        Padding = new Padding(0, 0, 0, 5),
+                        Dock = DockStyle.Bottom,
+                        AutoSize = true,
+                        MaximumSize = new Size(this.Width-5, 0)
+                    };
+                    ControlGroup.Controls.Add(DescLabel);
+                    this.MaximumSize = new Size(5000, 46 + DescLabel.Height);
+                    this.MinimumSize = new Size(0, 46 + DescLabel.Height);
+                }
+            }
+        }
+        private Label DescLabel = null;
         public Func<string, string> InitialPathFunction = DefaultPath.Default;
         public string Filter = "All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
@@ -39,6 +81,7 @@ namespace Handover_Pack_Compiler
         [Category("Action")]
         [Description("Invoked when Value updates")]
         public event EventHandler ValueUpdate;
+
         private void Button_Click(object sender, EventArgs e)
         {
             file_dialog.Filter = Filter;
@@ -48,6 +91,16 @@ namespace Handover_Pack_Compiler
             {
                 Value = file_dialog.FileName;
                 ValueUpdate?.Invoke(this, e);
+            }
+        }
+
+        private void FilePathButton_Resize(object sender, EventArgs e)
+        {
+            if (DescLabel != null)
+            {
+                DescLabel.MaximumSize = new Size(this.Width-5, 0);
+                this.MaximumSize = new Size(5000, 46 + DescLabel.Height);
+                this.MinimumSize = new Size(0, 46 + DescLabel.Height);
             }
         }
     }

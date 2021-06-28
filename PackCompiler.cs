@@ -433,13 +433,20 @@ namespace Handover_Pack_Compiler
         private void LoadActivePack()
         {
             List<Control> ControlToAdd = new List<Control>();
-            FilePathButton QuoteFileButton = new FilePathButton();
-            QuoteFileButton.Text = "Quote File";
-            QuoteFileButton.Dock = DockStyle.Top;
+            FilePathButton QuoteFileButton = new FilePathButton
+            {
+                Text = "Quote File",
+                Dock = DockStyle.Top,
+                Description = "Test"
+            };
+            QuoteFileButton.Description = null;
             ControlToAdd.Add(QuoteFileButton);
-            FilePathButton QuoteFileButton2 = new FilePathButton();
-            QuoteFileButton2.Text = "Quote File2";
-            QuoteFileButton2.Dock = DockStyle.Top;
+            FilePathButton QuoteFileButton2 = new FilePathButton
+            {
+                Text = "Quote File2",
+                Dock = DockStyle.Top,
+                Description = "This is a long line of text to test the thing.\nAnother Line\nThird Line"
+            };
             ControlToAdd.Add(QuoteFileButton2);
             for (int i = ControlToAdd.Count-1; i >= 0; i-- )
             {
