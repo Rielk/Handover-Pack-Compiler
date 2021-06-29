@@ -147,6 +147,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="FileSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileSelector.Designer.cs">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="CMessageBox.resx">
       <DependentUpon>CMessageBox.cs</DependentUpon>
@@ -184,6 +190,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FileSelector.resx">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\InverterData.datasource" />

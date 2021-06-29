@@ -18,7 +18,6 @@ namespace Handover_Pack_Compiler
         private readonly List<InverterData> InverterList;
         private readonly List<ModuleData> ModuleList;
         private readonly List<PackStructure> PackStructureList;
-        private PackPaths ActivePackPaths = null;
         private PackStructure ActivePackStructure = null;
         public PackCompiler()
         {
@@ -422,7 +421,7 @@ namespace Handover_Pack_Compiler
             if (NumberDialog.ShowDialog() == DialogResult.OK)
             {
                 string CustomerNumber = NumberDialog.Result;
-                ActivePackPaths = new PackPaths(CustomerNumber);
+                PackPaths.SetCustomerNumber(CustomerNumber);
                 ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem);
                 OperationTabs.SelectedTab = FilesTab;
             }
@@ -437,17 +436,9 @@ namespace Handover_Pack_Compiler
             {
                 Text = "Quote File",
                 Dock = DockStyle.Top,
-                Description = "Test"
+                Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
             };
-            QuoteFileButton.Description = null;
             ControlToAdd.Add(QuoteFileButton);
-            FilePathButton QuoteFileButton2 = new FilePathButton
-            {
-                Text = "Quote File2",
-                Dock = DockStyle.Top,
-                Description = "This is a long line of text to test the thing.\nAnother Line\nThird Line"
-            };
-            ControlToAdd.Add(QuoteFileButton2);
             for (int i = ControlToAdd.Count-1; i >= 0; i-- )
             {
                 FilesTab.Controls.Add(ControlToAdd[i]);

@@ -55,5 +55,30 @@ namespace Handover_Pack_Compiler
                 return LoopToExisting(value);
             }
         }
+        public static string CustomerFile(string value, int? DefaultFolder)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                if (DefaultFolder != null)
+                {
+                    try
+                    {
+                        return PackPaths.CustomerFolderNumberN((int)DefaultFolder);
+                    }
+                    catch
+                    {
+                        return PackPaths.CustomerFolder.FullPath;
+                    }
+                }
+                else
+                {
+                    return PackPaths.CustomerFolder.FullPath;
+                }
+            }
+            else
+            {
+                return LoopToExisting(value);
+            }
+        }
     }
 }

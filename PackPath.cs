@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace Handover_Pack_Compiler
 {
-    public class PackPaths
+    public static class PackPaths
     {
-        public readonly string CustomerNumber = "0000";
-        public readonly CommSitePath CustomerFolder = new CommSitePath(null);
+        public static string CustomerNumber = "0000";
+        public static CommSitePath CustomerFolder = new CommSitePath(null);
         public static string CommunicationSite
         {
             get
@@ -56,7 +56,7 @@ namespace Handover_Pack_Compiler
         }
         public static string EnquiriesAndOrders { get { return Path.Combine(CommunicationSite, "Enquiries & Orders Area"); } }
         public static string TechnicalArea { get { return Path.Combine(CommunicationSite, "Technical Area"); } }
-        public PackPaths(string cn)
+        public static void SetCustomerNumber(string cn)
         {
             CustomerNumber = cn;
             List<string> results = Utilities.FileStarting(CustomerNumber, EnquiriesAndOrders);
@@ -73,12 +73,13 @@ namespace Handover_Pack_Compiler
                 CustomerFolder.FullPath = results[0];
             }
         }
-        public PackPaths(int cn) : this(cn.ToString("D4"))
+        public static void SetCustomerNumber(int cn)
         {
+            SetCustomerNumber(cn.ToString("D4"));
         }
-        public string IDCustomerName { get { return new DirectoryInfo(CustomerFolder.FullPath).Name; } }
-        public string CustomerName { get { string IDCN = IDCustomerName; return IDCN.Remove(0, IDCN.IndexOf(" ") + 1); } }
-        public string CustomerNumberFolderN(int Folder)
+        public static string IDCustomerName { get { return new DirectoryInfo(CustomerFolder.FullPath).Name; } }
+        public static string CustomerName { get { string IDCN = IDCustomerName; return IDCN.Remove(0, IDCN.IndexOf(" ") + 1); } }
+        public static string CustomerFolderNumberN(int Folder)
         {
             return Utilities.OpenFolderNumber(Folder, CustomerFolder.FullPath);
         }

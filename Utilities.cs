@@ -57,7 +57,7 @@ namespace Handover_Pack_Compiler
             List<string> results = FileStarting(Search, InPath);
             if (results.Count > 1)
             {
-                throw new NotImplementedException("Could be refering to many different folder.");
+                throw new NotImplementedException("Could be refering to many different folders.");
             }
             else if (results.Count == 0)
             {

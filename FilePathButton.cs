@@ -26,6 +26,10 @@ namespace Handover_Pack_Compiler
             get { return TextBox.Text; }
             set { TextBox.Text = value; }
         }
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Bindable(false)]
         public string Description
         {
             get
@@ -62,8 +66,7 @@ namespace Handover_Pack_Compiler
                         MaximumSize = new Size(this.Width-5, 0)
                     };
                     ControlGroup.Controls.Add(DescLabel);
-                    this.MaximumSize = new Size(5000, 46 + DescLabel.Height);
-                    this.MinimumSize = new Size(0, 46 + DescLabel.Height);
+                    FilePathButton_Resize(new object(), new EventArgs());
                 }
             }
         }
