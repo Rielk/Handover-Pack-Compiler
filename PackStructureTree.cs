@@ -333,7 +333,7 @@ namespace Handover_Pack_Compiler
                 FileGroupBox.Visible = true;
                 FolderTextBox.Text = file.DefaultFolder.ToString();
                 SearchTextBox.Text = file.SearchTerm;
-                AddPropertiesConPathButton.Value = file.Path;
+                AddPropertiesConPathButton.Value = file.ConstantPath;
                 AddProperties_Visability(file);
                 foreach (CheckBox cb in CheckBoxList)
                 {
@@ -486,7 +486,7 @@ namespace Handover_Pack_Compiler
         {
             if (EditingNode.Tag is Folder.File file)
             {
-                file.Path = AddPropertiesConPathButton.Value;
+                file.ConstantPath = AddPropertiesConPathButton.Value;
             }
         }
         //End Properties

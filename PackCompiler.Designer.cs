@@ -301,6 +301,7 @@ namespace Handover_Pack_Compiler
             // 
             // FilesTab
             // 
+            this.FilesTab.AutoScroll = true;
             this.FilesTab.Location = new System.Drawing.Point(4, 22);
             this.FilesTab.Name = "FilesTab";
             this.FilesTab.Size = new System.Drawing.Size(677, 509);

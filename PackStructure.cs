@@ -48,6 +48,13 @@ namespace Handover_Pack_Compiler
                 Optimisers.Add(new OptimiserData(optimiser));
             }
         }
+        public PackStructure(PackStructure other, bool rename) : this(other)
+        {
+            if (!rename)
+            {
+                Name = other.ToString();
+            }
+        }
         public Folder AddFolder(string FolderName)
         {
             Folder NewFolder = new Folder() { Name = FolderName };
@@ -85,7 +92,7 @@ namespace Handover_Pack_Compiler
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Constant;
             fi.AllowMultiple = false;
-            fi.CSPath = new CommSitePath
+            fi.CSConPath = new CommSitePath
             {
                 Extension = "QMS File\\MP014.b Health & Safety Guidelines.pdf",
                 InCommSite = true
@@ -108,7 +115,7 @@ namespace Handover_Pack_Compiler
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Constant;
             fi.AllowMultiple = false;
-            fi.CSPath = new CommSitePath
+            fi.CSConPath = new CommSitePath
             {
                 Extension = "QMS File\\MP012 Mypower Installation Warranty.pdf",
                 InCommSite = true
@@ -140,7 +147,7 @@ namespace Handover_Pack_Compiler
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.SolarEdgeWarranty;
             fi.AllowMultiple = false;
-            fi.CSPath = new CommSitePath
+            fi.CSConPath = new CommSitePath
             {
                 Extension = "Technical Area\\SOLAR PV\\Inverters\\SolarEdge\\SE Product Warranty\\SolarEdge warranty - May 2020.pdf",
                 InCommSite = true
@@ -277,7 +284,8 @@ namespace Handover_Pack_Compiler
 
         public class File
         {
-            public CommSitePath CSPath = new CommSitePath("");
+            public CommSitePath CSConPath = new CommSitePath("");
+            public List<CommSitePath> CSGenPaths = new List<CommSitePath>();
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
             public int? DefaultFolder { get; set; } = null;
@@ -286,10 +294,15 @@ namespace Handover_Pack_Compiler
             public string FileType { get; set; } = FileTypeTag.Generic;
             public bool AllowMultiple { get; set; } = false;
             [XmlIgnore]
-            public string Path
+            public string ConstantPath
             {
-                get { return CSPath.FullPath; }
-                set { CSPath.FullPath = value; }
+                get { return CSConPath.FullPath; }
+                set { CSConPath.FullPath = value; }
+            }
+            public List<string> GenericPaths
+            {
+                get { return (from CSP in CSGenPaths select CSP.FullPath).ToList(); }
+                set { CSGenPaths = (from str in value select new CommSitePath(str)).ToList(); }
             }
             public File()
             {
@@ -304,8 +317,9 @@ namespace Handover_Pack_Compiler
                 AlwaysRequired = other.AlwaysRequired;
                 FileType = other.FileType;
                 AllowMultiple = other.AllowMultiple;
-                CSPath = new CommSitePath(null);
-                Path = other.Path;
+                CSConPath = new CommSitePath(null);
+                ConstantPath = other.ConstantPath;
+                CSGenPaths = (from CSP in other.CSGenPaths select CSP).ToList();
             }
         }
     }

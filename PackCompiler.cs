@@ -422,7 +422,7 @@ namespace Handover_Pack_Compiler
             {
                 string CustomerNumber = NumberDialog.Result;
                 PackPaths.SetCustomerNumber(CustomerNumber);
-                ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem);
+                ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
                 OperationTabs.SelectedTab = FilesTab;
             }
         }
@@ -431,17 +431,32 @@ namespace Handover_Pack_Compiler
         #region Files Tab
         private void LoadActivePack()
         {
-            List<Control> ControlToAdd = new List<Control>();
-            FilePathButton QuoteFileButton = new FilePathButton
+            if (ActivePackStructure != null)
             {
-                Text = "Quote File",
-                Dock = DockStyle.Top,
-                Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
-            };
-            ControlToAdd.Add(QuoteFileButton);
-            for (int i = ControlToAdd.Count-1; i >= 0; i-- )
-            {
-                FilesTab.Controls.Add(ControlToAdd[i]);
+                List<Control> ControlsToAdd = new List<Control>();
+                FilePathButton QuoteFileButton = new FilePathButton
+                {
+                    Text = "Quote File",
+                    Dock = DockStyle.Top,
+                    Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
+                };
+                ControlsToAdd.Add(QuoteFileButton);
+                foreach (Folder folder in ActivePackStructure.Folders)
+                {
+                    foreach (Folder.File file in folder.Files)
+                    {
+                        FileUI NewSelector = new FileUI(file)
+                        {
+                            Text = file.Name,
+                            Dock = DockStyle.Top
+                        };
+                        ControlsToAdd.Add(NewSelector);
+                    }
+                }
+                for (int i = ControlsToAdd.Count - 1; i >= 0; i--)
+                {
+                    FilesTab.Controls.Add(ControlsToAdd[i]);
+                }
             }
         }
         #endregion

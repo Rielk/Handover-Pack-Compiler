@@ -92,6 +92,12 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="DataFormats.cs" />
     <Compile Include="FileTypeTag.cs" />
+    <Compile Include="FileUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileUI.Designer.cs">
+      <DependentUpon>FileUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="FolderPathButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="CMessageBox.resx">
       <DependentUpon>CMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileUI.resx">
+      <DependentUpon>FileUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FolderPathButton.resx">
       <DependentUpon>FolderPathButton.cs</DependentUpon>
