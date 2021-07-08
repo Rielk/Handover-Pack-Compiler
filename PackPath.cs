@@ -59,7 +59,7 @@ namespace Handover_Pack_Compiler
         public static void SetCustomerNumber(string cn)
         {
             CustomerNumber = cn;
-            List<string> results = Utilities.FileStarting(CustomerNumber, EnquiriesAndOrders);
+            List<string> results = Utilities.FolderStarting(CustomerNumber, EnquiriesAndOrders);
             if (results.Count > 1)
             {
                 throw new NotImplementedException("Could be refering to many different customers.");

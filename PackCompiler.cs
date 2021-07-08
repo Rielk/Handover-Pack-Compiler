@@ -445,13 +445,15 @@ namespace Handover_Pack_Compiler
                 {
                     foreach (Folder.File file in folder.Files)
                     {
-                        FileUI NewSelector = new FileUI(file)
+                        if (file.FileType == FileTypeTag.Generic)
                         {
-                            Text = file.Name,
-                            Dock = DockStyle.Top
-                        };
-                        ControlsToAdd.Add(NewSelector);
-                    }
+                            FileUI NewSelector = new FileUI(file)
+                            {
+                                Text = file.Name,
+                                Dock = DockStyle.Top
+                            };
+                            ControlsToAdd.Add(NewSelector);
+                        } }
                 }
                 for (int i = ControlsToAdd.Count - 1; i >= 0; i--)
                 {

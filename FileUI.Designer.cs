@@ -30,69 +30,60 @@ namespace Handover_Pack_Compiler
         private void InitializeComponent()
         {
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.OpenAllButton = new System.Windows.Forms.Button();
-            this.AddFileButton = new System.Windows.Forms.Button();
             this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
+            this.ConfirmButton = new System.Windows.Forms.Button();
             this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox
             // 
-            this.GroupBox.Controls.Add(this.OpenAllButton);
-            this.GroupBox.Controls.Add(this.AddFileButton);
-            this.GroupBox.Controls.Add(this.RequiredCheckBox);
+            this.GroupBox.Controls.Add(this.ConfirmButton);
             this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(456, 46);
+            this.GroupBox.Size = new System.Drawing.Size(456, 40);
             this.GroupBox.TabIndex = 0;
             this.GroupBox.TabStop = false;
-            this.GroupBox.Text = "GroupBox";
-            // 
-            // OpenAllButton
-            // 
-            this.OpenAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenAllButton.Location = new System.Drawing.Point(375, 19);
-            this.OpenAllButton.Name = "OpenAllButton";
-            this.OpenAllButton.Size = new System.Drawing.Size(75, 21);
-            this.OpenAllButton.TabIndex = 2;
-            this.OpenAllButton.Text = "Open All";
-            this.OpenAllButton.UseVisualStyleBackColor = true;
-            // 
-            // AddFileButton
-            // 
-            this.AddFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddFileButton.Location = new System.Drawing.Point(6, 19);
-            this.AddFileButton.Name = "AddFileButton";
-            this.AddFileButton.Size = new System.Drawing.Size(75, 21);
-            this.AddFileButton.TabIndex = 1;
-            this.AddFileButton.Text = "Add File";
-            this.AddFileButton.UseVisualStyleBackColor = true;
-            this.AddFileButton.Click += new System.EventHandler(this.AddFileButton_Click);
+            this.GroupBox.Text = "     GroupBox";
             // 
             // RequiredCheckBox
             // 
-            this.RequiredCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RequiredCheckBox.AutoSize = true;
             this.RequiredCheckBox.Checked = true;
             this.RequiredCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RequiredCheckBox.Location = new System.Drawing.Point(387, 0);
+            this.RequiredCheckBox.Location = new System.Drawing.Point(6, 0);
+            this.RequiredCheckBox.Margin = new System.Windows.Forms.Padding(0);
             this.RequiredCheckBox.Name = "RequiredCheckBox";
-            this.RequiredCheckBox.Size = new System.Drawing.Size(69, 17);
+            this.RequiredCheckBox.Size = new System.Drawing.Size(15, 14);
             this.RequiredCheckBox.TabIndex = 0;
-            this.RequiredCheckBox.Text = "Required";
             this.RequiredCheckBox.UseVisualStyleBackColor = true;
+            this.RequiredCheckBox.CheckedChanged += new System.EventHandler(this.RequiredCheckBox_CheckedChanged);
+            // 
+            // ConfirmButton
+            // 
+            this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConfirmButton.Location = new System.Drawing.Point(394, 14);
+            this.ConfirmButton.Name = "ConfirmButton";
+            this.ConfirmButton.Size = new System.Drawing.Size(56, 20);
+            this.ConfirmButton.TabIndex = 0;
+            this.ConfirmButton.Text = "Confirm";
+            this.ConfirmButton.UseVisualStyleBackColor = true;
             // 
             // FileUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.RequiredCheckBox);
             this.Controls.Add(this.GroupBox);
+            this.MaximumSize = new System.Drawing.Size(456, 40);
+            this.MinimumSize = new System.Drawing.Size(456, 40);
             this.Name = "FileUI";
-            this.Size = new System.Drawing.Size(456, 46);
+            this.Size = new System.Drawing.Size(456, 40);
             this.GroupBox.ResumeLayout(false);
-            this.GroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -100,7 +91,6 @@ namespace Handover_Pack_Compiler
 
         private System.Windows.Forms.GroupBox GroupBox;
         private System.Windows.Forms.CheckBox RequiredCheckBox;
-        private System.Windows.Forms.Button AddFileButton;
-        private System.Windows.Forms.Button OpenAllButton;
+        private System.Windows.Forms.Button ConfirmButton;
     }
 }

@@ -20,6 +20,17 @@ namespace Handover_Pack_Compiler
         public int? DefaultFolder = null;
         public string Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
+        public bool enbld = false;
+        public bool ReadOnly
+        {
+            get { return enbld; }
+            set
+            {
+                enbld = value;
+                TextBox.Enabled = value;
+                Button.Enabled = value;
+            }
+        }
         public FileSelector()
         {
             InitializeComponent();
@@ -29,6 +40,11 @@ namespace Handover_Pack_Compiler
         [Category("Action")]
         [Description("Invoked when Value updates")]
         public event EventHandler ValueUpdate;
+
+        [Browsable(true)]
+        [Category("Action")]
+        [Description("Invoked when Value updates")]
+        public event EventHandler RemoveThis;
 
         private void Button_Click(object sender, EventArgs e)
         {
@@ -40,6 +56,11 @@ namespace Handover_Pack_Compiler
                 Value = file_dialog.FileName;
                 ValueUpdate?.Invoke(this, e);
             }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            RemoveThis?.Invoke(this, e);
         }
     }
 }
