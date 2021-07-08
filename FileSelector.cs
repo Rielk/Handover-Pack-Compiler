@@ -15,9 +15,10 @@ namespace Handover_Pack_Compiler
     {
         public string Value
         {
-            get { return TextBox.Text; }
-            set { TextBox.Text = value; }
+            get { return CSPath.FullPath; }
+            set { CSPath.FullPath = value; }
         }
+        public CommSitePath CSPath = new CommSitePath();
         public int? DefaultFolder = null;
         public string Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
@@ -57,6 +58,7 @@ namespace Handover_Pack_Compiler
             if (file_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = file_dialog.FileName;
+                TextBox.Text = CSPath.FileName;
                 ValueUpdate?.Invoke(this, null);
             }
         }

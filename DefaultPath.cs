@@ -67,12 +67,12 @@ namespace Handover_Pack_Compiler
                     }
                     catch
                     {
-                        return PackPaths.CustomerFolder.FullPath;
+                        return PackPaths.CustomerFolder;
                     }
                 }
                 else
                 {
-                    return PackPaths.CustomerFolder.FullPath;
+                    return PackPaths.CustomerFolder;
                 }
             }
             else

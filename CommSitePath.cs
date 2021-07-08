@@ -20,6 +20,11 @@ namespace Handover_Pack_Compiler
             set { SetFullPath(value); }
         }
 
+        public string FileName
+        {
+            get { return Path.GetFileName(FullPath); }
+        }
+
         public CommSitePath() { }
 
         public CommSitePath(string value)

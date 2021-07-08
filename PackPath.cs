@@ -11,7 +11,7 @@ namespace Handover_Pack_Compiler
     public static class PackPaths
     {
         public static string CustomerNumber = "0000";
-        public static CommSitePath CustomerFolder = new CommSitePath(null);
+        public static CommSitePath CSCustFold = new CommSitePath(null);
         public static string CommunicationSite
         {
             get
@@ -56,6 +56,7 @@ namespace Handover_Pack_Compiler
         }
         public static string EnquiriesAndOrders { get { return Path.Combine(CommunicationSite, "Enquiries & Orders Area"); } }
         public static string TechnicalArea { get { return Path.Combine(CommunicationSite, "Technical Area"); } }
+        public static string CustomerFolder { get { return CSCustFold.FullPath; } set { CSCustFold.FullPath = value; } }
         public static void SetCustomerNumber(string cn)
         {
             CustomerNumber = cn;
@@ -66,22 +67,22 @@ namespace Handover_Pack_Compiler
             }
             else if (results.Count == 0)
             {
-                CustomerFolder.FullPath = null;
+                CustomerFolder = null;
             }
             else
             {
-                CustomerFolder.FullPath = results[0];
+                CustomerFolder = results[0];
             }
         }
         public static void SetCustomerNumber(int cn)
         {
             SetCustomerNumber(cn.ToString("D4"));
         }
-        public static string IDCustomerName { get { return new DirectoryInfo(CustomerFolder.FullPath).Name; } }
+        public static string IDCustomerName { get { return new DirectoryInfo(CustomerFolder).Name; } }
         public static string CustomerName { get { string IDCN = IDCustomerName; return IDCN.Remove(0, IDCN.IndexOf(" ") + 1); } }
         public static string CustomerFolderNumberN(int Folder)
         {
-            return Utilities.OpenFolderNumber(Folder, CustomerFolder.FullPath);
+            return Utilities.OpenFolderNumber(Folder, CustomerFolder);
         }
     }
 }
