@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,14 @@ namespace Handover_Pack_Compiler
         public bool enbld = false;
         public bool ReadOnly
         {
-            get { return enbld; }
+            get { return !enbld; }
             set
             {
-                enbld = value;
-                TextBox.Enabled = value;
-                Button.Enabled = value;
+                enbld = !value;
+                TextBox.Enabled = !value;
+                Button.Enabled = !value;
+                //OpenButton.Enabled = !value;
+                RemoveButton.Enabled = !value;
             }
         }
         public FileSelector()
@@ -54,13 +57,18 @@ namespace Handover_Pack_Compiler
             if (file_dialog.ShowDialog() == DialogResult.OK)
             {
                 Value = file_dialog.FileName;
-                ValueUpdate?.Invoke(this, e);
+                ValueUpdate?.Invoke(this, null);
             }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            RemoveThis?.Invoke(this, e);
+            RemoveThis?.Invoke(this, null);
+        }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            Process.Start(Value);
         }
     }
 }

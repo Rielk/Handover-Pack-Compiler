@@ -30,8 +30,8 @@ namespace Handover_Pack_Compiler
         private void InitializeComponent()
         {
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
+            this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
             this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,17 @@ namespace Handover_Pack_Compiler
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "     GroupBox";
             // 
+            // ConfirmButton
+            // 
+            this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConfirmButton.Location = new System.Drawing.Point(394, 14);
+            this.ConfirmButton.Name = "ConfirmButton";
+            this.ConfirmButton.Size = new System.Drawing.Size(56, 20);
+            this.ConfirmButton.TabIndex = 0;
+            this.ConfirmButton.Text = "Confirm";
+            this.ConfirmButton.UseVisualStyleBackColor = true;
+            this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
+            // 
             // RequiredCheckBox
             // 
             this.RequiredCheckBox.AutoSize = true;
@@ -58,16 +69,6 @@ namespace Handover_Pack_Compiler
             this.RequiredCheckBox.TabIndex = 0;
             this.RequiredCheckBox.UseVisualStyleBackColor = true;
             this.RequiredCheckBox.CheckedChanged += new System.EventHandler(this.RequiredCheckBox_CheckedChanged);
-            // 
-            // ConfirmButton
-            // 
-            this.ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConfirmButton.Location = new System.Drawing.Point(394, 14);
-            this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Size = new System.Drawing.Size(56, 20);
-            this.ConfirmButton.TabIndex = 0;
-            this.ConfirmButton.Text = "Confirm";
-            this.ConfirmButton.UseVisualStyleBackColor = true;
             // 
             // FileUI
             // 

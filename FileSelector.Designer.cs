@@ -76,6 +76,7 @@ namespace Handover_Pack_Compiler
             this.OpenButton.TabIndex = 8;
             this.OpenButton.Text = "Open";
             this.OpenButton.UseVisualStyleBackColor = true;
+            this.OpenButton.Click += new System.EventHandler(this.OpenButton_Click);
             // 
             // FileSelector
             // 
