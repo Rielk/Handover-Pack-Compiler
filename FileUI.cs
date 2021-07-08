@@ -92,7 +92,8 @@ namespace Handover_Pack_Compiler
             {
                 c.Enabled = RequiredCheckBox.Checked;
             }
-            Complete = !RequiredCheckBox.Checked;
+            Complete = RequiredCheckBox.Checked;
+            ToggleComplete();
         }
 
         private void FileSelector_ValueUpdate(object sender, EventArgs e)
@@ -123,6 +124,30 @@ namespace Handover_Pack_Compiler
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
+            bool toggle = true;
+            //If a file is always needed and one isn't provided, prevent toggle.
+            if (file.AlwaysRequired && FileSelectors[0].Value == "")
+            {
+                toggle = false;
+            }
+            //If a file isn't always needed and one isn't provided, toggle required checkbox instead.
+            if (!file.AlwaysRequired && FileSelectors[0].Value == "")
+            {
+                RequiredCheckBox.Checked = false;
+                toggle = false;
+            }
+            //If not allowed multiple files and multiple are provided, prevent check.
+            if (!file.AllowMultiple && FileSelectors.Count != 1)
+            {
+                toggle = false;
+            }
+            if (toggle)
+            {
+                ToggleComplete();
+            }
+        }
+        private void ToggleComplete()
+        { 
             if (Complete)
             {
                 Complete = false;
@@ -130,10 +155,10 @@ namespace Handover_Pack_Compiler
                 foreach (FileSelector fs in FileSelectors.ToList())
                 {
                     fs.ReadOnly = false;
-                    if (file.AllowMultiple | FileSelectors.Count == 0)
-                    {
-                        AddFile();
-                    }
+                }
+                if (file.AllowMultiple | FileSelectors.Count == 0)
+                {
+                    AddFile();
                 }
             }
             else
