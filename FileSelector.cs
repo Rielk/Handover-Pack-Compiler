@@ -16,7 +16,11 @@ namespace Handover_Pack_Compiler
         public string Value
         {
             get { return CSPath.FullPath; }
-            set { CSPath.FullPath = value; }
+            set
+            {
+                CSPath.FullPath = value;
+                TextBox.Text = CSPath.FileName;
+            }
         }
         public CommSitePath CSPath = new CommSitePath();
         public int? DefaultFolder = null;
