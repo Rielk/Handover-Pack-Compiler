@@ -418,12 +418,29 @@ namespace Handover_Pack_Compiler
         private void LoadPackStructureButton_Click(object sender, EventArgs e)
         {
             NewPackNumberRequest NumberDialog = new NewPackNumberRequest();
-            if (NumberDialog.ShowDialog() == DialogResult.OK)
+            bool Requesting = true;
+            while (Requesting)
             {
-                string CustomerNumber = NumberDialog.Result;
-                PackPaths.SetCustomerNumber(CustomerNumber);
-                ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
-                OperationTabs.SelectedTab = FilesTab;
+                if (NumberDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string CustomerNumber = NumberDialog.Result;
+                    bool valid = PackPaths.SetCustomerNumber(CustomerNumber);
+                    if (valid)
+                    {
+                        ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
+                        OperationTabs.SelectedTab = FilesTab;
+                        Requesting = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("Couldn't find a folder for the customer number \"{0}\". Please make sure the folder exists.", CustomerNumber),
+                            "Customer Number Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    Requesting = false;
+                }
             }
         }
         #endregion

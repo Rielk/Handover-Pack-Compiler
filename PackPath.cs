@@ -57,7 +57,7 @@ namespace Handover_Pack_Compiler
         public static string EnquiriesAndOrders { get { return Path.Combine(CommunicationSite, "Enquiries & Orders Area"); } }
         public static string TechnicalArea { get { return Path.Combine(CommunicationSite, "Technical Area"); } }
         public static string CustomerFolder { get { return CSCustFold.FullPath; } set { CSCustFold.FullPath = value; } }
-        public static void SetCustomerNumber(string cn)
+        public static bool SetCustomerNumber(string cn)
         {
             CustomerNumber = cn;
             List<string> results = Utilities.FolderStarting(CustomerNumber, EnquiriesAndOrders);
@@ -68,10 +68,12 @@ namespace Handover_Pack_Compiler
             else if (results.Count == 0)
             {
                 CustomerFolder = null;
+                return false;
             }
             else
             {
                 CustomerFolder = results[0];
+                return true;
             }
         }
         public static void SetCustomerNumber(int cn)
