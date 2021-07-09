@@ -66,7 +66,7 @@ namespace Handover_Pack_Compiler
                         MaximumSize = new Size(this.Width-5, 0)
                     };
                     ControlGroup.Controls.Add(DescLabel);
-                    FilePathButton_Resize(new object(), new EventArgs());
+                    FilePathButton_Resize(null, null);
                 }
             }
         }

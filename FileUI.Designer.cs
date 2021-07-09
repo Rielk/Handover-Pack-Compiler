@@ -32,11 +32,13 @@ namespace Handover_Pack_Compiler
             this.GroupBox = new System.Windows.Forms.GroupBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.RequiredCheckBox = new System.Windows.Forms.CheckBox();
+            this.DescriptionLabel = new System.Windows.Forms.Label();
             this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBox
             // 
+            this.GroupBox.Controls.Add(this.DescriptionLabel);
             this.GroupBox.Controls.Add(this.ConfirmButton);
             this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GroupBox.Location = new System.Drawing.Point(0, 0);
@@ -45,6 +47,7 @@ namespace Handover_Pack_Compiler
             this.GroupBox.TabIndex = 0;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "     GroupBox";
+            this.GroupBox.Resize += new System.EventHandler(this.GroupBox_Resize);
             // 
             // ConfirmButton
             // 
@@ -70,6 +73,16 @@ namespace Handover_Pack_Compiler
             this.RequiredCheckBox.UseVisualStyleBackColor = true;
             this.RequiredCheckBox.CheckedChanged += new System.EventHandler(this.RequiredCheckBox_CheckedChanged);
             // 
+            // DescriptionLabel
+            // 
+            this.DescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Location = new System.Drawing.Point(3, 14);
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(60, 13);
+            this.DescriptionLabel.TabIndex = 1;
+            this.DescriptionLabel.Text = "Description";
+            // 
             // FileUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,6 +96,7 @@ namespace Handover_Pack_Compiler
             this.Name = "FileUI";
             this.Size = new System.Drawing.Size(456, 40);
             this.GroupBox.ResumeLayout(false);
+            this.GroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +107,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.GroupBox GroupBox;
         private System.Windows.Forms.CheckBox RequiredCheckBox;
         private System.Windows.Forms.Button ConfirmButton;
+        private System.Windows.Forms.Label DescriptionLabel;
     }
 }

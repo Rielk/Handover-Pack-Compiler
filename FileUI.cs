@@ -24,6 +24,7 @@ namespace Handover_Pack_Compiler
         {
             InitializeComponent();
             file = f;
+            DescriptionLabel.Text = f.Description;
             if (f.AlwaysRequired)
             {
                 RequiredCheckBox.Enabled = false;
@@ -44,6 +45,7 @@ namespace Handover_Pack_Compiler
                     AddFile();
                 }
             }
+            GroupBox_Resize(null, null);
         }
         private void AddFile()
         {
@@ -177,6 +179,15 @@ namespace Handover_Pack_Compiler
                     }
                 }
             }
+        }
+
+        private void GroupBox_Resize(object sender, EventArgs e)
+        {
+            DescriptionLabel.MaximumSize = new Size(ConfirmButton.Location.X - 5, 5000);
+            this.MaximumSize = new Size(5000, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
+            this.MinimumSize = new Size(0, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
+            DescriptionLabel.Top = Math.Min(this.Height - DescriptionLabel.Height - 3, this.Height - 26);
+            ConfirmButton.Top = DescriptionLabel.Top;
         }
     }
 }
