@@ -110,6 +110,12 @@
     <Compile Include="InverterValuesForm.Designer.cs">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptimiserValuesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptimiserValuesForm.Designer.cs">
+      <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModuleValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     <EmbeddedResource Include="InverterValuesForm.resx">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OptimiserValuesForm.resx">
+      <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModuleValuesForm.resx">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +215,7 @@
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\InverterData.datasource" />
     <None Include="Properties\DataSources\ModuleData.datasource" />
+    <None Include="Properties\DataSources\OptimiserData.datasource" />
     <None Include="Properties\DataSources\PackStructure.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

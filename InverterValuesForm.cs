@@ -48,7 +48,7 @@ namespace Handover_Pack_Compiler
             file_dialog.FilterIndex = 0;
             if (DatasheetVal != "")
             {
-                file_dialog.InitialDirectory = DatasheetVal;
+                file_dialog.InitialDirectory = Path.GetDirectoryName(DatasheetVal);
             }
             else if (Properties.Settings.Default.CommSitePath != "")
             {

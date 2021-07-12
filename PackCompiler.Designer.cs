@@ -40,6 +40,9 @@ namespace Handover_Pack_Compiler
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.OperationTabs = new System.Windows.Forms.TabControl();
             this.StructureTab = new System.Windows.Forms.TabPage();
             this.PackTabSplit = new System.Windows.Forms.SplitContainer();
@@ -74,6 +77,14 @@ namespace Handover_Pack_Compiler
             this.InverterGridViewDatasheetTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InverterGridViewSolarEdgeCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.InverterDataSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OptimiserTab = new System.Windows.Forms.TabPage();
+            this.EditOptimiserButton = new System.Windows.Forms.Button();
+            this.DeleteOptimiserButton = new System.Windows.Forms.Button();
+            this.AddOptimiserButton = new System.Windows.Forms.Button();
+            this.OptimiserGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptimiserDataSource = new System.Windows.Forms.BindingSource(this.components);
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
             this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
@@ -91,6 +102,9 @@ namespace Handover_Pack_Compiler
             this.InverterTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).BeginInit();
+            this.OptimiserTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OptimiserGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OptimiserDataSource)).BeginInit();
             this.SettingsTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +119,7 @@ namespace Handover_Pack_Compiler
             this.OperationTabs.Controls.Add(this.PacksTab);
             this.OperationTabs.Controls.Add(this.ModuleTab);
             this.OperationTabs.Controls.Add(this.InverterTab);
+            this.OperationTabs.Controls.Add(this.OptimiserTab);
             this.OperationTabs.Controls.Add(this.SettingsTab);
             this.OperationTabs.Location = new System.Drawing.Point(0, 0);
             this.OperationTabs.Name = "OperationTabs";
@@ -587,6 +602,125 @@ namespace Handover_Pack_Compiler
             // 
             this.InverterDataSource.DataSource = typeof(InverterData);
             // 
+            // OptimiserTab
+            // 
+            this.OptimiserTab.Controls.Add(this.EditOptimiserButton);
+            this.OptimiserTab.Controls.Add(this.DeleteOptimiserButton);
+            this.OptimiserTab.Controls.Add(this.AddOptimiserButton);
+            this.OptimiserTab.Controls.Add(this.OptimiserGridView);
+            this.OptimiserTab.Location = new System.Drawing.Point(4, 22);
+            this.OptimiserTab.Name = "OptimiserTab";
+            this.OptimiserTab.Size = new System.Drawing.Size(677, 509);
+            this.OptimiserTab.TabIndex = 7;
+            this.OptimiserTab.Text = "Optimiser";
+            this.OptimiserTab.UseVisualStyleBackColor = true;
+            // 
+            // EditOptimiserButton
+            // 
+            this.EditOptimiserButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.EditOptimiserButton.Location = new System.Drawing.Point(276, 482);
+            this.EditOptimiserButton.Name = "EditOptimiserButton";
+            this.EditOptimiserButton.Size = new System.Drawing.Size(114, 20);
+            this.EditOptimiserButton.TabIndex = 11;
+            this.EditOptimiserButton.Text = "Edit Optimiser";
+            this.EditOptimiserButton.UseVisualStyleBackColor = true;
+            this.EditOptimiserButton.Click += new System.EventHandler(this.EditOptimiserButton_Click);
+            // 
+            // DeleteOptimiserButton
+            // 
+            this.DeleteOptimiserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteOptimiserButton.Location = new System.Drawing.Point(557, 482);
+            this.DeleteOptimiserButton.Name = "DeleteOptimiserButton";
+            this.DeleteOptimiserButton.Size = new System.Drawing.Size(114, 20);
+            this.DeleteOptimiserButton.TabIndex = 10;
+            this.DeleteOptimiserButton.Text = "Delete Optimiser";
+            this.DeleteOptimiserButton.UseVisualStyleBackColor = true;
+            this.DeleteOptimiserButton.Click += new System.EventHandler(this.DeleteOptimiserButton_Click);
+            // 
+            // AddOptimiserButton
+            // 
+            this.AddOptimiserButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddOptimiserButton.Location = new System.Drawing.Point(6, 482);
+            this.AddOptimiserButton.Name = "AddOptimiserButton";
+            this.AddOptimiserButton.Size = new System.Drawing.Size(114, 20);
+            this.AddOptimiserButton.TabIndex = 9;
+            this.AddOptimiserButton.Text = "Add Optimiser";
+            this.AddOptimiserButton.UseVisualStyleBackColor = true;
+            this.AddOptimiserButton.Click += new System.EventHandler(this.AddOptimiserButton_Click);
+            // 
+            // OptimiserGridView
+            // 
+            this.OptimiserGridView.AllowUserToAddRows = false;
+            this.OptimiserGridView.AllowUserToDeleteRows = false;
+            this.OptimiserGridView.AllowUserToResizeColumns = false;
+            this.OptimiserGridView.AllowUserToResizeRows = false;
+            this.OptimiserGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OptimiserGridView.AutoGenerateColumns = false;
+            this.OptimiserGridView.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OptimiserGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.OptimiserGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OptimiserGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.OptimiserGridView.DataSource = this.OptimiserDataSource;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.OptimiserGridView.DefaultCellStyle = dataGridViewCellStyle12;
+            this.OptimiserGridView.EnableHeadersVisualStyles = false;
+            this.OptimiserGridView.Location = new System.Drawing.Point(6, 6);
+            this.OptimiserGridView.MultiSelect = false;
+            this.OptimiserGridView.Name = "OptimiserGridView";
+            this.OptimiserGridView.ReadOnly = true;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.OptimiserGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.OptimiserGridView.RowHeadersVisible = false;
+            this.OptimiserGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.OptimiserGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.OptimiserGridView.Size = new System.Drawing.Size(665, 470);
+            this.OptimiserGridView.TabIndex = 8;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Datasheet";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Datasheet";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // OptimiserDataSource
+            // 
+            this.OptimiserDataSource.DataSource = typeof(OptimiserData);
+            // 
             // SettingsTab
             // 
             this.SettingsTab.Controls.Add(this.CommSiteButton);
@@ -649,6 +783,9 @@ namespace Handover_Pack_Compiler
             this.InverterTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InverterGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InverterDataSource)).EndInit();
+            this.OptimiserTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.OptimiserGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OptimiserDataSource)).EndInit();
             this.SettingsTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -692,6 +829,14 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.TabPage PacksTab;
         private System.Windows.Forms.ComboBox PackStructureDropBox;
         private System.Windows.Forms.Button LoadPackStructureButton;
+        private System.Windows.Forms.TabPage OptimiserTab;
+        private System.Windows.Forms.Button EditOptimiserButton;
+        private System.Windows.Forms.Button DeleteOptimiserButton;
+        private System.Windows.Forms.Button AddOptimiserButton;
+        private System.Windows.Forms.DataGridView OptimiserGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.BindingSource OptimiserDataSource;
     }
 }
 

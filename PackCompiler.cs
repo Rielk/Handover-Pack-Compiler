@@ -17,6 +17,7 @@ namespace Handover_Pack_Compiler
     {
         private readonly List<InverterData> InverterList;
         private readonly List<ModuleData> ModuleList;
+        private readonly List<OptimiserData> OptimiserList;
         private readonly List<PackStructure> PackStructureList;
         private PackStructure ActivePackStructure = null;
         public PackCompiler()
@@ -32,6 +33,10 @@ namespace Handover_Pack_Compiler
             ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
             SortModules();
+
+            OptimiserList = Utilities.ReadFromFile<OptimiserData>("Optimisers.xml");
+            OptimiserDataSource.DataSource = OptimiserList;
+            SortOptimisers();
 
             ProgDataButton.InitialPathFunction = DefaultPath.ProgData;
             CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
@@ -50,6 +55,7 @@ namespace Handover_Pack_Compiler
         {
             Utilities.WriteToFile(InverterList, "Inverters.xml", true);
             Utilities.WriteToFile(ModuleList, "Modules.xml", true);
+            Utilities.WriteToFile(OptimiserList, "Optimisers.xml", true);
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
         }
         
@@ -303,6 +309,77 @@ namespace Handover_Pack_Compiler
             foreach (DataGridViewRow row in ModuleGridView.Rows)
             {
                 if (((ModuleData)row.DataBoundItem).Name == selection)
+                {
+                    row.Selected = true;
+                }
+            }
+        }
+        #endregion
+
+        #region Optimiser Tab
+        private void AddOptimiserButton_Click(object sender, EventArgs e)
+        {
+            OptimiserValuesForm OVForm = new OptimiserValuesForm();
+            if (OVForm.ShowDialog() == DialogResult.OK)
+            {
+                OptimiserData OData = new OptimiserData
+                {
+                    Name = OVForm.NameVal,
+                    Datasheet = OVForm.DatasheetVal
+                };
+                if (CheckExistingAdd<OptimiserData>(OptimiserList, OData, false))
+                {
+                    SortOptimisers(OData.Name);
+                }
+            }
+        }
+
+        private void DeleteOptimiserButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in OptimiserGridView.SelectedRows)
+            {
+                if (((OptimiserData)row.DataBoundItem).Name != null)
+                {
+                    DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Optimiser: " +
+                        ((OptimiserData)row.DataBoundItem).ToString(), "Yes", "No");
+                    if (Confirm == DialogResult.Yes)
+                    {
+                        OptimiserList.Remove((OptimiserData)row.DataBoundItem);
+                    }
+                }
+            }
+            SortOptimisers();
+        }
+
+        private void EditOptimiserButton_Click(object sender, EventArgs e)
+        {
+            OptimiserData OData = (OptimiserData)OptimiserGridView.SelectedRows[0].DataBoundItem;
+            if (OData.Name != null)
+            {
+                OptimiserValuesForm OVForm = new OptimiserValuesForm(OData.Name, OData.Datasheet);
+                if (OVForm.ShowDialog() == DialogResult.OK)
+                {
+                    OptimiserList.Remove(OData);
+                    OData.Name = OVForm.NameVal;
+                    OData.Datasheet = OVForm.DatasheetVal;
+                    OptimiserList.Add(OData);
+                    SortOptimisers(OData.Name);
+                }
+            }
+        }
+
+        private void SortOptimisers()
+        {
+            OptimiserList.Sort();
+            OptimiserDataSource.ResetBindings(false);
+        }
+
+        private void SortOptimisers(string selection)
+        {
+            SortOptimisers();
+            foreach (DataGridViewRow row in OptimiserGridView.Rows)
+            {
+                if (((OptimiserData)row.DataBoundItem).Name == selection)
                 {
                     row.Selected = true;
                 }
