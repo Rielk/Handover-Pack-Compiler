@@ -335,6 +335,7 @@ namespace Handover_Pack_Compiler
                 SearchTextBox.Text = file.SearchTerm;
                 AddPropertiesConPathButton.Value = file.ConstantPath;
                 AddProperties_Visability(file);
+                ReqAndMul_Checks(file);
                 foreach (CheckBox cb in CheckBoxList)
                 {
                     cb.Checked = (string)cb.Tag == file.FileType;
@@ -453,6 +454,7 @@ namespace Handover_Pack_Compiler
                 {
                     file.FileType = (string)((CheckBox)sender).Tag;
                     AddProperties_Visability(file);
+                    ReqAndMul_Checks(file);
                 }
                 IgnoreFileCheckChange = true;
                 foreach (CheckBox cb in CheckBoxList)
@@ -479,6 +481,82 @@ namespace Handover_Pack_Compiler
             {
                 AddPropertiesGenGroupBox.Visible = false;
                 AddPropertiesConPathButton.Visible = false;
+            }
+        }
+
+        private void ReqAndMul_Checks(Folder.File file)
+        {
+            if (file.FileType == FileTypeTag.Generic)
+            {
+                RequiredCheckBox.Checked = file.AlwaysRequired;
+                RequiredCheckBox.Enabled = true;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = file.AllowMultiple;
+                MultipleCheckBox.Enabled = true;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.Constant)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = false;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.Summary)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = false;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.SolarEdgeWarranty)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = false;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.ModuleWarranty)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = true;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.ModuleData)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = true;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.InverterData)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = true;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
+            }
+            else if (file.FileType == FileTypeTag.OptimiserData)
+            {
+                RequiredCheckBox.Checked = true;
+                RequiredCheckBox.Enabled = false;
+                RequiredCheckBox.Visible = true;
+                MultipleCheckBox.Checked = false;
+                MultipleCheckBox.Enabled = false;
+                MultipleCheckBox.Visible = true;
             }
         }
 
