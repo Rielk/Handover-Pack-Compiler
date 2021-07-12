@@ -529,7 +529,9 @@ namespace Handover_Pack_Compiler
                 {
                     Text = "Quote File",
                     Dock = DockStyle.Top,
-                    Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
+                    Description = "The Quotation File sent to the customer.\nContains" +
+                    "useful information like the size of the installation which can be" +
+                    "referred back to later."
                 };
                 ControlsToAdd.Add(QuoteFileButton);
 

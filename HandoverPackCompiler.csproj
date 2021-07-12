@@ -104,22 +104,22 @@
     <Compile Include="Controls\FolderPathButton.Designer.cs">
       <DependentUpon>FolderPathButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartValueForms\InverterValuesForm.cs">
+    <Compile Include="Forms\PartValueForms\InverterValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartValueForms\InverterValuesForm.Designer.cs">
+    <Compile Include="Forms\PartValueForms\InverterValuesForm.Designer.cs">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartValueForms\OptimiserValuesForm.cs">
+    <Compile Include="Forms\PartValueForms\OptimiserValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartValueForms\OptimiserValuesForm.Designer.cs">
+    <Compile Include="Forms\PartValueForms\OptimiserValuesForm.Designer.cs">
       <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartValueForms\ModuleValuesForm.cs">
+    <Compile Include="Forms\PartValueForms\ModuleValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartValueForms\ModuleValuesForm.Designer.cs">
+    <Compile Include="Forms\PartValueForms\ModuleValuesForm.Designer.cs">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\NameCompare.cs" />
@@ -175,13 +175,13 @@
     <EmbeddedResource Include="Controls\FolderPathButton.resx">
       <DependentUpon>FolderPathButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartValueForms\InverterValuesForm.resx">
+    <EmbeddedResource Include="Forms\PartValueForms\InverterValuesForm.resx">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartValueForms\OptimiserValuesForm.resx">
+    <EmbeddedResource Include="Forms\PartValueForms\OptimiserValuesForm.resx">
       <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartValueForms\ModuleValuesForm.resx">
+    <EmbeddedResource Include="Forms\PartValueForms\ModuleValuesForm.resx">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CommSiteRequest.resx">
@@ -230,6 +230,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controls\PartSelectors\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
