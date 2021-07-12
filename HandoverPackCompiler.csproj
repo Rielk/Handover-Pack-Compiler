@@ -82,121 +82,121 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMessageBox.cs">
+    <Compile Include="Forms\CMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMessageBox.Designer.cs">
+    <Compile Include="Forms\CMessageBox.Designer.cs">
       <DependentUpon>CMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="DefaultPath.cs" />
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="DataFormats.cs" />
-    <Compile Include="FileTypeTag.cs" />
-    <Compile Include="FileUI.cs">
+    <Compile Include="Utilities\DefaultPath.cs" />
+    <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Classes\DataFormats.cs" />
+    <Compile Include="Utilities\FileTypeTag.cs" />
+    <Compile Include="Controls\FileUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileUI.Designer.cs">
+    <Compile Include="Controls\FileUI.Designer.cs">
       <DependentUpon>FileUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="FolderPathButton.cs">
+    <Compile Include="Controls\FolderPathButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FolderPathButton.Designer.cs">
+    <Compile Include="Controls\FolderPathButton.Designer.cs">
       <DependentUpon>FolderPathButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="InverterValuesForm.cs">
+    <Compile Include="PartValueForms\InverterValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InverterValuesForm.Designer.cs">
+    <Compile Include="PartValueForms\InverterValuesForm.Designer.cs">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptimiserValuesForm.cs">
+    <Compile Include="PartValueForms\OptimiserValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OptimiserValuesForm.Designer.cs">
+    <Compile Include="PartValueForms\OptimiserValuesForm.Designer.cs">
       <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModuleValuesForm.cs">
+    <Compile Include="PartValueForms\ModuleValuesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModuleValuesForm.Designer.cs">
+    <Compile Include="PartValueForms\ModuleValuesForm.Designer.cs">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NameCompare.cs" />
-    <Compile Include="CommSiteRequest.cs">
+    <Compile Include="Classes\NameCompare.cs" />
+    <Compile Include="Forms\CommSiteRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CommSiteRequest.Designer.cs">
+    <Compile Include="Forms\CommSiteRequest.Designer.cs">
       <DependentUpon>CommSiteRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewPackNumberRequest.cs">
+    <Compile Include="Forms\NewPackNumberRequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewPackNumberRequest.Designer.cs">
+    <Compile Include="Forms\NewPackNumberRequest.Designer.cs">
       <DependentUpon>NewPackNumberRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackCompiler.cs">
+    <Compile Include="Forms\PackCompiler.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PackCompiler.Designer.cs">
+    <Compile Include="Forms\PackCompiler.Designer.cs">
       <DependentUpon>PackCompiler.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilePathButton.cs">
+    <Compile Include="Controls\FilePathButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FilePathButton.Designer.cs">
+    <Compile Include="Controls\FilePathButton.Designer.cs">
       <DependentUpon>FilePathButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackPath.cs" />
-    <Compile Include="PackStructure.cs" />
-    <Compile Include="PackStructureTree.cs">
+    <Compile Include="Classes\PackPath.cs" />
+    <Compile Include="Classes\PackStructure.cs" />
+    <Compile Include="Controls\PackStructureTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PackStructureTree.Designer.cs">
+    <Compile Include="Controls\PackStructureTree.Designer.cs">
       <DependentUpon>PackStructureTree.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommSitePath.cs" />
+    <Compile Include="Classes\CommSitePath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="FileSelector.cs">
+    <Compile Include="Controls\FileSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileSelector.Designer.cs">
+    <Compile Include="Controls\FileSelector.Designer.cs">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities.cs" />
-    <EmbeddedResource Include="CMessageBox.resx">
+    <Compile Include="Utilities\Utilities.cs" />
+    <EmbeddedResource Include="Forms\CMessageBox.resx">
       <DependentUpon>CMessageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileUI.resx">
+    <EmbeddedResource Include="Controls\FileUI.resx">
       <DependentUpon>FileUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FolderPathButton.resx">
+    <EmbeddedResource Include="Controls\FolderPathButton.resx">
       <DependentUpon>FolderPathButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InverterValuesForm.resx">
+    <EmbeddedResource Include="PartValueForms\InverterValuesForm.resx">
       <DependentUpon>InverterValuesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OptimiserValuesForm.resx">
+    <EmbeddedResource Include="PartValueForms\OptimiserValuesForm.resx">
       <DependentUpon>OptimiserValuesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModuleValuesForm.resx">
+    <EmbeddedResource Include="PartValueForms\ModuleValuesForm.resx">
       <DependentUpon>ModuleValuesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommSiteRequest.resx">
+    <EmbeddedResource Include="Forms\CommSiteRequest.resx">
       <DependentUpon>CommSiteRequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewPackNumberRequest.resx">
+    <EmbeddedResource Include="Forms\NewPackNumberRequest.resx">
       <DependentUpon>NewPackNumberRequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PackCompiler.resx">
+    <EmbeddedResource Include="Forms\PackCompiler.resx">
       <DependentUpon>PackCompiler.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilePathButton.resx">
+    <EmbeddedResource Include="Controls\FilePathButton.resx">
       <DependentUpon>FilePathButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PackStructureTree.resx">
+    <EmbeddedResource Include="Controls\PackStructureTree.resx">
       <DependentUpon>PackStructureTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -208,7 +208,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FileSelector.resx">
+    <EmbeddedResource Include="Controls\FileSelector.resx">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Resources.datasource" />
