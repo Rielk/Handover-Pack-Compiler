@@ -532,6 +532,53 @@ namespace Handover_Pack_Compiler
                     Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
                 };
                 ControlsToAdd.Add(QuoteFileButton);
+
+                bool requireInverters = false;
+                bool requireModules = false;
+                bool requireOptimisers = false;
+                bool requireAdditional = false;
+                foreach (Folder folder in ActivePackStructure.Folders)
+                {
+                    foreach (Folder.File file in folder.Files)
+                    {
+                        if (file.FileType == FileTypeTag.Summary)
+                        {
+                            requireInverters = true;
+                            requireModules = true;
+                            requireAdditional = true;
+                        }
+                        else if (file.FileType == FileTypeTag.InverterData | file.FileType == FileTypeTag.SolarEdgeWarranty)
+                        {
+                            requireInverters = true;
+                        }
+                        else if (file.FileType == FileTypeTag.ModuleData | file.FileType == FileTypeTag.ModuleWarranty)
+                        {
+                            requireModules = true;
+                        }
+                        else if (file.FileType == FileTypeTag.OptimiserData)
+                        {
+                            requireOptimisers = true;
+                        }
+                    }
+                }
+
+                if (requireInverters)
+                {
+                    throw new NotImplementedException();
+                }
+                if (requireModules)
+                {
+                    throw new NotImplementedException();
+                }
+                if (requireOptimisers)
+                {
+                    throw new NotImplementedException();
+                }
+                if (requireAdditional)
+                {
+                    throw new NotImplementedException();
+                }
+
                 int FolderNumber = 0;
                 foreach (Folder folder in ActivePackStructure.Folders)
                 {
