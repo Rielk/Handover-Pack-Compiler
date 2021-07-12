@@ -127,10 +127,6 @@ namespace Handover_Pack_Compiler
             {
                 LoadFilePaths();
             }
-            else if (OperationTabs.SelectedTab == FilesTab)
-            {
-                LoadActivePack();
-            }
         }
         #endregion
 
@@ -505,6 +501,7 @@ namespace Handover_Pack_Compiler
                     if (valid)
                     {
                         ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
+                        LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
                         Requesting = false;
                     }
@@ -535,15 +532,19 @@ namespace Handover_Pack_Compiler
                     Description = "The Quotation File sent to the customer.\nContains useful information like the size of the installation which can be referred back to later."
                 };
                 ControlsToAdd.Add(QuoteFileButton);
+                int FolderNumber = 0;
                 foreach (Folder folder in ActivePackStructure.Folders)
                 {
+                    FolderNumber++;
+                    int FileNumber = 0;
                     foreach (Folder.File file in folder.Files)
                     {
+                        FileNumber++;
                         if (file.FileType == FileTypeTag.Generic)
                         {
                             FileUI NewSelector = new FileUI(file)
                             {
-                                Text = file.Name,
+                                Text = FolderNumber.ToString() + "." + FileNumber.ToString() + "  " + file.Name,
                                 Dock = DockStyle.Top
                             };
                             ControlsToAdd.Add(NewSelector);

@@ -16,9 +16,9 @@ namespace Handover_Pack_Compiler
         }
         public string Description { get; set; } = "";
         public List<Folder> Folders = new List<Folder>();
-        public List<InverterData> Inverters = null;
-        public List<ModuleData> Modules = null;
-        public List<OptimiserData> Optimisers = null;
+        public List<InverterData> Inverters = new List<InverterData>();
+        public List<ModuleData> Modules = new List<ModuleData>();
+        public List<OptimiserData> Optimisers = new List<OptimiserData>();
         public PackStructure()
         {
 
@@ -85,9 +85,9 @@ namespace Handover_Pack_Compiler
             Folder.File fi;
             PackStructure DefaultStructure = new PackStructure { Description = "Default Pack" };
             #region 1.0  Important Technical Information
-            fo = DefaultStructure.AddFolder("1.0  Important Technical Information");
+            fo = DefaultStructure.AddFolder("Important Technical Information");
             fo.Description = "Folder containing the Health and Safety Guidelines";
-            fi = DefaultStructure.AddFile("1.1  Health & Safety Guidelines", "1.0  Important Technical Information");
+            fi = DefaultStructure.AddFile("Health & Safety Guidelines", "Important Technical Information");
             fi.Description = "Important Health and Safety information";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Constant;
@@ -99,18 +99,18 @@ namespace Handover_Pack_Compiler
             };
             #endregion
             #region 2.0  General Information
-            fo = DefaultStructure.AddFolder("2.0  General Information");
+            fo = DefaultStructure.AddFolder("General Information");
             fo.Description = "Folder containing the Summary and General information file";
-            fi = DefaultStructure.AddFile("2.1  System Summary & General Information", "2.0  General Information");
+            fi = DefaultStructure.AddFile("System Summary & General Information", "General Information");
             fi.Description = "System Summary and General Information";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Summary;
             fi.AllowMultiple = false;
             #endregion
             #region 3.0  Guarantees & Datasheets
-            fo = DefaultStructure.AddFolder("3.0  Guarantees & Datasheets");
+            fo = DefaultStructure.AddFolder("Guarantees & Datasheets");
             fo.Description = "Folder containing the Warranties and datasheets for the installed components";
-            fi = DefaultStructure.AddFile("3.1  Mypower Installation Warranty", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("Mypower Installation Warranty", "Guarantees & Datasheets");
             fi.Description = "Mypower's installation warranty";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Constant;
@@ -120,29 +120,29 @@ namespace Handover_Pack_Compiler
                 Extension = "QMS File\\MP012 Mypower Installation Warranty.pdf",
                 InCommSite = true
             };
-            fi = DefaultStructure.AddFile("3.2  Module Warranty", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("Module Warranty", "Guarantees & Datasheets");
             fi.Description = "The warranty for the installed modules";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.ModuleWarranty;
             fi.AllowMultiple = true;
-            fi = DefaultStructure.AddFile("3.3  Module Datasheet", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("Module Datasheet", "Guarantees & Datasheets");
             fi.Description = "The datasheet for the installed modules";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.ModuleData;
             fi.AllowMultiple = true;
-            fi = DefaultStructure.AddFile("3.4  Inverter datasheet", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("Inverter datasheet", "Guarantees & Datasheets");
             fi.Description = "The warranty for the installed inverters";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.InverterData;
             fi.AllowMultiple = true;
-            fi = DefaultStructure.AddFile("3.4a  Inverter Extended Warranty", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("Inverter Extended Warranty", "Guarantees & Datasheets");
             fi.Description = "The extended warranty for the installed inverters";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "Warranty";
             fi.AlwaysRequired = false;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = true;
-            fi = DefaultStructure.AddFile("3.5  SolarEdge Product Warranty", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("SolarEdge Product Warranty", "Guarantees & Datasheets");
             fi.Description = "The SolarEdge warranty";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.SolarEdgeWarranty;
@@ -152,51 +152,51 @@ namespace Handover_Pack_Compiler
                 Extension = "Technical Area\\SOLAR PV\\Inverters\\SolarEdge\\SE Product Warranty\\SolarEdge warranty - May 2020.pdf",
                 InCommSite = true
             };
-            fi = DefaultStructure.AddFile("3.6  SolarEdge Optimiser datasheet", "3.0  Guarantees & Datasheets");
+            fi = DefaultStructure.AddFile("SolarEdge Optimiser datasheet", "Guarantees & Datasheets");
             fi.Description = "The datasheet for any optimisers installed";
             fi.AlwaysRequired = false;
             fi.FileType = FileTypeTag.OptimiserData;
             fi.AllowMultiple = false;
             #endregion
             #region 4.0  Electrical
-            fo = DefaultStructure.AddFolder("4.0  Electrical");
+            fo = DefaultStructure.AddFolder("Electrical");
             fo.Description = "Folder containing various test reports and sign offs";
-            fi = DefaultStructure.AddFile("4.1  Installation schematic", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("Installation schematic", "Electrical");
             fi.Description = "Final Installation schematic";
             fi.DefaultFolder = 6;
             fi.SearchTerm = "Schematic";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("4.2  Commissioning test report (AC Cert)", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("Commissioning test report (AC Cert)", "Electrical");
             fi.Description = "AC Cert";
             fi.DefaultFolder = 10;
             fi.SearchTerm = "ac";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("4.3  Commissioning test report (DC Cert)", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("Commissioning test report (DC Cert)", "Electrical");
             fi.Description = "DC Cert";
             fi.DefaultFolder = 10;
             fi.SearchTerm = "dc";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("4.4  DNO commissioning form (G99 Form A3-1)", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("DNO commissioning form (G99 Form A3-1)", "Electrical");
             fi.Description = "G99 Form A3-1";
             fi.DefaultFolder = 6;
             fi.SearchTerm = "G99";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("4.5  Inverter & wiring sign off", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("Inverter & wiring sign off", "Electrical");
             fi.Description = "Inverter and Wiring sign off";
             fi.DefaultFolder = 10;
             fi.SearchTerm = "inv";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("4.6  DNO commissioning notification", "4.0  Electrical");
+            fi = DefaultStructure.AddFile("DNO commissioning notification", "Electrical");
             fi.Description = "DNO commissioning notification email, including the acceptance email if recieved.";
             fi.DefaultFolder = 12;
             fi.SearchTerm = "dno";
@@ -205,16 +205,16 @@ namespace Handover_Pack_Compiler
             fi.AllowMultiple = false;
             #endregion
             #region 5.0  Predicted Output
-            fo = DefaultStructure.AddFolder("5.0  Predicted Output");
+            fo = DefaultStructure.AddFolder("Predicted Output");
             fo.Description = "Folder containing the predicted output and comparison tool";
-            fi = DefaultStructure.AddFile("5.1  Summary Report", "5.0  Predicted Output");
+            fi = DefaultStructure.AddFile("Summary Report", "Predicted Output");
             fi.Description = "PV Sol/SolarEdge Summary Report";
             fi.DefaultFolder = 1;
             fi.SearchTerm = "pv sol";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("5.2  Predicted Output Comparison Tool", "5.0  Predicted Output");
+            fi = DefaultStructure.AddFile("Predicted Output Comparison Tool", "Predicted Output");
             fi.Description = "Predicted output comparison tool, spreadsheet";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "tool";
@@ -223,16 +223,16 @@ namespace Handover_Pack_Compiler
             fi.AllowMultiple = false;
             #endregion
             #region 6.0  Building Regulations - Work Notification
-            fo = DefaultStructure.AddFolder("6.0  Building Regulations - Work Notification");
+            fo = DefaultStructure.AddFolder("Building Regulations - Work Notification");
             fo.Description = "Folder containing NAPIT work notification and Struct certs.";
-            fi = DefaultStructure.AddFile("6.1  NAPIT Work notification details", "6.0  Building Regulations - Work Notification");
+            fi = DefaultStructure.AddFile("NAPIT Work notification details", "Building Regulations - Work Notification");
             fi.Description = "NAPIT work notification details";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "NAPIT";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;
             fi.AllowMultiple = false;
-            fi = DefaultStructure.AddFile("6.2  Structural survey certificate", "6.0  Building Regulations - Work Notification");
+            fi = DefaultStructure.AddFile("Structural survey certificate", "Building Regulations - Work Notification");
             fi.Description = "Structural survey certificate, ask if required";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "struc";
@@ -241,9 +241,9 @@ namespace Handover_Pack_Compiler
             fi.AllowMultiple = true;
             #endregion
             #region 7.0  MCS Certificate
-            fo = DefaultStructure.AddFolder("7.0  MCS Certificate");
+            fo = DefaultStructure.AddFolder("MCS Certificate");
             fo.Description = "MCS Certificate, only required if System size is less than 50kWp";
-            fi = DefaultStructure.AddFile("7.1  MCS Certificate", "7.0  MCS Certificate");
+            fi = DefaultStructure.AddFile("MCS Certificate", "MCS Certificate");
             fi.Description = "MCS Certificate";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "MCS";
