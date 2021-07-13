@@ -599,9 +599,13 @@ namespace Handover_Pack_Compiler
                     };
                     ControlsToAdd.Add(MSelector);
                 }
-                if (requireOptimisers & false)
+                if (requireOptimisers)
                 {
-                    throw new NotImplementedException();
+                    OptimiserUI OSelector = new OptimiserUI(ActivePackStructure)
+                    {
+                        Dock = DockStyle.Top
+                    };
+                    ControlsToAdd.Add(OSelector);
                 }
                 if (requireAdditional & false)
                 {

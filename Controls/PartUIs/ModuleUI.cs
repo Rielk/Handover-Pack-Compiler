@@ -117,7 +117,7 @@ namespace Handover_Pack_Compiler
             bool toggle = true;
             foreach (ModuleData MD in Modules)
             {
-                if (MD.Quantity == 0)
+                if (MD.Quantity == 0 | Modules.Count == 0)
                 {
                     toggle = false;
                 }

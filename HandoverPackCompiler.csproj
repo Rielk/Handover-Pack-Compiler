@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PartSelectors\OptimiserSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PartSelectors\OptimiserSelector.Designer.cs">
+      <DependentUpon>OptimiserSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PartSelectors\ModuleSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="Controls\PartSelectors\InverterSelector.Designer.cs">
       <DependentUpon>InverterSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PartUIs\OptimiserUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PartUIs\OptimiserUI.Designer.cs">
+      <DependentUpon>OptimiserUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\PartUIs\ModuleUI.cs">
       <SubType>UserControl</SubType>
@@ -190,11 +202,17 @@
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utilities.cs" />
+    <EmbeddedResource Include="Controls\PartSelectors\OptimiserSelector.resx">
+      <DependentUpon>OptimiserSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PartSelectors\ModuleSelector.resx">
       <DependentUpon>ModuleSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PartSelectors\InverterSelector.resx">
       <DependentUpon>InverterSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PartUIs\OptimiserUI.resx">
+      <DependentUpon>OptimiserUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PartUIs\ModuleUI.resx">
       <DependentUpon>ModuleUI.cs</DependentUpon>
