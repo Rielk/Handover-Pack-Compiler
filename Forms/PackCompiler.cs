@@ -525,15 +525,34 @@ namespace Handover_Pack_Compiler
             if (ActivePackStructure != null)
             {
                 List<Control> ControlsToAdd = new List<Control>();
-                FilePathButton QuoteFileButton = new FilePathButton
+
                 {
-                    Text = "Quote File",
-                    Dock = DockStyle.Top,
-                    Description = "The Quotation File sent to the customer.\nContains" +
-                    "useful information like the size of the installation which can be" +
-                    "referred back to later."
-                };
-                ControlsToAdd.Add(QuoteFileButton);
+                    Folder.File file;
+                    if (ActivePackStructure.QuoteFile == null)
+                    {
+                        file = new Folder.File()
+                        {
+                            FileType = FileTypeTag.Generic,
+                            AllowMultiple = false,
+                            AlwaysRequired = true,
+                            Description = "The Quotation File sent to the customer.\nContains" +
+                            "useful information like the size of the installation which can be" +
+                            "referred back to later.",
+                            DefaultFolder = 1,
+                            SearchTerm = "quote"
+                        };
+                    }
+                    else
+                    {
+                        file = ActivePackStructure.QuoteFile;
+                    }
+                    FileUI NewSelector = new FileUI(file)
+                    {
+                        Text = "Quote File",
+                        Dock = DockStyle.Top
+                    };
+                    ControlsToAdd.Add(NewSelector);
+                }
 
                 bool requireInverters = false;
                 bool requireModules = false;
@@ -572,9 +591,13 @@ namespace Handover_Pack_Compiler
                     };
                     ControlsToAdd.Add(ISelector);
                 }
-                if (requireModules & false)
+                if (requireModules)
                 {
-                    throw new NotImplementedException();
+                    ModuleUI MSelector = new ModuleUI(ActivePackStructure)
+                    {
+                        Dock = DockStyle.Top
+                    };
+                    ControlsToAdd.Add(MSelector);
                 }
                 if (requireOptimisers & false)
                 {
@@ -601,7 +624,8 @@ namespace Handover_Pack_Compiler
                                 Dock = DockStyle.Top
                             };
                             ControlsToAdd.Add(NewSelector);
-                        } }
+                        }
+                    }
                 }
                 for (int i = ControlsToAdd.Count - 1; i >= 0; i--)
                 {

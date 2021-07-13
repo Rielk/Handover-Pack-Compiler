@@ -19,6 +19,7 @@ namespace Handover_Pack_Compiler
         public List<InverterData> Inverters = new List<InverterData>();
         public List<ModuleData> Modules = new List<ModuleData>();
         public List<OptimiserData> Optimisers = new List<OptimiserData>();
+        public Folder.File QuoteFile = null;
         public PackStructure()
         {
 
@@ -47,6 +48,7 @@ namespace Handover_Pack_Compiler
             {
                 Optimisers.Add(new OptimiserData(optimiser));
             }
+            QuoteFile = other.QuoteFile;
         }
         public PackStructure(PackStructure other, bool rename) : this(other)
         {

@@ -55,6 +55,7 @@ public class ModuleData : Data
         get { return WPath.FullPath; }
         set { WPath.FullPath = value; }
     }
+    public int? Quantity = null;
     public ModuleData() { }
     public ModuleData(ModuleData other)
     {
@@ -62,6 +63,7 @@ public class ModuleData : Data
         WPath = new CommSitePath(null);
         Datasheet = other.Datasheet;
         Warranty = other.Warranty;
+        Quantity = other.Quantity;
     }
 }
 
