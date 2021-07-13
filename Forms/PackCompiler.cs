@@ -15,11 +15,11 @@ namespace Handover_Pack_Compiler
 {
     public partial class PackCompiler : Form
     {
-        private readonly List<InverterData> InverterList;
-        private readonly List<ModuleData> ModuleList;
-        private readonly List<OptimiserData> OptimiserList;
-        private readonly List<PackStructure> PackStructureList;
-        private PackStructure ActivePackStructure = null;
+        public static List<InverterData> InverterList;
+        public static List<ModuleData> ModuleList;
+        public static List<OptimiserData> OptimiserList;
+        public static List<PackStructure> PackStructureList;
+        public static PackStructure ActivePackStructure = null;
         public PackCompiler()
         {
             InitializeComponent();
@@ -566,17 +566,21 @@ namespace Handover_Pack_Compiler
 
                 if (requireInverters)
                 {
-                    throw new NotImplementedException();
+                    InverterUI ISelector = new InverterUI(ActivePackStructure)
+                    {
+                        Dock = DockStyle.Top
+                    };
+                    ControlsToAdd.Add(ISelector);
                 }
-                if (requireModules)
+                if (requireModules & false)
                 {
                     throw new NotImplementedException();
                 }
-                if (requireOptimisers)
+                if (requireOptimisers & false)
                 {
                     throw new NotImplementedException();
                 }
-                if (requireAdditional)
+                if (requireAdditional & false)
                 {
                     throw new NotImplementedException();
                 }

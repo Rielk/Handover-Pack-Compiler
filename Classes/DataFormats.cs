@@ -28,12 +28,14 @@ public class InverterData : Data
         set { DPath.FullPath = value; }
     }
     public bool SolarEdge { get; set; } = false;
+    public string SerialNumber = null;
     public InverterData() { }
     public InverterData(InverterData other)
     {
         DPath = new CommSitePath(null);
         Datasheet = other.Datasheet;
         SolarEdge = other.SolarEdge;
+        SerialNumber = other.SerialNumber;
     }
 }
 

@@ -118,7 +118,7 @@ namespace Handover_Pack_Compiler
         }
         private void Remove_FileSelector(FileSelector fs)
         {
-            (fs).Parent.Controls.Remove(fs);
+            fs.Parent.Controls.Remove(fs);
             FileSelectors.Remove(fs);
             this.MaximumSize = new Size(5000, this.MaximumSize.Height - 25);
             this.MinimumSize = new Size(0, this.MinimumSize.Height - 25);
