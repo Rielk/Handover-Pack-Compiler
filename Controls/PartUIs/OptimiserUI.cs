@@ -108,36 +108,34 @@ namespace Handover_Pack_Compiler
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            if (toggle)
+            if (Complete)
             {
-                if (Complete)
+                Complete = false;
+                ConfirmButton.Text = "Confirm";
+                foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
                 {
-                    Complete = false;
-                    ConfirmButton.Text = "Confirm";
-                    foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
-                    {
-                        OS.ReadOnly = false;
-                    }
-                    AddOptimiser();
-
+                    OS.ReadOnly = false;
                 }
-                else
+                AddOptimiser();
+
+            }
+            else
+            {
+                Complete = true;
+                ConfirmButton.Text = "Edit";
+                foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
                 {
-                    Complete = true;
-                    ConfirmButton.Text = "Edit";
-                    foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
+                    if (OS.Value == null)
                     {
-                        if (OS.Value == null)
-                        {
-                            Remove_OptimiserSelector(OS);
-                        }
-                        else
-                        {
-                            OS.ReadOnly = true;
-                        }
+                        Remove_OptimiserSelector(OS);
+                    }
+                    else
+                    {
+                        OS.ReadOnly = true;
                     }
                 }
             }
+
         }
     }
 }
