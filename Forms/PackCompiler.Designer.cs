@@ -63,7 +63,6 @@ namespace Handover_Pack_Compiler
             this.CompileTab = new System.Windows.Forms.TabPage();
             this.PacksTab = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.packStructureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ModuleTab = new System.Windows.Forms.TabPage();
             this.EditModuleButton = new System.Windows.Forms.Button();
             this.DeleteModuleButton = new System.Windows.Forms.Button();
@@ -93,9 +92,11 @@ namespace Handover_Pack_Compiler
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.CommSiteButton = new Handover_Pack_Compiler.FolderPathButton();
             this.ProgDataButton = new Handover_Pack_Compiler.FolderPathButton();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Complete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ActivePackStructureSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.completeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OperationTabs.SuspendLayout();
             this.StructureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PackTabSplit)).BeginInit();
@@ -106,7 +107,6 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureSource)).BeginInit();
             this.PacksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.packStructureBindingSource)).BeginInit();
             this.ModuleTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).BeginInit();
@@ -117,6 +117,7 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.OptimiserGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OptimiserDataSource)).BeginInit();
             this.SettingsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ActivePackStructureSource)).BeginInit();
             this.SuspendLayout();
             // 
             // OperationTabs
@@ -377,10 +378,11 @@ namespace Handover_Pack_Compiler
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.Notes,
-            this.Complete});
-            this.dataGridView1.DataSource = this.packStructureBindingSource;
+            this.customerNumberDataGridViewTextBoxColumn,
+            this.notesDataGridViewTextBoxColumn,
+            this.completeDataGridViewCheckBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.ActivePackStructureSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -407,10 +409,6 @@ namespace Handover_Pack_Compiler
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(665, 470);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // packStructureBindingSource
-            // 
-            this.packStructureBindingSource.DataSource = typeof(Handover_Pack_Compiler.PackStructure);
             // 
             // ModuleTab
             // 
@@ -828,29 +826,44 @@ namespace Handover_Pack_Compiler
             this.ProgDataButton.Value = "";
             this.ProgDataButton.ValueUpdate += new System.EventHandler(this.ProgDataButton_ValueUpdate);
             // 
-            // dataGridViewTextBoxColumn3
+            // ActivePackStructureSource
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "CustomerNumber";
-            this.dataGridViewTextBoxColumn3.Frozen = true;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 60;
+            this.ActivePackStructureSource.DataSource = typeof(Handover_Pack_Compiler.PackStructure);
             // 
-            // Notes
+            // customerNumberDataGridViewTextBoxColumn
             // 
-            this.Notes.DataPropertyName = "Notes";
-            this.Notes.HeaderText = "Notes";
-            this.Notes.Name = "Notes";
-            this.Notes.ReadOnly = true;
+            this.customerNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.customerNumberDataGridViewTextBoxColumn.DataPropertyName = "CustomerNumber";
+            this.customerNumberDataGridViewTextBoxColumn.HeaderText = "CustomerNumber";
+            this.customerNumberDataGridViewTextBoxColumn.Name = "customerNumberDataGridViewTextBoxColumn";
+            this.customerNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerNumberDataGridViewTextBoxColumn.Width = 113;
             // 
-            // Complete
+            // notesDataGridViewTextBoxColumn
             // 
-            this.Complete.DataPropertyName = "Complete";
-            this.Complete.HeaderText = "Complete";
-            this.Complete.Name = "Complete";
-            this.Complete.ReadOnly = true;
+            this.notesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
+            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
+            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
+            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // completeDataGridViewCheckBoxColumn
+            // 
+            this.completeDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.completeDataGridViewCheckBoxColumn.DataPropertyName = "Complete";
+            this.completeDataGridViewCheckBoxColumn.HeaderText = "Complete";
+            this.completeDataGridViewCheckBoxColumn.Name = "completeDataGridViewCheckBoxColumn";
+            this.completeDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.completeDataGridViewCheckBoxColumn.Width = 57;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 60;
             // 
             // PackCompiler
             // 
@@ -871,7 +884,6 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.PackStructureSource)).EndInit();
             this.PacksTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.packStructureBindingSource)).EndInit();
             this.ModuleTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ModuleGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModuleDataSource)).EndInit();
@@ -882,6 +894,7 @@ namespace Handover_Pack_Compiler
             ((System.ComponentModel.ISupportInitialize)(this.OptimiserGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OptimiserDataSource)).EndInit();
             this.SettingsTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ActivePackStructureSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -933,10 +946,11 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.BindingSource OptimiserDataSource;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource packStructureBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Complete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn completeDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource ActivePackStructureSource;
     }
 }
 
