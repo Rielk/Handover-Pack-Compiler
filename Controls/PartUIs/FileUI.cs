@@ -12,7 +12,6 @@ namespace Handover_Pack_Compiler
 {
     public partial class FileUI : UserControl
     {
-        public bool Complete = false;
         private readonly List<FileSelector> FileSelectors = new List<FileSelector>();
         private readonly Folder.File file;
         public override string Text
@@ -94,7 +93,7 @@ namespace Handover_Pack_Compiler
             {
                 c.Enabled = RequiredCheckBox.Checked;
             }
-            Complete = RequiredCheckBox.Checked;
+            file.Complete = RequiredCheckBox.Checked;
             ToggleComplete();
         }
 
@@ -150,9 +149,9 @@ namespace Handover_Pack_Compiler
         }
         private void ToggleComplete()
         { 
-            if (Complete)
+            if (file.Complete)
             {
-                Complete = false;
+                file.Complete = false;
                 ConfirmButton.Text = "Confirm";
                 foreach (FileSelector fs in FileSelectors.ToList())
                 {
@@ -165,7 +164,7 @@ namespace Handover_Pack_Compiler
             }
             else
             {
-                Complete = true;
+                file.Complete = true;
                 ConfirmButton.Text = "Edit";
                 foreach (FileSelector fs in FileSelectors.ToList())
                 {

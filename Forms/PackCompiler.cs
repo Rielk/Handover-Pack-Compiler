@@ -503,6 +503,7 @@ namespace Handover_Pack_Compiler
                         ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
                         LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
+                        FilesTab.VerticalScroll.Value = 0;
                         Requesting = false;
                     }
                     else
@@ -607,9 +608,13 @@ namespace Handover_Pack_Compiler
                     };
                     ControlsToAdd.Add(OSelector);
                 }
-                if (requireAdditional & false)
+                if (requireAdditional)
                 {
-                    throw new NotImplementedException();
+                    SummaryInformation SumInf = new SummaryInformation(ActivePackStructure)
+                    {
+                        Dock = DockStyle.Top
+                    };
+                    ControlsToAdd.Add(SumInf);
                 }
 
                 int FolderNumber = 0;

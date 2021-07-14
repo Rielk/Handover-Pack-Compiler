@@ -13,13 +13,18 @@ namespace Handover_Pack_Compiler
 {
     public partial class OptimiserUI : UserControl
     {
-        public bool Complete = false;
-        public readonly List<OptimiserData> Optimisers = null;
+        private readonly PackStructure ActivePackStructure;
+        private List<OptimiserData> Optimisers { get { return ActivePackStructure.Optimisers; } }
+        private bool Complete
+        {
+            get { return ActivePackStructure.OptimiserComplete; }
+            set { ActivePackStructure.OptimiserComplete = value; }
+        }
         private readonly List<OptimiserSelector> OptimiserSelectors = new List<OptimiserSelector>();
         public OptimiserUI(PackStructure ps)
         {
             InitializeComponent();
-            Optimisers = ps.Optimisers;
+            ActivePackStructure = ps;
             if (Optimisers.Count == 0)
             {
                 AddOptimiser();

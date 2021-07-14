@@ -16,10 +16,37 @@ namespace Handover_Pack_Compiler
         }
         public string Description { get; set; } = "";
         public List<Folder> Folders = new List<Folder>();
+        public bool InverterComplete = false;
         public List<InverterData> Inverters = new List<InverterData>();
+        public bool ModuleComplete = false;
         public List<ModuleData> Modules = new List<ModuleData>();
+        public bool OptimiserComplete = false;
         public List<OptimiserData> Optimisers = new List<OptimiserData>();
         public Folder.File QuoteFile = null;
+        public bool SummaryComplete = false;
+        public string Address = null;
+        public string InstallDate = null;
+        public string SystemSize = null;
+        public string PredictedOutput = null;
+        public bool Complete
+        {
+            get
+            {
+                bool ret = true;
+                foreach (Folder f in Folders)
+                {
+                    if (!f.Complete)
+                    {
+                        ret = false;
+                    }
+                }
+                if (!InverterComplete || !ModuleComplete || !OptimiserComplete || !SummaryComplete)
+                {
+                    ret = false;
+                }
+                return ret;
+            }
+        }
         public PackStructure()
         {
 
@@ -33,22 +60,30 @@ namespace Handover_Pack_Compiler
             {
                 Folders.Add(new Folder(folder));
             }
+            InverterComplete = other.InverterComplete;
             Inverters = new List<InverterData>();
             foreach (InverterData inverter in other.Inverters)
             {
                 Inverters.Add(new InverterData(inverter));
             }
+            ModuleComplete = other.ModuleComplete;
             Modules = new List<ModuleData>();
             foreach (ModuleData module in other.Modules)
             {
                 Modules.Add(new ModuleData(module));
             }
+            OptimiserComplete = other.OptimiserComplete;
             Optimisers = new List<OptimiserData>();
             foreach (OptimiserData optimiser in other.Optimisers)
             {
                 Optimisers.Add(new OptimiserData(optimiser));
             }
             QuoteFile = other.QuoteFile;
+            SummaryComplete = other.SummaryComplete;
+            Address = other.Address;
+            InstallDate = other.InstallDate;
+            SystemSize = other.SystemSize;
+            PredictedOutput = other.PredictedOutput;
         }
         public PackStructure(PackStructure other, bool rename) : this(other)
         {
@@ -258,6 +293,21 @@ namespace Handover_Pack_Compiler
     }
     public class Folder
     {
+        public bool Complete
+        {
+            get
+            {
+                bool ret = true;
+                foreach (File f in Files)
+                {
+                    if (!f.Complete)
+                    {
+                        ret = false;
+                    }
+                }
+                return ret;
+            }
+        }
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
         public List<File> Files { get; } = new List<File>();
@@ -295,6 +345,7 @@ namespace Handover_Pack_Compiler
             public bool AlwaysRequired { get; set; } = true;
             public string FileType { get; set; } = FileTypeTag.Generic;
             public bool AllowMultiple { get; set; } = false;
+            public bool Complete { get; set; } = false;
             [XmlIgnore]
             public string ConstantPath
             {
@@ -322,6 +373,7 @@ namespace Handover_Pack_Compiler
                 CSConPath = new CommSitePath(null);
                 ConstantPath = other.ConstantPath;
                 CSGenPaths = (from CSP in other.CSGenPaths select CSP).ToList();
+                Complete = other.Complete;
             }
         }
     }

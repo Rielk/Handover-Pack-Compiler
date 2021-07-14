@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SummaryInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SummaryInformation.Designer.cs">
+      <DependentUpon>SummaryInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PartSelectors\OptimiserSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,9 @@
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utilities.cs" />
+    <EmbeddedResource Include="Controls\SummaryInformation.resx">
+      <DependentUpon>SummaryInformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\PartSelectors\OptimiserSelector.resx">
       <DependentUpon>OptimiserSelector.cs</DependentUpon>
     </EmbeddedResource>
