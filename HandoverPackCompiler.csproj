@@ -274,6 +274,7 @@
     <EmbeddedResource Include="Controls\PartSelectors\FileSelector.resx">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\ActivePackStructure.datasource" />
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\Handover_Pack_Compiler.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\InverterData.datasource" />

@@ -13,7 +13,7 @@ namespace Handover_Pack_Compiler
 {
     public partial class OptimiserUI : UserControl
     {
-        private readonly PackStructure ActivePackStructure;
+        private readonly ActivePackStructure ActivePackStructure;
         private List<OptimiserData> Optimisers { get { return ActivePackStructure.Optimisers; } }
         private bool Complete
         {
@@ -21,7 +21,7 @@ namespace Handover_Pack_Compiler
             set { ActivePackStructure.OptimiserComplete = value; }
         }
         private readonly List<OptimiserSelector> OptimiserSelectors = new List<OptimiserSelector>();
-        public OptimiserUI(PackStructure ps)
+        public OptimiserUI(ActivePackStructure ps)
         {
             InitializeComponent();
             ActivePackStructure = ps;

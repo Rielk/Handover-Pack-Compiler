@@ -12,13 +12,13 @@ namespace Handover_Pack_Compiler
 {
     public partial class SummaryInformation : UserControl
     {
-        private readonly PackStructure ActivePackStructure;
+        private readonly ActivePackStructure ActivePackStructure;
         private bool Complete
         {
             get { return ActivePackStructure.SummaryComplete; }
             set { ActivePackStructure.SummaryComplete = value; }
         }
-        public SummaryInformation(PackStructure PS)
+        public SummaryInformation(ActivePackStructure PS)
         {
             InitializeComponent();
             ActivePackStructure = PS;

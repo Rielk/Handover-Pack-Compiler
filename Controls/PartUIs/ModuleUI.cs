@@ -13,7 +13,7 @@ namespace Handover_Pack_Compiler
 {
     public partial class ModuleUI : UserControl
     {
-        private readonly PackStructure ActivePackStructure;
+        private readonly ActivePackStructure ActivePackStructure;
         private List<ModuleData> Modules { get { return ActivePackStructure.Modules; } }
         private bool Complete
         {
@@ -21,7 +21,7 @@ namespace Handover_Pack_Compiler
             set { ActivePackStructure.ModuleComplete = value; }
         }
         private readonly List<ModuleSelector> ModuleSelectors = new List<ModuleSelector>();
-        public ModuleUI(PackStructure ps)
+        public ModuleUI(ActivePackStructure ps)
         {
             InitializeComponent();
             ActivePackStructure = ps;

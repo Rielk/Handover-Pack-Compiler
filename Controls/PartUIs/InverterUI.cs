@@ -13,7 +13,7 @@ namespace Handover_Pack_Compiler
 {
     public partial class InverterUI : UserControl
     {
-        private readonly PackStructure ActivePackStructure;
+        private readonly ActivePackStructure ActivePackStructure;
         private List<InverterData> Inverters { get { return ActivePackStructure.Inverters; } }
         private bool Complete
         {
@@ -21,7 +21,7 @@ namespace Handover_Pack_Compiler
             set { ActivePackStructure.InverterComplete = value; }
         }
         private readonly List<InverterSelector> InverterSelectors = new List<InverterSelector>();
-        public InverterUI(PackStructure ps)
+        public InverterUI(ActivePackStructure ps)
         {
             InitializeComponent();
             ActivePackStructure = ps;

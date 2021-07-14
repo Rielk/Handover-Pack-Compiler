@@ -19,7 +19,7 @@ namespace Handover_Pack_Compiler
         public static List<ModuleData> ModuleList;
         public static List<OptimiserData> OptimiserList;
         public static List<PackStructure> PackStructureList;
-        public static PackStructure ActivePackStructure = null;
+        public static ActivePackStructure ActivePackStructure = null;
         public PackCompiler()
         {
             InitializeComponent();
@@ -500,7 +500,7 @@ namespace Handover_Pack_Compiler
                     bool valid = PackPaths.SetCustomerNumber(CustomerNumber);
                     if (valid)
                     {
-                        ActivePackStructure = new PackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem, false);
+                        ActivePackStructure = new ActivePackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem);
                         LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
                         FilesTab.VerticalScroll.Value = 0;

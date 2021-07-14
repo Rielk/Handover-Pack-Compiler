@@ -16,39 +16,6 @@ namespace Handover_Pack_Compiler
         }
         public string Description { get; set; } = "";
         public List<Folder> Folders = new List<Folder>();
-        public bool InverterComplete = false;
-        public List<InverterData> Inverters = new List<InverterData>();
-        public bool ModuleComplete = false;
-        public List<ModuleData> Modules = new List<ModuleData>();
-        public bool OptimiserComplete = false;
-        public List<OptimiserData> Optimisers = new List<OptimiserData>();
-        public Folder.File QuoteFile = null;
-        public bool SummaryComplete = false;
-        public string Address = null;
-        public string InstallDate = null;
-        public string SystemSize = null;
-        public string PredictedOutput = null;
-        public string CustomerNumber { get; set; } = null;
-        public string Notes { get; set; } = null;
-        public bool Complete
-        {
-            get
-            {
-                bool ret = true;
-                foreach (Folder f in Folders)
-                {
-                    if (!f.Complete)
-                    {
-                        ret = false;
-                    }
-                }
-                if (!InverterComplete || !ModuleComplete || !OptimiserComplete || !SummaryComplete)
-                {
-                    ret = false;
-                }
-                return ret;
-            }
-        }
         public PackStructure()
         {
 
@@ -61,39 +28,6 @@ namespace Handover_Pack_Compiler
             foreach (Folder folder in other.Folders)
             {
                 Folders.Add(new Folder(folder));
-            }
-            InverterComplete = other.InverterComplete;
-            Inverters = new List<InverterData>();
-            foreach (InverterData inverter in other.Inverters)
-            {
-                Inverters.Add(new InverterData(inverter));
-            }
-            ModuleComplete = other.ModuleComplete;
-            Modules = new List<ModuleData>();
-            foreach (ModuleData module in other.Modules)
-            {
-                Modules.Add(new ModuleData(module));
-            }
-            OptimiserComplete = other.OptimiserComplete;
-            Optimisers = new List<OptimiserData>();
-            foreach (OptimiserData optimiser in other.Optimisers)
-            {
-                Optimisers.Add(new OptimiserData(optimiser));
-            }
-            QuoteFile = other.QuoteFile;
-            SummaryComplete = other.SummaryComplete;
-            Address = other.Address;
-            InstallDate = other.InstallDate;
-            SystemSize = other.SystemSize;
-            PredictedOutput = other.PredictedOutput;
-            CustomerNumber = other.CustomerNumber;
-            Notes = other.Notes;
-        }
-        public PackStructure(PackStructure other, bool rename) : this(other)
-        {
-            if (!rename)
-            {
-                Name = other.ToString();
             }
         }
         public Folder AddFolder(string FolderName)
@@ -293,6 +227,79 @@ namespace Handover_Pack_Compiler
             fi.AllowMultiple = false;
             #endregion
             return DefaultStructure;
+        }
+    }
+
+    public class ActivePackStructure : PackStructure
+    {
+        public bool InverterComplete = false;
+        public List<InverterData> Inverters = new List<InverterData>();
+        public bool ModuleComplete = false;
+        public List<ModuleData> Modules = new List<ModuleData>();
+        public bool OptimiserComplete = false;
+        public List<OptimiserData> Optimisers = new List<OptimiserData>();
+        public Folder.File QuoteFile = null;
+        public bool SummaryComplete = false;
+        public string Address = null;
+        public string InstallDate = null;
+        public string SystemSize = null;
+        public string PredictedOutput = null;
+        public string CustomerNumber { get; set; } = null;
+        public string Notes { get; set; } = null;
+        public bool Complete
+        {
+            get
+            {
+                bool ret = true;
+                foreach (Folder f in Folders)
+                {
+                    if (!f.Complete)
+                    {
+                        ret = false;
+                    }
+                }
+                if (!InverterComplete || !ModuleComplete || !OptimiserComplete || !SummaryComplete)
+                {
+                    ret = false;
+                }
+                return ret;
+            }
+        }
+
+        public ActivePackStructure(PackStructure other) : base(other)
+        {
+
+        }
+
+        public ActivePackStructure(ActivePackStructure other) : this((PackStructure)other)
+        {
+            Name = other.ToString();
+            InverterComplete = other.InverterComplete;
+            Inverters = new List<InverterData>();
+            foreach (InverterData inverter in other.Inverters)
+            {
+                Inverters.Add(new InverterData(inverter));
+            }
+            ModuleComplete = other.ModuleComplete;
+            Modules = new List<ModuleData>();
+            foreach (ModuleData module in other.Modules)
+            {
+                Modules.Add(new ModuleData(module));
+            }
+            OptimiserComplete = other.OptimiserComplete;
+            Optimisers = new List<OptimiserData>();
+            foreach (OptimiserData optimiser in other.Optimisers)
+            {
+                Optimisers.Add(new OptimiserData(optimiser));
+            }
+            QuoteFile = other.QuoteFile;
+            SummaryComplete = other.SummaryComplete;
+            Address = other.Address;
+            InstallDate = other.InstallDate;
+            SystemSize = other.SystemSize;
+            PredictedOutput = other.PredictedOutput;
+            CustomerNumber = other.CustomerNumber;
+            Notes = other.Notes;
         }
     }
     public class Folder
