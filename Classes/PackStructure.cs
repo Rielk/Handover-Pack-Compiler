@@ -28,6 +28,8 @@ namespace Handover_Pack_Compiler
         public string InstallDate = null;
         public string SystemSize = null;
         public string PredictedOutput = null;
+        public string CustomerNumber { get; set; } = null;
+        public string Notes { get; set; } = null;
         public bool Complete
         {
             get
@@ -84,6 +86,8 @@ namespace Handover_Pack_Compiler
             InstallDate = other.InstallDate;
             SystemSize = other.SystemSize;
             PredictedOutput = other.PredictedOutput;
+            CustomerNumber = other.CustomerNumber;
+            Notes = other.Notes;
         }
         public PackStructure(PackStructure other, bool rename) : this(other)
         {
