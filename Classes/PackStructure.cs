@@ -246,6 +246,7 @@ namespace Handover_Pack_Compiler
         private string _predictedOutput = null;
         private string _customerNumber = null;
         private string _notes = null;
+        private DateTime _lastEdited = DateTime.Now;
         private readonly bool Loading;
 
         public bool InverterComplete
@@ -374,7 +375,22 @@ namespace Handover_Pack_Compiler
                 TriggerEditTime();
             }
         }
-        public DateTime LastEdited { get; set; } = DateTime.Now;
+        public DateTime LastEdited
+        {
+            get
+            {
+                DateTime ret = _lastEdited;
+                foreach (Folder file in Folders)
+                {
+                    if (file.LastEdited > ret)
+                    {
+                        ret = file.LastEdited;
+                    }
+                }
+                return ret;
+            }
+            set { _lastEdited = value; }
+        }
         public bool Complete
         {
             get
@@ -462,6 +478,22 @@ namespace Handover_Pack_Compiler
                 return ret;
             }
         }
+        public DateTime LastEdited
+        {
+            get
+            {
+                DateTime ret = DateTime.MinValue;
+                foreach (File file in Files)
+                {
+                    if (file.LastEdited > ret)
+                    {
+                        ret = file.LastEdited;
+                    }
+                }
+                return ret;
+            }
+        }
+
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
         public List<File> Files { get; } = new List<File>();
@@ -492,6 +524,8 @@ namespace Handover_Pack_Compiler
         {
             public CommSitePath CSConPath = new CommSitePath("");
             public List<CommSitePath> CSGenPaths = new List<CommSitePath>();
+            private bool _complete = false;
+            private readonly bool Loading;
             public string Name { get; set; } = "";
             public string Description { get; set; } = "";
             public int? DefaultFolder { get; set; } = null;
@@ -499,17 +533,34 @@ namespace Handover_Pack_Compiler
             public bool AlwaysRequired { get; set; } = true;
             public string FileType { get; set; } = FileTypeTag.Generic;
             public bool AllowMultiple { get; set; } = false;
-            public bool Complete { get; set; } = false;
+            public bool Complete
+            {
+                get { return _complete; }
+                set
+                {
+                    _complete = value;
+                    TriggerEditTime();
+                }
+            }
+            public DateTime LastEdited { get; set; } = DateTime.Now;
             [XmlIgnore]
             public string ConstantPath
             {
                 get { return CSConPath.FullPath; }
-                set { CSConPath.FullPath = value; }
+                set
+                {
+                    CSConPath.FullPath = value;
+                    TriggerEditTime();
+                }
             }
             public List<string> GenericPaths
             {
                 get { return (from CSP in CSGenPaths select CSP.FullPath).ToList(); }
-                set { CSGenPaths = (from str in value select new CommSitePath(str)).ToList(); }
+                set
+                {
+                    CSGenPaths = (from str in value select new CommSitePath(str)).ToList();
+                    TriggerEditTime();
+                }
             }
             public File()
             {
@@ -517,6 +568,7 @@ namespace Handover_Pack_Compiler
             }
             public File(File other)
             {
+                Loading = true;
                 Name = other.Name;
                 Description = other.Description;
                 DefaultFolder = other.DefaultFolder;
@@ -528,6 +580,15 @@ namespace Handover_Pack_Compiler
                 ConstantPath = other.ConstantPath;
                 CSGenPaths = (from CSP in other.CSGenPaths select CSP).ToList();
                 Complete = other.Complete;
+                LastEdited = other.LastEdited;
+                Loading = false;
+            }
+            public void TriggerEditTime()
+            {
+                if (!Loading)
+                {
+                    LastEdited = DateTime.Now;
+                }
             }
         }
     }
