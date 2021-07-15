@@ -14,7 +14,6 @@ namespace Handover_Pack_Compiler
     {
         private readonly List<FileSelector> FileSelectors = new List<FileSelector>();
         private readonly Folder.File file;
-        private readonly bool Loading;
         public override string Text
         {
             get { return GroupBox.Text.Trim(); }
@@ -23,7 +22,6 @@ namespace Handover_Pack_Compiler
         public FileUI(Folder.File f)
         {
             InitializeComponent();
-            Loading = true;
             file = f;
             DescriptionLabel.Text = f.Description;
             if (f.CSGenPaths.Count == 0)
@@ -41,6 +39,7 @@ namespace Handover_Pack_Compiler
                     AddFile();
                 }
             }
+
             if (f.AlwaysRequired)
             {
                 RequiredCheckBox.Enabled = false;
@@ -49,14 +48,15 @@ namespace Handover_Pack_Compiler
             else
             {
                 RequiredCheckBox.Enabled = true;
-                if (f.Complete & f.GenericPaths.Count == 0)
-                {
-                    f.Complete = false;
-                    RequiredCheckBox.Checked = false;
-                }
             }
+
+            if (f.Complete)
+            {
+                f.Complete = false;
+                ConfirmButton_Click(null, null);
+            }
+
             GroupBox_Resize(null, null);
-            Loading = false;
         }
         private void AddFile()
         {
