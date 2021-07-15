@@ -232,20 +232,149 @@ namespace Handover_Pack_Compiler
 
     public class ActivePackStructure : PackStructure
     {
-        public bool InverterComplete = false;
-        public List<InverterData> Inverters = new List<InverterData>();
-        public bool ModuleComplete = false;
-        public List<ModuleData> Modules = new List<ModuleData>();
-        public bool OptimiserComplete = false;
-        public List<OptimiserData> Optimisers = new List<OptimiserData>();
-        public Folder.File QuoteFile = null;
-        public bool SummaryComplete = false;
-        public string Address = null;
-        public string InstallDate = null;
-        public string SystemSize = null;
-        public string PredictedOutput = null;
-        public string CustomerNumber { get; set; } = null;
-        public string Notes { get; set; } = null;
+        private bool _inverterComplete = false;
+        private List<InverterData> _inverters = new List<InverterData>();
+        private bool _moduleComplete = false;
+        private List<ModuleData> _modules = new List<ModuleData>();
+        private bool _optimiserComplete = false;
+        private List<OptimiserData> _optimisers = new List<OptimiserData>();
+        private Folder.File _quoteFile = null;
+        private bool _summaryComplete = false;
+        private string _address = null;
+        private string _installDate = null;
+        private string _systemSize = null;
+        private string _predictedOutput = null;
+        private string _customerNumber = null;
+        private string _notes = null;
+        private readonly bool Loading;
+
+        public bool InverterComplete
+        {
+            get { return _inverterComplete; }
+            set
+            {
+                _inverterComplete = value;
+                TriggerEditTime();
+            }
+        }
+        public List<InverterData> Inverters
+        {
+            get { return _inverters; }
+            set
+            {
+                _inverters = value;
+                TriggerEditTime();
+            }
+        }
+        public bool ModuleComplete
+        {
+            get { return _moduleComplete; }
+            set
+            {
+                _moduleComplete = value;
+                TriggerEditTime();
+            }
+        }
+        public List<ModuleData> Modules
+        {
+            get { return _modules; }
+            set
+            {
+                _modules = value;
+                TriggerEditTime();
+            }
+        }
+        public bool OptimiserComplete
+        {
+            get { return _optimiserComplete; }
+            set
+            {
+                _optimiserComplete = value;
+                TriggerEditTime();
+            }
+        }
+        public List<OptimiserData> Optimisers
+        {
+            get { return _optimisers; }
+            set
+            {
+                _optimisers = value;
+                TriggerEditTime();
+            }
+        }
+        public Folder.File QuoteFile
+        {
+            get { return _quoteFile; }
+            set
+            {
+                _quoteFile = value;
+                TriggerEditTime();
+            }
+        }
+        public bool SummaryComplete
+        {
+            get { return _summaryComplete; }
+            set
+            {
+                _summaryComplete = value;
+                TriggerEditTime();
+            }
+        }
+        public string Address
+        {
+            get { return _address; }
+            set
+            {
+                _address = value;
+                TriggerEditTime();
+            }
+        }
+        public string InstallDate
+        {
+            get { return _installDate; }
+            set
+            {
+                _installDate = value;
+                TriggerEditTime();
+            }
+        }
+        public string SystemSize
+        {
+            get { return _systemSize; }
+            set
+            {
+                _systemSize = value;
+                TriggerEditTime();
+            }
+        }
+        public string PredictedOutput
+        {
+            get { return _predictedOutput; }
+            set
+            {
+                _predictedOutput = value;
+                TriggerEditTime();
+            }
+        }
+        public string CustomerNumber
+        {
+            get { return _customerNumber; }
+            set
+            {
+                _customerNumber = value;
+                TriggerEditTime();
+            }
+        }
+        public string Notes
+        {
+            get { return _notes; }
+            set
+            {
+                _notes = value;
+                TriggerEditTime();
+            }
+        }
+        public DateTime LastEdited { get; set; } = DateTime.Now;
         public bool Complete
         {
             get
@@ -265,14 +394,18 @@ namespace Handover_Pack_Compiler
                 return ret;
             }
         }
-
-        public ActivePackStructure(PackStructure other) : base(other)
+        public ActivePackStructure()
         {
 
         }
 
+        public ActivePackStructure(PackStructure other) : base(other)
+        {
+        }
+
         public ActivePackStructure(ActivePackStructure other) : this((PackStructure)other)
         {
+            Loading = true;
             Name = other.ToString();
             InverterComplete = other.InverterComplete;
             Inverters = new List<InverterData>();
@@ -300,6 +433,16 @@ namespace Handover_Pack_Compiler
             PredictedOutput = other.PredictedOutput;
             CustomerNumber = other.CustomerNumber;
             Notes = other.Notes;
+            LastEdited = other.LastEdited;
+            Loading = false;
+        }
+
+        public void TriggerEditTime()
+        {
+            if (!Loading)
+            {
+                LastEdited = DateTime.Now;
+            }
         }
     }
     public class Folder

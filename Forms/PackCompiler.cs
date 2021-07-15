@@ -19,6 +19,7 @@ namespace Handover_Pack_Compiler
         public static List<ModuleData> ModuleList;
         public static List<OptimiserData> OptimiserList;
         public static List<PackStructure> PackStructureList;
+        public static List<ActivePackStructure> ActivePackStructureList;
         public static ActivePackStructure ActivePackStructure = null;
         public PackCompiler()
         {
@@ -48,6 +49,10 @@ namespace Handover_Pack_Compiler
             }
             PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
+
+            ActivePackStructureList = Utilities.ReadFromFile<ActivePackStructure>("Started Packs.xml");
+            ActivePackStructureSource.DataSource = ActivePackStructureList;
+            SortActivePackStructures();
         }
 
         #region General Utilities
@@ -500,7 +505,13 @@ namespace Handover_Pack_Compiler
                     bool valid = PackPaths.SetCustomerNumber(CustomerNumber);
                     if (valid)
                     {
-                        ActivePackStructure = new ActivePackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem);
+                        ActivePackStructure NewStructure = new ActivePackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem)
+                        {
+                            CustomerNumber = CustomerNumber
+                        };
+                        ActivePackStructure = NewStructure;
+                        ActivePackStructureList.Add(NewStructure);
+                        SortActivePackStructures();
                         LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
                         FilesTab.VerticalScroll.Value = 0;
@@ -641,6 +652,14 @@ namespace Handover_Pack_Compiler
                     FilesTab.Controls.Add(ControlsToAdd[i]);
                 }
             }
+        }
+        #endregion
+
+        #region Packs Tab
+        private void SortActivePackStructures()
+        {
+            ActivePackStructureList.Sort((x, y) => x.CustomerNumber.CompareTo(y.CustomerNumber));
+            ActivePackStructureSource.ResetBindings(false);
         }
         #endregion
     }
