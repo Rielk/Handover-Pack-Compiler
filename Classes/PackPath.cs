@@ -59,19 +59,18 @@ namespace Handover_Pack_Compiler
         public static string CustomerFolder { get { return CSCustFold.FullPath; } set { CSCustFold.FullPath = value; } }
         public static bool SetCustomerNumber(string cn)
         {
-            CustomerNumber = cn;
-            List<string> results = Utilities.FolderStarting(CustomerNumber, EnquiriesAndOrders);
+            List<string> results = Utilities.FolderStarting(cn, EnquiriesAndOrders);
             if (results.Count > 1)
             {
                 throw new NotImplementedException("Could be refering to many different customers.");
             }
             else if (results.Count == 0)
             {
-                CustomerFolder = null;
                 return false;
             }
             else
             {
+                CustomerNumber = cn;
                 CustomerFolder = results[0];
                 return true;
             }
