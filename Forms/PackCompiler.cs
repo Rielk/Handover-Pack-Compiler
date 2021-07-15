@@ -20,7 +20,17 @@ namespace Handover_Pack_Compiler
         public static List<OptimiserData> OptimiserList;
         public static List<PackStructure> PackStructureList;
         public static List<ActivePack> ActivePackList;
-        public static ActivePack LoadedPack = null;
+        private ActivePack loadedPack = null;
+        public ActivePack LoadedPack
+        {
+            get { return loadedPack; }
+            set
+            {
+                loadedPack = value;
+                LoadActivePack();
+            }
+        }
+
         public PackCompiler()
         {
             InitializeComponent();
@@ -52,7 +62,7 @@ namespace Handover_Pack_Compiler
 
             ActivePackList = Utilities.ReadFromFile<ActivePack>("Started Packs.xml");
             ActivePackSource.DataSource = ActivePackList;
-            SortActivePackStructures();
+            SortActivePacks();
         }
 
         #region General Utilities
@@ -62,6 +72,7 @@ namespace Handover_Pack_Compiler
             Utilities.WriteToFile(ModuleList, "Modules.xml", true);
             Utilities.WriteToFile(OptimiserList, "Optimisers.xml", true);
             Utilities.WriteToFile(PackStructureList, "Pack Structures.xml", false);
+            Utilities.WriteToFile(ActivePackList, "Started Packs.xml", false);
         }
         
         private bool CheckExisting<T>(List<T> list, T ToAdd) where T : NameCompare
@@ -450,6 +461,7 @@ namespace Handover_Pack_Compiler
         private bool EditTrigger = false;
         private string temp_edit;
         private bool SortTrigger = false;
+
         private void PackStructureGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             EditTrigger = true;
@@ -505,14 +517,25 @@ namespace Handover_Pack_Compiler
                     bool valid = PackPaths.SetCustomerNumber(CustomerNumber);
                     if (valid)
                     {
-                        ActivePack NewStructure = new ActivePack((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem)
+                        ActivePack NewStructure = null;
+                        foreach (ActivePack AP in ActivePackList)
                         {
-                            CustomerNumber = CustomerNumber
-                        };
+                            if (AP.CustomerNumber == CustomerNumber)
+                            {
+                                NewStructure = AP;
+                                break;
+                            }
+                        }
+                        if (NewStructure == null)
+                        {
+                            NewStructure = new ActivePack((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem)
+                            {
+                                CustomerNumber = CustomerNumber
+                            };
+                            ActivePackList.Add(NewStructure);
+                            SortActivePacks();
+                        }
                         LoadedPack = NewStructure;
-                        ActivePackList.Add(NewStructure);
-                        SortActivePackStructures();
-                        LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
                         FilesTab.VerticalScroll.Value = 0;
                         Requesting = false;
@@ -656,7 +679,7 @@ namespace Handover_Pack_Compiler
         #endregion
 
         #region Packs Tab
-        private void SortActivePackStructures()
+        private void SortActivePacks()
         {
             ActivePackList.Sort((x, y) => x.CustomerNumber.CompareTo(y.CustomerNumber));
             ActivePackSource.ResetBindings(false);
