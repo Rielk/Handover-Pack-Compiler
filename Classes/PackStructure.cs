@@ -230,7 +230,7 @@ namespace Handover_Pack_Compiler
         }
     }
 
-    public class ActivePackStructure : PackStructure
+    public class ActivePack : PackStructure
     {
         private bool _inverterComplete = false;
         private List<InverterData> _inverters = new List<InverterData>();
@@ -394,16 +394,16 @@ namespace Handover_Pack_Compiler
                 return ret;
             }
         }
-        public ActivePackStructure()
+        public ActivePack()
         {
-
+            Loading = true;
         }
 
-        public ActivePackStructure(PackStructure other) : base(other)
+        public ActivePack(PackStructure other) : base(other)
         {
         }
 
-        public ActivePackStructure(ActivePackStructure other) : this((PackStructure)other)
+        public ActivePack(ActivePack other) : this((PackStructure)other)
         {
             Loading = true;
             Name = other.ToString();

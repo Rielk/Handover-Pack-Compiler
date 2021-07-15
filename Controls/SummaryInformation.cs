@@ -12,36 +12,36 @@ namespace Handover_Pack_Compiler
 {
     public partial class SummaryInformation : UserControl
     {
-        private readonly ActivePackStructure ActivePackStructure;
+        private readonly ActivePack LoadedPack;
         private bool Complete
         {
-            get { return ActivePackStructure.SummaryComplete; }
-            set { ActivePackStructure.SummaryComplete = value; }
+            get { return LoadedPack.SummaryComplete; }
+            set { LoadedPack.SummaryComplete = value; }
         }
-        public SummaryInformation(ActivePackStructure PS)
+        public SummaryInformation(ActivePack PS)
         {
             InitializeComponent();
-            ActivePackStructure = PS;
+            LoadedPack = PS;
         }
 
         private void SystemSizeBox_ValueChanged(object sender, EventArgs e)
         {
-            ActivePackStructure.SystemSize = SystemSizeBox.Value.ToString();
+            LoadedPack.SystemSize = SystemSizeBox.Value.ToString();
         }
 
         private void PredictedOutputBox_ValueChanged(object sender, EventArgs e)
         {
-            ActivePackStructure.PredictedOutput = PredictedOutputBox.Value.ToString();
+            LoadedPack.PredictedOutput = PredictedOutputBox.Value.ToString();
         }
 
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            ActivePackStructure.InstallDate = DatePicker.Value.ToString();
+            LoadedPack.InstallDate = DatePicker.Value.ToString();
         }
 
         private void AddressBox_TextChanged(object sender, EventArgs e)
         {
-            ActivePackStructure.Address = AddressBox.Text;
+            LoadedPack.Address = AddressBox.Text;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)

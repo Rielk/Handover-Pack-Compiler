@@ -13,18 +13,18 @@ namespace Handover_Pack_Compiler
 {
     public partial class ModuleUI : UserControl
     {
-        private readonly ActivePackStructure ActivePackStructure;
-        private List<ModuleData> Modules { get { return ActivePackStructure.Modules; } }
+        private readonly ActivePack LoadedPack;
+        private List<ModuleData> Modules { get { return LoadedPack.Modules; } }
         private bool Complete
         {
-            get { return ActivePackStructure.ModuleComplete; }
-            set { ActivePackStructure.ModuleComplete = value; }
+            get { return LoadedPack.ModuleComplete; }
+            set { LoadedPack.ModuleComplete = value; }
         }
         private readonly List<ModuleSelector> ModuleSelectors = new List<ModuleSelector>();
-        public ModuleUI(ActivePackStructure ps)
+        public ModuleUI(ActivePack ps)
         {
             InitializeComponent();
-            ActivePackStructure = ps;
+            LoadedPack = ps;
             if (Modules.Count == 0)
             {
                 AddModule();

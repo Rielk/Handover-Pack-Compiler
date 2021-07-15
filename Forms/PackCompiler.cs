@@ -19,8 +19,8 @@ namespace Handover_Pack_Compiler
         public static List<ModuleData> ModuleList;
         public static List<OptimiserData> OptimiserList;
         public static List<PackStructure> PackStructureList;
-        public static List<ActivePackStructure> ActivePackStructureList;
-        public static ActivePackStructure ActivePackStructure = null;
+        public static List<ActivePack> ActivePackList;
+        public static ActivePack LoadedPack = null;
         public PackCompiler()
         {
             InitializeComponent();
@@ -50,8 +50,8 @@ namespace Handover_Pack_Compiler
             PackStructureSource.DataSource = PackStructureList;
             SortPackStructures();
 
-            ActivePackStructureList = Utilities.ReadFromFile<ActivePackStructure>("Started Packs.xml");
-            ActivePackStructureSource.DataSource = ActivePackStructureList;
+            ActivePackList = Utilities.ReadFromFile<ActivePack>("Started Packs.xml");
+            ActivePackSource.DataSource = ActivePackList;
             SortActivePackStructures();
         }
 
@@ -505,12 +505,12 @@ namespace Handover_Pack_Compiler
                     bool valid = PackPaths.SetCustomerNumber(CustomerNumber);
                     if (valid)
                     {
-                        ActivePackStructure NewStructure = new ActivePackStructure((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem)
+                        ActivePack NewStructure = new ActivePack((PackStructure)PackStructureGridView.SelectedRows[0].DataBoundItem)
                         {
                             CustomerNumber = CustomerNumber
                         };
-                        ActivePackStructure = NewStructure;
-                        ActivePackStructureList.Add(NewStructure);
+                        LoadedPack = NewStructure;
+                        ActivePackList.Add(NewStructure);
                         SortActivePackStructures();
                         LoadActivePack();
                         OperationTabs.SelectedTab = FilesTab;
@@ -534,13 +534,13 @@ namespace Handover_Pack_Compiler
         #region Files Tab
         private void LoadActivePack()
         {
-            if (ActivePackStructure != null)
+            if (LoadedPack != null)
             {
                 List<Control> ControlsToAdd = new List<Control>();
 
                 {
                     Folder.File file;
-                    if (ActivePackStructure.QuoteFile == null)
+                    if (LoadedPack.QuoteFile == null)
                     {
                         file = new Folder.File()
                         {
@@ -556,7 +556,7 @@ namespace Handover_Pack_Compiler
                     }
                     else
                     {
-                        file = ActivePackStructure.QuoteFile;
+                        file = LoadedPack.QuoteFile;
                     }
                     FileUI NewSelector = new FileUI(file)
                     {
@@ -570,7 +570,7 @@ namespace Handover_Pack_Compiler
                 bool requireModules = false;
                 bool requireOptimisers = false;
                 bool requireAdditional = false;
-                foreach (Folder folder in ActivePackStructure.Folders)
+                foreach (Folder folder in LoadedPack.Folders)
                 {
                     foreach (Folder.File file in folder.Files)
                     {
@@ -597,7 +597,7 @@ namespace Handover_Pack_Compiler
 
                 if (requireInverters)
                 {
-                    InverterUI ISelector = new InverterUI(ActivePackStructure)
+                    InverterUI ISelector = new InverterUI(LoadedPack)
                     {
                         Dock = DockStyle.Top
                     };
@@ -605,7 +605,7 @@ namespace Handover_Pack_Compiler
                 }
                 if (requireModules)
                 {
-                    ModuleUI MSelector = new ModuleUI(ActivePackStructure)
+                    ModuleUI MSelector = new ModuleUI(LoadedPack)
                     {
                         Dock = DockStyle.Top
                     };
@@ -613,7 +613,7 @@ namespace Handover_Pack_Compiler
                 }
                 if (requireOptimisers)
                 {
-                    OptimiserUI OSelector = new OptimiserUI(ActivePackStructure)
+                    OptimiserUI OSelector = new OptimiserUI(LoadedPack)
                     {
                         Dock = DockStyle.Top
                     };
@@ -621,7 +621,7 @@ namespace Handover_Pack_Compiler
                 }
                 if (requireAdditional)
                 {
-                    SummaryInformation SumInf = new SummaryInformation(ActivePackStructure)
+                    SummaryInformation SumInf = new SummaryInformation(LoadedPack)
                     {
                         Dock = DockStyle.Top
                     };
@@ -629,7 +629,7 @@ namespace Handover_Pack_Compiler
                 }
 
                 int FolderNumber = 0;
-                foreach (Folder folder in ActivePackStructure.Folders)
+                foreach (Folder folder in LoadedPack.Folders)
                 {
                     FolderNumber++;
                     int FileNumber = 0;
@@ -658,8 +658,8 @@ namespace Handover_Pack_Compiler
         #region Packs Tab
         private void SortActivePackStructures()
         {
-            ActivePackStructureList.Sort((x, y) => x.CustomerNumber.CompareTo(y.CustomerNumber));
-            ActivePackStructureSource.ResetBindings(false);
+            ActivePackList.Sort((x, y) => x.CustomerNumber.CompareTo(y.CustomerNumber));
+            ActivePackSource.ResetBindings(false);
         }
         #endregion
     }
