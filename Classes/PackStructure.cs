@@ -217,9 +217,9 @@ namespace Handover_Pack_Compiler
             #endregion
             #region 7.0  MCS Certificate
             fo = DefaultStructure.AddFolder("MCS Certificate");
-            fo.Description = "MCS Certificate, only required if System size is less than 50kWp";
+            fo.Description = "Folder for the MCS Certificate, only required if System size is less than 50kWp";
             fi = DefaultStructure.AddFile("MCS Certificate", "MCS Certificate");
-            fi.Description = "MCS Certificate";
+            fi.Description = "MCS Certificate, only required if System size is less than 50kWp";
             fi.DefaultFolder = 11;
             fi.SearchTerm = "MCS";
             fi.AlwaysRequired = false;

@@ -24,7 +24,7 @@ namespace Handover_Pack_Compiler
         }
         public CommSitePath CSPath = new CommSitePath();
         public int? DefaultFolder = null;
-        public string Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+        public string Filter = "All files (*.*)|*.*|PDF files (*.pdf)|*.pdf";
         private readonly OpenFileDialog file_dialog = new OpenFileDialog();
         public bool enbld = false;
         public bool ReadOnly
