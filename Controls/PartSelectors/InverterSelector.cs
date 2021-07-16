@@ -33,17 +33,17 @@ namespace Handover_Pack_Compiler
                 }
                 else
                 {
-                    bool NonSelected = true;
+                    bool NoneSelected = true;
                     foreach (InverterData ID in PackCompiler.InverterList)
                     {
                         if (ID.Name == value.Name)
                         {
                             DropBox.SelectedItem = ID;
-                            NonSelected = false;
+                            NoneSelected = false;
                             break;
                         }
                     }
-                    if (NonSelected)
+                    if (NoneSelected)
                     {
                         DropBox.SelectedIndex = 0;
                     }
