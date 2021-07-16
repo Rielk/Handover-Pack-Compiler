@@ -33,7 +33,20 @@ namespace Handover_Pack_Compiler
                 }
                 else
                 {
-                    DropBox.SelectedItem = value;
+                    bool NoneSelected = true;
+                    foreach (OptimiserData OD in PackCompiler.OptimiserList)
+                    {
+                        if (OD.Name == value.Name)
+                        {
+                            DropBox.SelectedItem = OD;
+                            NoneSelected = false;
+                            break;
+                        }
+                    }
+                    if (NoneSelected)
+                    {
+                        DropBox.SelectedIndex = 0;
+                    }
                 }
             }
         }
@@ -51,7 +64,13 @@ namespace Handover_Pack_Compiler
         public OptimiserSelector()
         {
             InitializeComponent();
-            DropBox.Items.Add("Select Optimiser...");
+            DropBox.Items.Clear();
+            foreach (OptimiserData OD in PackCompiler.OptimiserList)
+            {
+                DropBox.Items.Add(OD);
+            }
+            DropBox.Items.Insert(0, "Select Optimiser...");
+            DropBox.SelectedIndex = 0;
         }
 
         [Browsable(true)]

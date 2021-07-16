@@ -25,20 +25,17 @@ namespace Handover_Pack_Compiler
         {
             InitializeComponent();
             LoadedPack = ps;
-            if (Optimisers.Count == 0)
+            foreach (OptimiserData OD in Optimisers)
             {
-                AddOptimiser();
+                AddOptimiser(OD);
             }
-            else
+            AddOptimiser();
+            if (Complete)
             {
-                foreach (OptimiserData OD in Optimisers)
-                {
-                    AddOptimiser(OD);
-                }
-                AddOptimiser();
-
+                Complete = false;
+                ConfirmButton_Click(null, null);
             }
-            GroupBox_Resize(null, null);
+                GroupBox_Resize(null, null);
         }
 
         public void AddOptimiser()
