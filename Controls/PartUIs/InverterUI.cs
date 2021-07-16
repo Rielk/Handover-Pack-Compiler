@@ -30,6 +30,11 @@ namespace Handover_Pack_Compiler
                 AddInverter(ID);
             }
             AddInverter();
+            if (Complete)
+            {
+                Complete = false;
+                ConfirmButton_Click(null, null);
+            }
             GroupBox_Resize(null, null);
         }
 
