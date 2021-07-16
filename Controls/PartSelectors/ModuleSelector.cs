@@ -33,7 +33,20 @@ namespace Handover_Pack_Compiler
                 }
                 else
                 {
-                    DropBox.SelectedItem = value;
+                    bool NonSelected = true;
+                    foreach (ModuleData MD in PackCompiler.ModuleList)
+                    {
+                        if (MD.Name == value.Name)
+                        {
+                            DropBox.SelectedItem = MD;
+                            NonSelected = false;
+                            break;
+                        }
+                    }
+                    if (NonSelected)
+                    {
+                        DropBox.SelectedIndex = 0;
+                    }
                 }
             }
         }
@@ -70,7 +83,13 @@ namespace Handover_Pack_Compiler
         public ModuleSelector()
         {
             InitializeComponent();
-            DropBox.Items.Add("Select Module...");
+            DropBox.Items.Clear();
+            foreach (ModuleData MD in PackCompiler.ModuleList)
+            {
+                DropBox.Items.Add(MD);
+            }
+            DropBox.Items.Insert(0, "Select Module...");
+            DropBox.SelectedIndex = 0;
         }
 
         [Browsable(true)]

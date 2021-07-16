@@ -25,18 +25,15 @@ namespace Handover_Pack_Compiler
         {
             InitializeComponent();
             LoadedPack = ps;
-            if (Modules.Count == 0)
+            foreach (ModuleData MD in Modules)
             {
-                AddModule();
+                AddModule(MD);
             }
-            else
+            AddModule();
+            if (Complete)
             {
-                foreach (ModuleData MD in Modules)
-                {
-                    AddModule(MD);
-                }
-                AddModule();
-
+                Complete = false;
+                ConfirmButton_Click(null, null);
             }
             GroupBox_Resize(null, null);
         }
