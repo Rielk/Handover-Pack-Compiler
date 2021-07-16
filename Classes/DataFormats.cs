@@ -63,7 +63,7 @@ public class ModuleData : Data
     }
     public int? Quantity = null;
     public ModuleData() { }
-    public ModuleData(ModuleData other)
+    public ModuleData(ModuleData other) : base(other)
     {
         DPath = new CommSitePath(null);
         WPath = new CommSitePath(null);
@@ -83,7 +83,7 @@ public class OptimiserData : Data
         set { DPath.FullPath = value; }
     }
     public OptimiserData() { }
-    public OptimiserData(OptimiserData other)
+    public OptimiserData(OptimiserData other): base(other)
     {
         DPath = new CommSitePath(null);
         Datasheet = other.Datasheet;
