@@ -25,19 +25,11 @@ namespace Handover_Pack_Compiler
         {
             InitializeComponent();
             LoadedPack = ps;
-            if (Inverters.Count == 0)
+            foreach (InverterData ID in Inverters)
             {
-                AddInverter();
+                AddInverter(ID);
             }
-            else
-            {
-                foreach (InverterData ID in Inverters)
-                {
-                    AddInverter(ID);
-                }
-                AddInverter();
-
-            }
+            AddInverter();
             GroupBox_Resize(null, null);
         }
 

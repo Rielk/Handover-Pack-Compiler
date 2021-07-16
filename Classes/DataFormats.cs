@@ -17,6 +17,12 @@ public abstract class Data : NameCompare
     {
         return Name?.ToString() ?? "Please Select...";
     }
+    public Data() { }
+
+    public Data(Data other)
+    {
+        Name = other.Name;
+    }
 }
 
 public class InverterData : Data
@@ -30,7 +36,7 @@ public class InverterData : Data
     public bool SolarEdge { get; set; } = false;
     public string SerialNumber = null;
     public InverterData() { }
-    public InverterData(InverterData other)
+    public InverterData(InverterData other) : base(other)
     {
         DPath = new CommSitePath(null);
         Datasheet = other.Datasheet;

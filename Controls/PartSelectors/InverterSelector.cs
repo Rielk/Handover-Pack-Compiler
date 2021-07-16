@@ -33,7 +33,20 @@ namespace Handover_Pack_Compiler
                 }
                 else
                 {
-                    DropBox.SelectedItem = value;
+                    bool NonSelected = true;
+                    foreach (InverterData ID in PackCompiler.InverterList)
+                    {
+                        if (ID.Name == value.Name)
+                        {
+                            DropBox.SelectedItem = ID;
+                            NonSelected = false;
+                            break;
+                        }
+                    }
+                    if (NonSelected)
+                    {
+                        DropBox.SelectedIndex = 0;
+                    }
                 }
             }
         }
@@ -79,7 +92,13 @@ namespace Handover_Pack_Compiler
         public InverterSelector()
         {
             InitializeComponent();
-            DropBox.Items.Add("Select Inverter...");
+            DropBox.Items.Clear();
+            foreach (InverterData ID in PackCompiler.InverterList)
+            {
+                DropBox.Items.Add(ID);
+            }
+            DropBox.Items.Insert(0, "Select Inverter...");
+            DropBox.SelectedIndex = 0;
         }
 
         [Browsable(true)]
