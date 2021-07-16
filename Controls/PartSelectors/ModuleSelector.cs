@@ -33,17 +33,17 @@ namespace Handover_Pack_Compiler
                 }
                 else
                 {
-                    bool NonSelected = true;
+                    bool NoneSelected = true;
                     foreach (ModuleData MD in PackCompiler.ModuleList)
                     {
                         if (MD.Name == value.Name)
                         {
                             DropBox.SelectedItem = MD;
-                            NonSelected = false;
+                            NoneSelected = false;
                             break;
                         }
                     }
-                    if (NonSelected)
+                    if (NoneSelected)
                     {
                         DropBox.SelectedIndex = 0;
                     }
