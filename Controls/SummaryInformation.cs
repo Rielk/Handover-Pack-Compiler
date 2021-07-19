@@ -22,21 +22,27 @@ namespace Handover_Pack_Compiler
         {
             InitializeComponent();
             LoadedPack = PS;
+            SystemSizeBox.Value = LoadedPack.SystemSize;
+            PredictedOutputBox.Value = LoadedPack.PredictedOutput;
+            DatePicker.Value = LoadedPack.InstallDate;
+            AddressBox.Text = LoadedPack.Address;
+            Complete = !LoadedPack.SummaryComplete;
+            ConfirmButton_Click(null, null);
         }
 
         private void SystemSizeBox_ValueChanged(object sender, EventArgs e)
         {
-            LoadedPack.SystemSize = SystemSizeBox.Value.ToString();
+            LoadedPack.SystemSize = SystemSizeBox.Value;
         }
 
         private void PredictedOutputBox_ValueChanged(object sender, EventArgs e)
         {
-            LoadedPack.PredictedOutput = PredictedOutputBox.Value.ToString();
+            LoadedPack.PredictedOutput = PredictedOutputBox.Value;
         }
 
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            LoadedPack.InstallDate = DatePicker.Value.ToString();
+            LoadedPack.InstallDate = DatePicker.Value;
         }
 
         private void AddressBox_TextChanged(object sender, EventArgs e)

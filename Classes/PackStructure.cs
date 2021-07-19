@@ -241,9 +241,9 @@ namespace Handover_Pack_Compiler
         private Folder.File _quoteFile = null;
         private bool _summaryComplete = false;
         private string _address = null;
-        private string _installDate = null;
-        private string _systemSize = null;
-        private string _predictedOutput = null;
+        private DateTime _installDate = DateTime.Today;
+        private decimal _systemSize = 0;
+        private decimal _predictedOutput = 0;
         private string _customerNumber = null;
         private string _notes = null;
         private DateTime _lastEdited = DateTime.Now;
@@ -330,7 +330,7 @@ namespace Handover_Pack_Compiler
                 TriggerEditTime();
             }
         }
-        public string InstallDate
+        public DateTime InstallDate
         {
             get { return _installDate; }
             set
@@ -339,7 +339,7 @@ namespace Handover_Pack_Compiler
                 TriggerEditTime();
             }
         }
-        public string SystemSize
+        public decimal SystemSize
         {
             get { return _systemSize; }
             set
@@ -348,7 +348,7 @@ namespace Handover_Pack_Compiler
                 TriggerEditTime();
             }
         }
-        public string PredictedOutput
+        public decimal PredictedOutput
         {
             get { return _predictedOutput; }
             set
