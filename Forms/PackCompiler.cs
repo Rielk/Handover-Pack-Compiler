@@ -576,6 +576,7 @@ namespace Handover_Pack_Compiler
                             DefaultFolder = 1,
                             SearchTerm = "quote"
                         };
+                        loadedPack.QuoteFile = file;
                     }
                     else
                     {
