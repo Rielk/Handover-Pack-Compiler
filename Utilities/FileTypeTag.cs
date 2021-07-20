@@ -8,13 +8,13 @@ namespace Handover_Pack_Compiler
 {
     public static class FileTypeTag
     {
-        public static readonly string Generic = "Gen";
-        public static readonly string Constant = "Con";
-        public static readonly string Summary = "Sum";
-        public static readonly string SolarEdgeWarranty = "SEW";
-        public static readonly string ModuleWarranty = "MoW";
-        public static readonly string ModuleData = "MoD";
-        public static readonly string InverterData = "InD";
-        public static readonly string OptimiserData = "OpD";
+        public const string Generic = "Gen";
+        public const string Constant = "Con";
+        public const string Summary = "Sum";
+        public const string SolarEdgeWarranty = "SEW";
+        public const string ModuleWarranty = "MoW";
+        public const string ModuleData = "MoD";
+        public const string InverterData = "InD";
+        public const string OptimiserData = "OpD";
     }
 }

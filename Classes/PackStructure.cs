@@ -380,16 +380,39 @@ namespace Handover_Pack_Compiler
             get
             {
                 DateTime ret = _lastEdited;
-                foreach (Folder file in Folders)
+                foreach (Folder folder in Folders)
                 {
-                    if (file.LastEdited > ret)
+                    if (folder.LastEdited > ret)
                     {
-                        ret = file.LastEdited;
+                        ret = folder.LastEdited;
                     }
                 }
                 return ret;
             }
             set { _lastEdited = value; }
+        }
+        [XmlIgnore]
+        public List<CommSitePath> AllPaths
+        {
+            get
+            {
+                List<CommSitePath> ret = new List<CommSitePath>();
+                foreach(CommSitePath path in QuoteFile.CSGenPaths)
+                {
+                    ret.Add(path);
+                }
+                foreach(Folder folder in Folders)
+                {
+                    foreach (Folder.File file in folder.Files)
+                    {
+                        foreach (CommSitePath path in QuoteFile.CSGenPaths)
+                        {
+                            ret.Add(path);
+                        }
+                    }
+                }
+                return ret;
+            }
         }
         public bool Complete
         {
