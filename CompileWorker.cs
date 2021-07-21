@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -173,6 +174,12 @@ namespace Handover_Pack_Compiler
                                 WordDoc.FormFields["PanelsInformation"].Result = PanelsInformation;
                                 WordDoc.FormFields["PredictedOutput"].Result = PackToCompile.PredictedOutput.ToString();
                                 WordDoc.FormFields["SystemSize"].Result = PackToCompile.SystemSize.ToString();
+                                Process process = Process.Start((string)TemplatePath);
+                                process.WaitForExit();
+                                string Name = string.Format("{0}.{1}  {2}.pdf", i, j, file.Name);
+                                string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name);
+                                WordDoc.ExportAsFixedFormat(path, Word.WdExportFormat.wdExportFormatPDF);
+                                ArchiveFile((string)TemplatePath);
                                 j++;
                                 break;
                             }
@@ -214,11 +221,13 @@ namespace Handover_Pack_Compiler
                                         ToAdd.Add(MD);
                                     }
                                 }
+                                int k = 0;
                                 foreach (ModuleData MD in ToAdd)
                                 {
-                                    string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    k++;
+                                    string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
                                     string path = MD.Warranty;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name));
+                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -244,11 +253,13 @@ namespace Handover_Pack_Compiler
                                         ToAdd.Add(MD);
                                     }
                                 }
+                                int k = 0;
                                 foreach (ModuleData MD in ToAdd)
                                 {
-                                    string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    k++;
+                                    string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
                                     string path = MD.Datasheet;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name));
+                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
