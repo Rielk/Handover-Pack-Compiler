@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Handover_Pack_Compiler
 {
@@ -61,7 +63,116 @@ namespace Handover_Pack_Compiler
                             }
                         case FileTypeTag.Summary:
                             {
-                                throw new NotImplementedException();
+                                object oMissing = Missing.Value;
+                                object oTemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx"));
+                                File.Copy(Path.Combine(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName, "SummaryDocTemplate.docx"), (string)oTemplatePath);
+                                Word._Application WordApplication = new Word.Application
+                                {
+                                    Visible = true
+                                };
+                                Word._Document WordDoc = WordApplication.Documents.Add(ref oTemplatePath, ref oMissing, ref oMissing, ref oMissing);
+                                WordDoc.FormFields["Address"].Result = PackToCompile.Address;
+                                WordDoc.FormFields["InstallationDate"].Result = PackToCompile.InstallDate.Date.ToString();
+                                #region InverterInformation
+                                Dictionary<string, int> InvCounts = new Dictionary<string, int>();
+                                foreach (InverterData ID in PackToCompile.Inverters)
+                                {
+                                    foreach (KeyValuePair<string, int> Entry in InvCounts)
+                                    {
+                                        if (Entry.Key == ID.Name)
+                                        {
+                                            InvCounts[Entry.Key]++;
+                                        }
+                                        else
+                                        {
+                                            InvCounts.Add(ID.Name, 1);
+                                        }
+                                    }
+                                }
+                                string InverterInformation = "";
+                                foreach (KeyValuePair<string, int> Entry in InvCounts)
+                                {
+                                    InverterInformation += string.Format("{0}x{1}, ", Entry.Value, Entry.Key);
+                                }
+                                InverterInformation = InverterInformation.Remove(InverterInformation.Length - 2);
+                                #endregion
+                                WordDoc.FormFields["InverterInformation"].Result = InverterInformation;
+                                #region InverterSerialNumbers
+                                string InverterSerialNumber1 = "";
+                                string InverterSerialNumber2 = "";
+                                string InverterSerialNumber3 = "";
+                                string InverterSerialNumber4 = "";
+                                List<InverterData> Inverters = PackToCompile.Inverters;
+                                for (int x = 0; x < Inverters.Count; x++)
+                                {
+                                    switch (x)
+                                    {
+                                        case 0:
+                                            InverterSerialNumber1 = Inverters[x].SerialNumber;
+                                            break;
+                                        case 1:
+                                            InverterSerialNumber2 = Inverters[x].SerialNumber;
+                                            break;
+                                        case 2:
+                                            InverterSerialNumber3 = Inverters[x].SerialNumber;
+                                            break;
+                                        case 3:
+                                            InverterSerialNumber4 = Inverters[x].SerialNumber;
+                                            break;
+                                        case 4:
+                                            InverterSerialNumber1 += "  " + Inverters[x].SerialNumber;
+                                            break;
+                                        case 5:
+                                            InverterSerialNumber2 += "  " + Inverters[x].SerialNumber;
+                                            break;
+                                        case 6:
+                                            InverterSerialNumber3 += "  " + Inverters[x].SerialNumber;
+                                            break;
+                                        case 7:
+                                            InverterSerialNumber4 += "  " + Inverters[x].SerialNumber;
+                                            break;
+                                        default:
+                                            throw new NotImplementedException();
+                                    }
+                                }
+                                #endregion
+                                WordDoc.FormFields["InverterSerialNumber1"].Result = InverterSerialNumber1;
+                                WordDoc.FormFields["InverterSerialNumber2"].Result = InverterSerialNumber2;
+                                WordDoc.FormFields["InverterSerialNumber3"].Result = InverterSerialNumber3;
+                                WordDoc.FormFields["InverterSerialNumber4"].Result = InverterSerialNumber4;
+                                WordDoc.FormFields["JobRef"].Result = PackToCompile.CustomerNumber;
+                                #region PanelsInformation
+                                Dictionary<string, int> ModCounts = new Dictionary<string, int>();
+                                foreach (ModuleData MD in PackToCompile.Modules)
+                                {
+                                    foreach (KeyValuePair<string, int> Entry in ModCounts)
+                                    {
+                                        if (Entry.Key == MD.Name)
+                                        {
+                                            if (MD.Quantity is int Quantity)
+                                            {
+                                                ModCounts[Entry.Key] += Quantity;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (MD.Quantity is int Quantity)
+                                            {
+                                                ModCounts.Add(MD.Name, Quantity);
+                                            }
+                                        }
+                                    }
+                                }
+                                string PanelsInformation = "";
+                                foreach (KeyValuePair<string, int> Entry in ModCounts)
+                                {
+                                    PanelsInformation += string.Format("{0}x{1}, ", Entry.Value, Entry.Key);
+                                }
+                                PanelsInformation = PanelsInformation.Remove(PanelsInformation.Length - 2);
+                                #endregion
+                                WordDoc.FormFields["PanelsInformation"].Result = PanelsInformation;
+                                WordDoc.FormFields["PredictedOutput"].Result = PackToCompile.PredictedOutput.ToString();
+                                WordDoc.FormFields["SystemSize"].Result = PackToCompile.SystemSize.ToString();
                                 j++;
                                 break;
                             }
