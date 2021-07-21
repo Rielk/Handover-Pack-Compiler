@@ -63,14 +63,14 @@ namespace Handover_Pack_Compiler
                             }
                         case FileTypeTag.Summary:
                             {
-                                object oMissing = Missing.Value;
-                                object oTemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx"));
-                                File.Copy(Path.Combine(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName, "SummaryDocTemplate.docx"), (string)oTemplatePath);
+                                object MissingVal = Missing.Value;
+                                object TemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx"));
+                                File.Copy(Path.Combine(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName, "SummaryDocTemplate.docx"), (string)TemplatePath);
                                 Word._Application WordApplication = new Word.Application
                                 {
                                     Visible = true
                                 };
-                                Word._Document WordDoc = WordApplication.Documents.Add(ref oTemplatePath, ref oMissing, ref oMissing, ref oMissing);
+                                Word._Document WordDoc = WordApplication.Documents.Add(ref TemplatePath, ref MissingVal, ref MissingVal, ref MissingVal);
                                 WordDoc.FormFields["Address"].Result = PackToCompile.Address;
                                 WordDoc.FormFields["InstallationDate"].Result = PackToCompile.InstallDate.Date.ToString();
                                 #region InverterInformation
