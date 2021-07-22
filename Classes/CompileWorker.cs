@@ -27,6 +27,7 @@ namespace Handover_Pack_Compiler
             foreach(Folder folder in PackToCompile.Folders)
             {
                 int j = 1;
+                string NumericalFolderName = string.Format("{0}.0  {1}", i, folder.Name);
                 foreach (Folder.File file in folder.Files)
                 {
                     switch (file.FileType)
@@ -40,7 +41,7 @@ namespace Handover_Pack_Compiler
                                     {
                                         k++;
                                         string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
-                                        File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
+                                        CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                     }
                                     j++;
                                 }
@@ -49,7 +50,7 @@ namespace Handover_Pack_Compiler
                                     foreach (string path in file.GenericPaths)
                                     {
                                         string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
-                                        File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
+                                        CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                         j++;
                                     }
                                 }
@@ -59,7 +60,7 @@ namespace Handover_Pack_Compiler
                             {
                                 string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
                                 string path = file.ConstantPath;
-                                File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
+                                CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 j++;
                                 break;
                             }
@@ -178,7 +179,7 @@ namespace Handover_Pack_Compiler
                                 Process process = Process.Start((string)TemplatePath);
                                 process.WaitForExit();
                                 string Name = string.Format("{0}.{1}  {2}.pdf", i, j, file.Name);
-                                string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name);
+                                string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name);
                                 WordDoc.ExportAsFixedFormat(path, Word.WdExportFormat.wdExportFormatPDF);
                                 ArchiveFile((string)TemplatePath);
                                 j++;
@@ -199,7 +200,7 @@ namespace Handover_Pack_Compiler
                                 {
                                     string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
                                     string path = file.ConstantPath;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name));
                                     j++;
                                 }
                                 break;
@@ -228,7 +229,7 @@ namespace Handover_Pack_Compiler
                                     k++;
                                     string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
                                     string path = MD.Warranty;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -260,7 +261,7 @@ namespace Handover_Pack_Compiler
                                     k++;
                                     string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
                                     string path = MD.Datasheet;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name + Path.GetExtension(path)));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -290,7 +291,7 @@ namespace Handover_Pack_Compiler
                                 {
                                     string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
                                     string path = ID.Datasheet;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -320,7 +321,7 @@ namespace Handover_Pack_Compiler
                                 {
                                     string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
                                     string path = OD.Datasheet;
-                                    File.Copy(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name, Name));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -434,10 +435,17 @@ namespace Handover_Pack_Compiler
 
         private void CopyDirectory(string SourcePath, string TargetPath)
         {
+            Directory.CreateDirectory(TargetPath);
             foreach (string path in Directory.GetFiles(SourcePath))
             {
                 File.Copy(path, Path.Combine(TargetPath, Path.GetFileName(path)));
             }
+        }
+
+        private void CopyFile(string SourcePath, string TargetPath)
+        {
+            Directory.CreateDirectory(Directory.GetParent(TargetPath).FullName);
+            File.Copy(SourcePath, TargetPath);
         }
     }
 }
