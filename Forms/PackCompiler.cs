@@ -590,7 +590,7 @@ namespace Handover_Pack_Compiler
                     }
                     FileUI NewSelector = new FileUI(file)
                     {
-                        Text = PackPaths.IDCustomerName + "Quote File",
+                        Text = PackPaths.IDCustomerName + " Quote File",
                         Dock = DockStyle.Top
                     };
                     ControlsToAdd.Add(NewSelector);
@@ -694,11 +694,20 @@ namespace Handover_Pack_Compiler
 
         private void PackGridView_SelectionChanged(object sender, EventArgs e)
         {
-            CompilePackButton.Enabled = ((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).Complete;
+            if (PackGridView.SelectedRows.Count > 0)
+            {
+                CompilePackButton.Enabled = ((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).Complete;
+                LoadPackButton.Enabled = true;
+            }
+            else
+            {
+                LoadPackButton.Enabled = false;
+            }
         }
 
         private void LoadPackButton_Click(object sender, EventArgs e)
         {
+            PackPaths.SetCustomerNumber(((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).CustomerNumber);
             LoadAndSwitchToPack((ActivePack)PackGridView.SelectedRows[0].DataBoundItem);
         }
 
