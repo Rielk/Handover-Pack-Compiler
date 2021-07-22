@@ -148,6 +148,10 @@ namespace Handover_Pack_Compiler
             {
                 LoadFilePaths();
             }
+            else if (OperationTabs.SelectedTab == PacksTab)
+            {
+                PackGridView_SelectionChanged(null, null);
+            }
         }
 
         private void LoadAndSwitchToPack(ActivePack PackToLoad)
