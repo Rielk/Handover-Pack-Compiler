@@ -62,6 +62,10 @@ namespace Handover_Pack_Compiler
             SortPackStructures();
 
             ActivePackList = Utilities.ReadFromFile<ActivePack>("Started Packs.xml");
+            foreach(ActivePack AP in ActivePackList)
+            {
+                AP.CheckPathsExist();
+            }
             ActivePackSource.DataSource = ActivePackList;
             SortActivePacks();
         }

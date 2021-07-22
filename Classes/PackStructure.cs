@@ -483,6 +483,14 @@ namespace Handover_Pack_Compiler
                 LastEdited = DateTime.Now;
             }
         }
+
+        public void CheckPathsExist()
+        {
+            foreach (Folder folder in Folders)
+            {
+                folder.CheckPathsExist();
+            }
+        }
     }
     public class Folder
     {
@@ -541,6 +549,13 @@ namespace Handover_Pack_Compiler
         public void AddFile(File NewFile)
         {
             Files.Add(NewFile);
+        }
+        public void CheckPathsExist()
+        {
+            foreach (File file in Files)
+            {
+                file.CheckPathsExist();
+            }
         }
 
         public class File
@@ -611,6 +626,17 @@ namespace Handover_Pack_Compiler
                 if (!Loading)
                 {
                     LastEdited = DateTime.Now;
+                }
+            }
+
+            public void CheckPathsExist()
+            {
+                foreach (CommSitePath CSP in CSGenPaths.ToList())
+                {
+                    if (!System.IO.File.Exists(CSP.FullPath))
+                    {
+                        CSGenPaths.Remove(CSP);
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +75,14 @@ namespace Handover_Pack_Compiler
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            Process.Start(Value);
+            if (File.Exists(Value))
+            {
+                Process.Start(Value);
+            }
+            else
+            {
+                MessageBox.Show("Can no longer find the file at \""+Value+"\". It may have been deleted or renamed.", "Something went wrong");
+            }
         }
     }
 }
