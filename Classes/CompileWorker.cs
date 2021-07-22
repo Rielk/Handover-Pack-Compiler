@@ -69,42 +69,40 @@ namespace Handover_Pack_Compiler
                                 object MissingVal = Missing.Value;
                                 object TemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx"));
                                 File.Copy(Path.Combine(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName, "SummaryDocTemplate.docx"), (string)TemplatePath);
-                                Word._Application WordApplication = new Word.Application
+                                Word.Application WordApplication = new Word.Application
                                 {
-                                    Visible = true
+                                    Visible = false
                                 };
-                                Word._Document WordDoc = WordApplication.Documents.Add(ref TemplatePath, ref MissingVal, ref MissingVal, ref MissingVal);
-                                WordDoc.FormFields["Address"].Result = PackToCompile.Address;
-                                WordDoc.FormFields["InstallationDate"].Result = PackToCompile.InstallDate.Date.ToString();
+                                Word.Document WordDoc = WordApplication.Documents.Open(ref TemplatePath);
+                                Word.Variables Variables = WordDoc.Variables;
+                                Variables["Address"].Value = PackToCompile.Address;
+                                Variables["InstallationDate"].Value = PackToCompile.InstallDate.Date.ToString("yyyy/MM/dd");
                                 #region InverterInformation
                                 Dictionary<string, int> InvCounts = new Dictionary<string, int>();
                                 foreach (InverterData ID in PackToCompile.Inverters)
                                 {
-                                    foreach (KeyValuePair<string, int> Entry in InvCounts)
+                                    if (InvCounts.ContainsKey(ID.Name))
                                     {
-                                        if (Entry.Key == ID.Name)
-                                        {
-                                            InvCounts[Entry.Key]++;
-                                        }
-                                        else
-                                        {
-                                            InvCounts.Add(ID.Name, 1);
-                                        }
+                                        InvCounts[ID.Name]++;
+                                    }
+                                    else
+                                    {
+                                        InvCounts.Add(ID.Name, 1);
                                     }
                                 }
                                 string InverterInformation = "";
                                 foreach (KeyValuePair<string, int> Entry in InvCounts)
                                 {
-                                    InverterInformation += string.Format("{0}x{1}, ", Entry.Value, Entry.Key);
+                                    InverterInformation += string.Format("{0} x {1}, ", Entry.Value, Entry.Key);
                                 }
                                 InverterInformation = InverterInformation.Remove(InverterInformation.Length - 2);
                                 #endregion
-                                WordDoc.FormFields["InverterInformation"].Result = InverterInformation;
+                                Variables["InverterInformation"].Value = InverterInformation;
                                 #region InverterSerialNumbers
-                                string InverterSerialNumber1 = "";
-                                string InverterSerialNumber2 = "";
-                                string InverterSerialNumber3 = "";
-                                string InverterSerialNumber4 = "";
+                                string InverterSerialNumber1 = " ";
+                                string InverterSerialNumber2 = " ";
+                                string InverterSerialNumber3 = " ";
+                                string InverterSerialNumber4 = " ";
                                 List<InverterData> Inverters = PackToCompile.Inverters;
                                 for (int x = 0; x < Inverters.Count; x++)
                                 {
@@ -139,48 +137,50 @@ namespace Handover_Pack_Compiler
                                     }
                                 }
                                 #endregion
-                                WordDoc.FormFields["InverterSerialNumber1"].Result = InverterSerialNumber1;
-                                WordDoc.FormFields["InverterSerialNumber2"].Result = InverterSerialNumber2;
-                                WordDoc.FormFields["InverterSerialNumber3"].Result = InverterSerialNumber3;
-                                WordDoc.FormFields["InverterSerialNumber4"].Result = InverterSerialNumber4;
-                                WordDoc.FormFields["JobRef"].Result = PackToCompile.CustomerNumber;
+                                Variables["InverterSerialNumber1"].Value = InverterSerialNumber1;
+                                Variables["InverterSerialNumber2"].Value = InverterSerialNumber2;
+                                Variables["InverterSerialNumber3"].Value = InverterSerialNumber3;
+                                Variables["InverterSerialNumber4"].Value = InverterSerialNumber4;
+                                Variables["JobRef"].Value = PackToCompile.CustomerNumber;
                                 #region PanelsInformation
                                 Dictionary<string, int> ModCounts = new Dictionary<string, int>();
                                 foreach (ModuleData MD in PackToCompile.Modules)
                                 {
-                                    foreach (KeyValuePair<string, int> Entry in ModCounts)
+                                    if (ModCounts.ContainsKey(MD.Name))
                                     {
-                                        if (Entry.Key == MD.Name)
+                                        if (MD.Quantity is int Quantity)
                                         {
-                                            if (MD.Quantity is int Quantity)
-                                            {
-                                                ModCounts[Entry.Key] += Quantity;
-                                            }
+                                            ModCounts[MD.Name] += Quantity;
                                         }
-                                        else
+                                    }
+                                    else
+                                    {
+                                        if (MD.Quantity is int Quantity)
                                         {
-                                            if (MD.Quantity is int Quantity)
-                                            {
-                                                ModCounts.Add(MD.Name, Quantity);
-                                            }
+                                            ModCounts.Add(MD.Name, Quantity);
                                         }
                                     }
                                 }
                                 string PanelsInformation = "";
                                 foreach (KeyValuePair<string, int> Entry in ModCounts)
                                 {
-                                    PanelsInformation += string.Format("{0}x{1}, ", Entry.Value, Entry.Key);
+                                    PanelsInformation += string.Format("{0} x {1}, ", Entry.Value, Entry.Key);
                                 }
                                 PanelsInformation = PanelsInformation.Remove(PanelsInformation.Length - 2);
                                 #endregion
-                                WordDoc.FormFields["PanelsInformation"].Result = PanelsInformation;
-                                WordDoc.FormFields["PredictedOutput"].Result = PackToCompile.PredictedOutput.ToString();
-                                WordDoc.FormFields["SystemSize"].Result = PackToCompile.SystemSize.ToString();
+                                Variables["PanelsInformation"].Value = PanelsInformation;
+                                Variables["PredictedOutput"].Value = PackToCompile.PredictedOutput.ToString();
+                                Variables["SystemSize"].Value = PackToCompile.SystemSize.ToString();
+                                WordDoc.Fields.Update();
+                                WordDoc.Close(Word.WdSaveOptions.wdSaveChanges);
                                 Process process = Process.Start((string)TemplatePath);
                                 process.WaitForExit();
                                 string Name = string.Format("{0}.{1}  {2}.pdf", i, j, file.Name);
                                 string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name);
+                                WordDoc = WordApplication.Documents.Open(ref TemplatePath);
+                                Directory.CreateDirectory(Directory.GetParent(path).FullName);
                                 WordDoc.ExportAsFixedFormat(path, Word.WdExportFormat.wdExportFormatPDF);
+                                WordDoc.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
                                 ArchiveFile((string)TemplatePath);
                                 j++;
                                 break;
@@ -333,6 +333,7 @@ namespace Handover_Pack_Compiler
                             throw new NotImplementedException();
                     }
                 }
+                i++;
             }
         }
 
