@@ -54,7 +54,7 @@ namespace Handover_Pack_Compiler
                     return;
                 }
                 ext = Path.Combine(Path.GetFileName(parent), ext);
-                parent = Directory.GetParent(parent).FullName;
+                parent = Directory.GetParent(parent)?.FullName;
             }
             Extension = value;
             InCommSite = false;

@@ -365,7 +365,7 @@ namespace Handover_Pack_Compiler
                         break;
                     }
                     ext = Path.Combine(Path.GetFileName(parent), ext);
-                    parent = Directory.GetParent(parent).FullName;
+                    parent = Directory.GetParent(parent)?.FullName;
                 }
             }
             foreach (string path in Directory.GetFiles(CopyDocksPath))
@@ -412,7 +412,7 @@ namespace Handover_Pack_Compiler
 
         private string ArchiveDirectory(string DirectoryPath, string ToSubDirectory = "")
         {
-            string FolderName = Path.GetDirectoryName(DirectoryPath);
+            string FolderName = Path.GetFileName(DirectoryPath);
             string NewPath = Path.Combine(PackPaths.Archive, ToSubDirectory, FolderName);
             if (Directory.Exists(NewPath))
             {
