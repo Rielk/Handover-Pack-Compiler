@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -334,6 +335,20 @@ namespace Handover_Pack_Compiler
             }
         }
 
+        public void Zip()
+        {
+            string TempZip = PackPaths.TempZip;
+            Directory.CreateDirectory(TempZip);
+            foreach (Folder folder in PackToCompile.Folders)
+            {
+                string SourcePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name);
+                string TargetPath = Path.Combine(PackPaths.TempZip, folder.Name);
+                CopyDirectory(SourcePath, TargetPath);
+            }
+            ZipFile.CreateFromDirectory(TempZip, TempZip+".zip");
+            Directory.Delete(TempZip);
+        }
+
         private void ArchiveCopyDocks()
         {
             Directory.CreateDirectory(PackPaths.Archive);
@@ -415,6 +430,14 @@ namespace Handover_Pack_Compiler
                 Directory.Move(DirectoryPath, NewPath);
             }
             return NewPath;
+        }
+
+        private void CopyDirectory(string SourcePath, string TargetPath)
+        {
+            foreach (string path in Directory.GetFiles(SourcePath))
+            {
+                File.Copy(path, Path.Combine(TargetPath, Path.GetFileName(path)));
+            }
         }
     }
 }

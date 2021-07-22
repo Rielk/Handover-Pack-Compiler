@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -143,6 +144,13 @@ namespace Handover_Pack_Compiler
             {
                 LoadFilePaths();
             }
+        }
+
+        private void LoadAndSwitchToPack(ActivePack NewStructure)
+        {
+            LoadedPack = NewStructure;
+            OperationTabs.SelectedTab = FilesTab;
+            FilesTab.VerticalScroll.Value = 0;
         }
         #endregion
 
@@ -535,9 +543,7 @@ namespace Handover_Pack_Compiler
                             ActivePackList.Add(NewStructure);
                             SortActivePacks();
                         }
-                        LoadedPack = NewStructure;
-                        OperationTabs.SelectedTab = FilesTab;
-                        FilesTab.VerticalScroll.Value = 0;
+                        LoadAndSwitchToPack(NewStructure);
                         Requesting = false;
                     }
                     else
@@ -584,7 +590,7 @@ namespace Handover_Pack_Compiler
                     }
                     FileUI NewSelector = new FileUI(file)
                     {
-                        Text = "Quote File",
+                        Text = PackPaths.IDCustomerName + "Quote File",
                         Dock = DockStyle.Top
                     };
                     ControlsToAdd.Add(NewSelector);
@@ -684,6 +690,24 @@ namespace Handover_Pack_Compiler
         {
             ActivePackList.Sort((x, y) => x.CustomerNumber.CompareTo(y.CustomerNumber));
             ActivePackSource.ResetBindings(false);
+        }
+
+        private void PackGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            CompilePackButton.Enabled = ((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).Complete;
+        }
+
+        private void LoadPackButton_Click(object sender, EventArgs e)
+        {
+            LoadAndSwitchToPack((ActivePack)PackGridView.SelectedRows[0].DataBoundItem);
+        }
+
+        private void CompilePackButton_Click(object sender, EventArgs e)
+        {
+            CompileWorker CW = new CompileWorker(LoadedPack);
+            CW.Compile();
+            CW.Zip();
+            Process.Start(PackPaths.CustomerFolderNumberN(11));
         }
         #endregion
     }

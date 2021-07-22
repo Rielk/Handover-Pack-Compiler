@@ -57,6 +57,7 @@ namespace Handover_Pack_Compiler
         public static string EnquiriesAndOrders { get { return Path.Combine(CommunicationSite, "Enquiries & Orders Area"); } }
         public static string TechnicalArea { get { return Path.Combine(CommunicationSite, "Technical Area"); } }
         public static string CustomerFolder { get { return CSCustFold.FullPath; } set { CSCustFold.FullPath = value; } }
+        public static string TempZip { get { return Path.Combine(CustomerFolderNumberN(11), IDCustomerName + " Handover Pack"); } }
         public static bool SetCustomerNumber(string cn)
         {
             List<string> results = Utilities.FolderStarting(cn, EnquiriesAndOrders);
