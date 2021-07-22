@@ -58,6 +58,7 @@ namespace Handover_Pack_Compiler
                 PredictedOutputBox.Enabled = true;
                 DatePicker.Enabled = true;
                 AddressBox.Enabled = true;
+                ConfirmButton.Text = "Confirm";
                 Complete = false;
             }
             else
@@ -66,6 +67,7 @@ namespace Handover_Pack_Compiler
                 PredictedOutputBox.Enabled = false;
                 DatePicker.Enabled = false;
                 AddressBox.Enabled = false;
+                ConfirmButton.Text = "Edit";
                 Complete = true;
             }
         }
