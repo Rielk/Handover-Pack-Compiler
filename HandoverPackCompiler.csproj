@@ -86,7 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompileWorker.cs" />
+    <Compile Include="Classes\CompileWorker.cs" />
     <Compile Include="Controls\SummaryInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
