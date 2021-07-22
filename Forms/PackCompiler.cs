@@ -610,21 +610,29 @@ namespace Handover_Pack_Compiler
                     {
                         if (file.FileType == FileTypeTag.Summary)
                         {
+                            file.Complete = true;
                             requireInverters = true;
                             requireModules = true;
                             requireAdditional = true;
                         }
                         else if (file.FileType == FileTypeTag.InverterData | file.FileType == FileTypeTag.SolarEdgeWarranty)
                         {
+                            file.Complete = true;
                             requireInverters = true;
                         }
                         else if (file.FileType == FileTypeTag.ModuleData | file.FileType == FileTypeTag.ModuleWarranty)
                         {
+                            file.Complete = true;
                             requireModules = true;
                         }
                         else if (file.FileType == FileTypeTag.OptimiserData)
                         {
+                            file.Complete = true;
                             requireOptimisers = true;
+                        }
+                        else if (file.FileType == FileTypeTag.Constant)
+                        {
+                            file.Complete = true;
                         }
                     }
                 }
@@ -637,6 +645,10 @@ namespace Handover_Pack_Compiler
                     };
                     ControlsToAdd.Add(ISelector);
                 }
+                else
+                {
+                    LoadedPack.InverterComplete = true;
+                }
                 if (requireModules)
                 {
                     ModuleUI MSelector = new ModuleUI(LoadedPack)
@@ -644,6 +656,10 @@ namespace Handover_Pack_Compiler
                         Dock = DockStyle.Top
                     };
                     ControlsToAdd.Add(MSelector);
+                }
+                else
+                {
+                    LoadedPack.ModuleComplete = true;
                 }
                 if (requireOptimisers)
                 {
@@ -653,6 +669,10 @@ namespace Handover_Pack_Compiler
                     };
                     ControlsToAdd.Add(OSelector);
                 }
+                else
+                {
+                    LoadedPack.OptimiserComplete = true;
+                }
                 if (requireAdditional)
                 {
                     SummaryInformation SumInf = new SummaryInformation(LoadedPack)
@@ -660,6 +680,10 @@ namespace Handover_Pack_Compiler
                         Dock = DockStyle.Top
                     };
                     ControlsToAdd.Add(SumInf);
+                }
+                else
+                {
+                    LoadedPack.SummaryComplete = true;
                 }
 
                 int FolderNumber = 0;

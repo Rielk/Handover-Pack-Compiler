@@ -418,19 +418,18 @@ namespace Handover_Pack_Compiler
         {
             get
             {
-                bool ret = true;
                 foreach (Folder f in Folders)
                 {
                     if (!f.Complete)
                     {
-                        ret = false;
+                        return false;
                     }
                 }
                 if (!InverterComplete || !ModuleComplete || !OptimiserComplete || !SummaryComplete)
                 {
-                    ret = false;
+                    return false;
                 }
-                return ret;
+                return true;
             }
         }
         public ActivePack()
@@ -498,15 +497,14 @@ namespace Handover_Pack_Compiler
         {
             get
             {
-                bool ret = true;
                 foreach (File f in Files)
                 {
                     if (!f.Complete)
                     {
-                        ret = false;
+                        return false;
                     }
                 }
-                return ret;
+                return true;
             }
         }
         public DateTime LastEdited
@@ -636,6 +634,7 @@ namespace Handover_Pack_Compiler
                     if (!System.IO.File.Exists(CSP.FullPath))
                     {
                         CSGenPaths.Remove(CSP);
+                        Complete = false;
                     }
                 }
             }
