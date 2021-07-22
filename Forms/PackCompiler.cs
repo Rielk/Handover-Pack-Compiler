@@ -150,9 +150,9 @@ namespace Handover_Pack_Compiler
             }
         }
 
-        private void LoadAndSwitchToPack(ActivePack NewStructure)
+        private void LoadAndSwitchToPack(ActivePack PackToLoad)
         {
-            LoadedPack = NewStructure;
+            LoadedPack = PackToLoad;
             OperationTabs.SelectedTab = FilesTab;
             FilesTab.VerticalScroll.Value = 0;
         }
@@ -741,10 +741,19 @@ namespace Handover_Pack_Compiler
 
         private void CompilePackButton_Click(object sender, EventArgs e)
         {
-            CompileWorker CW = new CompileWorker(LoadedPack);
-            CW.Compile();
-            CW.Zip();
-            Process.Start(PackPaths.CustomerFolderNumberN(11));
+            ActivePack SelectedPack = (ActivePack)PackGridView.SelectedRows[0].DataBoundItem;
+            PackPaths.SetCustomerNumber(SelectedPack.CustomerNumber);
+            LoadedPack = SelectedPack;
+            if (MessageBox.Show("Are you sure you want to create the pack for \"" + PackPaths.IDCustomerName + "\"? " +
+                Environment.NewLine +"Any folders or files in \"Copy Docs for Handover Pack\" will be moved to the archive folder.",
+                "Compile Pack", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                CompileWorker CW = new CompileWorker(SelectedPack);
+                CW.Compile();
+                CW.Zip();
+                Process.Start(PackPaths.CustomerFolderNumberN(11));
+            }
+            
         }
         #endregion
     }
