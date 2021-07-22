@@ -1,2 +1,2 @@
 # Handover-Pack-Compiler
-Mypower Hadnover Pack compiler program. With proper GUI.
+Mypower Handover Pack compiler program. With proper GUI.
