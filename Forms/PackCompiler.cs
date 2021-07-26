@@ -40,15 +40,13 @@ namespace Handover_Pack_Compiler
 
             InverterList = Utilities.ReadFromFile<InverterData>("Inverters.xml");
             InverterDataSource.DataSource = InverterList;
-            SortInverters();
+            
 
             ModuleList = Utilities.ReadFromFile<ModuleData>("Modules.xml");
             ModuleDataSource.DataSource = ModuleList;
-            SortModules();
 
             OptimiserList = Utilities.ReadFromFile<OptimiserData>("Optimisers.xml");
             OptimiserDataSource.DataSource = OptimiserList;
-            SortOptimisers();
 
             ProgDataButton.InitialPathFunction = DefaultPath.ProgData;
             CommSiteButton.InitialPathFunction = DefaultPath.CommSite;
@@ -67,6 +65,11 @@ namespace Handover_Pack_Compiler
                 AP.CheckPathsExist();
             }
             ActivePackSource.DataSource = ActivePackList;
+
+            AssertComponentsExist();
+            SortInverters();
+            SortModules();
+            SortOptimisers();
             SortActivePacks();
         }
 
@@ -159,6 +162,40 @@ namespace Handover_Pack_Compiler
             LoadedPack = PackToLoad;
             OperationTabs.SelectedTab = FilesTab;
             FilesTab.VerticalScroll.Value = 0;
+        }
+
+        private void AssertComponentsExist()
+        {
+            foreach (ActivePack AP in ActivePackList)
+            {
+                foreach (InverterData ID in AP.Inverters)
+                {
+                    if (!InverterList.Contains(ID))
+                    {
+                        MessageBox.Show("Inverter \"" + ID.Name + "\" was renamed or removed at some point." +
+                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Inverter");
+                        InverterList.Add(ID);
+                    }
+                }
+                foreach (ModuleData MD in AP.Modules)
+                {
+                    if (!ModuleList.Contains(MD))
+                    {
+                        MessageBox.Show("Module \"" + MD.Name + "\" was renamed or removed at some point." +
+                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Module");
+                        ModuleList.Add(MD);
+                    }
+                }
+                foreach (OptimiserData OD in AP.Optimisers)
+                {
+                    if (!OptimiserList.Contains(OD))
+                    {
+                        MessageBox.Show("Optimiser \"" + OD.Name + "\" was renamed or removed at some point." +
+                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Optimiser");
+                        OptimiserList.Add(OD);
+                    }
+                }
+            }
         }
         #endregion
 
