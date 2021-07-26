@@ -21,6 +21,7 @@ namespace Handover_Pack_Compiler
         public static List<OptimiserData> OptimiserList;
         public static List<PackStructure> PackStructureList;
         public static List<ActivePack> ActivePackList;
+        private bool RequireReload = false;
         private ActivePack loadedPack = null;
         public ActivePack LoadedPack
         {
@@ -155,6 +156,13 @@ namespace Handover_Pack_Compiler
             {
                 PackGridView_SelectionChanged(null, null);
             }
+            else if (OperationTabs.SelectedTab == FilesTab)
+            {
+                if (RequireReload)
+                {
+                    LoadActivePack();
+                }
+            }
         }
 
         private void LoadAndSwitchToPack(ActivePack PackToLoad)
@@ -267,6 +275,22 @@ namespace Handover_Pack_Compiler
                         InverterList.Remove((InverterData)row.DataBoundItem);
                     }
                 }
+
+                foreach (ActivePack AP in ActivePackList)
+                {
+                    foreach (InverterData ID in AP.Inverters)
+                    {
+                        if (ID.Name == ((InverterData)row.DataBoundItem).Name)
+                        {
+                            AP.Inverters.Remove(ID);
+                            AP.InverterComplete = false;
+                            if (AP == LoadedPack)
+                            {
+                                RequireReload = true;
+                            }
+                        }
+                    }
+                }
             }
             SortInverters();
         }
@@ -285,6 +309,24 @@ namespace Handover_Pack_Compiler
                     IData.SolarEdge = IVForm.SolarEdgeVal;
                     InverterList.Add(IData);
                     SortInverters(IData.Name);
+
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        foreach (InverterData ID in AP.Inverters)
+                        {
+                            if (ID.Name == IData.Name)
+                            {
+                                ID.Name = IVForm.NameVal;
+                                ID.Datasheet = IVForm.DatasheetVal;
+                                ID.SolarEdge = IVForm.SolarEdgeVal;
+                                AP.InverterComplete = false;
+                                if (AP == LoadedPack)
+                                {
+                                    RequireReload = true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
