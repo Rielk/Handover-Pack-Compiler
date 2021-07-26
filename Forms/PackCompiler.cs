@@ -178,7 +178,11 @@ namespace Handover_Pack_Compiler
             {
                 foreach (InverterData ID in AP.Inverters)
                 {
-                    if (!InverterList.Contains(ID))
+                    if (InverterList.Contains(ID))
+                    {
+                        ID.CopyBase(InverterList.Find(x => x.Name == ID.Name));
+                    }
+                    else
                     {
                         MessageBox.Show("Inverter \"" + ID.Name + "\" was renamed or removed at some point." +
                             " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Inverter");
@@ -187,7 +191,11 @@ namespace Handover_Pack_Compiler
                 }
                 foreach (ModuleData MD in AP.Modules)
                 {
-                    if (!ModuleList.Contains(MD))
+                    if (ModuleList.Contains(MD))
+                    {
+                        MD.CopyBase(ModuleList.Find(x => x.Name == MD.Name));
+                    }
+                    else
                     {
                         MessageBox.Show("Module \"" + MD.Name + "\" was renamed or removed at some point." +
                             " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Module");
@@ -196,7 +204,11 @@ namespace Handover_Pack_Compiler
                 }
                 foreach (OptimiserData OD in AP.Optimisers)
                 {
-                    if (!OptimiserList.Contains(OD))
+                    if (OptimiserList.Contains(OD))
+                    {
+                        OD.CopyBase(OptimiserList.Find(x => x.Name == OD.Name));
+                    }
+                    else
                     {
                         MessageBox.Show("Optimiser \"" + OD.Name + "\" was renamed or removed at some point." +
                             " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Optimiser");

@@ -17,6 +17,9 @@ public abstract class Data : NameCompare
     {
         return Name?.ToString() ?? "Please Select...";
     }
+
+    public abstract void CopyBase(Data Copy);
+
     public Data() { }
 
     public Data(Data other)
@@ -42,6 +45,15 @@ public class InverterData : Data
         Datasheet = other.Datasheet;
         SolarEdge = other.SolarEdge;
         SerialNumber = other.SerialNumber;
+    }
+
+    public override void CopyBase(Data Copy)
+    {
+        if (Copy is InverterData other)
+        {
+            Datasheet = other.Datasheet;
+            SolarEdge = other.SolarEdge;
+        }
     }
 }
 
@@ -71,6 +83,15 @@ public class ModuleData : Data
         Warranty = other.Warranty;
         Quantity = other.Quantity;
     }
+
+    public override void CopyBase(Data Copy)
+    {
+        if (Copy is ModuleData other)
+        {
+            Datasheet = other.Datasheet;
+            Warranty = other.Warranty;
+        }
+    }
 }
 
 public class OptimiserData : Data
@@ -87,5 +108,13 @@ public class OptimiserData : Data
     {
         DPath = new CommSitePath(null);
         Datasheet = other.Datasheet;
+    }
+
+    public override void CopyBase(Data Copy)
+    {
+        if (Copy is OptimiserData other)
+        {
+            Datasheet = other.Datasheet;
+        }
     }
 }
