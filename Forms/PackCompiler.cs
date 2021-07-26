@@ -382,6 +382,22 @@ namespace Handover_Pack_Compiler
                         ModuleList.Remove((ModuleData)row.DataBoundItem);
                     }
                 }
+
+                foreach (ActivePack AP in ActivePackList)
+                {
+                    foreach (ModuleData MD in AP.Modules)
+                    {
+                        if (MD.Name == ((ModuleData)row.DataBoundItem).Name)
+                        {
+                            AP.Modules.Remove(MD);
+                            AP.ModuleComplete = false;
+                            if (AP == LoadedPack)
+                            {
+                                RequireReload = true;
+                            }
+                        }
+                    }
+                }
             }
             SortModules();
         }
@@ -400,6 +416,24 @@ namespace Handover_Pack_Compiler
                     MData.Warranty = MVForm.WarrantyVal;
                     ModuleList.Add(MData);
                     SortModules(MData.Name);
+
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        foreach (ModuleData MD in AP.Modules)
+                        {
+                            if (MD.Name == MData.Name)
+                            {
+                                MD.Name = MVForm.NameVal;
+                                MD.Datasheet = MVForm.DatasheetVal;
+                                MD.Warranty = MVForm.WarrantyVal;
+                                AP.InverterComplete = false;
+                                if (AP == LoadedPack)
+                                {
+                                    RequireReload = true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -454,6 +488,22 @@ namespace Handover_Pack_Compiler
                         OptimiserList.Remove((OptimiserData)row.DataBoundItem);
                     }
                 }
+
+                foreach (ActivePack AP in ActivePackList)
+                {
+                    foreach (OptimiserData OD in AP.Optimisers)
+                    {
+                        if (OD.Name == ((OptimiserData)row.DataBoundItem).Name)
+                        {
+                            AP.Optimisers.Remove(OD);
+                            AP.OptimiserComplete = false;
+                            if (AP == LoadedPack)
+                            {
+                                RequireReload = true;
+                            }
+                        }
+                    }
+                }
             }
             SortOptimisers();
         }
@@ -471,6 +521,23 @@ namespace Handover_Pack_Compiler
                     OData.Datasheet = OVForm.DatasheetVal;
                     OptimiserList.Add(OData);
                     SortOptimisers(OData.Name);
+
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        foreach (OptimiserData OD in AP.Optimisers)
+                        {
+                            if (OD.Name == OData.Name)
+                            {
+                                OD.Name = OVForm.NameVal;
+                                OD.Datasheet = OVForm.DatasheetVal;
+                                AP.InverterComplete = false;
+                                if (AP == LoadedPack)
+                                {
+                                    RequireReload = true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
