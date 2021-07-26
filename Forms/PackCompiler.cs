@@ -303,13 +303,6 @@ namespace Handover_Pack_Compiler
                 InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
                 if (IVForm.ShowDialog() == DialogResult.OK)
                 {
-                    InverterList.Remove(IData);
-                    IData.Name = IVForm.NameVal;
-                    IData.Datasheet = IVForm.DatasheetVal;
-                    IData.SolarEdge = IVForm.SolarEdgeVal;
-                    InverterList.Add(IData);
-                    SortInverters(IData.Name);
-
                     foreach (ActivePack AP in ActivePackList)
                     {
                         foreach (InverterData ID in AP.Inverters)
@@ -327,6 +320,13 @@ namespace Handover_Pack_Compiler
                             }
                         }
                     }
+
+                    InverterList.Remove(IData);
+                    IData.Name = IVForm.NameVal;
+                    IData.Datasheet = IVForm.DatasheetVal;
+                    IData.SolarEdge = IVForm.SolarEdgeVal;
+                    InverterList.Add(IData);
+                    SortInverters(IData.Name);
                 }
             }
         }
@@ -410,13 +410,6 @@ namespace Handover_Pack_Compiler
                 ModuleValuesForm MVForm = new ModuleValuesForm(MData.Name, MData.Datasheet, MData.Warranty);
                 if (MVForm.ShowDialog() == DialogResult.OK)
                 {
-                    ModuleList.Remove(MData);
-                    MData.Name = MVForm.NameVal;
-                    MData.Datasheet = MVForm.DatasheetVal;
-                    MData.Warranty = MVForm.WarrantyVal;
-                    ModuleList.Add(MData);
-                    SortModules(MData.Name);
-
                     foreach (ActivePack AP in ActivePackList)
                     {
                         foreach (ModuleData MD in AP.Modules)
@@ -426,7 +419,7 @@ namespace Handover_Pack_Compiler
                                 MD.Name = MVForm.NameVal;
                                 MD.Datasheet = MVForm.DatasheetVal;
                                 MD.Warranty = MVForm.WarrantyVal;
-                                AP.InverterComplete = false;
+                                AP.ModuleComplete = false;
                                 if (AP == LoadedPack)
                                 {
                                     RequireReload = true;
@@ -434,6 +427,13 @@ namespace Handover_Pack_Compiler
                             }
                         }
                     }
+
+                    ModuleList.Remove(MData);
+                    MData.Name = MVForm.NameVal;
+                    MData.Datasheet = MVForm.DatasheetVal;
+                    MData.Warranty = MVForm.WarrantyVal;
+                    ModuleList.Add(MData);
+                    SortModules(MData.Name);
                 }
             }
         }
@@ -516,12 +516,6 @@ namespace Handover_Pack_Compiler
                 OptimiserValuesForm OVForm = new OptimiserValuesForm(OData.Name, OData.Datasheet);
                 if (OVForm.ShowDialog() == DialogResult.OK)
                 {
-                    OptimiserList.Remove(OData);
-                    OData.Name = OVForm.NameVal;
-                    OData.Datasheet = OVForm.DatasheetVal;
-                    OptimiserList.Add(OData);
-                    SortOptimisers(OData.Name);
-
                     foreach (ActivePack AP in ActivePackList)
                     {
                         foreach (OptimiserData OD in AP.Optimisers)
@@ -530,7 +524,7 @@ namespace Handover_Pack_Compiler
                             {
                                 OD.Name = OVForm.NameVal;
                                 OD.Datasheet = OVForm.DatasheetVal;
-                                AP.InverterComplete = false;
+                                AP.OptimiserComplete = false;
                                 if (AP == LoadedPack)
                                 {
                                     RequireReload = true;
@@ -538,6 +532,12 @@ namespace Handover_Pack_Compiler
                             }
                         }
                     }
+
+                    OptimiserList.Remove(OData);
+                    OData.Name = OVForm.NameVal;
+                    OData.Datasheet = OVForm.DatasheetVal;
+                    OptimiserList.Add(OData);
+                    SortOptimisers(OData.Name);
                 }
             }
         }
