@@ -900,7 +900,7 @@ namespace Handover_Pack_Compiler
             this.Controls.Add(this.OperationTabs);
             this.Name = "PackCompiler";
             this.Text = "Mypower Handover Pack Compiler";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackCompiler_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackCompiler_SaveLists);
             this.OperationTabs.ResumeLayout(false);
             this.StructureTab.ResumeLayout(false);
             this.PackTabSplit.Panel1.ResumeLayout(false);

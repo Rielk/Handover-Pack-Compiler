@@ -132,7 +132,7 @@ namespace Handover_Pack_Compiler
         }
 
         #region General Utilities
-        private void PackCompiler_FormClosing(object sender, FormClosingEventArgs e)
+        private void PackCompiler_SaveLists(object sender, FormClosingEventArgs e)
         {
             Utilities.WriteToFile(InverterList, "Inverters.xml", true);
             Utilities.WriteToFile(ModuleList, "Modules.xml", true);
@@ -953,12 +953,14 @@ namespace Handover_Pack_Compiler
 
         private void LoadPackButton_Click(object sender, EventArgs e)
         {
+            PackCompiler_SaveLists(null, null);
             PackPaths.SetCustomerNumber(((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).CustomerNumber);
             LoadAndSwitchToPack((ActivePack)PackGridView.SelectedRows[0].DataBoundItem);
         }
 
         private void CompilePackButton_Click(object sender, EventArgs e)
         {
+            PackCompiler_SaveLists(null, null);
             ActivePack SelectedPack = (ActivePack)PackGridView.SelectedRows[0].DataBoundItem;
             PackPaths.SetCustomerNumber(SelectedPack.CustomerNumber);
             LoadedPack = SelectedPack;
