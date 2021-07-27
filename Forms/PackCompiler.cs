@@ -228,8 +228,8 @@ namespace Handover_Pack_Compiler
                     }
                     else
                     {
-                        MessageBox.Show("Inverter \"" + ID.Name + "\" was renamed or removed at some point." +
-                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Inverter");
+                        MessageBox.Show("Inverter \"" + ID.Name + "\" was renamed or removed at some point. It has been re-added for " +
+                            "Pack ID:" + AP.CustomerNumber.ToString(), "Missing Inverter", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         InverterList.Add(ID);
                     }
                 }
@@ -241,8 +241,8 @@ namespace Handover_Pack_Compiler
                     }
                     else
                     {
-                        MessageBox.Show("Module \"" + MD.Name + "\" was renamed or removed at some point." +
-                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Module");
+                        MessageBox.Show("Module \"" + MD.Name + "\" was renamed or removed at some point. It has been re-added for " +
+                            "Pack ID:" + AP.CustomerNumber.ToString(), "Missing Module", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         ModuleList.Add(MD);
                     }
                 }
@@ -254,8 +254,8 @@ namespace Handover_Pack_Compiler
                     }
                     else
                     {
-                        MessageBox.Show("Optimiser \"" + OD.Name + "\" was renamed or removed at some point." +
-                            " It has been re-added for Pack ID:" + AP.CustomerNumber.ToString(), "Missing Optimiser");
+                        MessageBox.Show("Optimiser \"" + OD.Name + "\" was renamed or removed at some point. It has been re-added for " +
+                            "Pack ID:" + AP.CustomerNumber.ToString(), "Missing Optimiser", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         OptimiserList.Add(OD);
                     }
                 }

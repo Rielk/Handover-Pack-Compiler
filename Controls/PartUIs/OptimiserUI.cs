@@ -35,7 +35,7 @@ namespace Handover_Pack_Compiler
                 Complete = false;
                 ConfirmButton_Click(null, null);
             }
-                GroupBox_Resize(null, null);
+            GroupBox_Resize(null, null);
         }
 
         public void AddOptimiser()
@@ -119,6 +119,7 @@ namespace Handover_Pack_Compiler
                 }
             }
             if (toggle)
+            {
                 if (Complete)
                 {
                     Complete = false;
@@ -146,8 +147,8 @@ namespace Handover_Pack_Compiler
                         }
                     }
                 }
+            }
         }
 
-        }
     }
 }
