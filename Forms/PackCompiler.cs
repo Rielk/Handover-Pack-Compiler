@@ -789,7 +789,6 @@ namespace Handover_Pack_Compiler
             if (LoadedPack != null)
             {
                 List<Control> ControlsToAdd = new List<Control>();
-
                 {
                     Folder.File file;
                     if (LoadedPack.QuoteFile == null)
