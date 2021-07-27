@@ -110,33 +110,43 @@ namespace Handover_Pack_Compiler
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            if (Complete)
+            bool toggle = true;
+            foreach (OptimiserData OD in Optimisers)
             {
-                Complete = false;
-                ConfirmButton.Text = "Confirm";
-                foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
+                if (OD.ClearFalsePaths())
                 {
-                    OS.ReadOnly = false;
+                    toggle = false;
                 }
-                AddOptimiser();
+            }
+            if (toggle)
+                if (Complete)
+                {
+                    Complete = false;
+                    ConfirmButton.Text = "Confirm";
+                    foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
+                    {
+                        OS.ReadOnly = false;
+                    }
+                    AddOptimiser();
 
-            }
-            else
-            {
-                Complete = true;
-                ConfirmButton.Text = "Edit";
-                foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
+                }
+                else
                 {
-                    if (OS.Value == null)
+                    Complete = true;
+                    ConfirmButton.Text = "Edit";
+                    foreach (OptimiserSelector OS in OptimiserSelectors.ToList())
                     {
-                        Remove_OptimiserSelector(OS);
-                    }
-                    else
-                    {
-                        OS.ReadOnly = true;
+                        if (OS.Value == null)
+                        {
+                            Remove_OptimiserSelector(OS);
+                        }
+                        else
+                        {
+                            OS.ReadOnly = true;
+                        }
                     }
                 }
-            }
+        }
 
         }
     }

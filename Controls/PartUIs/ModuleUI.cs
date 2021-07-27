@@ -123,6 +123,10 @@ namespace Handover_Pack_Compiler
                 {
                     toggle = false;
                 }
+                if (MD.ClearFalsePaths())
+                {
+                    toggle = false;
+                }
             }
             if (toggle)
             {
