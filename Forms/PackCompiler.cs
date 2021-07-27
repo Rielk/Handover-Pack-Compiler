@@ -63,11 +63,24 @@ namespace Handover_Pack_Compiler
             ActivePackList = Utilities.ReadFromFile<ActivePack>("Started Packs.xml");
             ActivePackSource.DataSource = ActivePackList;
 
-            ForceComponentsExist();
+            PairPackComponents();
 
-            foreach (ActivePack AP in ActivePackList)
+            foreach (ActivePack AP in ActivePackList.ToList())
             {
-                AP.CheckPathsExist();
+                if (!AP.CheckConstantFilesExist())
+                {
+                    if (CMessageBox.Show("Missing File Error", "One or more constant files for pack ID: \"" + AP.CustomerNumber +
+                        "\" have been moved or renamed and can no longer be found. This pack will need to be deleted and remade to" +
+                        "apply a new template structure before it can be completed. Do you want to delete it now?",
+                        "Delete Later", "Delete Now") == DialogResult.No)
+                    {
+                        ActivePackList.Remove(AP);
+                    }
+                }
+                else
+                {
+                    AP.CheckPathsExist();
+                }
             }
 
             foreach (InverterData ID in InverterList)
@@ -216,7 +229,7 @@ namespace Handover_Pack_Compiler
             FilesTab.VerticalScroll.Value = 0;
         }
 
-        private void ForceComponentsExist()
+        private void PairPackComponents()
         {
             foreach (ActivePack AP in ActivePackList)
             {

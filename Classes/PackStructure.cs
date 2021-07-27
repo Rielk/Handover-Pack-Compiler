@@ -54,6 +54,19 @@ namespace Handover_Pack_Compiler
                 AddToFolder.AddFile(NewFile);
             }
         }
+        public bool CheckConstantFilesExist()
+        {
+            bool ret = true;
+            foreach (Folder folder in Folders)
+            {
+                if (!folder.CheckConstantFilesExist())
+                {
+                    ret = false;
+                }
+            }
+            return ret;
+        }
+
         public static PackStructure Default()
         {
             Folder fo;
@@ -429,6 +442,10 @@ namespace Handover_Pack_Compiler
                 {
                     return false;
                 }
+                if (!CheckConstantFilesExist())
+                {
+                    return false;
+                }
                 return true;
             }
         }
@@ -555,6 +572,18 @@ namespace Handover_Pack_Compiler
                 file.CheckPathsExist();
             }
         }
+        public bool CheckConstantFilesExist()
+        {
+            bool ret = true;
+            foreach (File file in Files)
+            {
+                if (!file.CheckConstantFilesExist())
+                {
+                    ret = false;
+                }
+            }
+            return ret;
+        }
 
         public class File
         {
@@ -636,6 +665,19 @@ namespace Handover_Pack_Compiler
                         CSGenPaths.Remove(CSP);
                         Complete = false;
                     }
+                }
+            }
+
+            public bool CheckConstantFilesExist()
+            {
+                if (FileType == FileTypeTag.Constant)
+                {
+                    return System.IO.File.Exists(ConstantPath) & !string.IsNullOrWhiteSpace(ConstantPath);
+                }
+                else
+                {
+
+                    return true;
                 }
             }
         }
