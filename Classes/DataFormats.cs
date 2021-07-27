@@ -3,6 +3,7 @@ using Handover_Pack_Compiler;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ public abstract class Data : NameCompare
     }
 
     public abstract void CopyBase(Data Copy);
+    public abstract bool ClearFalsePaths();
 
     public Data() { }
 
@@ -54,6 +56,23 @@ public class InverterData : Data
             Datasheet = other.Datasheet;
             SolarEdge = other.SolarEdge;
         }
+    }
+
+    public override bool ClearFalsePaths()
+    {
+        bool ret = false;
+
+        if (string.IsNullOrWhiteSpace(Datasheet))
+        {
+            ret = true;
+        }
+        else if (!File.Exists(Datasheet))
+        {
+            Datasheet = null;
+            ret = true;
+        }
+        
+        return ret;
     }
 }
 
@@ -92,6 +111,33 @@ public class ModuleData : Data
             Warranty = other.Warranty;
         }
     }
+
+    public override bool ClearFalsePaths()
+    {
+        bool ret = false;
+
+        if (string.IsNullOrWhiteSpace(Datasheet))
+        {
+            ret = true;
+        }
+        else if (!File.Exists(Datasheet))
+        {
+            Datasheet = null;
+            ret = true;
+        }
+
+        if (string.IsNullOrWhiteSpace(Warranty))
+        {
+            ret = true;
+        }
+        else if (!File.Exists(Warranty))
+        {
+            Datasheet = null;
+            ret = true;
+        }
+
+        return ret;
+    }
 }
 
 public class OptimiserData : Data
@@ -116,5 +162,22 @@ public class OptimiserData : Data
         {
             Datasheet = other.Datasheet;
         }
+    }
+
+    public override bool ClearFalsePaths()
+    {
+        bool ret = false;
+
+        if (string.IsNullOrWhiteSpace(Datasheet))
+        {
+            ret = true;
+        }
+        else if (!File.Exists(Datasheet))
+        {
+            Datasheet = null;
+            ret = true;
+        }
+
+        return ret;
     }
 }

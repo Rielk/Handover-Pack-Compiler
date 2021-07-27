@@ -61,13 +61,57 @@ namespace Handover_Pack_Compiler
             SortPackStructures();
 
             ActivePackList = Utilities.ReadFromFile<ActivePack>("Started Packs.xml");
-            foreach(ActivePack AP in ActivePackList)
+            ActivePackSource.DataSource = ActivePackList;
+
+            ForceComponentsExist();
+
+            foreach (ActivePack AP in ActivePackList)
             {
                 AP.CheckPathsExist();
             }
-            ActivePackSource.DataSource = ActivePackList;
 
-            AssertComponentsExist();
+            foreach (InverterData ID in InverterList)
+            {
+                if (ID.ClearFalsePaths())
+                {
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        if (AP.Inverters.Contains(ID))
+                        {
+                            AP.InverterComplete = false;
+                        }
+                    }    
+                }
+            }
+
+            foreach (ModuleData MD in ModuleList)
+            {
+                if (MD.ClearFalsePaths())
+                {
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        if (AP.Modules.Contains(MD))
+                        {
+                            AP.ModuleComplete = false;
+                        }
+                    }
+                }
+            }
+
+            foreach (OptimiserData OD in OptimiserList)
+            {
+                if (OD.ClearFalsePaths())
+                {
+                    foreach (ActivePack AP in ActivePackList)
+                    {
+                        if (AP.Optimisers.Contains(OD))
+                        {
+                            AP.OptimiserComplete = false;
+                        }
+                    }
+                }
+            }
+
             SortInverters();
             SortModules();
             SortOptimisers();
@@ -172,7 +216,7 @@ namespace Handover_Pack_Compiler
             FilesTab.VerticalScroll.Value = 0;
         }
 
-        private void AssertComponentsExist()
+        private void ForceComponentsExist()
         {
             foreach (ActivePack AP in ActivePackList)
             {
