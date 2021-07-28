@@ -366,36 +366,39 @@ namespace Handover_Pack_Compiler
 
         private void EditInverterButton_Click(object sender, EventArgs e)
         {
-            InverterData IData = (InverterData)InverterGridView.SelectedRows[0].DataBoundItem;
-            if (IData.Name != null)
+            foreach (DataGridViewRow row in InverterGridView.SelectedRows)
             {
-                InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
-                if (IVForm.ShowDialog() == DialogResult.OK)
+                InverterData IData = (InverterData)row.DataBoundItem;
+                if (IData.Name != null)
                 {
-                    foreach (ActivePack AP in ActivePackList)
+                    InverterValuesForm IVForm = new InverterValuesForm(IData.Name, IData.Datasheet, IData.SolarEdge);
+                    if (IVForm.ShowDialog() == DialogResult.OK)
                     {
-                        foreach (InverterData ID in AP.Inverters)
+                        foreach (ActivePack AP in ActivePackList)
                         {
-                            if (ID.Name == IData.Name)
+                            foreach (InverterData ID in AP.Inverters)
                             {
-                                ID.Name = IVForm.NameVal;
-                                ID.Datasheet = IVForm.DatasheetVal;
-                                ID.SolarEdge = IVForm.SolarEdgeVal;
-                                AP.InverterComplete = false;
-                                if (AP == LoadedPack)
+                                if (ID.Name == IData.Name)
                                 {
-                                    RequireReload = true;
+                                    ID.Name = IVForm.NameVal;
+                                    ID.Datasheet = IVForm.DatasheetVal;
+                                    ID.SolarEdge = IVForm.SolarEdgeVal;
+                                    AP.InverterComplete = false;
+                                    if (AP == LoadedPack)
+                                    {
+                                        RequireReload = true;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    InverterList.Remove(IData);
-                    IData.Name = IVForm.NameVal;
-                    IData.Datasheet = IVForm.DatasheetVal;
-                    IData.SolarEdge = IVForm.SolarEdgeVal;
-                    InverterList.Add(IData);
-                    SortInverters(IData.Name);
+                        InverterList.Remove(IData);
+                        IData.Name = IVForm.NameVal;
+                        IData.Datasheet = IVForm.DatasheetVal;
+                        IData.SolarEdge = IVForm.SolarEdgeVal;
+                        InverterList.Add(IData);
+                        SortInverters(IData.Name);
+                    }
                 }
             }
         }
@@ -473,36 +476,39 @@ namespace Handover_Pack_Compiler
 
         private void EditModuleButton_Click(object sender, EventArgs e)
         {
-            ModuleData MData = (ModuleData)ModuleGridView.SelectedRows[0].DataBoundItem;
-            if (MData.Name != null)
-            {
-                ModuleValuesForm MVForm = new ModuleValuesForm(MData.Name, MData.Datasheet, MData.Warranty);
-                if (MVForm.ShowDialog() == DialogResult.OK)
+            foreach (DataGridViewRow row in ModuleGridView.SelectedRows)
+            { 
+                ModuleData MData = (ModuleData)row.DataBoundItem;
+                if (MData.Name != null)
                 {
-                    foreach (ActivePack AP in ActivePackList)
+                    ModuleValuesForm MVForm = new ModuleValuesForm(MData.Name, MData.Datasheet, MData.Warranty);
+                    if (MVForm.ShowDialog() == DialogResult.OK)
                     {
-                        foreach (ModuleData MD in AP.Modules)
+                        foreach (ActivePack AP in ActivePackList)
                         {
-                            if (MD.Name == MData.Name)
+                            foreach (ModuleData MD in AP.Modules)
                             {
-                                MD.Name = MVForm.NameVal;
-                                MD.Datasheet = MVForm.DatasheetVal;
-                                MD.Warranty = MVForm.WarrantyVal;
-                                AP.ModuleComplete = false;
-                                if (AP == LoadedPack)
+                                if (MD.Name == MData.Name)
                                 {
-                                    RequireReload = true;
+                                    MD.Name = MVForm.NameVal;
+                                    MD.Datasheet = MVForm.DatasheetVal;
+                                    MD.Warranty = MVForm.WarrantyVal;
+                                    AP.ModuleComplete = false;
+                                    if (AP == LoadedPack)
+                                    {
+                                        RequireReload = true;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    ModuleList.Remove(MData);
-                    MData.Name = MVForm.NameVal;
-                    MData.Datasheet = MVForm.DatasheetVal;
-                    MData.Warranty = MVForm.WarrantyVal;
-                    ModuleList.Add(MData);
-                    SortModules(MData.Name);
+                        ModuleList.Remove(MData);
+                        MData.Name = MVForm.NameVal;
+                        MData.Datasheet = MVForm.DatasheetVal;
+                        MData.Warranty = MVForm.WarrantyVal;
+                        ModuleList.Add(MData);
+                        SortModules(MData.Name);
+                    }
                 }
             }
         }
@@ -579,34 +585,37 @@ namespace Handover_Pack_Compiler
 
         private void EditOptimiserButton_Click(object sender, EventArgs e)
         {
-            OptimiserData OData = (OptimiserData)OptimiserGridView.SelectedRows[0].DataBoundItem;
-            if (OData.Name != null)
+            foreach (DataGridViewRow row in OptimiserGridView.SelectedRows)
             {
-                OptimiserValuesForm OVForm = new OptimiserValuesForm(OData.Name, OData.Datasheet);
-                if (OVForm.ShowDialog() == DialogResult.OK)
+                OptimiserData OData = (OptimiserData)row.DataBoundItem;
+                if (OData.Name != null)
                 {
-                    foreach (ActivePack AP in ActivePackList)
+                    OptimiserValuesForm OVForm = new OptimiserValuesForm(OData.Name, OData.Datasheet);
+                    if (OVForm.ShowDialog() == DialogResult.OK)
                     {
-                        foreach (OptimiserData OD in AP.Optimisers)
+                        foreach (ActivePack AP in ActivePackList)
                         {
-                            if (OD.Name == OData.Name)
+                            foreach (OptimiserData OD in AP.Optimisers)
                             {
-                                OD.Name = OVForm.NameVal;
-                                OD.Datasheet = OVForm.DatasheetVal;
-                                AP.OptimiserComplete = false;
-                                if (AP == LoadedPack)
+                                if (OD.Name == OData.Name)
                                 {
-                                    RequireReload = true;
+                                    OD.Name = OVForm.NameVal;
+                                    OD.Datasheet = OVForm.DatasheetVal;
+                                    AP.OptimiserComplete = false;
+                                    if (AP == LoadedPack)
+                                    {
+                                        RequireReload = true;
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    OptimiserList.Remove(OData);
-                    OData.Name = OVForm.NameVal;
-                    OData.Datasheet = OVForm.DatasheetVal;
-                    OptimiserList.Add(OData);
-                    SortOptimisers(OData.Name);
+                        OptimiserList.Remove(OData);
+                        OData.Name = OVForm.NameVal;
+                        OData.Datasheet = OVForm.DatasheetVal;
+                        OptimiserList.Add(OData);
+                        SortOptimisers(OData.Name);
+                    }
                 }
             }
         }
@@ -763,6 +772,7 @@ namespace Handover_Pack_Compiler
                             {
                                 CustomerNumber = CustomerNumber
                             };
+                            NewStructure.Autofill();
                             ActivePackList.Add(NewStructure);
                             SortActivePacks();
                         }
@@ -790,27 +800,7 @@ namespace Handover_Pack_Compiler
             {
                 List<Control> ControlsToAdd = new List<Control>();
                 {
-                    Folder.File file;
-                    if (LoadedPack.QuoteFile == null)
-                    {
-                        file = new Folder.File()
-                        {
-                            FileType = FileTypeTag.Generic,
-                            AllowMultiple = false,
-                            AlwaysRequired = true,
-                            Description = "The Quotation File sent to the customer.\nContains" +
-                            " useful information like the size of the installation which can be" +
-                            " referred back to later.",
-                            DefaultFolder = 1,
-                            SearchTerm = "quote"
-                        };
-                        loadedPack.QuoteFile = file;
-                    }
-                    else
-                    {
-                        file = LoadedPack.QuoteFile;
-                    }
-                    FileUI NewSelector = new FileUI(file)
+                    FileUI NewSelector = new FileUI(LoadedPack.QuoteFile)
                     {
                         Text = PackPaths.IDCustomerName + " Quote File",
                         Dock = DockStyle.Top
@@ -954,8 +944,11 @@ namespace Handover_Pack_Compiler
         private void LoadPackButton_Click(object sender, EventArgs e)
         {
             PackCompiler_SaveLists(null, null);
-            PackPaths.SetCustomerNumber(((ActivePack)PackGridView.SelectedRows[0].DataBoundItem).CustomerNumber);
-            LoadAndSwitchToPack((ActivePack)PackGridView.SelectedRows[0].DataBoundItem);
+            foreach (DataGridViewRow row in PackGridView.SelectedRows)
+            {
+                PackPaths.SetCustomerNumber(((ActivePack)row.DataBoundItem).CustomerNumber);
+                LoadAndSwitchToPack((ActivePack)row.DataBoundItem);
+            }
         }
 
         private void CompilePackButton_Click(object sender, EventArgs e)
@@ -978,5 +971,18 @@ namespace Handover_Pack_Compiler
             
         }
         #endregion
+
+        private void DeletePackButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in PackGridView.SelectedRows)
+            {
+                if (CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Pack with ID: " +
+                        ((ActivePack)row.DataBoundItem).CustomerNumber, "Yes", "No") == DialogResult.Yes)
+                {
+                    ActivePackList.RemoveAll(x => x.CustomerNumber == ((ActivePack)row.DataBoundItem).CustomerNumber);
+                }
+            }
+            SortActivePacks();
+        }
     }
 }

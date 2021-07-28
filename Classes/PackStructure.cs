@@ -1,6 +1,7 @@
 ﻿using ExtensionMethods;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -251,7 +252,7 @@ namespace Handover_Pack_Compiler
         private List<ModuleData> _modules = new List<ModuleData>();
         private bool _optimiserComplete = false;
         private List<OptimiserData> _optimisers = new List<OptimiserData>();
-        private Folder.File _quoteFile = null;
+        private Folder.File _quoteFile = Folder.File.DefaultQuote();
         private bool _summaryComplete = false;
         private string _address = null;
         private DateTime _installDate = DateTime.Today;
@@ -507,6 +508,25 @@ namespace Handover_Pack_Compiler
                 folder.CheckPathsExist();
             }
         }
+
+        public void Autofill()
+        {
+            string TempCustomer = null;
+            if (PackPaths.CustomerNumber != CustomerNumber)
+            {
+                TempCustomer = PackPaths.CustomerNumber;
+                PackPaths.SetCustomerNumber(CustomerNumber);
+            }
+            QuoteFile?.Autofill();
+            foreach (Folder folder in Folders)
+            {
+                folder.Autofill();
+            }
+            if (TempCustomer != null)
+            {
+                PackPaths.SetCustomerNumber(TempCustomer);
+            }
+        }
     }
     public class Folder
     {
@@ -583,6 +603,14 @@ namespace Handover_Pack_Compiler
                 }
             }
             return ret;
+        }
+
+        public void Autofill()
+        {
+            foreach (File file in Files)
+            {
+                file.Autofill();
+            }
         }
 
         public class File
@@ -679,6 +707,41 @@ namespace Handover_Pack_Compiler
 
                     return true;
                 }
+            }
+
+            public void Autofill()
+            {
+                if (FileType == FileTypeTag.Generic && DefaultFolder is int FolderNumber && SearchTerm != null)
+                {
+                    List<string> Terms = SearchTerm.Split(',').Select(x => x.Trim()).ToList();
+                    List<string> AllFiles = new List<string>();
+                    foreach (string term in Terms)
+                    {
+                        string LookInFolder = PackPaths.CustomerFolderNumberN(FolderNumber);
+                        string[] files = Directory.GetFiles(LookInFolder,"*" + term + "*", SearchOption.AllDirectories);
+                        foreach (string f in files)
+                        {
+                            AllFiles.Add(f);
+                        }
+                    }
+                    GenericPaths = AllFiles;
+                }
+            }
+
+            public static File DefaultQuote()
+            {
+                File file = new File()
+                {
+                    FileType = FileTypeTag.Generic,
+                    AllowMultiple = false,
+                    AlwaysRequired = true,
+                    Description = "The Quotation File sent to the customer.\nContains" +
+                            " useful information like the size of the installation which can be" +
+                            " referred back to later.",
+                    DefaultFolder = 1,
+                    SearchTerm = "quote"
+                };
+                return file;
             }
         }
     }
