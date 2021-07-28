@@ -418,7 +418,7 @@ namespace Handover_Pack_Compiler
                 {
                     foreach (Folder.File file in folder.Files)
                     {
-                        foreach (CommSitePath path in QuoteFile.CSGenPaths)
+                        foreach (CommSitePath path in file.CSGenPaths)
                         {
                             ret.Add(path);
                         }

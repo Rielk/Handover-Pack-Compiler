@@ -227,7 +227,15 @@ namespace Handover_Pack_Compiler
                                 foreach (ModuleData MD in ToAdd)
                                 {
                                     k++;
-                                    string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
+                                    string Name;
+                                    if (ToAdd.Count > 1)
+                                    {
+                                        Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
+                                    }
+                                    else
+                                    {
+                                        Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    }
                                     string path = MD.Warranty;
                                     CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 }
@@ -259,7 +267,15 @@ namespace Handover_Pack_Compiler
                                 foreach (ModuleData MD in ToAdd)
                                 {
                                     k++;
-                                    string Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
+                                    string Name;
+                                    if (ToAdd.Count > 1)
+                                    {
+                                        Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
+                                    }
+                                    else
+                                    {
+                                        Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    }
                                     string path = MD.Datasheet;
                                     CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 }
@@ -287,11 +303,21 @@ namespace Handover_Pack_Compiler
                                         ToAdd.Add(ID);
                                     }
                                 }
+                                int k = 0;
                                 foreach(InverterData ID in ToAdd)
                                 {
-                                    string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    k++;
+                                    string Name;
+                                    if (ToAdd.Count > 1)
+                                    {
+                                        Name = string.Format("{0}.{1}.{2}  {3}", i, j, k, file.Name);
+                                    }
+                                    else
+                                    {
+                                        Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
+                                    }
                                     string path = ID.Datasheet;
-                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                 }
                                 if (ToAdd.Count > 0)
                                 {
@@ -341,14 +367,19 @@ namespace Handover_Pack_Compiler
         {
             string TempZip = PackPaths.TempZip;
             Directory.CreateDirectory(TempZip);
+            int i = 0;
             foreach (Folder folder in PackToCompile.Folders)
             {
-                string SourcePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), folder.Name);
-                string TargetPath = Path.Combine(PackPaths.TempZip, folder.Name);
-                CopyDirectory(SourcePath, TargetPath);
+                i++;
+                string SourcePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), string.Format("{0}.0  {1}", i, folder.Name));
+                string TargetPath = Path.Combine(PackPaths.TempZip, string.Format("{0}.0  {1}", i, folder.Name));
+                if (Directory.Exists(SourcePath))
+                {
+                    CopyDirectory(SourcePath, TargetPath);
+                }
             }
             ZipFile.CreateFromDirectory(TempZip, TempZip+".zip");
-            Directory.Delete(TempZip);
+            Directory.Delete(TempZip, true);
         }
 
         private void ArchiveCopyDocks()
@@ -363,7 +394,7 @@ namespace Handover_Pack_Compiler
                 {
                     if (parent == CopyDocksPath)
                     {
-                        ArchiveFile(CSPath, Directory.GetParent(ext).FullName);
+                        ArchiveFile(CSPath, Path.GetDirectoryName(ext));
                         break;
                     }
                     ext = Path.Combine(Path.GetFileName(parent), ext);
@@ -406,8 +437,17 @@ namespace Handover_Pack_Compiler
                 string NewPath = Path.Combine(PackPaths.Archive, ToSubDirectory, FileName + Path.GetExtension(FilePath));
                 if (!File.Exists(NewPath))
                 {
-                    File.Move(FilePath, NewPath);
-                    return NewPath;
+                    Directory.CreateDirectory(Path.GetDirectoryName(NewPath));
+                    if (File.Exists(FilePath))
+                    {
+                        File.Move(FilePath, NewPath);
+                        return NewPath;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    
                 }
             }
         }
@@ -446,7 +486,10 @@ namespace Handover_Pack_Compiler
         private void CopyFile(string SourcePath, string TargetPath)
         {
             Directory.CreateDirectory(Directory.GetParent(TargetPath).FullName);
-            File.Copy(SourcePath, TargetPath);
+            if (!string.IsNullOrWhiteSpace(SourcePath))
+            {
+                File.Copy(SourcePath, TargetPath);
+            }
         }
     }
 }
