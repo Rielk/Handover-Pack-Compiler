@@ -63,7 +63,8 @@ namespace Handover_Pack_Compiler
             List<string> results = Utilities.FolderStarting(cn, EnquiriesAndOrders);
             if (results.Count > 1)
             {
-                throw new NotImplementedException("Could be refering to many different customers.");
+                //throw new NotImplementedException("Could be refering to many different customers.");
+                return false;
             }
             else if (results.Count == 0)
             {
