@@ -798,9 +798,9 @@ namespace Handover_Pack_Compiler
                             FileType = FileTypeTag.Generic,
                             AllowMultiple = false,
                             AlwaysRequired = true,
-                            Description = "The Quotation File sent to the customer.\nContains " +
-                            "useful information like the size of the installation which can be" +
-                            "referred back to later.",
+                            Description = "The Quotation File sent to the customer.\nContains" +
+                            " useful information like the size of the installation which can be" +
+                            " referred back to later.",
                             DefaultFolder = 1,
                             SearchTerm = "quote"
                         };
@@ -964,14 +964,15 @@ namespace Handover_Pack_Compiler
             ActivePack SelectedPack = (ActivePack)PackGridView.SelectedRows[0].DataBoundItem;
             PackPaths.SetCustomerNumber(SelectedPack.CustomerNumber);
             LoadedPack = SelectedPack;
-            if (MessageBox.Show("Are you sure you want to create the pack for \"" + PackPaths.IDCustomerName + "\"? " +
+            if (CMessageBox.Show("Compile Pack", "Are you sure you want to create the pack for \"" + PackPaths.IDCustomerName + "\"? " +
                 Environment.NewLine + "Any folders or files in \"Copy Docs for Handover Pack\" will be moved to the archive folder.",
-                "Compile Pack", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                "Yes", "No") == DialogResult.Yes)
             {
                 CompileWorker CW = new CompileWorker(SelectedPack);
                 CW.Compile();
                 CW.Zip();
                 LoadedPack.Notes = string.Format("Compiled on {0}, ", DateTime.Now) + LoadedPack.Notes;
+                ActivePackSource.ResetBindings(false);
                 Process.Start(PackPaths.CustomerFolderNumberN(11));
             }
             
