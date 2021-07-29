@@ -60,21 +60,30 @@ namespace Handover_Pack_Compiler
         public static string TempZip { get { return Path.Combine(CustomerFolderNumberN(11), IDCustomerName + " Handover Pack"); } }
         public static bool SetCustomerNumber(string cn)
         {
-            List<string> results = Utilities.FolderStarting(cn, EnquiriesAndOrders);
-            if (results.Count > 1)
+            if (cn == null)
             {
-                //throw new NotImplementedException("Could be refering to many different customers.");
-                return false;
-            }
-            else if (results.Count == 0)
-            {
-                return false;
+                CustomerNumber = "0000";
+                CustomerFolder = null;
+                return true;
             }
             else
             {
-                CustomerNumber = cn;
-                CustomerFolder = results[0];
-                return true;
+                List<string> results = Utilities.FolderStarting(cn, EnquiriesAndOrders);
+                if (results.Count > 1)
+                {
+                    //throw new NotImplementedException("Could be refering to many different customers.");
+                    return false;
+                }
+                else if (results.Count == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    CustomerNumber = cn;
+                    CustomerFolder = results[0];
+                    return true;
+                }
             }
         }
         public static void SetCustomerNumber(int cn)

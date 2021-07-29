@@ -94,11 +94,6 @@ namespace Handover_Pack_Compiler
             file.GenericPaths = paths;
         }
 
-        private void AddFileButton_Click(object sender, EventArgs e)
-        {
-            AddFile();
-        }
-
         private void RequiredCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             foreach (Control c in GroupBox.Controls)

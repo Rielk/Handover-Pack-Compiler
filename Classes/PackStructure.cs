@@ -721,7 +721,10 @@ namespace Handover_Pack_Compiler
                         string[] files = Directory.GetFiles(LookInFolder,"*" + term + "*", SearchOption.AllDirectories);
                         foreach (string f in files)
                         {
-                            AllFiles.Add(f);
+                            if (!(f.IndexOf("Archive", StringComparison.OrdinalIgnoreCase) >= 0))
+                            {
+                                AllFiles.Add(f);
+                            }
                         }
                     }
                     GenericPaths = AllFiles;

@@ -798,6 +798,7 @@ namespace Handover_Pack_Compiler
         {
             if (LoadedPack != null)
             {
+                UnloadActivePack();
                 List<Control> ControlsToAdd = new List<Control>();
                 {
                     FileUI NewSelector = new FileUI(LoadedPack.QuoteFile)
@@ -919,6 +920,11 @@ namespace Handover_Pack_Compiler
                 }
             }
         }
+
+        private void UnloadActivePack()
+        {
+            FilesTab.Controls.Clear();
+        }
         #endregion
 
         #region Packs Tab
@@ -976,10 +982,16 @@ namespace Handover_Pack_Compiler
         {
             foreach (DataGridViewRow row in PackGridView.SelectedRows)
             {
+                ActivePack SelectedPack = (ActivePack)row.DataBoundItem;
                 if (CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Pack with ID: " +
-                        ((ActivePack)row.DataBoundItem).CustomerNumber, "Yes", "No") == DialogResult.Yes)
+                        SelectedPack.CustomerNumber, "Yes", "No") == DialogResult.Yes)
                 {
-                    ActivePackList.RemoveAll(x => x.CustomerNumber == ((ActivePack)row.DataBoundItem).CustomerNumber);
+                    ActivePackList.RemoveAll(x => x.CustomerNumber == SelectedPack.CustomerNumber);
+                    if (SelectedPack == LoadedPack)
+                    {
+                        PackPaths.SetCustomerNumber(null);
+                        UnloadActivePack();
+                    }
                 }
             }
             SortActivePacks();
