@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandoverPackCompiler", "HandoverPackCompiler.csproj", "{4BC575F4-121F-4FBF-BDA2-012EEB2CA42F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupHandoverPackCompiler", "..\SetupHandoverPackCompiler\SetupHandoverPackCompiler.vdproj", "{BE29736E-8394-498D-BD2A-C05A5DFD9820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,11 @@ Global
 		{4BC575F4-121F-4FBF-BDA2-012EEB2CA42F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BC575F4-121F-4FBF-BDA2-012EEB2CA42F}.Release|x86.ActiveCfg = Release|x86
 		{4BC575F4-121F-4FBF-BDA2-012EEB2CA42F}.Release|x86.Build.0 = Release|x86
+		{BE29736E-8394-498D-BD2A-C05A5DFD9820}.Debug|Any CPU.ActiveCfg = Debug
+		{BE29736E-8394-498D-BD2A-C05A5DFD9820}.Debug|x86.ActiveCfg = Debug
+		{BE29736E-8394-498D-BD2A-C05A5DFD9820}.Release|Any CPU.ActiveCfg = Release
+		{BE29736E-8394-498D-BD2A-C05A5DFD9820}.Release|Any CPU.Build.0 = Release
+		{BE29736E-8394-498D-BD2A-C05A5DFD9820}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
