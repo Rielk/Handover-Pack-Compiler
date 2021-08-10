@@ -86,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CompileWorker.cs" />
+    <Compile Include="Controls\PartSelectors\FileDropSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PartSelectors\FileDropSelector.Designer.cs">
+      <DependentUpon>FileDropSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SummaryInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -212,6 +218,9 @@
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utilities.cs" />
+    <EmbeddedResource Include="Controls\PartSelectors\FileDropSelector.resx">
+      <DependentUpon>FileDropSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SummaryInformation.resx">
       <DependentUpon>SummaryInformation.cs</DependentUpon>
     </EmbeddedResource>
