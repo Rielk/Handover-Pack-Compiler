@@ -200,7 +200,7 @@ namespace Handover_Pack_Compiler
                                 {
                                     string Name = string.Format("{0}.{1}  {2}", i, j, file.Name);
                                     string path = file.ConstantPath;
-                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name));
+                                    CopyFile(path, Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name + Path.GetExtension(path)));
                                     j++;
                                 }
                                 break;
