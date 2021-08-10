@@ -76,7 +76,7 @@ namespace Handover_Pack_Compiler
                                 Word.Document WordDoc = WordApplication.Documents.Open(ref TemplatePath);
                                 Word.Variables Variables = WordDoc.Variables;
                                 Variables["Address"].Value = PackToCompile.Address;
-                                Variables["InstallationDate"].Value = PackToCompile.InstallDate.Date.ToString("yyyy/MM/dd");
+                                Variables["InstallationDate"].Value = PackToCompile.InstallDate.Date.ToString("dd/MM/yyyy");
                                 #region InverterInformation
                                 Dictionary<string, int> InvCounts = new Dictionary<string, int>();
                                 foreach (InverterData ID in PackToCompile.Inverters)
