@@ -97,5 +97,21 @@ namespace Handover_Pack_Compiler
         {
             return Utilities.OpenFolderNumber(Folder, CustomerFolder);
         }
+        public static string CustomerFolderExtension(string CheckPath)
+        {
+            string parent = CheckPath;
+            string ext = "";
+            string communicationSite = CustomerFolder;
+            while (!string.IsNullOrEmpty(parent))
+            {
+                if (parent == communicationSite)
+                {
+                    return ext;
+                }
+                ext = Path.Combine(Path.GetFileName(parent), ext);
+                parent = Directory.GetParent(parent)?.FullName;
+            }
+            return CheckPath;
+        }
     }
 }

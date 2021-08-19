@@ -13,6 +13,7 @@ namespace Handover_Pack_Compiler
     public partial class FileUI : UserControl
     {
         private readonly List<FileSelector> FileSelectors = new List<FileSelector>();
+        private FileDropSelector DropSelector;
         private readonly Folder.File file;
         public override string Text
         {
@@ -30,6 +31,23 @@ namespace Handover_Pack_Compiler
             }
             else
             {
+                if (!file.AllowMultiple && f.CSGenPaths.Count > 1)
+                {
+                    DropSelector = new FileDropSelector
+                    {
+                        Dock = DockStyle.Top,
+                        Padding = new Padding(4, 0, 4, 0),
+                        DefaultFolder = file.DefaultFolder
+                    };
+                    DropSelector.ValueUpdate += DropSelector_ValueUpdate;
+                    GroupBox.Controls.Add(DropSelector);
+                    this.MaximumSize = new Size(5000, this.MaximumSize.Height + 26);
+                    this.MinimumSize = new Size(0, this.MinimumSize.Height + 26);
+                    if (!file.AlwaysRequired)
+                    {
+                        DropSelector.AddOption("None");
+                    }
+                }
                 foreach (string path in f.GenericPaths)
                 {
                     AddFile(path);
@@ -64,32 +82,47 @@ namespace Handover_Pack_Compiler
         }
         private void AddFile(string name)
         {
-            FileSelector fs = new FileSelector
+            if (DropSelector == null)
             {
-                Value = name,
-                Dock = DockStyle.Top,
-                Padding = new Padding(4, 0, 4, 0),
-                DefaultFolder = file.DefaultFolder
-            };
-            fs.ValueUpdate += FileSelector_ValueUpdate;
-            fs.RemoveThis += FileSelector_RemoveThis;
-            fs.MaximumSize = new Size(5000, fs.Height + 5);
-            fs.MinimumSize = new Size(0, fs.Height + 5);
-            GroupBox.Controls.Add(fs);
-            FileSelectors.Add(fs);
-            this.MaximumSize = new Size(5000, this.MaximumSize.Height + 25);
-            this.MinimumSize = new Size(0, this.MinimumSize.Height + 25);
+                FileSelector fs = new FileSelector
+                {
+                    Value = name,
+                    Dock = DockStyle.Top,
+                    Padding = new Padding(4, 0, 4, 0),
+                    DefaultFolder = file.DefaultFolder
+                };
+                fs.ValueUpdate += FileSelector_ValueUpdate;
+                fs.RemoveThis += FileSelector_RemoveThis;
+                fs.MaximumSize = new Size(5000, fs.Height + 5);
+                fs.MinimumSize = new Size(0, fs.Height + 5);
+                GroupBox.Controls.Add(fs);
+                FileSelectors.Add(fs);
+                this.MaximumSize = new Size(5000, this.MaximumSize.Height + 25);
+                this.MinimumSize = new Size(0, this.MinimumSize.Height + 25);
+            }
+            else
+            {
+                DropSelector.AddOption(name);
+            }
         }
 
         private void UpdatePaths()
         {
-            List<string> paths = new List<string>();
-            foreach (FileSelector fs in FileSelectors)
+            List<string> paths;
+            if (DropSelector == null)
             {
-                if (fs.Value != "")
+                paths = new List<string>();
+                foreach (FileSelector fs in FileSelectors)
                 {
-                    paths.Add(fs.Value);
+                    if (fs.Value != "")
+                    {
+                        paths.Add(fs.Value);
+                    }
                 }
+            }
+            else
+            {
+                paths = DropSelector.AllOptions;
             }
             file.GenericPaths = paths;
         }
@@ -102,6 +135,11 @@ namespace Handover_Pack_Compiler
             }
             file.Complete = RequiredCheckBox.Checked;
             ToggleComplete();
+        }
+
+        private void DropSelector_ValueUpdate(object sender, EventArgs e)
+        {
+            UpdatePaths();
         }
 
         private void FileSelector_ValueUpdate(object sender, EventArgs e)
@@ -132,22 +170,36 @@ namespace Handover_Pack_Compiler
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            bool toggle = true;
-            //If a file is always needed and one isn't provided, prevent toggle.
-            if (file.AlwaysRequired && FileSelectors[0].Value == "")
+            bool toggle;
+            if (DropSelector == null)
             {
-                toggle = false;
+                toggle = true;
+                //If a file is always needed and one isn't provided, prevent toggle.
+                if (file.AlwaysRequired && FileSelectors[0].Value == "")
+                {
+                    toggle = false;
+                }
+                //If a file isn't always needed and one isn't provided, toggle required checkbox instead.
+                if (!file.AlwaysRequired && FileSelectors[0].Value == "")
+                {
+                    RequiredCheckBox.Checked = false;
+                    toggle = false;
+                }
+                //If not allowed multiple files and multiple are provided, prevent check.
+                if (!file.AllowMultiple && FileSelectors.Count != 1)
+                {
+                    toggle = false;
+                }
             }
-            //If a file isn't always needed and one isn't provided, toggle required checkbox instead.
-            if (!file.AlwaysRequired && FileSelectors[0].Value == "")
+            else
             {
-                RequiredCheckBox.Checked = false;
-                toggle = false;
-            }
-            //If not allowed multiple files and multiple are provided, prevent check.
-            if (!file.AllowMultiple && FileSelectors.Count != 1)
-            {
-                toggle = false;
+                toggle = true;
+                //If a file isn't always needed and isn't selected, toggle required checkbox instead.
+                if (!file.AlwaysRequired && DropSelector.SelectedOption == "None")
+                {
+                    RequiredCheckBox.Checked = false;
+                    toggle = false;
+                }
             }
             if (toggle)
             {
@@ -155,7 +207,25 @@ namespace Handover_Pack_Compiler
             }
         }
         private void ToggleComplete()
-        { 
+        {
+            if (DropSelector != null)
+            {
+                FileDropSelector tempDropSelector = DropSelector;
+                GroupBox.Controls.Remove(DropSelector);
+                DropSelector = null;
+                if (tempDropSelector.Value == null)
+                {
+                    if (tempDropSelector.SelectedOption == "Other...")
+                    {
+                        file.Complete = true;
+                    }
+                }
+                else
+                {
+                    AddFile(tempDropSelector.Value);
+                }
+                UpdatePaths();
+            }
             if (file.Complete)
             {
                 file.Complete = false;
@@ -178,20 +248,29 @@ namespace Handover_Pack_Compiler
                     if (fs.Value == "")
                     {
                         Remove_FileSelector(fs);
-                    } 
+                    }
                     else
                     {
                         fs.ReadOnly = true;
                     }
                 }
             }
+            GroupBox_Resize(this, null);
         }
 
         private void GroupBox_Resize(object sender, EventArgs e)
         {
             DescriptionLabel.MaximumSize = new Size(ConfirmButton.Location.X - 5, 5000);
-            this.MaximumSize = new Size(5000, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
-            this.MinimumSize = new Size(0, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
+            if (DropSelector == null)
+            {
+                this.MaximumSize = new Size(5000, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
+                this.MinimumSize = new Size(0, Math.Max(DescriptionLabel.Height + 17, 40) + (FileSelectors.Count * 25));
+            }
+            else
+            {
+                this.MaximumSize = new Size(5000, Math.Max(DescriptionLabel.Height + 43, 66));
+                this.MinimumSize = new Size(0, Math.Max(DescriptionLabel.Height + 43, 66));
+            }
             DescriptionLabel.Top = Math.Min(this.Height - DescriptionLabel.Height - 3, this.Height - 26);
             ConfirmButton.Top = DescriptionLabel.Top;
         }

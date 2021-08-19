@@ -742,7 +742,7 @@ namespace Handover_Pack_Compiler
                             " useful information like the size of the installation which can be" +
                             " referred back to later.",
                     DefaultFolder = 1,
-                    SearchTerm = "quote"
+                    SearchTerm = "quote, quotation"
                 };
                 return file;
             }

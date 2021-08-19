@@ -18,6 +18,22 @@ namespace Handover_Pack_Compiler
         {
             get { return CSPath.FullPath; }
         }
+        public List<string> AllOptions
+        {
+            get
+            {
+                List<string> ret = new List<string>();
+                foreach (string ext in DropBox.Items)
+                {
+                    ret.Add(Path.Combine(PackPaths.CustomerFolder, ext));
+                }
+                return ret;
+            }
+        }
+        public string SelectedOption
+        {
+            get { return (string)DropBox.SelectedItem; }
+        }
         public CommSitePath CSPath = new CommSitePath();
         public int? DefaultFolder = null;
         public string Filter = "All files (*.*)|*.*|PDF files (*.pdf)|*.pdf";
@@ -29,25 +45,19 @@ namespace Handover_Pack_Compiler
             set
             {
                 enbld = !value;
-                TextBox.Enabled = !value;
+                DropBox.Enabled = !value;
                 Button.Enabled = !value;
-                //OpenButton.Enabled = !value;
-                RemoveButton.Enabled = !value;
             }
         }
         public FileDropSelector()
         {
             InitializeComponent();
+            DropBox.SelectedItem = "Other...";
         }
         [Browsable(true)]
         [Category("Action")]
         [Description("Invoked when Value updates")]
         public event EventHandler ValueUpdate;
-
-        [Browsable(true)]
-        [Category("Action")]
-        [Description("Invoked when Value updates")]
-        public event EventHandler RemoveThis;
 
         private void Button_Click(object sender, EventArgs e)
         {
@@ -56,15 +66,24 @@ namespace Handover_Pack_Compiler
             file_dialog.InitialDirectory = DefaultPath.CustomerFile(Value, DefaultFolder);
             if (file_dialog.ShowDialog() == DialogResult.OK)
             {
-                Value = file_dialog.FileName;
-                TextBox.Text = CSPath.FileName;
+                AddOption(file_dialog.FileName, true);
                 ValueUpdate?.Invoke(this, null);
             }
         }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
+        public void AddOption(string option, bool select = false)
         {
-            RemoveThis?.Invoke(this, null);
+            var item = DropBox.SelectedItem;
+            string str = PackPaths.CustomerFolderExtension(option);
+            DropBox.Items.Add(str);
+            if (select)
+            {
+                DropBox.SelectedItem = str;
+            }
+            else
+            {
+                DropBox.SelectedItem = item;
+            }
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -76,6 +95,35 @@ namespace Handover_Pack_Compiler
             else
             {
                 MessageBox.Show("Can no longer find the file at \""+Value+"\". It may have been deleted or renamed.", "Something went wrong");
+            }
+        }
+
+        private void DropBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((string)DropBox.SelectedItem == "Other...")
+            {
+                CSPath.FullPath = null;
+                RemoveButton.Enabled = false;
+            }
+            else if ((string)DropBox.SelectedItem == "None")
+            {
+                CSPath.FullPath = null;
+                RemoveButton.Enabled = false;
+            }
+            else
+            {
+                CSPath.FullPath = Path.Combine(PackPaths.CustomerFolder, (string)DropBox.SelectedItem);
+                RemoveButton.Enabled = true;
+            }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if ((string)DropBox.SelectedItem != "Other..." | (string)DropBox.SelectedItem != "None")
+            {
+                DropBox.Items.Remove(DropBox.SelectedItem);
+                DropBox.SelectedItem = "Other...";
+                ValueUpdate?.Invoke(this, null);
             }
         }
     }

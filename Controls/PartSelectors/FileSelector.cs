@@ -52,7 +52,7 @@ namespace Handover_Pack_Compiler
 
         [Browsable(true)]
         [Category("Action")]
-        [Description("Invoked when Value updates")]
+        [Description("Invoked when requesting to be removed")]
         public event EventHandler RemoveThis;
 
         private void Button_Click(object sender, EventArgs e)

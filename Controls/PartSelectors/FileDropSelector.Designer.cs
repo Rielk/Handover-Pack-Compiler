@@ -32,6 +32,7 @@ namespace Handover_Pack_Compiler
             this.OpenButton = new System.Windows.Forms.Button();
             this.DropBox = new System.Windows.Forms.ComboBox();
             this.Button = new System.Windows.Forms.Button();
+            this.RemoveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OpenButton
@@ -47,12 +48,18 @@ namespace Handover_Pack_Compiler
             // 
             // DropBox
             // 
+            this.DropBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DropBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DropBox.FormattingEnabled = true;
-            this.DropBox.Location = new System.Drawing.Point(3, 0);
+            this.DropBox.Items.AddRange(new object[] {
+            "Other..."});
+            this.DropBox.Location = new System.Drawing.Point(20, 0);
             this.DropBox.Name = "DropBox";
-            this.DropBox.Size = new System.Drawing.Size(371, 21);
+            this.DropBox.Size = new System.Drawing.Size(355, 21);
+            this.DropBox.Sorted = true;
             this.DropBox.TabIndex = 9;
+            this.DropBox.SelectedIndexChanged += new System.EventHandler(this.DropBox_SelectedIndexChanged);
             // 
             // Button
             // 
@@ -63,11 +70,23 @@ namespace Handover_Pack_Compiler
             this.Button.TabIndex = 10;
             this.Button.Text = "...";
             this.Button.UseVisualStyleBackColor = true;
+            this.Button.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Location = new System.Drawing.Point(0, 0);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(20, 20);
+            this.RemoveButton.TabIndex = 11;
+            this.RemoveButton.Text = "X";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // FileDropSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.Button);
             this.Controls.Add(this.DropBox);
             this.Controls.Add(this.OpenButton);
@@ -83,5 +102,6 @@ namespace Handover_Pack_Compiler
         private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.ComboBox DropBox;
         private System.Windows.Forms.Button Button;
+        private System.Windows.Forms.Button RemoveButton;
     }
 }
