@@ -711,13 +711,21 @@ namespace Handover_Pack_Compiler
 
             public void Autofill()
             {
-                if (FileType == FileTypeTag.Generic && DefaultFolder is int FolderNumber && SearchTerm != null)
+                if (FileType == FileTypeTag.Generic && SearchTerm != null)
                 {
                     List<string> Terms = SearchTerm.Split(',').Select(x => x.Trim()).ToList();
                     List<string> AllFiles = new List<string>();
+                    string LookInFolder;
+                    if (DefaultFolder is int FolderNumber)
+                    {
+                        LookInFolder = PackPaths.CustomerFolderNumberN(FolderNumber);
+                    }
+                    else
+                    {
+                        LookInFolder = PackPaths.CustomerFolder;
+                    }
                     foreach (string term in Terms)
                     {
-                        string LookInFolder = PackPaths.CustomerFolderNumberN(FolderNumber);
                         string[] files = Directory.GetFiles(LookInFolder,"*" + term + "*", SearchOption.AllDirectories);
                         foreach (string f in files)
                         {
