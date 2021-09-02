@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -67,7 +68,7 @@ namespace Handover_Pack_Compiler
                         case FileTypeTag.Summary:
                             {
                                 object MissingVal = Missing.Value;
-                                object TemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx"));
+                                object TemplatePath = Path.Combine(PackPaths.CustomerFolderNumberN(11), Path.ChangeExtension(file.Name, ".docx")).Remove(0, 4);
                                 File.Copy(Path.Combine(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName, "SummaryDocTemplate.docx"), (string)TemplatePath);
                                 Word.Application WordApplication = new Word.Application
                                 {
@@ -176,7 +177,7 @@ namespace Handover_Pack_Compiler
                                 Process process = Process.Start((string)TemplatePath);
                                 process.WaitForExit();
                                 string Name = string.Format("{0}.{1}  {2}.pdf", i, j, file.Name);
-                                string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name);
+                                string path = Path.Combine(PackPaths.CustomerFolderNumberN(11), NumericalFolderName, Name).Remove(0, 4);
                                 WordDoc = WordApplication.Documents.Open(ref TemplatePath);
                                 Directory.CreateDirectory(Directory.GetParent(path).FullName);
                                 WordDoc.ExportAsFixedFormat(path, Word.WdExportFormat.wdExportFormatPDF);
@@ -440,7 +441,19 @@ namespace Handover_Pack_Compiler
                     Directory.CreateDirectory(Path.GetDirectoryName(NewPath));
                     if (File.Exists(FilePath))
                     {
-                        File.Move(FilePath, NewPath);
+                        while (true)
+                        {
+                            try
+                            {
+                                File.Move(FilePath, NewPath);
+                                break;
+                            }
+                            catch (System.IO.IOException)
+                            {
+                                PackCompiler.ShowCMessageBox("File is Open", string.Format("A file is open in another program." +
+                                    " Please close it then continue.\n\n{0}", FilePath), null, "Continue");
+                            }
+                        }   
                         return NewPath;
                     }
                     else
@@ -480,6 +493,7 @@ namespace Handover_Pack_Compiler
             foreach (string path in Directory.GetFiles(SourcePath))
             {
                 File.Copy(path, Path.Combine(TargetPath, Path.GetFileName(path)));
+                break;
             }
         }
 

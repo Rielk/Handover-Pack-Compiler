@@ -40,11 +40,14 @@ namespace Handover_Pack_Compiler
             // 
             // MessageText
             // 
+            this.MessageText.AutoSize = true;
             this.MessageText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MessageText.Location = new System.Drawing.Point(0, 0);
+            this.MessageText.MaximumSize = new System.Drawing.Size(281, 5000);
+            this.MessageText.MinimumSize = new System.Drawing.Size(281, 0);
             this.MessageText.Name = "MessageText";
             this.MessageText.Padding = new System.Windows.Forms.Padding(12);
-            this.MessageText.Size = new System.Drawing.Size(281, 57);
+            this.MessageText.Size = new System.Drawing.Size(281, 50);
             this.MessageText.TabIndex = 0;
             this.MessageText.Text = "This is where the message text goes.\r\nIt can have multiple lines.";
             this.MessageText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,7 +86,7 @@ namespace Handover_Pack_Compiler
             this.MessagePanel.Controls.Add(this.MessageText);
             this.MessagePanel.Location = new System.Drawing.Point(0, 0);
             this.MessagePanel.Name = "MessagePanel";
-            this.MessagePanel.Size = new System.Drawing.Size(281, 57);
+            this.MessagePanel.Size = new System.Drawing.Size(281, 50);
             this.MessagePanel.TabIndex = 1;
             // 
             // ButtonPanel
@@ -91,7 +94,7 @@ namespace Handover_Pack_Compiler
             this.ButtonPanel.Controls.Add(this.NoButton);
             this.ButtonPanel.Controls.Add(this.YesButton);
             this.ButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ButtonPanel.Location = new System.Drawing.Point(0, 57);
+            this.ButtonPanel.Location = new System.Drawing.Point(0, 50);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Size = new System.Drawing.Size(281, 41);
             this.ButtonPanel.TabIndex = 2;
@@ -102,18 +105,21 @@ namespace Handover_Pack_Compiler
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.NoButton;
-            this.ClientSize = new System.Drawing.Size(281, 98);
+            this.ClientSize = new System.Drawing.Size(281, 91);
             this.ControlBox = false;
             this.Controls.Add(this.ButtonPanel);
             this.Controls.Add(this.MessagePanel);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(297, 5000);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(297, 0);
             this.Name = "CMessageBox";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CMessageBox";
             this.TopMost = true;
             this.MessagePanel.ResumeLayout(false);
+            this.MessagePanel.PerformLayout();
             this.ButtonPanel.ResumeLayout(false);
             this.ButtonPanel.PerformLayout();
             this.ResumeLayout(false);

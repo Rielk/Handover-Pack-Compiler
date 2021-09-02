@@ -15,15 +15,33 @@ namespace Handover_Pack_Compiler
         public CMessageBox(string title, string message, string YesButtonText, string NoButtonText)
         {
             InitializeComponent();
-            Text = title;
+            this.Text = title;
             MessageText.Text = message;
-            YesButton.Text = YesButtonText;
-            NoButton.Text = NoButtonText;
+            if (YesButtonText == null)
+            {
+                YesButton.Visible = false;
+            }
+            else
+            {
+                YesButton.Text = YesButtonText;
+            }
+            if (NoButtonText == null)
+            {
+                NoButton.Visible = false;
+            }
+            else
+            {
+                NoButton.Text = NoButtonText;
+            }
+            this.Size = new Size(297, MessageText.Height + 80);
         }
 
-        public static DialogResult Show(string title, string message, string YesButtonText, string NoButtonText)
+        public static DialogResult Show(string title, string message, string YesButtonText, string NoButtonText, Form OwnerForm)
         {
-            CMessageBox MBox = new CMessageBox(title, message, YesButtonText, NoButtonText);
+            CMessageBox MBox = new CMessageBox(title, message, YesButtonText, NoButtonText)
+            {
+                Owner = OwnerForm
+            };
             MBox.ShowDialog();
             return MBox.DialogResult;
         }

@@ -16,6 +16,7 @@ namespace Handover_Pack_Compiler
 {
     public partial class PackCompiler : Form
     {
+        private static PackCompiler MainForm;
         public static List<InverterData> InverterList;
         public static List<ModuleData> ModuleList;
         public static List<OptimiserData> OptimiserList;
@@ -35,6 +36,7 @@ namespace Handover_Pack_Compiler
 
         public PackCompiler()
         {
+            MainForm = this;
             InitializeComponent();
             CheckFilePaths();
             LoadFilePaths();
@@ -72,7 +74,7 @@ namespace Handover_Pack_Compiler
                     if (CMessageBox.Show("Missing File Error", "One or more constant files for pack ID: \"" + AP.CustomerNumber +
                         "\" have been moved or renamed and can no longer be found. This pack will need to be deleted and remade to" +
                         "apply a new template structure before it can be completed. Do you want to delete it now?",
-                        "Delete Later", "Delete Now") == DialogResult.No)
+                        "Delete Later", "Delete Now", MainForm) == DialogResult.No)
                     {
                         ActivePackList.Remove(AP);
                     }
@@ -176,7 +178,7 @@ namespace Handover_Pack_Compiler
                 if (CheckExisting<T>(list, ToAdd))
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Replace", "\"" + ToAdd.ToString() +
-                            "\"already exists. Do you want to replace it?", "Yes", "No");
+                            "\"already exists. Do you want to replace it?", "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         list.Remove(ToAdd);
@@ -186,6 +188,11 @@ namespace Handover_Pack_Compiler
                 }
                 else { return ToAdd.ToString(); }
             }
+        }
+
+        public static void ShowCMessageBox(string title, string message, string YesButtonText, string NoButtonText)
+        {
+            CMessageBox.Show(title, message, YesButtonText, NoButtonText, MainForm);
         }
 
         private bool CheckExistingAdd<T>(List<T> list, T ToAdd, bool AutoRename) where T : NameCompare
@@ -338,7 +345,7 @@ namespace Handover_Pack_Compiler
                 if (((InverterData)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Inverter: " +
-                        ((InverterData)row.DataBoundItem).ToString(), "Yes", "No");
+                        ((InverterData)row.DataBoundItem).ToString(), "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         InverterList.Remove((InverterData)row.DataBoundItem);
@@ -448,7 +455,7 @@ namespace Handover_Pack_Compiler
                 if (((ModuleData)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Module: " +
-                        ((ModuleData)row.DataBoundItem).ToString(), "Yes", "No");
+                        ((ModuleData)row.DataBoundItem).ToString(), "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         ModuleList.Remove((ModuleData)row.DataBoundItem);
@@ -557,7 +564,7 @@ namespace Handover_Pack_Compiler
                 if (((OptimiserData)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Optimiser: " +
-                        ((OptimiserData)row.DataBoundItem).ToString(), "Yes", "No");
+                        ((OptimiserData)row.DataBoundItem).ToString(), "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         OptimiserList.Remove((OptimiserData)row.DataBoundItem);
@@ -678,7 +685,7 @@ namespace Handover_Pack_Compiler
                 if (((PackStructure)row.DataBoundItem).Name != null)
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Structure: " +
-                        ((PackStructure)row.DataBoundItem).ToString(), "Yes", "No");
+                        ((PackStructure)row.DataBoundItem).ToString(), "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         PackStructureList.Remove((PackStructure)row.DataBoundItem);
@@ -688,7 +695,7 @@ namespace Handover_Pack_Compiler
                 else if (((PackStructure)row.DataBoundItem).Name == null)
                 {
                     DialogResult Confirm = CMessageBox.Show("Confirm Delete",
-                        "Are you sure you want to restore the default pack?", "Yes", "No");
+                        "Are you sure you want to restore the default pack?", "Yes", "No", MainForm);
                     if (Confirm == DialogResult.Yes)
                     {
                         PackStructureList[PackStructureList.FindIndex(x => x.Name == null)] = PackStructure.Default();
@@ -962,10 +969,11 @@ namespace Handover_Pack_Compiler
             PackCompiler_SaveLists(null, null);
             ActivePack SelectedPack = (ActivePack)PackGridView.SelectedRows[0].DataBoundItem;
             PackPaths.SetCustomerNumber(SelectedPack.CustomerNumber);
+            string FolderString = Path.GetFileName(PackPaths.CustomerFolderNumberN(11));
             LoadedPack = SelectedPack;
             if (CMessageBox.Show("Compile Pack", "Are you sure you want to create the pack for \"" + PackPaths.IDCustomerName + "\"? " +
-                Environment.NewLine + "Any folders or files in \"Copy Docs for Handover Pack\" will be moved to the archive folder.",
-                "Yes", "No") == DialogResult.Yes)
+                Environment.NewLine + "\nAny folders or files in \"" + FolderString + "\" will be moved to an archive folder.",
+                "Yes", "No", MainForm) == DialogResult.Yes)
             {
                 CompileWorker CW = new CompileWorker(SelectedPack);
                 CW.Compile();
@@ -984,7 +992,7 @@ namespace Handover_Pack_Compiler
             {
                 ActivePack SelectedPack = (ActivePack)row.DataBoundItem;
                 if (CMessageBox.Show("Confirm Delete", "Are you sure you want to delete the Pack with ID: " +
-                        SelectedPack.CustomerNumber, "Yes", "No") == DialogResult.Yes)
+                        SelectedPack.CustomerNumber, "Yes", "No", MainForm) == DialogResult.Yes)
                 {
                     ActivePackList.RemoveAll(x => x.CustomerNumber == SelectedPack.CustomerNumber);
                     if (SelectedPack == LoadedPack)

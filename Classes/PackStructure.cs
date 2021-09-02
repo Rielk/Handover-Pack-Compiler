@@ -187,7 +187,7 @@ namespace Handover_Pack_Compiler
             fi.AllowMultiple = false;
             fi = DefaultStructure.AddFile("DNO commissioning notification", "Electrical");
             fi.Description = "DNO commissioning notification email, including the acceptance email if recieved.";
-            fi.DefaultFolder = 12;
+            fi.DefaultFolder = null;
             fi.SearchTerm = "dno";
             fi.AlwaysRequired = true;
             fi.FileType = FileTypeTag.Generic;

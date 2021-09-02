@@ -19,7 +19,7 @@ namespace Handover_Pack_Compiler
                 bool clear = false;
                 while (!clear)
                 {
-                    string commSitePath = Properties.Settings.Default.CommSitePath;
+                    string commSitePath = @"\\?\" + Properties.Settings.Default.CommSitePath;
                     bool check1 = commSitePath == ""; //If it's blank
                     bool check2 = !Directory.Exists(commSitePath); //If is doesn't exist
                     bool check3 = !Directory.Exists(Path.Combine(commSitePath, "Enquiries & Orders Area"));//If it doesn't contain
@@ -81,7 +81,7 @@ namespace Handover_Pack_Compiler
                 else
                 {
                     CustomerNumber = cn;
-                    CustomerFolder = results[0];
+                    CustomerFolder = @"\\?\" + results[0];
                     return true;
                 }
             }
